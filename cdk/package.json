@@ -1,0 +1,24 @@
+{
+    "name": "cdk",
+    "version": "0.1.0",
+    "main": "bin/index.js",
+    "types": "bin/index.d.ts",
+    "bin": {
+        "cdk": "bin/cdk.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc -w",
+        "cdk": "cdk"
+    },
+    "devDependencies": {
+        "@types/node": "^8.9.4",
+        "typescript": "^2.8.3",
+        "aws-cdk": "^0.8.2"
+    },
+    "dependencies": {
+        "@aws-cdk/aws-sns": "^0.8.2",
+        "@aws-cdk/aws-sqs": "^0.8.2",
+        "@aws-cdk/cdk": "^0.8.2"
+    }
+}

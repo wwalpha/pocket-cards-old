@@ -1,9 +1,10 @@
-import { cloudformation } from "@aws-cdk/aws-cognito";
-import { CognitoProps } from './index.d';
+import { cloudformation } from '@aws-cdk/aws-cognito';
+import { Construct } from '@aws-cdk/cdk';
+import { CognitoProps } from './cognito';
 
-export default (props: CognitoProps) => new cloudformation.UserPoolResource(
-  this,
-  `${props.envType}-UserPool`,
+export default (parent: Construct, props: CognitoProps) => new cloudformation.UserPoolResource(
+  parent,
+  'UserPoolResource',
   {
     adminCreateUserConfig: {
       // 管理者のみ追加
@@ -24,7 +25,7 @@ export default (props: CognitoProps) => new cloudformation.UserPoolResource(
         requireUppercase: false,
         // 最小文字数：８
         minimumLength: 8,
-      }
+      },
     },
     // プール名
     userPoolName: `${props.envType}-UserPool`,
@@ -44,6 +45,6 @@ export default (props: CognitoProps) => new cloudformation.UserPoolResource(
     ],
     // 自動認証属性
     autoVerifiedAttributes: [
-      'email'
-    ]
+      'email',
+    ],
   });

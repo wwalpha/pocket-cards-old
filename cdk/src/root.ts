@@ -1,10 +1,11 @@
-import { Stack, App, StackProps } from "@aws-cdk/cdk";
+import { Stack, App, StackProps } from '@aws-cdk/cdk';
+import { Cognito } from './cognito';
 
 class CdkStack extends Stack {
   constructor(parent: App, name: string, props?: StackProps) {
     super(parent, name, props);
 
-    new UserPool(parent, 'UserPool', {
+    Cognito(this, {
       envType: 'dev',
     });
   }

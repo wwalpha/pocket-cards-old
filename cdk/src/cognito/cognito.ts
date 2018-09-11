@@ -1,29 +1,21 @@
 import { cloudformation } from '@aws-cdk/aws-cognito';
 import { Construct } from '@aws-cdk/cdk';
-import { CognitoProps } from './index.d';
-import { UserPool, UserPoolClient } from './index';
+import { UserPool, UserPoolClient, IdentityPool } from './index';
+import { CommonProps } from '../common';
 
-export class Cognito extends Construct {
-  constructor(parent: Construct, name: string, props: CognitoProps) {
-    super(parent, name);
+export default (parent: Construct, props: CognitoProps) => {
+  const userpool = UserPool(parent, props);
+  const userPoolClient = UserPoolClient(parent, userpool.ref);
 
+  // Cognito Provider
+  const provider: cloudformation.IdentityPoolResource.CognitoIdentityProviderProperty = {
+    clientId: userPoolClient.id,
+    providerName: userpool.userPoolProviderName,
+  };
 
-    const userpool = UserPool(props);
-    const userPoolClient = UserPoolClient(userpool.id, props);
+  // Identity Pool
+  const identityPool = IdentityPool(parent, provider, props);
+};
 
-
-    // Identity Pool
-    const pool = new cloudformation.IdentityPoolResource(this, 'identityPool', {
-      identityPoolName: `${props.envType}-IdentityPool`,
-      // 未認証もアクセス可能
-      allowUnauthenticatedIdentities: true,
-      // Provider：Cognito
-      cognitoIdentityProviders: [
-        {
-          clientId: userPoolClient.id,
-          providerName: userpool.userPoolProviderName,
-        }
-      ]
-    });
-  }
+export interface CognitoProps extends CommonProps {
 }

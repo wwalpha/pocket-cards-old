@@ -2,23 +2,29 @@
 # yarn lockfile v1
 
 
-"@aws-cdk/aws-cognito@^0.8.2":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cognito/-/aws-cognito-0.8.2.tgz#0988cbdebd4f1fee9b26653c23181e5668e31b26"
+"@aws-cdk/aws-appsync@^0.9.0":
+  version "0.9.0"
+  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-appsync/-/aws-appsync-0.9.0.tgz#c595e4ce5f0b778652006a282012426f06273471"
   dependencies:
-    "@aws-cdk/cdk" "^0.8.2"
+    "@aws-cdk/cdk" "^0.9.0"
 
-"@aws-cdk/aws-iam@^0.8.2":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-iam/-/aws-iam-0.8.2.tgz#31133fee2dacd78ff0aa7860cc6c9762848f0b67"
+"@aws-cdk/aws-cognito@^0.9.0":
+  version "0.9.0"
+  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-cognito/-/aws-cognito-0.9.0.tgz#6d71c7c197888965b7bcf5af28ffc536c1397f8e"
   dependencies:
-    "@aws-cdk/cdk" "^0.8.2"
+    "@aws-cdk/cdk" "^0.9.0"
 
-"@aws-cdk/cdk@^0.8.2":
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/cdk/-/cdk-0.8.2.tgz#689a206c72105e5f0e305836040033e47a97e3b8"
+"@aws-cdk/aws-iam@^0.9.0":
+  version "0.9.0"
+  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-iam/-/aws-iam-0.9.0.tgz#d010e5cb66a1c34e487249e48a0c9ce32fdf781e"
   dependencies:
-    "@aws-cdk/cx-api" "^0.8.2"
+    "@aws-cdk/cdk" "^0.9.0"
+
+"@aws-cdk/cdk@^0.9.0":
+  version "0.9.0"
+  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/cdk/-/cdk-0.9.0.tgz#116d211bedcb8dbabc0863a16e5adefa1b2c00f3"
+  dependencies:
+    "@aws-cdk/cx-api" "^0.9.0"
     js-base64 "^2.4.5"
     json-diff "^0.3.1"
 
@@ -39,6 +45,10 @@
 "@aws-cdk/cx-api@^0.8.2":
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/@aws-cdk/cx-api/-/cx-api-0.8.2.tgz#73bb5ce9ef22f1b1f9eb894ce38f4ceb5da75987"
+
+"@aws-cdk/cx-api@^0.9.0":
+  version "0.9.0"
+  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/cx-api/-/cx-api-0.9.0.tgz#d1f9e7c6e51667bd29e6d2d48ca717db36f48812"
 
 "@aws-cdk/util@^0.8.2":
   version "0.8.2"

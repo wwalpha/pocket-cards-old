@@ -1,9 +1,9 @@
 import { Policy, Role } from '@aws-cdk/aws-iam';
-import { Construct, PolicyStatement, PolicyStatementEffect, FederatedPrincipal, Token } from '@aws-cdk/cdk';
-import { CognitoProps } from './cognito';
+import { Construct, PolicyStatement, PolicyStatementEffect, FederatedPrincipal, Token, Arn } from '@aws-cdk/cdk';
+import { CognitoInput } from './cognito';
 import { PROJECT_NAME } from '../common/consts';
 
-export default (parent: Construct, identityPool: Token, props: CognitoProps): Role => {
+export default (parent: Construct, identityPool: Token, props: CognitoInput): Role => {
   const principal = new FederatedPrincipal(
     'cognito-identity.amazonaws.com',
     {
@@ -24,7 +24,7 @@ export default (parent: Construct, identityPool: Token, props: CognitoProps): Ro
 
   const policyStmt = new PolicyStatement(PolicyStatementEffect.Allow);
   policyStmt.addActions('mobileanalytics:PutEvents', 'cognito-sync:*');
-  policyStmt.addResource('*');
+  policyStmt.addResource(new Arn('*'));
 
   const policy = new Policy(parent, 'UnauthenticatedPolicy', {
     policyName: `${props.envType}-${PROJECT_NAME}-UnauthenticatedPolicy`,

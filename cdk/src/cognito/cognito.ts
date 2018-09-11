@@ -1,9 +1,9 @@
 import { cloudformation } from '@aws-cdk/aws-cognito';
-import { Construct } from '@aws-cdk/cdk';
+import { Construct, Token } from '@aws-cdk/cdk';
 import { UserPool, UserPoolClient, IdentityPool, IdentityPoolRoleAttachment, AuthenticatedRole, UnauthenticatedRole } from './index';
-import { CommonProps } from '../common';
+import { CommonProps } from 'common/index';
 
-export default (parent: Construct, props: CognitoProps) => {
+export default (parent: Construct, props: CognitoInput): CognitoOutput => {
   const userpool = UserPool(parent, props);
   const userPoolClient = UserPoolClient(parent, userpool.ref);
 
@@ -21,7 +21,19 @@ export default (parent: Construct, props: CognitoProps) => {
     authenticated: AuthenticatedRole(parent, identityPool.ref, props).roleArn,
     unauthenticated: UnauthenticatedRole(parent, identityPool.ref, props).roleArn,
   });
+
+  const output: CognitoOutput = {
+    userPoolId: userpool.ref,
+    userPoolClientId: userPoolClient.id,
+  };
+
+  return output;
 };
 
-export interface CognitoProps extends CommonProps {
+export interface CognitoInput extends CommonProps {
+}
+
+export interface CognitoOutput {
+  userPoolId: Token;
+  userPoolClientId: string;
 }

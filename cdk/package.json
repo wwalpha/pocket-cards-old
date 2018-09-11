@@ -4,7 +4,7 @@
     "main": "bin/index.js",
     "types": "bin/index.d.ts",
     "bin": {
-        "cdk": "bin/cdk.js"
+        "cdk": "src/root.js"
     },
     "scripts": {
         "build": "tsc",

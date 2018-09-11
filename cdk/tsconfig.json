@@ -1,14 +1,12 @@
 {
   "compilerOptions": {
-    "rootDirs": [
-      "./src"
-    ],
-    "target": "ES2018",
+    "rootDir": "src",
+    "outDir": "dist",
+    "target": "es6",
     "module": "commonjs",
     "lib": [
-      "es2016",
-      "es2017.object",
-      "es2017.string"
+      "es2015",
+      "es2015.promise",
     ],
     "declaration": true,
     "strict": true,
@@ -23,9 +21,17 @@
     "inlineSourceMap": true,
     "inlineSources": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "paths": {
+      "common/*": [
+        "./src/common/*"
+      ]
+    }
   },
   "compileOnSave": true,
+  "include": [
+    "src/root.ts",
+  ],
   "files": [
     "./typings/types.d.ts",
     "./typings/external.d.ts"

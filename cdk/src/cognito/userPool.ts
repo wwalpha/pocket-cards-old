@@ -1,6 +1,7 @@
 import { cloudformation } from '@aws-cdk/aws-cognito';
 import { Construct } from '@aws-cdk/cdk';
 import { CognitoProps } from './cognito';
+import { PROJECT_NAME } from '../common/consts';
 
 export default (parent: Construct, props: CognitoProps) => new cloudformation.UserPoolResource(
   parent,
@@ -10,7 +11,7 @@ export default (parent: Construct, props: CognitoProps) => new cloudformation.Us
       // 管理者のみ追加
       allowAdminCreateUserOnly: true,
       // 無効期限10年
-      unusedAccountValidityDays: 3650,
+      unusedAccountValidityDays: 365,
     },
     policies: {
       // パスワードポリシー
@@ -28,7 +29,7 @@ export default (parent: Construct, props: CognitoProps) => new cloudformation.Us
       },
     },
     // プール名
-    userPoolName: `${props.envType}-UserPool`,
+    userPoolName: `${props.envType}-${PROJECT_NAME}-UserPool`,
     // ユーザ属性定義
     schema: [
       {

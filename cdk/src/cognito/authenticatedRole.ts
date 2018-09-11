@@ -1,5 +1,5 @@
 import { Policy, Role } from '@aws-cdk/aws-iam';
-import { Construct, PolicyStatement, PolicyStatementEffect, FederatedPrincipal, Token } from '@aws-cdk/cdk';
+import { Construct, PolicyStatement, PolicyStatementEffect, Token, FederatedPrincipal } from '@aws-cdk/cdk';
 import { CognitoProps } from './cognito';
 import { PROJECT_NAME } from '../common/consts';
 
@@ -11,23 +11,23 @@ export default (parent: Construct, identityPool: Token, props: CognitoProps): Ro
         'cognito-identity.amazonaws.com:aud': identityPool,
       },
       'ForAnyValue:StringLike': {
-        'cognito-identity.amazonaws.com:amr': 'unauthenticated',
+        'cognito-identity.amazonaws.com:amr': 'authenticated',
       },
     },
     'sts:AssumeRoleWithWebIdentity',
   );
 
-  const role = new Role(parent, 'UnauthenticatedRole', {
-    roleName: `${props.envType}-CognitoUnauthenticatedRole`,
+  const role = new Role(parent, 'AuthenticatedRole', {
+    roleName: `${props.envType}-CognitoAuthenticatedRole`,
     assumedBy: principal,
   });
 
   const policyStmt = new PolicyStatement(PolicyStatementEffect.Allow);
-  policyStmt.addActions('mobileanalytics:PutEvents', 'cognito-sync:*');
+  policyStmt.addActions('mobileanalytics:PutEvents', 'cognito-sync:*', 'cognito-identity:*', 'execute-api:Invoke');
   policyStmt.addResource('*');
 
-  const policy = new Policy(parent, 'UnauthenticatedPolicy', {
-    policyName: `${props.envType}-${PROJECT_NAME}-UnauthenticatedPolicy`,
+  const policy = new Policy(parent, 'AuthenticatedPolicy', {
+    policyName: `${props.envType}-${PROJECT_NAME}-AuthenticatedPolicy`,
     statements: [policyStmt],
   });
 

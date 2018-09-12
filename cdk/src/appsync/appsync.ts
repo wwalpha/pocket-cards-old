@@ -1,9 +1,14 @@
 import { Construct, Token } from '@aws-cdk/cdk';
-import { GraphQLApi } from './index';
+import { GraphQLApi, GraphQLSchema } from './index';
 import { CommonProps } from '../common/index';
 
 export default (parent: Construct, props: AppSyncProps) => {
-  GraphQLApi(parent, props);
+
+  // API定義
+  const api = GraphQLApi(parent, props);
+
+  // スキーマ
+  GraphQLSchema(parent, api.getAtt('ApiId'));
 
 };
 

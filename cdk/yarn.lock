@@ -2,6 +2,12 @@
 # yarn lockfile v1
 
 
+"@aws-cdk/aws-applicationautoscaling@^0.9.0":
+  version "0.9.0"
+  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-applicationautoscaling/-/aws-applicationautoscaling-0.9.0.tgz#0999124563565a2b35e2b087f516e17ba52696bf"
+  dependencies:
+    "@aws-cdk/cdk" "^0.9.0"
+
 "@aws-cdk/aws-appsync@^0.9.0":
   version "0.9.0"
   resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-appsync/-/aws-appsync-0.9.0.tgz#c595e4ce5f0b778652006a282012426f06273471"
@@ -12,6 +18,14 @@
   version "0.9.0"
   resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-cognito/-/aws-cognito-0.9.0.tgz#6d71c7c197888965b7bcf5af28ffc536c1397f8e"
   dependencies:
+    "@aws-cdk/cdk" "^0.9.0"
+
+"@aws-cdk/aws-dynamodb@^0.9.0":
+  version "0.9.0"
+  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-dynamodb/-/aws-dynamodb-0.9.0.tgz#3ff8feef62782c3f567330453bf9d7e1221000e3"
+  dependencies:
+    "@aws-cdk/aws-applicationautoscaling" "^0.9.0"
+    "@aws-cdk/aws-iam" "^0.9.0"
     "@aws-cdk/cdk" "^0.9.0"
 
 "@aws-cdk/aws-iam@^0.9.0":

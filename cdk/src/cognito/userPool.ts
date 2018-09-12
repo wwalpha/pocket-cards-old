@@ -29,7 +29,7 @@ export default (parent: Construct, props: CognitoInput) => new cloudformation.Us
       },
     },
     // プール名
-    userPoolName: `${props.envType}-${PROJECT_NAME}-UserPool`,
+    userPoolName: `${props.envType}-${PROJECT_NAME}`,
     // ユーザ属性定義
     schema: [
       {

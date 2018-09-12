@@ -2,6 +2,24 @@
 	"folders": [
 		{
 			"path": "cdk"
+		},
+		{
+			"path": "front"
 		}
-	]
+	],
+	"settings": {
+		"tslint.autoFixOnSave": true,
+		"tslint.jsEnable": true,
+		"files.exclude": {
+			"**/.vscode": true,
+			"**/.gitignore": true,
+			"**/.npmignore": true,
+			"**/*.lock": true,
+			"**/.git": true,
+			"**/.svn": true,
+			"**/.hg": true,
+			"**/CVS": true,
+			"**/.DS_Store": true
+		}
+	}
 }

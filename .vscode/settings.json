@@ -1,0 +1,16 @@
+{
+  "tslint.autoFixOnSave": true,
+  "tslint.jsEnable": true,
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.vscode": true,
+    "**/.gitignore": true,
+    "**/.npmignore": true,
+    "**/*.lock": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  }
+}

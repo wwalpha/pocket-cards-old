@@ -1,5 +1,5 @@
 import { Stack, App, StackProps } from '@aws-cdk/cdk';
-import { Cognito, AppSync } from './index';
+import { Cognito, AppSync, Dynamodb } from '.';
 
 class CdkStack extends Stack {
   constructor(parent: App, name: string, props?: StackProps) {
@@ -12,6 +12,10 @@ class CdkStack extends Stack {
     AppSync(this, {
       envType: 'dev',
       userPoolId: cognito.userPoolId,
+    });
+
+    Dynamodb(this, {
+      envType: 'dev',
     });
   }
 }

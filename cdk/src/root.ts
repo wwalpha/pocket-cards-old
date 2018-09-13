@@ -22,7 +22,6 @@ class CdkStack extends Stack {
       envType: 'dev',
     });
 
-
     CloudFront(this, {
       bucketArn: s3.arn,
       bucketDomainName: s3.domainName,

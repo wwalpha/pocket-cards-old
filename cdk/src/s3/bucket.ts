@@ -7,6 +7,16 @@ export default (parent: Construct, props: S3Input) => new cloudformation.BucketR
   parent,
   'BucketResource',
   {
-    bucketName: `${props.envType}-${PROJECT_NAME}`,
-  }
+    bucketName: `${props.envType}-${PROJECT_NAME.toLowerCase()}`,
+    versioningConfiguration: {
+      status: 'Enabled',
+    },
+    bucketEncryption: {
+      serverSideEncryptionConfiguration: [{
+        serverSideEncryptionByDefault: {
+          sseAlgorithm: 'AES256',
+        },
+      }],
+    },
+  },
 );

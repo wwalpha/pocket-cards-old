@@ -12,7 +12,7 @@ export default (parent: Construct, props: S3Input): S3Output => {
     domainName: bucket.bucketDomainName,
     arn: bucket.bucketArn,
     ref: bucket.ref,
-  }
+  };
 
   return ret;
 };
@@ -21,7 +21,7 @@ export interface S3Input extends CommonProps {
 }
 
 export interface S3Output {
-  domainName: Token,
-  arn: Token,
-  ref: BucketName,
+  domainName: Token;
+  arn: Token;
+  ref: BucketName;
 }

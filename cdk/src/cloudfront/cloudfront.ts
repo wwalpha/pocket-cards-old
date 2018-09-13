@@ -4,7 +4,7 @@ import { CloudFrontOriginAccessIdentity, Distribution, BucketPolicy } from '.';
 import { BucketName } from '@aws-cdk/aws-s3';
 
 export default (parent: Construct, props: CloudFrontInput): CloudFrontOutput => {
-  const identity = CloudFrontOriginAccessIdentity(parent, props);
+  const identity = CloudFrontOriginAccessIdentity(parent);
 
   Distribution(parent, props, identity.ref);
 

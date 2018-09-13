@@ -9,9 +9,9 @@ export default (parent: Construct, props: S3Input): S3Output => {
   const bucket = Bucket(parent, props);
 
   const ret: S3Output = {
-    domainName: bucket.bucketDomainName,
+    domainName: bucket.domainName,
     arn: bucket.bucketArn,
-    ref: bucket.ref,
+    ref: bucket.bucketName,
   };
 
   return ret;

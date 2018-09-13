@@ -6,7 +6,7 @@ export default (parent: Construct, props: CodeBuildInput): CodeBuildOutput => {
 
   const role = CodeBuildRole(parent, props);
 
-  Project(parent, props, role.roleArn);
+  Project(parent, props, role);
 
   const ret: CodeBuildOutput = {
   };

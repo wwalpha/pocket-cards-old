@@ -1,27 +1,21 @@
-import { Construct, Token } from '@aws-cdk/cdk';
+import { Construct } from '@aws-cdk/cdk';
 import { PROJECT_NAME } from '../common/consts';
-import { cloudformation } from '@aws-cdk/aws-codebuild';
+import { Project, ComputeType, LinuxBuildImage, NoBuildArtifacts, GitHubSource } from '@aws-cdk/aws-codebuild';
 import { CodeBuildInput } from './codebuild';
+import { Role } from '@aws-cdk/aws-iam';
 
-export default (parent: Construct, props: CodeBuildInput, roleArn: Token) => new cloudformation.ProjectResource(
+export default (parent: Construct, props: CodeBuildInput, role: Role) => new Project(
   parent,
   'ProjectResource',
   {
     projectName: `${props.envType}-${PROJECT_NAME}`,
-    artifacts: {
-      type: 'NO_ARTIFACTS',
-    },
     environment: {
-      type: 'LINUX_CONTAINER',
-      computeType: 'BUILD_GENERAL1_SMALL',
-      image: 'aws/codebuild/nodejs:8.11.0',
-      privilegedMode: false,
+      computeType: ComputeType.Small,
+      buildImage: LinuxBuildImage.UBUNTU_14_04_NODEJS_8_11_0,
+      priviledged: false,
     },
-    source: {
-      type: 'GITHUB',
-      location: 'https://github.com/wwalpha/pocket-cards',
-      gitCloneDepth: 1,
-    },
-    serviceRole: roleArn,
+    role,
+    artifacts: new NoBuildArtifacts(),
+    source: new GitHubSource('https://github.com/wwalpha/pocket-cards', {}),
   },
 );

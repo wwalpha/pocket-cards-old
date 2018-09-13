@@ -1,5 +1,5 @@
 import { Stack, App, StackProps } from '@aws-cdk/cdk';
-import { Cognito, AppSync, Dynamodb } from '.';
+import { Cognito, AppSync, Dynamodb, S3, CloudFront } from '.';
 
 class CdkStack extends Stack {
   constructor(parent: App, name: string, props?: StackProps) {
@@ -15,6 +15,18 @@ class CdkStack extends Stack {
     });
 
     Dynamodb(this, {
+      envType: 'dev',
+    });
+
+    const s3 = S3(this, {
+      envType: 'dev',
+    });
+
+
+    CloudFront(this, {
+      bucketArn: s3.arn,
+      bucketDomainName: s3.domainName,
+      bucketRef: s3.ref,
       envType: 'dev',
     });
   }

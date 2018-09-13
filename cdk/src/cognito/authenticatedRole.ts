@@ -22,13 +22,13 @@ export default (parent: Construct, identityPool: Token, props: CognitoInput): Ro
     assumedBy: principal,
   });
 
-  const policyStmt = new PolicyStatement(PolicyStatementEffect.Allow);
-  policyStmt.addActions('mobileanalytics:PutEvents', 'cognito-sync:*', 'cognito-identity:*', 'execute-api:Invoke');
-  policyStmt.addResource(new Arn('*'));
+  const stmt = new PolicyStatement(PolicyStatementEffect.Allow);
+  stmt.addActions('mobileanalytics:PutEvents', 'cognito-sync:*', 'cognito-identity:*', 'execute-api:Invoke');
+  stmt.addResource(new Arn('*'));
 
   const policy = new Policy(parent, 'AuthenticatedPolicy', {
     policyName: `${props.envType}-${PROJECT_NAME}-AuthenticatedPolicy`,
-    statements: [policyStmt],
+    statements: [stmt],
   });
 
   policy.attachToRole(role);

@@ -4,39 +4,96 @@
 
 "@aws-cdk/aws-applicationautoscaling@^0.9.0":
   version "0.9.0"
-  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-applicationautoscaling/-/aws-applicationautoscaling-0.9.0.tgz#0999124563565a2b35e2b087f516e17ba52696bf"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-applicationautoscaling/-/aws-applicationautoscaling-0.9.0.tgz#0999124563565a2b35e2b087f516e17ba52696bf"
   dependencies:
     "@aws-cdk/cdk" "^0.9.0"
 
 "@aws-cdk/aws-appsync@^0.9.0":
   version "0.9.0"
-  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-appsync/-/aws-appsync-0.9.0.tgz#c595e4ce5f0b778652006a282012426f06273471"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-appsync/-/aws-appsync-0.9.0.tgz#c595e4ce5f0b778652006a282012426f06273471"
   dependencies:
     "@aws-cdk/cdk" "^0.9.0"
 
+"@aws-cdk/aws-certificatemanager@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-certificatemanager/-/aws-certificatemanager-0.9.0.tgz#010410701132ee4b86f3cbf7bbdeb8e98fef3a7a"
+  dependencies:
+    "@aws-cdk/aws-iam" "^0.9.0"
+    "@aws-cdk/cdk" "^0.9.0"
+
+"@aws-cdk/aws-cloudfront@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cloudfront/-/aws-cloudfront-0.9.0.tgz#23e333a1ed86172512853769fc8a7a0898b0fb97"
+  dependencies:
+    "@aws-cdk/aws-certificatemanager" "^0.9.0"
+    "@aws-cdk/aws-iam" "^0.9.0"
+    "@aws-cdk/aws-kms" "^0.9.0"
+    "@aws-cdk/aws-s3" "^0.9.0"
+    "@aws-cdk/cdk" "^0.9.0"
+
+"@aws-cdk/aws-codepipeline-api@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-codepipeline-api/-/aws-codepipeline-api-0.9.0.tgz#034c238bee4b3c7b3f3eb4d6ebb70d2f26ee9dfe"
+  dependencies:
+    "@aws-cdk/aws-events" "^0.9.0"
+    "@aws-cdk/aws-iam" "^0.9.0"
+    "@aws-cdk/cdk" "^0.9.0"
+    "@aws-cdk/util" "^0.9.0"
+
 "@aws-cdk/aws-cognito@^0.9.0":
   version "0.9.0"
-  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-cognito/-/aws-cognito-0.9.0.tgz#6d71c7c197888965b7bcf5af28ffc536c1397f8e"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-cognito/-/aws-cognito-0.9.0.tgz#6d71c7c197888965b7bcf5af28ffc536c1397f8e"
   dependencies:
     "@aws-cdk/cdk" "^0.9.0"
 
 "@aws-cdk/aws-dynamodb@^0.9.0":
   version "0.9.0"
-  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-dynamodb/-/aws-dynamodb-0.9.0.tgz#3ff8feef62782c3f567330453bf9d7e1221000e3"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-dynamodb/-/aws-dynamodb-0.9.0.tgz#3ff8feef62782c3f567330453bf9d7e1221000e3"
   dependencies:
     "@aws-cdk/aws-applicationautoscaling" "^0.9.0"
     "@aws-cdk/aws-iam" "^0.9.0"
     "@aws-cdk/cdk" "^0.9.0"
 
+"@aws-cdk/aws-events@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-events/-/aws-events-0.9.0.tgz#e2997b684fd14f5417ab6ab47439ddd79946e203"
+  dependencies:
+    "@aws-cdk/aws-iam" "^0.9.0"
+    "@aws-cdk/cdk" "^0.9.0"
+    "@aws-cdk/util" "^0.9.0"
+
 "@aws-cdk/aws-iam@^0.9.0":
   version "0.9.0"
-  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/aws-iam/-/aws-iam-0.9.0.tgz#d010e5cb66a1c34e487249e48a0c9ce32fdf781e"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-iam/-/aws-iam-0.9.0.tgz#d010e5cb66a1c34e487249e48a0c9ce32fdf781e"
   dependencies:
+    "@aws-cdk/cdk" "^0.9.0"
+
+"@aws-cdk/aws-kms@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-kms/-/aws-kms-0.9.0.tgz#459d72c8dbec8b7fec4ec401dcf0ff189b3e7c16"
+  dependencies:
+    "@aws-cdk/aws-iam" "^0.9.0"
+    "@aws-cdk/cdk" "^0.9.0"
+
+"@aws-cdk/aws-s3-notifications@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-s3-notifications/-/aws-s3-notifications-0.9.0.tgz#5f43b4458d08ef8d774d9dee9dc5392a72b30a85"
+  dependencies:
+    "@aws-cdk/cdk" "^0.9.0"
+
+"@aws-cdk/aws-s3@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-s3/-/aws-s3-0.9.0.tgz#94ffa2b6238da07651432ea6f35f5115878592b6"
+  dependencies:
+    "@aws-cdk/aws-codepipeline-api" "^0.9.0"
+    "@aws-cdk/aws-iam" "^0.9.0"
+    "@aws-cdk/aws-kms" "^0.9.0"
+    "@aws-cdk/aws-s3-notifications" "^0.9.0"
     "@aws-cdk/cdk" "^0.9.0"
 
 "@aws-cdk/cdk@^0.9.0":
   version "0.9.0"
-  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/cdk/-/cdk-0.9.0.tgz#116d211bedcb8dbabc0863a16e5adefa1b2c00f3"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/cdk/-/cdk-0.9.0.tgz#116d211bedcb8dbabc0863a16e5adefa1b2c00f3"
   dependencies:
     "@aws-cdk/cx-api" "^0.9.0"
     js-base64 "^2.4.5"
@@ -62,11 +119,15 @@
 
 "@aws-cdk/cx-api@^0.9.0":
   version "0.9.0"
-  resolved "http://localhost:8081/repository/npm_group/@aws-cdk/cx-api/-/cx-api-0.9.0.tgz#d1f9e7c6e51667bd29e6d2d48ca717db36f48812"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/cx-api/-/cx-api-0.9.0.tgz#d1f9e7c6e51667bd29e6d2d48ca717db36f48812"
 
 "@aws-cdk/util@^0.8.2":
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/@aws-cdk/util/-/util-0.8.2.tgz#350266b5fee6ab5a8a18cfcfea2e66dc8fb6103b"
+
+"@aws-cdk/util@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@aws-cdk/util/-/util-0.9.0.tgz#0386fb034c0fb4d180cff535f551e4672eab8c66"
 
 "@fimbul/bifrost@^0.11.0":
   version "0.11.0"
@@ -188,8 +249,8 @@ aws-cdk@^0.8.2:
     yargs "^9.0.1"
 
 aws-sdk@^2.259.1:
-  version "2.312.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.312.0.tgz#484be59470af1c970a62d728a10dcc78a120d922"
+  version "2.314.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.314.0.tgz#5d7babb0761ca9509707dec31c65730bd61e6e47"
   dependencies:
     buffer "4.9.1"
     events "1.1.1"
@@ -789,8 +850,8 @@ locate-path@^2.0.0:
     path-exists "^3.0.0"
 
 lodash@^4.17.10, lodash@^4.8.0:
-  version "4.17.10"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
+  version "4.17.11"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
 
 lru-cache@^4.0.1:
   version "4.1.3"

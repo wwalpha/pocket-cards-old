@@ -1,16 +1,25 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
-import ApolloClient from 'apollo-boost';
+import Auth from '@aws-amplify/auth';
+import AppSyncClient, { AUTH_TYPE } from 'aws-appsync';
+import { Rehydrated } from 'aws-appsync-react';
 import App from './src/containers/App';
 
-const client = new ApolloClient({
-  uri: 'https://w5xlvm3vzz.lp.gql.zone/graphql',
+const client = new AppSyncClient({
+  url: 'htt@:://',
+  region: 'ap-northeast-1',
+  auth: {
+    type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
+    credentials: () => Auth.currentCredentials(),
+  },
 });
 
 render(
   <ApolloProvider client={client}>
-    <App />
+    <Rehydrated>
+      <App />
+    </Rehydrated>
   </ApolloProvider>,
   document.getElementById('root'),
 );

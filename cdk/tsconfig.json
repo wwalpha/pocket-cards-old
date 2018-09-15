@@ -31,7 +31,7 @@
   },
   "compileOnSave": true,
   "include": [
-    "src/root.ts",
+    "src/root.ts"
   ],
   "files": [
     "./typings/types.d.ts",

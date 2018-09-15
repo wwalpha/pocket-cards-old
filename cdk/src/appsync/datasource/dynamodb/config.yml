@@ -1,0 +1,6 @@
+DataSource:
+  Configs:
+    - TableName: TestTable1111
+      DataSourceName: TestDataSource1111
+    - TableName: TestTable22222
+      DataSourceName: TestDataSource2222

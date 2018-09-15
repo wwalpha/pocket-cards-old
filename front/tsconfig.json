@@ -10,6 +10,9 @@
       "es2015.promise",
       "dom"
     ],
+    "types": [
+      "node",
+    ],
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,

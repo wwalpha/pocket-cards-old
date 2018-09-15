@@ -1,8 +1,9 @@
 {
   "tslint.autoFixOnSave": true,
+  "tslint.run": "onSave",
   "tslint.jsEnable": true,
   "files.exclude": {
-    "**/node_modules": true,
+    // "**/node_modules": true,
     "**/.vscode": true,
     "**/.gitignore": true,
     "**/.npmignore": true,

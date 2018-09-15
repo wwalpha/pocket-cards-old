@@ -1,26 +1,30 @@
 import { Stack, App, StackProps } from '@aws-cdk/cdk';
 import { Cognito, AppSync, Dynamodb, S3, CloudFront, CodeBuild } from '.';
+import { CommonProps } from './common';
 
 class CdkStack extends Stack {
   constructor(parent: App, name: string, props?: StackProps) {
     super(parent, name, props);
 
-    const cognito = Cognito(this, {
+    const comProps: CommonProps = {
       envType: 'dev',
-    });
+      region: this.env.region ? this.env.region : 'ap-northeast-1',
+    };
 
+    // Cognito
+    const cognito = Cognito(this, comProps);
+
+    // AppSync
     AppSync(this, {
-      envType: 'dev',
+      ...comProps,
       userPoolId: cognito.userPoolId,
     });
 
-    Dynamodb(this, {
-      envType: 'dev',
-    });
+    // DynamoDB
+    Dynamodb(this, comProps);
 
-    const s3 = S3(this, {
-      envType: 'dev',
-    });
+    // S3
+    const s3 = S3(this, comProps);
 
     // CloudFront(this, {
     //   bucketArn: s3.arn,
@@ -28,9 +32,9 @@ class CdkStack extends Stack {
     //   bucketRef: s3.ref,
     //   envType: 'dev',
     // });
-    CodeBuild(this, {
-      envType: 'dev',
-    });
+
+    // CodeBuild
+    CodeBuild(this, comProps);
   }
 }
 

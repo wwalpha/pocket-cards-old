@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
+    "rootDirs": [
+      "./src",
+      "./typings"
+    ],
     "outDir": "dist",
     "target": "es6",
     "module": "commonjs",
@@ -8,11 +11,10 @@
     "lib": [
       "es2015",
       "es2015.promise",
-      "dom"
+      "dom",
+      "es5"
     ],
-    "types": [
-      "node",
-    ],
+    "allowJs": true,
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,
@@ -27,15 +29,22 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "src/*": [
-        "src/*"
+      "@src": [
+        "./src/*"
+      ],
+      "@src/*": [
+        "./src/*"
+      ],
+      "gql/*": [
+        "./src/gql/*"
       ]
     }
   },
   "include": [
-    "src/*"
+    "src/*",
+    "typings/*"
   ],
   "files": [
     "./typings/types.d.ts",

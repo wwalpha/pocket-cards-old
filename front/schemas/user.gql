@@ -1,0 +1,6 @@
+type User {
+  userId: ID!
+  username: String
+  sets: [Set]
+}
+

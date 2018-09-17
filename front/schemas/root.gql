@@ -1,0 +1,25 @@
+
+type Query {
+  # セットリスト一覧
+  sets(userId: ID!): User
+
+  # 単語一覧
+  words(setId: ID!): Set
+}
+
+type Mutation {
+  # セット作成
+  createSet(name: String!): Set
+
+  # セット削除
+  deleteSet(setId: ID!)
+
+  # 単語一括登録
+  importWords(setId: ID!): Set
+}
+
+schema {
+	query: Query
+	mutation: Mutation
+	subscription: Subscription
+}

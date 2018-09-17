@@ -31,10 +31,16 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "baseUrl": ".",
+    "baseUrl": "./src",
     "paths": {
       "@gql/*": [
-        "./src/gql/*"
+        "./gql/*"
+      ],
+      "@actions/*": [
+        "./actions/*"
+      ],
+      "@typings/*": [
+        "./typings/*"
       ],
     }
   },

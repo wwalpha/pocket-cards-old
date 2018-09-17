@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
-import { Paper, List, MenuItem, Divider } from '@material-ui/core';
-import MenuList from './MenuList';
+import { withStyles, StyleRules } from '@material-ui/core/styles';
+import { graphql } from 'react-apollo';
+import { Props, SetsVars } from '@typings/Sets';
+import Sets from '@gql/sets';
 
 class SetList extends React.Component<Props, {}> {
 
   render() {
-    const { classes } = this.props;
 
     return (
-      <MenuList />
+      <div>1111</div>
     );
   }
 }
@@ -18,7 +18,8 @@ const styles = (): StyleRules => ({
 
 });
 
-export default withStyles(styles)(SetList);
+export default withStyles(styles)(graphql<Props, {}, SetsVars>(Sets, {
+  props: () => ({
 
-export interface Props extends WithStyles<StyleRules> {
-}
+  }),
+})(SetList));

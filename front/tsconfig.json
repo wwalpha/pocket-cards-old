@@ -2,19 +2,21 @@
   "compilerOptions": {
     "rootDirs": [
       "./src",
-      "./typings"
     ],
     "outDir": "dist",
     "target": "es6",
     "module": "commonjs",
     "jsx": "react",
     "lib": [
-      "es2015",
+      "es5",
+      "es6",
       "es2015.promise",
-      "dom",
-      "es5"
+      "dom"
     ],
+    "removeComments": true,
     "allowJs": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,
@@ -29,22 +31,17 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@src": [
-        "./src/*"
-      ],
-      "@src/*": [
-        "./src/*"
-      ],
-      "gql/*": [
+      "@gql/*": [
         "./src/gql/*"
-      ]
+      ],
     }
   },
+  "compileOnSave": true,
   "include": [
-    "src/*",
-    "typings/*"
+    "src/**/*",
+    "index.tsx",
   ],
   "files": [
     "./typings/types.d.ts",

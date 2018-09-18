@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "schema:init": "ts-node schemas/schema.ts",
+    "schema:json": "apollo schema:download schemas/schema.json --endpoint schemas/schema.gql",
+    "schema:query": "apollo codegen:generate --target=typescript --schema=schemas/schema.json --queries='src/gql/queries/*.gql'",
+    "schema": "yarn schema:init && yarn schema:json",
     "dev": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

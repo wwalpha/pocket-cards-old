@@ -3,4 +3,3 @@ type User {
   username: String
   sets: [Set]
 }
-

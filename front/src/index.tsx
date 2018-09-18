@@ -4,7 +4,7 @@ import { ApolloProvider } from 'react-apollo';
 import Auth from '@aws-amplify/auth';
 import AppSyncClient, { AUTH_TYPE } from 'aws-appsync';
 import { Rehydrated } from 'aws-appsync-react';
-import App from './src/containers/App';
+import App from './containers/App';
 
 const client = new AppSyncClient({
   url: 'htt@:://',

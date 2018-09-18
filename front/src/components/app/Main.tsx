@@ -8,7 +8,7 @@ class Main extends React.Component<Props, {}> {
   render() {
     return (
       <Switch >
-        <Route exact path="/list" components={SetList} />
+        <Route exact path="/" components={SetList} />
         <Route path="/menu" components={SetList} />
         <Route path="/word" components={SetList} />
       </Switch>

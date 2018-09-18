@@ -1,0 +1,6 @@
+query getSets($userId: ID!) {
+  sets(userId: $userId) {
+    id
+    name
+  }
+}

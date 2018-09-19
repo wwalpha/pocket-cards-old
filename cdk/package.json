@@ -12,25 +12,25 @@
         "cdk": "cdk"
     },
     "devDependencies": {
-        "@types/node": "^8.9.4",
         "@types/js-yaml": "^3.11.2",
+        "@types/node": "^8.9.4",
         "aws-cdk": "^0.8.2",
         "tslint": "^5.11.0",
         "tslint-config-airbnb": "^5.11.0",
         "typescript": "^3.0.3"
     },
     "dependencies": {
-        "@aws-cdk/aws-appsync": "^0.9.0",
-        "@aws-cdk/aws-cloudfront": "^0.9.0",
-        "@aws-cdk/aws-codebuild": "^0.9.0",
-        "@aws-cdk/aws-codedeploy": "^0.9.0",
-        "@aws-cdk/aws-codepipeline": "^0.9.0",
-        "@aws-cdk/aws-cognito": "^0.9.0",
-        "@aws-cdk/aws-dynamodb": "^0.9.0",
-        "@aws-cdk/aws-iam": "^0.9.0",
-        "@aws-cdk/aws-s3": "^0.9.0",
-        "@aws-cdk/cdk": "^0.9.0",
-        "@aws-cdk/util": "^0.9.0",
+        "@aws-cdk/aws-appsync": "^0.9.1",
+        "@aws-cdk/aws-cloudfront": "^0.9.1",
+        "@aws-cdk/aws-codebuild": "^0.9.1",
+        "@aws-cdk/aws-codedeploy": "^0.9.1",
+        "@aws-cdk/aws-codepipeline": "^0.9.1",
+        "@aws-cdk/aws-cognito": "^0.9.1",
+        "@aws-cdk/aws-dynamodb": "^0.9.1",
+        "@aws-cdk/aws-iam": "^0.9.1",
+        "@aws-cdk/aws-s3": "^0.9.1",
+        "@aws-cdk/cdk": "^0.9.1",
+        "@aws-cdk/util": "^0.9.1",
         "js-yaml": "^3.12.0"
     }
 }

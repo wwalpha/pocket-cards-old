@@ -1,7 +1,7 @@
 import { Construct, Token, ServicePrincipal, PolicyStatement, PolicyStatementEffect, Arn } from '@aws-cdk/cdk';
 import { Role, Policy } from '@aws-cdk/aws-iam';
 import { cloudformation } from '@aws-cdk/aws-appsync';
-import { AppSyncProps } from '../../appsync';
+import { AppSyncProps } from '@src/appsync';
 
 export default (parent: Construct, props: AppSyncProps, config: DynamoDBConfig): cloudformation.DataSourceResource => {
 

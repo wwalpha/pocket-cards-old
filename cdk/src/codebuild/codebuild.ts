@@ -1,5 +1,5 @@
 import { Construct } from '@aws-cdk/cdk';
-import { CommonProps } from '../common';
+import { CommonProps } from '@common';
 import { CodeBuildRole, Project } from '.';
 
 export default (parent: Construct, props: CodeBuildInput): CodeBuildOutput => {

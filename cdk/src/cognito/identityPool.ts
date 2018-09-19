@@ -1,7 +1,7 @@
 import { cloudformation } from '@aws-cdk/aws-cognito';
 import { Construct } from '@aws-cdk/cdk';
 import { CognitoInput } from './cognito';
-import { PROJECT_NAME } from '../common/consts';
+import { PROJECT_NAME } from '@consts';
 
 export default (parent: Construct, provider: cloudformation.IdentityPoolResource.CognitoIdentityProviderProperty, props: CognitoInput): cloudformation.IdentityPoolResource =>
   new cloudformation.IdentityPoolResource(parent, 'IdentityPoolResource', {

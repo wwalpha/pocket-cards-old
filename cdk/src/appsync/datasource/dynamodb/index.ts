@@ -1,5 +1,5 @@
 import { Token, Construct } from '@aws-cdk/cdk';
-import { AppSyncProps } from '../../appsync';
+import { AppSyncProps } from '@src/appsync';
 import * as yaml from 'js-yaml';
 import * as fs from 'fs';
 import createDataSource from './dataSource';

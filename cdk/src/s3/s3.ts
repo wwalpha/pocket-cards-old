@@ -1,7 +1,7 @@
 import { Construct, Token } from '@aws-cdk/cdk';
-import { CommonProps } from '../common';
-import { Bucket } from '.';
 import { BucketName } from '@aws-cdk/aws-s3';
+import { CommonProps } from '@common';
+import { Bucket } from '.';
 
 export default (parent: Construct, props: S3Input): S3Output => {
 

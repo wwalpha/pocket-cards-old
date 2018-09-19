@@ -1,6 +1,6 @@
 import { Construct } from '@aws-cdk/cdk';
 import { cloudformation } from '@aws-cdk/aws-appsync';
-import { PROJECT_NAME } from '../common/consts';
+import { PROJECT_NAME } from '@consts';
 import { AppSyncProps } from './appsync';
 
 export default (parent: Construct, props: AppSyncProps) => new cloudformation.GraphQLApiResource(

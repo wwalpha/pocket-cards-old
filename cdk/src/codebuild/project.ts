@@ -1,8 +1,8 @@
 import { Construct } from '@aws-cdk/cdk';
-import { PROJECT_NAME } from '../common/consts';
+import { Role } from '@aws-cdk/aws-iam';
 import { Project, ComputeType, LinuxBuildImage, NoBuildArtifacts, GitHubSource } from '@aws-cdk/aws-codebuild';
 import { CodeBuildInput } from './codebuild';
-import { Role } from '@aws-cdk/aws-iam';
+import { PROJECT_NAME } from '@consts';
 
 export default (parent: Construct, props: CodeBuildInput, role: Role) => new Project(
   parent,

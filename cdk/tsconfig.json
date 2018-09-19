@@ -30,6 +30,12 @@
       "@common/*": [
         "./src/common/*"
       ],
+      "@common": [
+        "./src/common/index"
+      ],
+      "@consts": [
+        "./src/common/consts"
+      ],
     }
   },
   "compileOnSave": true,

@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Resources:
+  ProcessSearch:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: build/distributions/process-search-1.0.zip
+      Handler: mri.takumi.process.search.App::handleRequest
+      Runtime: java8
+      FunctionName: api-process-search
+      Role: !Sub 'arn:aws:iam::${AWS::AccountId}:role/${EnvType}-ProcessSearchRole'
+      MemorySize: 1024
+      Timeout: 15
+      Environment:
+        Variables:
+          TABLE_PROCESS:
+            !If
+            - DevEnvironment
+            - DEV-Process
+            - Process
+
+Parameters:
+  EnvType:
+    Type: String
+    AllowedValues:
+      - dev
+      - stg
+      - prod
+    Default: dev
+
+Conditions:
+  DevEnvironment:
+    !Equals
+    - !Ref EnvType
+    - dev
+          

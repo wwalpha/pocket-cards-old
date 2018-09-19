@@ -24,9 +24,9 @@
     "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
-      "common/*": [
+      "@common/*": [
         "./src/common/*"
-      ]
+      ],
     }
   },
   "compileOnSave": true,

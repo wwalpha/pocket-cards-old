@@ -28,6 +28,7 @@
         "@aws-cdk/aws-cognito": "^0.9.1",
         "@aws-cdk/aws-dynamodb": "^0.9.1",
         "@aws-cdk/aws-iam": "^0.9.1",
+        "@aws-cdk/aws-lambda": "^0.9.1",
         "@aws-cdk/aws-s3": "^0.9.1",
         "@aws-cdk/cdk": "^0.9.1",
         "@aws-cdk/util": "^0.9.1",

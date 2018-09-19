@@ -1,3 +1,5 @@
 **/*.lock
 **/node_modules
 /cdk/dist
+/mobile/platforms
+/mobile/package-lock.json

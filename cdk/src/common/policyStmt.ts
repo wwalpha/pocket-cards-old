@@ -1,5 +1,5 @@
 import { PolicyStatement, PolicyStatementEffect, Arn } from '@aws-cdk/cdk';
-import { CommonProps } from '@src/common';
+import { CommonProps } from '.';
 
 export const lambdaBasic = (props: CommonProps) => {
   return new PolicyStatement(PolicyStatementEffect.Allow)

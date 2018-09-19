@@ -2,7 +2,7 @@ import { Construct } from '@aws-cdk/cdk';
 import { Function, Runtime, Code } from '@aws-cdk/aws-lambda';
 // import * as yaml from 'js-yaml';
 // import * as fs from 'fs';
-import { CommonProps } from '@common';
+import { CommonProps } from '../common';
 
 export default (parent: Construct, props: LambdaInput): LambdaOutput => {
   // const config: any = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf8'));

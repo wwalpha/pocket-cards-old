@@ -1,7 +1,7 @@
 import { cloudformation } from '@aws-cdk/aws-cognito';
 import { Construct } from '@aws-cdk/cdk';
 import { CognitoInput } from './cognito';
-import { PROJECT_NAME } from '@consts';
+import { PROJECT_NAME } from '../common/consts';
 
 export default (parent: Construct, props: CognitoInput) => new cloudformation.UserPoolResource(
   parent,

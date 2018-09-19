@@ -22,21 +22,21 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "baseUrl": ".",
-    "paths": {
-      "@src/*": [
-        "./src/*"
-      ],
-      "@common/*": [
-        "./src/common/*"
-      ],
-      "@common": [
-        "./src/common/index"
-      ],
-      "@consts": [
-        "./src/common/consts"
-      ],
-    }
+    // "baseUrl": ".",
+    // "paths": {
+    //   "@src/*": [
+    //     "./src/*"
+    //   ],
+    //   "@common/*": [
+    //     "./src/common/*"
+    //   ],
+    //   "@common": [
+    //     "./src/common/index"
+    //   ],
+    //   "@consts": [
+    //     "./src/common/consts"
+    //   ],
+    // }
   },
   "compileOnSave": true,
   "include": [

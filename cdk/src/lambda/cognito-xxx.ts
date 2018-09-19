@@ -1,11 +1,11 @@
 import { Construct } from '@aws-cdk/cdk';
 import { Function, Runtime, Code } from '@aws-cdk/aws-lambda';
-import * as yaml from 'js-yaml';
-import * as fs from 'fs';
+// import * as yaml from 'js-yaml';
+// import * as fs from 'fs';
 import { CommonProps } from '@common';
 
 export default (parent: Construct, props: LambdaInput): LambdaOutput => {
-  const config: any = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf8'));
+  // const config: any = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf8'));
 
   // tslint:disable-next-line:no-function-constructor-with-string-args
   new Function(parent, 'cognito-xxx', {
@@ -15,7 +15,6 @@ export default (parent: Construct, props: LambdaInput): LambdaOutput => {
     code: Code.directory('111'),
     memorySize: 1024,
     timeout: 15,
-
   });
 
   return {};

@@ -80,7 +80,7 @@ export const lambdaBasicRole = (parent: Construct, props: RoleProps): Role => {
   });
 
   role.attachInlinePolicy(new Policy(parent, `${props.roleName}-policy`, {
-    statements: [lambdaBasic(parent, props)]
+    statements: [lambdaBasic(props)]
   }));
 
   return role;

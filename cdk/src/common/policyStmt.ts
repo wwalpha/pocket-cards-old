@@ -1,15 +1,15 @@
-import { PolicyStatement, PolicyStatementEffect, Arn, Construct } from "@aws-cdk/cdk";
-import { CommonProps } from "@src/common";
+import { PolicyStatement, PolicyStatementEffect, Arn } from '@aws-cdk/cdk';
+import { CommonProps } from '@src/common';
 
-export const lambdaBasic = (parent: Construct, props: CommonProps) => {
+export const lambdaBasic = (props: CommonProps) => {
   return new PolicyStatement(PolicyStatementEffect.Allow)
     .addAction('logs:CreateLogGroup')
     .addAction('logs:CreateLogStream')
     .addAction('logs:PutLogEvents')
-    .addResource(new Arn(`arn:aws:logs:${props.region}:*:*`))
+    .addResource(new Arn(`arn:aws:logs:${props.region}:*:*`));
 };
 
-export const lambdaDynamodb = (parent: Construct, props: CommonProps): PolicyStatement[] => {
+export const lambdaDynamodb = (props: CommonProps): PolicyStatement[] => {
   return [
     new PolicyStatement(PolicyStatementEffect.Allow)
       .addAction('dynamodb:PutItem')

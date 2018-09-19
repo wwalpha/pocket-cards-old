@@ -2,14 +2,14 @@ import { Construct, PolicyDocument, PolicyStatement, Arn, PolicyStatementEffect,
 import { cloudformation } from '@aws-cdk/aws-s3';
 import { CloudFrontInput } from './cloudfront';
 
-const getPolicyDocument = (bucketArn: Token, identityArn: string): object => {
+const getPolicyDocument = (bucketArn: Token): object => {
   const policy = new PolicyDocument();
 
   const stmt = new PolicyStatement(PolicyStatementEffect.Allow);
 
   stmt
     .addAction('s3:GetObject')
-    .addResource(new Arn(bucketArn))
+    .addResource(new Arn(bucketArn));
   stmt.addAwsPrincipal(new Arn('*'));
 
   policy.addStatement(stmt);
@@ -17,13 +17,13 @@ const getPolicyDocument = (bucketArn: Token, identityArn: string): object => {
   return policy;
 };
 
-export default (parent: Construct, props: CloudFrontInput, identityArn: string) => new cloudformation.BucketPolicyResource(
+export default (parent: Construct, props: CloudFrontInput) => new cloudformation.BucketPolicyResource(
   parent,
   'BucketPolicyResource',
   {
     bucket: props.bucketRef,
-    policyDocument: getPolicyDocument(props.bucketArn, identityArn),
-  }
+    policyDocument: getPolicyDocument(props.bucketArn),
+  },
 );
 
 // TakumiBucketPolicy:

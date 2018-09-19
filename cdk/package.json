@@ -4,7 +4,7 @@
     "main": "bin/index.js",
     "types": "bin/index.d.ts",
     "bin": {
-        "cdk": "src/root.js"
+        "cdk": "dist/root.js"
     },
     "scripts": {
         "build": "tsc",
@@ -15,6 +15,8 @@
         "@types/js-yaml": "^3.11.2",
         "@types/node": "^8.9.4",
         "aws-cdk": "^0.8.2",
+        "module-alias": "^2.1.0",
+        "tsconfig-paths": "^3.6.0",
         "tslint": "^5.11.0",
         "tslint-config-airbnb": "^5.11.0",
         "typescript": "^3.0.3"

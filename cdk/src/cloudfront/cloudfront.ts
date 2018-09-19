@@ -8,7 +8,7 @@ export default (parent: Construct, props: CloudFrontInput): CloudFrontOutput => 
 
   Distribution(parent, props, identity.ref);
 
-  BucketPolicy(parent, props, '');
+  BucketPolicy(parent, props);
   return {};
 };
 

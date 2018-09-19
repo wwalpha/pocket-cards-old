@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
+import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
@@ -7,29 +7,66 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 class Footer extends React.Component<Props, {}> {
+  state = {
+    value: 0,
+  };
 
-  handleChange = () => {
-
+  handleChange = (e: React.ChangeEvent<{}>, value: number) => {
+    this.setState({ value });
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
       <BottomNavigation
-        // value={value}
+        value={this.state.value}
         onChange={this.handleChange}
-        showLabels
-      // className={classes.root}
+        classes={{
+          root: classes.footer,
+        }}
       >
-        <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-        <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+        <BottomNavigationAction
+          icon={<RestoreIcon />}
+          classes={{
+            root: classes.actionSelected,
+          }}
+          disableRipple
+          disableTouchRipple
+        />
+        <BottomNavigationAction
+          icon={<FavoriteIcon />}
+          classes={{
+            root: classes.actionSelected,
+          }}
+          disableRipple
+          disableTouchRipple
+        />
+        <BottomNavigationAction
+          icon={<LocationOnIcon />}
+          classes={{
+            root: classes.actionSelected,
+          }}
+          disableRipple
+          disableTouchRipple
+        />
       </BottomNavigation>
     );
   }
 }
 
-const styles = (): StyleRules => ({
-
+const styles = (theme: Theme): StyleRules => ({
+  actionSelected: {
+    paddingTop: '8px !important',
+    color: 'white',
+  },
+  footer: {
+    position: 'fixed',
+    bottom: '0px',
+    width: '100%',
+    color: 'white',
+    backgroundColor: theme.palette.primary.main,
+  },
 });
 
 export default withStyles(styles)(Footer);

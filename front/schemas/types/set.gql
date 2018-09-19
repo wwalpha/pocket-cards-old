@@ -1,8 +1,0 @@
-type Set {
-  # id
-  setId: ID!
-  # セット名
-  name: String
-  # 単語一覧
-  words: [Word]
-}

@@ -4,7 +4,23 @@ import { ApolloProvider } from 'react-apollo';
 import Auth from '@aws-amplify/auth';
 import AppSyncClient, { AUTH_TYPE } from 'aws-appsync';
 import { Rehydrated } from 'aws-appsync-react';
+import { BrowserRouter } from 'react-router-dom';
 import App from './containers/App';
+
+import { createMuiTheme, MuiThemeProvider, Theme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
+import deepOrange from '@material-ui/core/colors/deepOrange';
+
+const theme: Theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: blue['600'],
+    },
+    secondary: {
+      main: deepOrange['600'],
+    },
+  },
+});
 
 const client = new AppSyncClient({
   url: 'htt@:://',
@@ -18,7 +34,11 @@ const client = new AppSyncClient({
 render(
   <ApolloProvider client={client}>
     <Rehydrated>
-      <App />
+      <BrowserRouter>
+        <MuiThemeProvider theme={theme}>
+          <App />
+        </MuiThemeProvider>
+      </BrowserRouter>
     </Rehydrated>
   </ApolloProvider>,
   document.getElementById('root'),

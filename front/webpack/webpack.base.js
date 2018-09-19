@@ -5,7 +5,7 @@ const HappyPack = require('happypack');
 
 module.exports = {
   entry: [
-    './index',
+    './src/index',
   ],
   output: {
     filename: 'bundle.js',
@@ -16,6 +16,11 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
       src: path.resolve(__dirname, '../src/'),
+      '@test': path.resolve(__dirname, '../test'),
+      '@gql': path.resolve(__dirname, '../src/gql'),
+      '@comp': path.resolve(__dirname, '../src/components'),
+      '@actions': path.resolve(__dirname, '../src/actions'),
+      '@typings': path.resolve(__dirname, '../src/typings'),
     },
   },
   module: {

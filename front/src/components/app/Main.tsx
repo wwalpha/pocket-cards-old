@@ -1,17 +1,18 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
-import SetList from '../func/SetList';
-import { Switch, Route } from 'react-router';
+import SetList from '@comp/set/List';
+import { Route } from 'react-router-dom';
 
 class Main extends React.Component<Props, {}> {
 
   render() {
     return (
-      <Switch >
+      <React.Fragment>
+        <SetList />
         <Route exact path="/" components={SetList} />
         <Route path="/menu" components={SetList} />
         <Route path="/word" components={SetList} />
-      </Switch>
+      </React.Fragment>
     );
   }
 }

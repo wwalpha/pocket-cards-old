@@ -31,17 +31,23 @@
     "inlineSources": true,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
       "@gql/*": [
-        "./gql/*"
+        "./src/gql/*"
       ],
       "@actions/*": [
-        "./actions/*"
+        "./src/actions/*"
+      ],
+      "@comp/*": [
+        "./src/components/*"
       ],
       "@typings/*": [
-        "./typings/*"
+        "./src/typings/*"
       ],
+      "@test/*": [
+        "./test/*"
+      ]
     }
   },
   "compileOnSave": true,

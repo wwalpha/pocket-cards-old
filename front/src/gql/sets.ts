@@ -1,9 +1,10 @@
 import gql from 'graphql-tag';
 
 export default gql`
-query () {
-  setlist() {
-    id
-    name
+  query GetSetList {
+    setlist {
+      id
+      name
+    }
   }
-}`;
+`;

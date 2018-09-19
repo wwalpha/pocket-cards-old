@@ -1,5 +1,5 @@
 import { WithStyles, StyleRules } from '@material-ui/core/styles';
-import { Query } from 'react-apollo';
+// import { Query } from 'react-apollo';
 
 export interface SetsQuery {
   sets: ({
@@ -18,5 +18,5 @@ export interface SetsVars {
   sets: Set[];
 }
 
-export interface Props extends Query<SetsQuery, SetsVars>, WithStyles<StyleRules> {
+export interface Props extends WithStyles<StyleRules> {
 }

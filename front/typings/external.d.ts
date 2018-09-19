@@ -3,3 +3,4 @@
 /// <reference path="../node_modules/apollo-link/lib/index.d.ts" />
 /// <reference path="../node_modules/react-apollo/index.d.ts" />
 /// <reference path="../node_modules/graphql-tag/index.d.ts" />
+/// <reference path="../node_modules/graphql-tools/dist/index.d.ts" />

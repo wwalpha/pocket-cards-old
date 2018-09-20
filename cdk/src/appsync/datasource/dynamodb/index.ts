@@ -8,11 +8,16 @@ import createDataSource from './dataSource';
 export default (parent: Construct, props: AppSyncProps, apiId: Token) => {
   const config: any = yaml.safeLoad(fs.readFileSync(path.join('./configs', 'appsync-datasource.yml'), 'utf8'));
 
-  config.DataSource.Configs.forEach((item: any) => {
+  config.DataSource.Configs.forEach((item: DataSource) => {
     createDataSource(parent, props, {
       apiId,
-      dataSourceName: item.dataSourceName,
-      tableName: item.tableName,
+      dataSourceName: item.DataSourceName,
+      tableName: item.TableName,
     });
   });
 };
+
+export interface DataSource {
+  TableName: string;
+  DataSourceName: string;
+}

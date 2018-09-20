@@ -1,6 +1,6 @@
 import { Construct } from '@aws-cdk/cdk';
 import { Role } from '@aws-cdk/aws-iam';
-import { Project, ComputeType, LinuxBuildImage, NoBuildArtifacts, GitHubSource } from '@aws-cdk/aws-codebuild';
+import { Project, ComputeType, LinuxBuildImage, NoBuildArtifacts } from '@aws-cdk/aws-codebuild';
 import { CodeBuildInput } from './codebuild';
 import { PROJECT_NAME } from '../common/consts';
 
@@ -16,6 +16,16 @@ export default (parent: Construct, props: CodeBuildInput, role: Role) => new Pro
     },
     role,
     artifacts: new NoBuildArtifacts(),
-    source: new GitHubSource('https://github.com/wwalpha/pocket-cards', {}),
+    buildSpec: `
+      version: 0.2
+      phases:
+        build:
+          commands:
+            - rspec HelloWorld_spec.rb
+      artifacts:
+        files:
+          - '**/*'
+        name: myname-$(AWS_REGION)
+    `,
   },
 );

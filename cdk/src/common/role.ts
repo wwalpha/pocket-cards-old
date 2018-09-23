@@ -1,11 +1,11 @@
 import { Policy, Role } from '@aws-cdk/aws-iam';
-import { Construct, PolicyStatement, PolicyStatementEffect, FederatedPrincipal, Token, Arn, ServicePrincipal } from '@aws-cdk/cdk';
+import { Construct, PolicyStatement, PolicyStatementEffect, FederatedPrincipal, ServicePrincipal } from '@aws-cdk/cdk';
 import { PROJECT_NAME } from './consts';
 import { CommonProps } from '.';
 import { lambdaBasic } from './policyStmt';
 
 /** Cognito未認証ロール */
-export const unauthenticatedRole = (parent: Construct, identityPool: Token, props: UnauthenticatedRoleProps): Role => {
+export const unauthenticatedRole = (parent: Construct, identityPool: string, props: UnauthenticatedRoleProps): Role => {
   const principal = new FederatedPrincipal(
     'cognito-identity.amazonaws.com',
     {
@@ -26,7 +26,7 @@ export const unauthenticatedRole = (parent: Construct, identityPool: Token, prop
 
   const policyStmt = new PolicyStatement(PolicyStatementEffect.Allow);
   policyStmt.addActions('mobileanalytics:PutEvents', 'cognito-sync:*');
-  policyStmt.addResource(new Arn('*'));
+  policyStmt.addResource('*');
 
   const policy = new Policy(parent, props.policyName, {
     policyName: `${props.envType}-${PROJECT_NAME}-${props.policyName}`,
@@ -39,7 +39,7 @@ export const unauthenticatedRole = (parent: Construct, identityPool: Token, prop
 };
 
 /** Cognito認証済 */
-export const authenticatedRole = (parent: Construct, identityPool: Token, props: AuthenticatedRoleProps): Role => {
+export const authenticatedRole = (parent: Construct, identityPool: string, props: AuthenticatedRoleProps): Role => {
   const principal = new FederatedPrincipal(
     'cognito-identity.amazonaws.com',
     {
@@ -60,7 +60,7 @@ export const authenticatedRole = (parent: Construct, identityPool: Token, props:
 
   const stmt = new PolicyStatement(PolicyStatementEffect.Allow);
   stmt.addActions('mobileanalytics:PutEvents', 'cognito-sync:*', 'cognito-identity:*', 'execute-api:Invoke');
-  stmt.addResource(new Arn('*'));
+  stmt.addResource('*');
 
   const policy = new Policy(parent, props.policyName, {
     policyName: `${props.envType}-${PROJECT_NAME}-${props.policyName}`,

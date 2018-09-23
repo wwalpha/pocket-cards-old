@@ -12,7 +12,6 @@ export default (parent: Construct, props: CodeBuildInput, role: Role) => new Pro
     environment: {
       computeType: ComputeType.Small,
       buildImage: LinuxBuildImage.UBUNTU_14_04_NODEJS_8_11_0,
-      priviledged: false,
     },
     role,
     artifacts: new NoBuildArtifacts(),

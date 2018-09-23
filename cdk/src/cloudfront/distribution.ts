@@ -1,8 +1,8 @@
-import { Construct, Token } from '@aws-cdk/cdk';
+import { Construct } from '@aws-cdk/cdk';
 import { cloudformation } from '@aws-cdk/aws-cloudfront';
 import { CloudFrontInput } from './cloudfront';
 
-export default (parent: Construct, props: CloudFrontInput, identity: Token) => new cloudformation.DistributionResource(
+export default (parent: Construct, props: CloudFrontInput, identity: string) => new cloudformation.DistributionResource(
   parent,
   'DistributionResource',
   {

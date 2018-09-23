@@ -1,5 +1,5 @@
 import { cloudformation } from '@aws-cdk/aws-cognito';
-import { Construct, Token } from '@aws-cdk/cdk';
+import { Construct } from '@aws-cdk/cdk';
 import { UserPool, UserPoolClient, IdentityPool, IdentityPoolRoleAttachment } from './index';
 import { CommonProps } from '../common';
 import { unauthenticatedRole, authenticatedRole } from '../common/role';
@@ -43,6 +43,6 @@ export interface CognitoInput extends CommonProps {
 }
 
 export interface CognitoOutput {
-  userPoolId: Token;
+  userPoolId: string;
   userPoolClientId: string;
 }

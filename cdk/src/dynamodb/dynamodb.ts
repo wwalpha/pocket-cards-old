@@ -1,11 +1,23 @@
 import { Construct } from '@aws-cdk/cdk';
+import { cloudformation } from '@aws-cdk/aws-dynamodb';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as yaml from 'js-yaml';
 import { CommonProps } from '../common';
-import { UserInfo } from '.';
+import createTable from './table';
+
+const configs: any = yaml.safeLoad(fs.readFileSync(path.join('./configs', 'dynamodb-tables.yml'), 'utf8'));
 
 export default (parent: Construct, props: DynamodbInput): DynamodbOutput => {
 
-  // ユーザ情報
-  UserInfo(parent, props);
+  Object.keys(configs).forEach((key) => {
+    const tableProps: cloudformation.TableResourceProps = configs[key];
+
+    createTable(parent, {
+      ...props,
+      table: tableProps,
+    });
+  });
 
   return {};
 };

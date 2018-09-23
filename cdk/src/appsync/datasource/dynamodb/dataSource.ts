@@ -1,4 +1,4 @@
-import { Construct, Token, ServicePrincipal, PolicyStatement, PolicyStatementEffect, Arn } from '@aws-cdk/cdk';
+import { Construct, ServicePrincipal, PolicyStatement, PolicyStatementEffect } from '@aws-cdk/cdk';
 import { Role, Policy } from '@aws-cdk/aws-iam';
 import { cloudformation } from '@aws-cdk/aws-appsync';
 import { AppSyncProps } from '../..';
@@ -19,8 +19,8 @@ export default (parent: Construct, props: AppSyncProps, config: DynamoDBConfig):
         .addAction('dynamodb:Scan')
         .addAction('dynamodb:Query')
         .addAction('dynamodb:UpdateItem')
-        .addResource(new Arn(`arn:aws:dynamodb:${props.region}:*:table/${props.envType}-${config.tableName}`))
-        .addResource(new Arn(`arn:aws:dynamodb:${props.region}:*:table/${props.envType}-${config.tableName}/*`)),
+        .addResource(`arn:aws:dynamodb:${props.region}:*:table/${props.envType}-${config.tableName}`)
+        .addResource(`arn:aws:dynamodb:${props.region}:*:table/${props.envType}-${config.tableName}/*`),
     ],
   });
 
@@ -45,7 +45,7 @@ export default (parent: Construct, props: AppSyncProps, config: DynamoDBConfig):
 };
 
 export interface DynamoDBConfig {
-  apiId: Token;
+  apiId: string;
   dataSourceName: string;
   tableName: string;
 }

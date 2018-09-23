@@ -1,10 +1,10 @@
 import { cloudformation } from '@aws-cdk/aws-cognito';
-import { Token, Construct } from '@aws-cdk/cdk';
+import { Construct } from '@aws-cdk/cdk';
 
 export interface RoleAttachmentProps {
-  identityPoolId: Token;
-  unauthenticated: Token;
-  authenticated: Token;
+  identityPoolId: string;
+  unauthenticated: string;
+  authenticated: string;
 }
 
 export default (parent: Construct, props: RoleAttachmentProps) => new cloudformation.IdentityPoolRoleAttachmentResource(

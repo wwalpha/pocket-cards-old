@@ -1,0 +1,27 @@
+UserInfoResource:
+  tableName: UserInfo
+  keySchema: 
+    - attributeName: UserId
+      keyType: HASH
+  attributeDefinitions:
+    - attributeName: UserId
+      attributeType: S
+  provisionedThroughput:
+    readCapacityUnits: 1
+    writeCapacityUnits: 1
+
+WordResource:
+  tableName: Word
+  keySchema: 
+    - attributeName: SetId
+      keyType: HASH
+    - attributeName: Word
+      keyType: RANGE
+  attributeDefinitions:
+    - attributeName: SetId
+      attributeType: S
+    - attributeName: Word
+      attributeType: S
+  provisionedThroughput:
+    readCapacityUnits: 1
+    writeCapacityUnits: 1

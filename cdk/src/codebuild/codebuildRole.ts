@@ -1,4 +1,4 @@
-import { Construct, PolicyStatement, PolicyStatementEffect, Arn, ServicePrincipal } from '@aws-cdk/cdk';
+import { Construct, PolicyStatement, PolicyStatementEffect, ServicePrincipal } from '@aws-cdk/cdk';
 import { Role, Policy } from '@aws-cdk/aws-iam';
 import { PROJECT_NAME } from '../common/consts';
 import { CodeBuildInput } from './codebuild';
@@ -13,14 +13,14 @@ export default (parent: Construct, props: CodeBuildInput): Role => {
     .addAction('logs:CreateLogGroup')
     .addAction('logs:CreateLogStream')
     .addAction('logs:PutLogEvents')
-    .addResource(new Arn('arn:aws:logs:ap-northeast-1:562849865336:log-group:/aws/codebuild/test'))
-    .addResource(new Arn('arn:aws:logs:ap-northeast-1:562849865336:log-group:/aws/codebuild/test:*'));
+    .addResource('arn:aws:logs:ap-northeast-1:562849865336:log-group:/aws/codebuild/test')
+    .addResource('arn:aws:logs:ap-northeast-1:562849865336:log-group:/aws/codebuild/test:*');
 
   const stmt2 = new PolicyStatement(PolicyStatementEffect.Allow)
     .addAction('s3:PutObject')
     .addAction('s3:GetObject')
     .addAction('s3:GetObjectVersion')
-    .addResource(new Arn('arn:aws:s3:::codepipeline-ap-northeast-1-*'));
+    .addResource('arn:aws:s3:::codepipeline-ap-northeast-1-*');
 
   const policy = new Policy(parent, 'CodeBuildPolicy', {
     policyName: `${props.envType}-${PROJECT_NAME}-CodeBuildPolicy`,

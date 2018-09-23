@@ -1,16 +1,16 @@
-import { Construct, PolicyDocument, PolicyStatement, Arn, PolicyStatementEffect, Token } from '@aws-cdk/cdk';
+import { Construct, PolicyDocument, PolicyStatement, PolicyStatementEffect } from '@aws-cdk/cdk';
 import { cloudformation } from '@aws-cdk/aws-s3';
 import { CloudFrontInput } from './cloudfront';
 
-const getPolicyDocument = (bucketArn: Token): object => {
+const getPolicyDocument = (bucketArn: string): object => {
   const policy = new PolicyDocument();
 
   const stmt = new PolicyStatement(PolicyStatementEffect.Allow);
 
   stmt
     .addAction('s3:GetObject')
-    .addResource(new Arn(bucketArn));
-  stmt.addAwsPrincipal(new Arn('*'));
+    .addResource(bucketArn);
+  stmt.addAwsPrincipal('*');
 
   policy.addStatement(stmt);
 

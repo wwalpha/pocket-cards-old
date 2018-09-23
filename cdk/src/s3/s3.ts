@@ -1,5 +1,4 @@
-import { Construct, Token } from '@aws-cdk/cdk';
-import { BucketName } from '@aws-cdk/aws-s3';
+import { Construct } from '@aws-cdk/cdk';
 import { CommonProps } from '../common';
 import { Bucket } from '.';
 
@@ -21,7 +20,7 @@ export interface S3Input extends CommonProps {
 }
 
 export interface S3Output {
-  domainName: Token;
-  arn: Token;
-  ref: BucketName;
+  domainName: string;
+  arn: string;
+  ref: string;
 }

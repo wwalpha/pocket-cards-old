@@ -1,7 +1,7 @@
 import { cloudformation } from '@aws-cdk/aws-cognito';
-import { Token, Construct } from '@aws-cdk/cdk';
+import { Construct } from '@aws-cdk/cdk';
 
-export default (parent: Construct, userPoolId: Token) => new cloudformation.UserPoolClientResource(
+export default (parent: Construct, userPoolId: string) => new cloudformation.UserPoolClientResource(
   parent,
   'UserPoolClientResource',
   {

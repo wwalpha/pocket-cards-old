@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "rootDirs": [
+      "./src",
+    ],
+    "outDir": "dist",
+    "target": "es6",
+    "module": "commonjs",
+    "jsx": "react",
+    "lib": [
+      "es5",
+      "es6",
+      "es2015.promise",
+      "dom",
+      "es7"
+    ],
+    "removeComments": true,
+    "allowJs": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": false,
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+  },
+  "compileOnSave": true,
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
+}

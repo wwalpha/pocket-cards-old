@@ -29,3 +29,16 @@ export const lambdaDynamodb = (props: CommonProps): PolicyStatement[] => {
       .addResource(`arn:aws:dynamodb:${props.region}:*:table/*/index/*`),
   ];
 };
+
+export const lambdaS3 = (): PolicyStatement[] => {
+  return [
+    new PolicyStatement(PolicyStatementEffect.Allow)
+      .addAction('s3:ListBucket')
+      .addResource('arn:aws:s3:::*'),
+    new PolicyStatement(PolicyStatementEffect.Allow)
+      .addAction('s3:PutObject')
+      .addAction('s3:GetObject')
+      .addAction('s3:DeleteObject')
+      .addResource('arn:aws:s3:::*/*'),
+  ];
+};

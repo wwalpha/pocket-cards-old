@@ -1,4 +1,4 @@
 export { default as GraphQLApi } from './graphQLApi';
 export { default as GraphQLSchema } from './graphQLSchema';
-export { default as DataSource } from './datasource/dynamodb';
+export { default as DataSource } from './datasource';
 export { AppSyncProps } from './appsync';

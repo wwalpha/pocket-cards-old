@@ -7,15 +7,16 @@ import {
   Slide,
   Grid,
   Avatar,
-  ListItem,
+  ListItem as MListItem,
   ListItemText,
   Button,
   Paper,
 } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
 import red from '@material-ui/core/colors/red';
+import { Link } from 'react-router-dom';
 
-class Item extends React.Component<Props, any> {
+class ListItem extends React.Component<Props, any> {
   state = {
     delOpened: false,
   };
@@ -32,11 +33,11 @@ class Item extends React.Component<Props, any> {
           classes={{
             elevation1: classes.paper,
           }}>
-          <ListItem
+          <MListItem
             button
             disableRipple
             classes={{ root: classes.listitem }}
-            onClick={this.handleTouchMove}
+            component={(props: any) => (<Link to="/menu" {...props} />)}
           >
             <Avatar classes={{ root: classes.avatar }}>
               <FolderIcon />
@@ -45,7 +46,7 @@ class Item extends React.Component<Props, any> {
               primary={primaryText}
               secondary={secondaryText}
             />
-          </ListItem>
+          </MListItem>
           <Slide direction="left" in={this.state.delOpened} mountOnEnter unmountOnExit>
             <Button
               variant="contained"
@@ -53,7 +54,7 @@ class Item extends React.Component<Props, any> {
               disableRipple
             >
               DELETE
-          </Button>
+            </Button>
           </Slide>
         </Paper>
       </Grid>
@@ -89,7 +90,7 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
   },
 });
 
-export default withStyles(styles)(Item);
+export default withStyles(styles)(ListItem);
 
 export interface Props extends WithStyles<StyleRulesCallback> {
   primaryText: string;

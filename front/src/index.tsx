@@ -5,11 +5,10 @@ import Auth from '@aws-amplify/auth';
 import AppSyncClient, { AUTH_TYPE } from 'aws-appsync';
 import { Rehydrated } from 'aws-appsync-react';
 import { BrowserRouter } from 'react-router-dom';
-import App from './containers/App';
-
 import { createMuiTheme, MuiThemeProvider, Theme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import deepOrange from '@material-ui/core/colors/deepOrange';
+import App from './containers/App';
 
 const theme: Theme = createMuiTheme({
   palette: {

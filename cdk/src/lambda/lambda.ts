@@ -1,6 +1,5 @@
 import { Construct } from '@aws-cdk/cdk';
-import { CommonProps } from '../common';
-import { ImageToWord, AddNewWords } from '.';
+import { ImageToWord, AddNewWords, LambdaInput, LambdaOutput } from '.';
 
 export default (parent: Construct, props: LambdaInput): LambdaOutput => {
   // 画像から単語に変換する
@@ -12,13 +11,3 @@ export default (parent: Construct, props: LambdaInput): LambdaOutput => {
     'add-new-words': addNewWords.functionArn,
   }
 };
-
-export interface LambdaInput extends CommonProps {
-  bucketName: string,
-}
-
-export interface LambdaOutput {
-  // Lambda Arns
-  [key: string]: string;
-}
-

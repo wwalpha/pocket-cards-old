@@ -9,8 +9,8 @@ export default (parent: Construct, props: S3Input): S3Output => {
 
   const ret: S3Output = {
     domainName: bucket.domainName,
-    arn: bucket.bucketArn,
-    ref: bucket.bucketName,
+    bucketArn: bucket.bucketArn,
+    bucketName: bucket.bucketName,
   };
 
   return ret;
@@ -21,6 +21,6 @@ export interface S3Input extends CommonProps {
 
 export interface S3Output {
   domainName: string;
-  arn: string;
-  ref: string;
+  bucketArn: string;
+  bucketName: string;
 }

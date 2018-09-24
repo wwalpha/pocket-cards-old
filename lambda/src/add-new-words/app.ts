@@ -1,5 +1,5 @@
 import { Translate, AWSError, DynamoDB } from 'aws-sdk';
-import { Context, Callback } from "aws-lambda";
+import { Context, Callback } from 'aws-lambda';
 import * as fs from 'fs';
 import { putItem } from '../commons/dynamodb';
 import { defaultEmpty } from '../commons/utils';
@@ -10,7 +10,7 @@ const client = new Translate({
 
 const dbClient = new DynamoDB.DocumentClient({
   region: process.env.AWS_REGION,
-})
+});
 
 const translateText = async (request: Translate.TranslateTextRequest) => new Promise<string>((resolve, reject) => {
   client.translateText(request, (err: AWSError, data: Translate.TranslateTextResponse) => {
@@ -23,14 +23,16 @@ const translateText = async (request: Translate.TranslateTextRequest) => new Pro
   });
 });
 
-export const handler = (event: AddWords, context: Context, callback: Callback) => {
+export const handler = async (event: AddWords, context: Context, callback: Callback) => {
   console.log(event);
 
   const dicts: string[] = fs.readFileSync('./england.dict', 'utf-8').split('\n');
 
-  event.words.forEach(async (word: any) => {
-    const pronunciation: string | undefined = dicts.find((item) => item.startsWith(word.toLowerCase()));
+  for (const word in event.words) {
+    // 発音
+    const pronunciation: string | undefined = dicts.find(item => item.startsWith(word.toLowerCase()));
 
+    // 翻訳API
     const request: Translate.TranslateTextRequest = {
       SourceLanguageCode: 'en',
       TargetLanguageCode: 'zh',
@@ -39,19 +41,23 @@ export const handler = (event: AddWords, context: Context, callback: Callback) =
 
     const vocabulary = await translateText(request);
 
+    // 単語情報をDBに登録する
     await putItem(dbClient, {
       TableName: defaultEmpty(process.env.TABLE_NAME),
       Item: {
-        Word: word,
-        Pronunciation: pronunciation,
-        Vocabulary: vocabulary,
-      }
+        word,
+        pronunciation,
+        vocabulary,
+        times: 0,
+        nextTime: '00000000',
+      },
+      ConditionExpression: 'attribute_not_exists(word)',
     });
-  });
+  }
 };
 
 export interface NewWord {
-  word: string
+  word: string;
 }
 export interface AddWords {
   setId: string;

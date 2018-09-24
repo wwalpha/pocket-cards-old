@@ -1,4 +1,4 @@
-import { CommonProps } from "..";
+import { CommonProps } from '..';
 
 export interface RoleProps extends CommonProps {
   roleName: string;

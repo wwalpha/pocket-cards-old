@@ -1,7 +1,7 @@
-import { Construct, ServicePrincipal, PolicyStatement, PolicyStatementEffect } from "@aws-cdk/cdk";
-import { Role, Policy } from "@aws-cdk/aws-iam";
+import { Construct, ServicePrincipal, PolicyStatement, PolicyStatementEffect } from '@aws-cdk/cdk';
+import { Role, Policy } from '@aws-cdk/aws-iam';
 import { RoleProps } from '.';
-import { PROJECT_NAME } from "../consts";
+import { PROJECT_NAME } from '../consts';
 
 const getRole = (parent: Construct, props: RoleProps): Role => new Role(parent, `${props.roleName}Resource`, {
   roleName: `${props.envType}-${PROJECT_NAME}-${props.roleName}Role`,
@@ -16,14 +16,14 @@ export const lambdaDataSourceRole = (parent: Construct, props: RoleProps, functi
       new PolicyStatement(PolicyStatementEffect.Allow)
         .addAction('lambda:invokeFunction')
         .addResource(`arn:aws:lambda:${props.region}:${props.account}:function:${props.envType}-${functionName}`)
-        .addResource(`arn:aws:lambda:${props.region}:${props.account}:function:${props.envType}-${functionName}:*`)
+        .addResource(`arn:aws:lambda:${props.region}:${props.account}:function:${props.envType}-${functionName}:*`),
     ],
   });
 
   role.attachInlinePolicy(policy);
 
   return role;
-}
+};
 
 export const dynamodbDataSourceRole = (parent: Construct, props: RoleProps, tableName: string): Role => {
   const role = getRole(parent, props);
@@ -45,4 +45,4 @@ export const dynamodbDataSourceRole = (parent: Construct, props: RoleProps, tabl
   role.attachInlinePolicy(policy);
 
   return role;
-}
+};

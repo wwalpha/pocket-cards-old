@@ -1,6 +1,6 @@
-import { Role, Policy } from "@aws-cdk/aws-iam";
-import { Construct, FederatedPrincipal, PolicyStatement, PolicyStatementEffect } from "@aws-cdk/cdk";
-import { PROJECT_NAME } from "../consts";
+import { Role, Policy } from '@aws-cdk/aws-iam';
+import { Construct, FederatedPrincipal, PolicyStatement, PolicyStatementEffect } from '@aws-cdk/cdk';
+import { PROJECT_NAME } from '../consts';
 import { RoleProps } from '.';
 
 /** Cognito未認証ロール */
@@ -70,8 +70,6 @@ export const authenticatedRole = (parent: Construct, identityPool: string, props
 
   return role;
 };
-
-
 
 export interface UnauthenticatedRoleProps extends RoleProps {
   // UnauthenticatedPolicy

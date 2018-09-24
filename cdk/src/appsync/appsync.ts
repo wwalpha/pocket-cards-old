@@ -1,7 +1,7 @@
 import { Construct } from '@aws-cdk/cdk';
-import { GraphQLApi, GraphQLSchema, DataSource } from './index';
+import { GraphQLApi, GraphQLSchema, DataSource, Resolver } from '.';
 import { CommonProps } from '../common';
-import { LambdaOutput } from '../lambda/lambda';
+import { LambdaOutput } from '../lambda';
 
 export default (parent: Construct, props: AppSyncProps) => {
   // API定義
@@ -12,6 +12,9 @@ export default (parent: Construct, props: AppSyncProps) => {
 
   // DataSource
   DataSource(parent, props, api.graphQlApiApiId);
+
+  // Resolver
+  Resolver(parent, props, api.graphQlApiApiId);
 };
 
 export interface AppSyncProps extends CommonProps {

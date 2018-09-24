@@ -1,7 +1,7 @@
-import { Construct, ServicePrincipal } from "@aws-cdk/cdk";
-import { Role, Policy } from "@aws-cdk/aws-iam";
-import { PROJECT_NAME } from "../consts";
-import { lambdaBasic } from "../policyStmt";
+import { Construct, ServicePrincipal } from '@aws-cdk/cdk';
+import { Role, Policy } from '@aws-cdk/aws-iam';
+import { PROJECT_NAME } from '../consts';
+import { lambdaBasic } from '../policyStmt';
 import { RoleProps } from '.';
 
 /** Lambda基本ロール */

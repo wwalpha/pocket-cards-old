@@ -3,3 +3,6 @@
 /cdk/dist
 /mobile/platforms
 /mobile/package-lock.json
+/lambda/dist
+/lambda/distzip
+/lambda/src/**/*.js

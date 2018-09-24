@@ -8,6 +8,8 @@ fs.readdirSync('./src').forEach((file) => {
   if (file !== 'commons') folders.push(file);
 });
 
+fs.mkdirSync(path.join(__dirname, 'distzip'));
+
 folders.forEach((folder) => {
   const zip = new AdmZip();
 

@@ -21,7 +21,7 @@ export default (parent: Construct, props: CognitoInput) => new cloudformation.Us
         // 小文字必要
         requireLowercase: true,
         // 記号必要
-        requireSymbols: true,
+        requireSymbols: false,
         // 大文字不必要
         requireUppercase: false,
         // 最小文字数：８

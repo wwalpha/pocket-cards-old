@@ -1,4 +1,4 @@
-import { Stack, App, StackProps } from '@aws-cdk/cdk';
+import { Stack, App, StackProps, Output, AwsAccountId, AwsRegion, AwsStackId, AwsStackName } from '@aws-cdk/cdk';
 import { Cognito, AppSync, Dynamodb, S3, CodeBuild, Lambda } from '.';
 import { CommonProps } from './common';
 
@@ -6,10 +6,19 @@ class CdkStack extends Stack {
   constructor(parent: App, name: string, props?: StackProps) {
     super(parent, name, props);
 
+    this.templateOptions.metadata = {
+
+      // all CloudFormation's pseudo-parameters are supported via the `cdk.AwsXxx` classes
+      PseudoParameters: [
+        new AwsAccountId(),
+        new AwsRegion(),
+        new AwsStackId(),
+        new AwsStackName(),
+      ],
+    };
+
     const comProps: CommonProps = {
       envType: 'dev',
-      region: this.env.region ? this.env.region : 'ap-northeast-1',
-      account: this.env.account ? this.env.account : '*',
     };
 
     // Cognito
@@ -42,6 +51,27 @@ class CdkStack extends Stack {
 
     // CodeBuild
     CodeBuild(this, comProps);
+
+    new Output(this, 'BucketArn', {
+      export: 'BucketArn',
+      value: s3.bucketArn,
+    });
+    new Output(this, 'BucketDomainName', {
+      export: 'BucketDomainName',
+      value: s3.domainName,
+    });
+    new Output(this, 'UserPoolId', {
+      export: 'UserPoolId',
+      value: cognito.userPoolId
+    });
+    new Output(this, 'UserPoolWebClientId', {
+      export: 'UserPoolWebClientId',
+      value: cognito.userPoolClientId
+    });
+    new Output(this, 'IdentityPoolId', {
+      export: 'IdentityPoolId',
+      value: cognito.identityPoolId
+    });
   }
 }
 

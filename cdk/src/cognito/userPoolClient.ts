@@ -8,5 +8,9 @@ export default (parent: Construct, userPoolId: string) => new cloudformation.Use
     clientName: 'mobile-client',
     generateSecret: false,
     userPoolId,
+    explicitAuthFlows: [
+      'ADMIN_NO_SRP_AUTH'
+    ],
+    refreshTokenValidity: 6,
   },
 );

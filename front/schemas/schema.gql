@@ -12,26 +12,25 @@ type Query {
 
 type Mutation {
   # セット作成
-  createSet(name: String!): Set
+  createSet(userId: ID!, name: String!): Set
   # セット削除
   deleteSet(setId: ID!): Set
-  # 単語一括登録
-  importWords(setId: ID!): Set
 }
 
 type Set {
-  # id
+  # userId
+  userId: ID!
+  # setId
   setId: ID!
   # セット名
   name: String
-  # 単語一覧
-  words: [Word]
 }
 
 type User {
+  # userId
   userId: ID!
+  # user名
   username: String
-  sets: [Set]
 }
 
 type Word {
@@ -48,6 +47,4 @@ type Word {
   nextDate: String
   # 学習回数
   times: Int
-  # 音声
-  sound: String
 }

@@ -9,9 +9,7 @@ export default (parent: Construct, props: AppSyncProps, lambda: LambdaProps, api
   const role = lambdaDataSourceRole(
     parent,
     {
-      account: props.account,
       envType: props.envType,
-      region: props.region,
       roleName: `invoke-${toUpper(lambda.FunctionName)}`,
       principal: 'appsync.amazonaws.com',
     },

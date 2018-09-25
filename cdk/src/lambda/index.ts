@@ -11,13 +11,11 @@ export const getHandler = (props: LambdaInput, functionName: string, handler: st
   return handler;
 };
 
-
 export interface LambdaInput extends CommonProps {
-  bucketName: string,
+  bucketName: string;
 }
 
 export interface LambdaOutput {
   // Lambda Arns
   [key: string]: string;
 }
-

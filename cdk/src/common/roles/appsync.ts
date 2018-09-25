@@ -1,4 +1,4 @@
-import { Construct, ServicePrincipal, PolicyStatement, PolicyStatementEffect } from '@aws-cdk/cdk';
+import { Construct, ServicePrincipal, PolicyStatement, PolicyStatementEffect, AwsRegion, AwsAccountId } from '@aws-cdk/cdk';
 import { Role, Policy } from '@aws-cdk/aws-iam';
 import { RoleProps } from '.';
 import { PROJECT_NAME } from '../consts';
@@ -15,8 +15,8 @@ export const lambdaDataSourceRole = (parent: Construct, props: RoleProps, functi
     statements: [
       new PolicyStatement(PolicyStatementEffect.Allow)
         .addAction('lambda:invokeFunction')
-        .addResource(`arn:aws:lambda:${props.region}:${props.account}:function:${props.envType}-${functionName}`)
-        .addResource(`arn:aws:lambda:${props.region}:${props.account}:function:${props.envType}-${functionName}:*`),
+        .addResource(`arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${functionName}`)
+        .addResource(`arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${functionName}:*`),
     ],
   });
 
@@ -37,8 +37,8 @@ export const dynamodbDataSourceRole = (parent: Construct, props: RoleProps, tabl
         .addAction('dynamodb:Scan')
         .addAction('dynamodb:Query')
         .addAction('dynamodb:UpdateItem')
-        .addResource(`arn:aws:dynamodb:${props.region}:*:table/${props.envType}-${tableName}`)
-        .addResource(`arn:aws:dynamodb:${props.region}:*:table/${props.envType}-${tableName}/*`),
+        .addResource(`arn:aws:dynamodb:${new AwsRegion()}:*:table/${props.envType}-${tableName}`)
+        .addResource(`arn:aws:dynamodb:${new AwsRegion()}:*:table/${props.envType}-${tableName}/*`),
     ],
   });
 

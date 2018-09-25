@@ -1,15 +1,14 @@
-import { PolicyStatement, PolicyStatementEffect } from '@aws-cdk/cdk';
-import { CommonProps } from '.';
+import { PolicyStatement, PolicyStatementEffect, AwsRegion } from '@aws-cdk/cdk';
 
-export const lambdaBasic = (props: CommonProps) => {
+export const lambdaBasic = () => {
   return new PolicyStatement(PolicyStatementEffect.Allow)
     .addAction('logs:CreateLogGroup')
     .addAction('logs:CreateLogStream')
     .addAction('logs:PutLogEvents')
-    .addResource(`arn:aws:logs:${props.region}:*:*`);
+    .addResource(`arn:aws:logs:${new AwsRegion()}:*:*`);
 };
 
-export const lambdaDynamodb = (props: CommonProps): PolicyStatement[] => {
+export const lambdaDynamodb = (): PolicyStatement[] => {
   return [
     new PolicyStatement(PolicyStatementEffect.Allow)
       .addAction('dynamodb:PutItem')
@@ -22,11 +21,11 @@ export const lambdaDynamodb = (props: CommonProps): PolicyStatement[] => {
       .addAction('dynamodb:GetRecords')
       .addAction('dynamodb:GetShardIterator')
       .addAction('dynamodb:ListStreams')
-      .addResource(`arn:aws:dynamodb:${props.region}:*:table/*`),
+      .addResource(`arn:aws:dynamodb:${new AwsRegion()}:*:table/*`),
     new PolicyStatement(PolicyStatementEffect.Allow)
       .addAction('dynamodb:Scan')
       .addAction('dynamodb:Query')
-      .addResource(`arn:aws:dynamodb:${props.region}:*:table/*/index/*`),
+      .addResource(`arn:aws:dynamodb:${new AwsRegion()}:*:table/*/index/*`),
   ];
 };
 

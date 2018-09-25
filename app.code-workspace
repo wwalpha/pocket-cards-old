@@ -5,12 +5,26 @@
 		},
 		{
 			"path": "front"
+		},
+		{
+			"path": "lambda"
+		},
+		{
+			"path": "resolver"
+		},
+		{
+			"path": "mobile"
+		},
+		{
+			"path": "D:\\Code\\Project\\aws\\aws-cognito-admin-cli"
 		}
 	],
 	"settings": {
 		"tslint.autoFixOnSave": true,
 		"tslint.jsEnable": true,
+		"tslint.run": "onSave",
 		"files.exclude": {
+			// "**/node_modules": true,
 			"**/.vscode": true,
 			"**/.gitignore": true,
 			"**/.npmignore": true,

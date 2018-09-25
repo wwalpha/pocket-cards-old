@@ -9,7 +9,7 @@
     "scripts": {
         "build": "tsc",
         "watch": "tsc -w",
-        "cdk": "cdk"
+        "deploy": "cdk deploy"
     },
     "devDependencies": {
         "@types/js-yaml": "^3.11.2",

@@ -35,7 +35,8 @@ export default (parent: Construct, props: CognitoInput): CognitoOutput => {
 
   const output: CognitoOutput = {
     userPoolId: userpool.ref,
-    userPoolClientId: userPoolClient.id,
+    userPoolClientId: userPoolClient.userPoolClientId,
+    identityPoolId: identityPool.identityPoolId,
   };
 
   return output;
@@ -47,4 +48,5 @@ export interface CognitoInput extends CommonProps {
 export interface CognitoOutput {
   userPoolId: string;
   userPoolClientId: string;
+  identityPoolId: string;
 }

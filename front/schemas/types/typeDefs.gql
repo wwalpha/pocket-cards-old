@@ -1,16 +1,17 @@
 type Set {
-  # id
+  # userId
+  userId: ID!
+  # setId
   setId: ID!
   # セット名
   name: String
-  # 単語一覧
-  words: [Word]
 }
 
 type User {
+  # userId
   userId: ID!
+  # user名
   username: String
-  sets: [Set]
 }
 
 type Word {
@@ -27,7 +28,5 @@ type Word {
   nextDate: String
   # 学習回数
   times: Int
-  # 音声
-  sound: String
 }
 

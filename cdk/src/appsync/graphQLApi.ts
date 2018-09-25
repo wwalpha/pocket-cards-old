@@ -1,4 +1,4 @@
-import { Construct } from '@aws-cdk/cdk';
+import { Construct, AwsRegion } from '@aws-cdk/cdk';
 import { cloudformation } from '@aws-cdk/aws-appsync';
 import { PROJECT_NAME } from '../common/consts';
 import { AppSyncProps } from './appsync';
@@ -10,7 +10,7 @@ export default (parent: Construct, props: AppSyncProps) => new cloudformation.Gr
     authenticationType: 'AMAZON_COGNITO_USER_POOLS',
     graphQlApiName: `${props.envType}-${PROJECT_NAME}`,
     userPoolConfig: {
-      awsRegion: 'ap-northeast-1',
+      awsRegion: new AwsRegion(),
       userPoolId: props.userPoolId,
       defaultAction: 'ALLOW',
     },

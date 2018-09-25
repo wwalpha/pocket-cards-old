@@ -1,5 +1,1 @@
-{
-  "tslint.run": "onSave",
-  "tslint.autoFixOnSave": true,
-  "editor.tabSize": 2,
-}
+{}

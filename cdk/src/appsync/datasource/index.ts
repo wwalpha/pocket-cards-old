@@ -2,11 +2,11 @@ import { Construct } from '@aws-cdk/cdk';
 import * as yaml from 'js-yaml';
 import * as fs from 'fs';
 import * as path from 'path';
-import { AppSyncProps } from '..';
+import { AppSyncInput } from '..';
 import lambdaResource from './lambda';
 import dynamodbResource from './dynamodb';
 
-export default (parent: Construct, props: AppSyncProps, apiId: string) => {
+export default (parent: Construct, props: AppSyncInput, apiId: string) => {
   const config: DataSource = yaml.safeLoad(fs.readFileSync(path.join('./configs', 'appsync-datasource.yml'), 'utf8'));
 
   if (config.Dynamodb) {

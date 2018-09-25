@@ -3,9 +3,9 @@ import { cloudformation } from '@aws-cdk/aws-appsync';
 import * as yaml from 'js-yaml';
 import * as fs from 'fs';
 import * as path from 'path';
-import { AppSyncProps, ResolverProps, Resolvers } from '.';
+import { ResolverProps, Resolvers } from '.';
 
-export default (parent: Construct, appsyncProps: AppSyncProps, apiId: string) => {
+export default (parent: Construct, apiId: string) => {
   const config: Resolvers = yaml.safeLoad(fs.readFileSync(path.join('./configs', 'appsync-resolver.yml'), 'utf8'));
 
   Object.keys(config).forEach((key) => {

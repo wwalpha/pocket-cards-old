@@ -1,11 +1,11 @@
 import { Construct } from '@aws-cdk/cdk';
 import { cloudformation } from '@aws-cdk/aws-appsync';
-import { AppSyncProps } from '..';
+import { AppSyncInput } from '..';
 import { LambdaProps } from '.';
 import { lambdaDataSourceRole } from '../../common/roles/appsync';
 import { toUpper } from '../../utils';
 
-export default (parent: Construct, props: AppSyncProps, lambda: LambdaProps, apiId: string): cloudformation.DataSourceResource => {
+export default (parent: Construct, props: AppSyncInput, lambda: LambdaProps, apiId: string): cloudformation.DataSourceResource => {
   const role = lambdaDataSourceRole(
     parent,
     {

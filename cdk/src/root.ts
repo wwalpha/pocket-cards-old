@@ -36,7 +36,7 @@ class CdkStack extends Stack {
     Dynamodb(this, comProps);
 
     // AppSync
-    AppSync(this, {
+    const appsync = AppSync(this, {
       ...comProps,
       userPoolId: cognito.userPoolId,
       lambdas: lambda,
@@ -60,6 +60,8 @@ class CdkStack extends Stack {
       export: 'BucketDomainName',
       value: s3.domainName,
     });
+
+    // Cognito
     new Output(this, 'UserPoolId', {
       export: 'UserPoolId',
       value: cognito.userPoolId
@@ -71,6 +73,16 @@ class CdkStack extends Stack {
     new Output(this, 'IdentityPoolId', {
       export: 'IdentityPoolId',
       value: cognito.identityPoolId
+    });
+
+    // Appsync
+    new Output(this, 'AppsyncApiId', {
+      export: 'AppsyncApiId',
+      value: appsync.apiId,
+    });
+    new Output(this, 'AppsyncApiUrl', {
+      export: 'AppsyncApiUrl',
+      value: appsync.apiUrl,
     });
   }
 }

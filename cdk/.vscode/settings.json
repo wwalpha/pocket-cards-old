@@ -1,1 +1,9 @@
-{}
+{
+  "files.exclude": {
+    "**/dist": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true
+  }
+}

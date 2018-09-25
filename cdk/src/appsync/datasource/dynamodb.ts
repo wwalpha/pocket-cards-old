@@ -1,12 +1,12 @@
 import { Construct, AwsRegion } from '@aws-cdk/cdk';
 import { cloudformation } from '@aws-cdk/aws-appsync';
-import { AppSyncProps } from '..';
+import { AppSyncInput } from '..';
 import { dynamodbDataSourceRole } from '../../common/roles/appsync';
 import { toUpper } from '../../utils';
 import { DynamodbProps } from '.';
 import { PROJECT_NAME } from '../../common/consts';
 
-export default (parent: Construct, props: AppSyncProps, dynamodb: DynamodbProps, apiId: string): cloudformation.DataSourceResource => {
+export default (parent: Construct, props: AppSyncInput, dynamodb: DynamodbProps, apiId: string): cloudformation.DataSourceResource => {
   const role = dynamodbDataSourceRole(
     parent,
     {

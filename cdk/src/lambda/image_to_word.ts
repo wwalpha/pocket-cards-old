@@ -27,7 +27,7 @@ export default (parent: Construct, props: LambdaInput): Function => {
 
   return new Function(parent, `${functionName}Resource`,
     {
-      functionName: `${props.envType}-${PROJECT_NAME.toLocaleLowerCase()}-${functionName}`,
+      functionName: `${props.envType}-${PROJECT_NAME}-${functionName}`,
       runtime,
       handler: getHandler(props, functionName, handler),
       code: Code.bucket(

@@ -15,8 +15,8 @@ export const lambdaDataSourceRole = (parent: Construct, props: RoleProps, functi
     statements: [
       new PolicyStatement(PolicyStatementEffect.Allow)
         .addAction('lambda:invokeFunction')
-        .addResource(`arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${functionName}`)
-        .addResource(`arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${functionName}:*`),
+        .addResource(`arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${PROJECT_NAME}-${functionName}`)
+        .addResource(`arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${PROJECT_NAME}-${functionName}:*`),
     ],
   });
 
@@ -37,8 +37,8 @@ export const dynamodbDataSourceRole = (parent: Construct, props: RoleProps, tabl
         .addAction('dynamodb:Scan')
         .addAction('dynamodb:Query')
         .addAction('dynamodb:UpdateItem')
-        .addResource(`arn:aws:dynamodb:${new AwsRegion()}:*:table/${props.envType}-${tableName}`)
-        .addResource(`arn:aws:dynamodb:${new AwsRegion()}:*:table/${props.envType}-${tableName}/*`),
+        .addResource(`arn:aws:dynamodb:${new AwsRegion()}:*:table/${props.envType}-${PROJECT_NAME}-${tableName}`)
+        .addResource(`arn:aws:dynamodb:${new AwsRegion()}:*:table/${props.envType}-${PROJECT_NAME}-${tableName}/*`),
     ],
   });
 

@@ -1,1 +1,7 @@
-dummy1
+{
+    "version" : "2017-02-28",
+    "operation" : "DeleteItem",
+    "key" : {
+        "setId": $util.dynamodb.toDynamoDBJson($ctx.args.setId),
+    }
+}

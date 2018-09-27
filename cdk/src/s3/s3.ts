@@ -1,26 +1,14 @@
 import { Construct } from '@aws-cdk/cdk';
-import { CommonProps } from '../common';
-import { Bucket } from '.';
+import { NewBucket, S3Input, S3Output } from '.';
 
 export default (parent: Construct, props: S3Input): S3Output => {
-
   // バケット
-  const bucket = Bucket(parent, props);
+  const bucket = NewBucket(parent, props);
 
   const ret: S3Output = {
-    domainName: bucket.domainName,
-    bucketArn: bucket.bucketArn,
-    bucketName: bucket.bucketName,
+    bucket
   };
 
   return ret;
 };
 
-export interface S3Input extends CommonProps {
-}
-
-export interface S3Output {
-  domainName: string;
-  bucketArn: string;
-  bucketName: string;
-}

@@ -1,7 +1,7 @@
 import { Construct } from '@aws-cdk/cdk';
 import { Bucket, BucketEncryption } from '@aws-cdk/aws-s3';
 import { PROJECT_NAME } from '../common/consts';
-import { S3Input } from './s3';
+import { S3Input } from '.';
 
 export default (parent: Construct, props: S3Input) => new Bucket(
   parent,

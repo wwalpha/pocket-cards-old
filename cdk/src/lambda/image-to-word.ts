@@ -41,7 +41,7 @@ export default (parent: Construct, props: LambdaInput): Function => {
       memorySize,
       timeout,
       environment: {
-        S3_BUCKET: props.bucketName,
+        S3_BUCKET: props.bucket.bucketName,
       },
     });
 };

@@ -32,7 +32,7 @@ Object.keys(resolvers).forEach((key) => {
 
   const cmd = `${awsCmd} --api-id ${apiId} ${typeName} ${fieldName} ${dataSourceName} ${txtRequest} ${txtResponse}`;
 
-  console.log(cmd);
+  console.log(`${awsCmd} --api-id ${apiId} ${typeName} ${fieldName} ${dataSourceName}`);
   execSync(cmd, {
     encoding: 'utf-8',
   });

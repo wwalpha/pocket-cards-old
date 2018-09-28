@@ -1,6 +1,5 @@
 import { CommonProps } from '../common';
-import { Bucket } from '@aws-cdk/aws-s3';
-import { LambdaOutput } from '../lambda';
+import { cloudformation } from '@aws-cdk/aws-s3';
 export { default as NewBucket } from './bucket';
 
 
@@ -8,12 +7,13 @@ export interface S3Input extends CommonProps {
 }
 
 export interface S3Output {
-  bucket: Bucket,
+  bucket: cloudformation.BucketResource,
+  bucketArn: string
+  bucketName: string
 }
 
 export interface S3EventInput extends CommonProps {
-  bucket: Bucket,
-  lambda: LambdaOutput
+  bucket: S3Output,
 }
 
 export interface S3EventOutput {

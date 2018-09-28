@@ -1,6 +1,5 @@
 import { CommonProps } from '../common';
-import { Bucket } from '@aws-cdk/aws-s3';
-import { Function } from '@aws-cdk/aws-lambda';
+import { S3Output } from '../s3';
 
 export { default as ImageToWord } from './image-to-word';
 export { default as AddNewWords } from './add-new-words';
@@ -14,10 +13,10 @@ export const getHandler = (props: LambdaInput, functionName: string, handler: st
 };
 
 export interface LambdaInput extends CommonProps {
-  bucket: Bucket,
+  bucket: S3Output,
 }
 
 export interface LambdaOutput {
-  // Lambda Instance
-  [key: string]: Function;
+  // Lambda FunctionArn
+  [key: string]: string;
 }

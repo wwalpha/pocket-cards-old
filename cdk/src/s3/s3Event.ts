@@ -1,16 +1,32 @@
-import { Construct } from '@aws-cdk/cdk';
 import { S3EventInput, S3EventOutput } from '.';
-import { NotificationKeyFilter } from '@aws-cdk/aws-s3';
-import { Function } from '@aws-cdk/aws-lambda';
+import { cloudformation } from '@aws-cdk/aws-s3';
+import { Construct, AwsRegion, AwsAccountId } from '@aws-cdk/cdk';
+import { PROJECT_NAME } from '../common/consts';
 
 export default (_parent: Construct, props: S3EventInput): S3EventOutput => {
+  const prefixArn = `arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${PROJECT_NAME}`;
   // イベント
-  addCreatedEvent(props, props.lambda['image-to-words']);
+  addCreatedEvent(props.bucket.bucket, `${prefixArn}-image-to-word`, {
+    name: 'prefix',
+    value: 'users'
+  });
+
 
   return {};
 };
 
-// 
-const addCreatedEvent = (props: S3EventInput, lambda: Function, ...filters: NotificationKeyFilter[]): void => {
-  props.bucket.onObjectCreated(lambda, ...filters);
+const addCreatedEvent = (bucket: cloudformation.BucketResource, lambdaArn: string, ...rules: cloudformation.BucketResource.FilterRuleProperty[]): void => {
+  bucket.propertyOverrides.notificationConfiguration = {
+    lambdaConfigurations: [
+      {
+        event: 's3:ObjectCreated:*',
+        function: lambdaArn,
+        filter: {
+          s3Key: {
+            rules: rules
+          }
+        }
+      }
+    ]
+  };
 }

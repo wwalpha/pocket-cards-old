@@ -23,21 +23,17 @@ class CdkStack extends Stack {
 
     // Cognito
     const cognito = Cognito(this, comProps);
-
     // S3
     const s3 = S3(this, comProps);
-
     // All Lambda
     const lambda = Lambda(this, {
       ...comProps,
-      bucket: s3.bucket,
+      bucket: s3,
     });
-
     // S3 Event
     S3Event(this, {
       ...comProps,
-      bucket: s3.bucket,
-      lambda,
+      bucket: s3,
     });
 
     // DynamoDB
@@ -62,12 +58,12 @@ class CdkStack extends Stack {
 
     new Output(this, 'BucketArn', {
       export: 'BucketArn',
-      value: s3.bucket.bucketArn,
+      value: s3.bucketArn,
     });
-    new Output(this, 'BucketDomainName', {
-      export: 'BucketDomainName',
-      value: s3.bucket.domainName,
-    });
+    // new Output(this, 'BucketDomainName', {
+    //   export: 'BucketDomainName',
+    //   value: s3.bucket.domainName,
+    // });
 
     // Cognito
     new Output(this, 'UserPoolId', {

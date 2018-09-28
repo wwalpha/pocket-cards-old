@@ -13,7 +13,7 @@ export default (parent: Construct, props: LambdaInput): LambdaOutput => {
   const addNewWords = AddNewWords(parent, props);
 
   return {
-    'image-to-word': imageToWord,
-    'add-new-words': addNewWords,
+    'image-to-word': imageToWord.functionArn,
+    'add-new-words': addNewWords.functionArn,
   }
 };

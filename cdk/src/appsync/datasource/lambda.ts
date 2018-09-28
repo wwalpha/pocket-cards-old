@@ -23,7 +23,7 @@ export default (parent: Construct, props: AppSyncInput, lambdaDef: LambdaProps, 
       apiId,
       type: 'AWS_LAMBDA',
       lambdaConfig: {
-        lambdaFunctionArn: props.lambda[lambdaDef.FunctionName].functionArn,
+        lambdaFunctionArn: props.lambda[lambdaDef.FunctionName],
       },
       serviceRoleArn: role.roleArn,
     },

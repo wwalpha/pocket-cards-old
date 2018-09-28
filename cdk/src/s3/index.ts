@@ -13,7 +13,7 @@ export interface S3Output {
 
 export interface S3EventInput extends CommonProps {
   bucket: Bucket,
-  lambdaArn: LambdaOutput
+  lambda: LambdaOutput
 }
 
 export interface S3EventOutput {

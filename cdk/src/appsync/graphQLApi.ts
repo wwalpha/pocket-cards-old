@@ -1,7 +1,7 @@
 import { Construct, AwsRegion } from '@aws-cdk/cdk';
 import { cloudformation } from '@aws-cdk/aws-appsync';
 import { PROJECT_NAME } from '../common/consts';
-import { AppSyncInput } from './appsync';
+import { AppSyncInput } from '.';
 
 export default (parent: Construct, props: AppSyncInput) => new cloudformation.GraphQLApiResource(
   parent,
@@ -11,7 +11,7 @@ export default (parent: Construct, props: AppSyncInput) => new cloudformation.Gr
     graphQlApiName: `${props.envType}-${PROJECT_NAME}`,
     userPoolConfig: {
       awsRegion: new AwsRegion(),
-      userPoolId: props.userPoolId,
+      userPoolId: props.cognito.userPoolId,
       defaultAction: 'ALLOW',
     },
   },

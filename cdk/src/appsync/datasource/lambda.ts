@@ -5,25 +5,25 @@ import { LambdaProps } from '.';
 import { lambdaDataSourceRole } from '../../common/roles/appsync';
 import { toUpper } from '../../utils';
 
-export default (parent: Construct, props: AppSyncInput, lambda: LambdaProps, apiId: string): cloudformation.DataSourceResource => {
+export default (parent: Construct, props: AppSyncInput, lambdaDef: LambdaProps, apiId: string): cloudformation.DataSourceResource => {
   const role = lambdaDataSourceRole(
     parent,
     {
       envType: props.envType,
-      roleName: `invoke-${toUpper(lambda.FunctionName)}`,
+      roleName: `invoke-${toUpper(lambdaDef.FunctionName)}`,
       principal: 'appsync.amazonaws.com',
     },
-    lambda.FunctionName);
+    lambdaDef.FunctionName);
 
   const resource = new cloudformation.DataSourceResource(
     parent,
-    toUpper(lambda.FunctionName),
+    toUpper(lambdaDef.FunctionName),
     {
-      dataSourceName: `lambda_${toUpper(lambda.FunctionName)}`,
+      dataSourceName: `lambda_${toUpper(lambdaDef.FunctionName)}`,
       apiId,
       type: 'AWS_LAMBDA',
       lambdaConfig: {
-        lambdaFunctionArn: props.lambdas[lambda.FunctionName],
+        lambdaFunctionArn: props.lambda[lambdaDef.FunctionName].functionArn,
       },
       serviceRoleArn: role.roleArn,
     },

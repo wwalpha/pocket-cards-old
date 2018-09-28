@@ -1,5 +1,6 @@
 import { CommonProps } from '../common';
 import { Bucket } from '@aws-cdk/aws-s3';
+import { Function } from '@aws-cdk/aws-lambda';
 
 export { default as ImageToWord } from './image-to-word';
 export { default as AddNewWords } from './add-new-words';
@@ -17,6 +18,6 @@ export interface LambdaInput extends CommonProps {
 }
 
 export interface LambdaOutput {
-  // Lambda Arns
-  [key: string]: string;
+  // Lambda Instance
+  [key: string]: Function;
 }

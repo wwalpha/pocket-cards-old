@@ -37,7 +37,7 @@ class CdkStack extends Stack {
     S3Event(this, {
       ...comProps,
       bucket: s3.bucket,
-      lambdaArn: lambda,
+      lambda,
     });
 
     // DynamoDB
@@ -46,8 +46,8 @@ class CdkStack extends Stack {
     // AppSync
     const appsync = AppSync(this, {
       ...comProps,
-      userPoolId: cognito.userPoolId,
-      lambdas: lambda,
+      cognito,
+      lambda,
     });
 
     // CloudFront(this, {

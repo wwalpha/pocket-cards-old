@@ -1,26 +1,16 @@
 import { Construct } from '@aws-cdk/cdk';
-import { EventType, NotificationKeyFilter } from '@aws-cdk/aws-s3';
-import { BucketNotificationDestinationProps, BucketNotificationDestinationType } from '@aws-cdk/aws-s3-notifications';
 import { S3EventInput, S3EventOutput } from '.';
+import { NotificationKeyFilter } from '@aws-cdk/aws-s3';
+import { Function } from '@aws-cdk/aws-lambda';
 
 export default (_parent: Construct, props: S3EventInput): S3EventOutput => {
-
-  addEvent(props, 'image-to-word');
+  // イベント
+  addCreatedEvent(props, props.lambda['image-to-words']);
 
   return {};
 };
 
-const addEvent = (props: S3EventInput, lambdaName: string, ...filters: NotificationKeyFilter[]): void => {
-  props.bucket.onEvent(
-    EventType.ObjectCreated,
-    {
-      asBucketNotificationDestination(_bucketArn: string, _bucketId: string) {
-        const ret: BucketNotificationDestinationProps = {
-          arn: props.lambdaArn[lambdaName],
-          type: BucketNotificationDestinationType.Lambda,
-        };
-        return ret;
-      }
-    },
-    ...filters);
+// 
+const addCreatedEvent = (props: S3EventInput, lambda: Function, ...filters: NotificationKeyFilter[]): void => {
+  props.bucket.onObjectCreated(lambda, ...filters);
 }

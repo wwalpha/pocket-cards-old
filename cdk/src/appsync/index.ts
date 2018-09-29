@@ -1,6 +1,6 @@
-import { CommonProps } from '../common';
-import { LambdaOutput } from '../lambda';
+import { CommonProps } from '../utils';
 import { CognitoOutput } from '../cognito';
+import { LambdaOutput } from '../lambda';
 export { default as GraphQLApi } from './graphQLApi';
 export { default as GraphQLSchema } from './graphQLSchema';
 export { default as DataSource } from './datasource';
@@ -18,8 +18,8 @@ export interface Resolvers {
 
 
 export interface AppSyncInput extends CommonProps {
-  cognito: CognitoOutput;
   lambda: LambdaOutput;
+  cognito: CognitoOutput;
 }
 
 export interface AppSyncOutput {

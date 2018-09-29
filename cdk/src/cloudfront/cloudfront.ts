@@ -1,6 +1,6 @@
 import { Construct } from '@aws-cdk/cdk';
 import { CloudFrontOriginAccessIdentity, Distribution, BucketPolicy } from '.';
-import { CommonProps } from '../common';
+import { CommonProps } from '../utils';
 
 export default (parent: Construct, props: CloudFrontInput): CloudFrontOutput => {
   const identity = CloudFrontOriginAccessIdentity(parent);

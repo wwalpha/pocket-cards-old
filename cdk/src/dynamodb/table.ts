@@ -1,7 +1,7 @@
 import { Construct } from '@aws-cdk/cdk';
 import { cloudformation } from '@aws-cdk/aws-dynamodb';
-import { CommonProps } from '../common';
-import { PROJECT_NAME } from '../common/consts';
+import { CommonProps } from '../utils';
+import { PROJECT_NAME } from '../utils/consts';
 
 export default (parent: Construct, props: TableInput) => new cloudformation.TableResource(
   parent,

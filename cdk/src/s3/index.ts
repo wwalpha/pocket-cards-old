@@ -1,4 +1,4 @@
-import { CommonProps } from '../common';
+import { CommonProps } from '../utils';
 import { cloudformation } from '@aws-cdk/aws-s3';
 export { default as NewBucket } from './bucket';
 

@@ -3,5 +3,5 @@ Dynamodb:
   - TableName: Word
   - TableName: User
 Lambda:
-  - FunctionName: image-to-word
-  - FunctionName: add-new-words
+  - FunctionName: ImageToWord
+  - FunctionName: AddNewWords

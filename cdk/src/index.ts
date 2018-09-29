@@ -6,3 +6,4 @@ export { default as S3Event } from './s3/s3Event';
 export { default as CloudFront } from './cloudfront/cloudfront';
 export { default as CodeBuild } from './codebuild/codebuild';
 export { default as Lambda } from './lambda/lambda';
+export { default as RestApi } from './apigateway/apigateway';

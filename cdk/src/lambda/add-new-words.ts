@@ -1,10 +1,10 @@
 import { Construct, ServicePrincipal } from '@aws-cdk/cdk';
-import { PROJECT_NAME } from '../common/consts';
-import { Runtime, Function, Code } from '@aws-cdk/aws-lambda';
+import { Runtime, Function } from '@aws-cdk/aws-lambda';
 import { Role, Policy } from '@aws-cdk/aws-iam';
-import { BucketRef } from '@aws-cdk/aws-s3';
-import { lambdaBasic, lambdaS3 } from '../common/policyStmt';
+import { lambdaBasic, lambdaS3 } from '../utils/policyStmt';
+import { PROJECT_NAME } from '../utils/consts';
 import { getHandler, LambdaInput } from '.';
+import { dummyCode } from '../utils/refs';
 
 const functionName = 'add-new-words';
 const handler = 'app.handler';
@@ -29,13 +29,7 @@ export default (parent: Construct, props: LambdaInput): Function => {
     functionName: `${props.envType}-${PROJECT_NAME}-${functionName}`,
     runtime,
     handler: getHandler(props, functionName, handler),
-    code: Code.bucket(
-      BucketRef.import(
-        parent,
-        `${functionName}Bucket`, {
-          bucketArn: 'arn:aws:s3:::deployment-projects',
-        }),
-      `${PROJECT_NAME}/dummy.zip`),
+    code: dummyCode(parent),
     role,
     memorySize,
     timeout,

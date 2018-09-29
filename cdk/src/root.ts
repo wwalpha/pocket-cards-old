@@ -1,6 +1,6 @@
 import { Stack, App, StackProps, Output, AwsAccountId, AwsRegion, AwsStackId, AwsStackName } from '@aws-cdk/cdk';
-import { Cognito, AppSync, Dynamodb, S3, CodeBuild, Lambda, S3Event } from '.';
-import { CommonProps } from './common';
+import { Cognito, AppSync, Dynamodb, S3, CodeBuild, S3Event, RestApi, Lambda } from '.';
+import { CommonProps } from './utils';
 
 class CdkStack extends Stack {
   constructor(parent: App, name: string, props?: StackProps) {
@@ -30,6 +30,7 @@ class CdkStack extends Stack {
       ...comProps,
       bucket: s3,
     });
+
     // S3 Event
     S3Event(this, {
       ...comProps,
@@ -52,6 +53,11 @@ class CdkStack extends Stack {
     //   bucketRef: s3.ref,
     //   envType: 'dev',
     // });
+
+    RestApi(this, {
+      ...comProps,
+      lambda,
+    });
 
     // CodeBuild
     CodeBuild(this, comProps);

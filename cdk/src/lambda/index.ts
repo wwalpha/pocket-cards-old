@@ -1,4 +1,4 @@
-import { CommonProps } from '../common';
+import { CommonProps } from '../utils';
 import { S3Output } from '../s3';
 
 export { default as ImageToWord } from './image-to-word';

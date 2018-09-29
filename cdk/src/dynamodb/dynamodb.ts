@@ -3,7 +3,7 @@ import { cloudformation } from '@aws-cdk/aws-dynamodb';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as yaml from 'js-yaml';
-import { CommonProps } from '../common';
+import { CommonProps } from '../utils';
 import createTable from './table';
 
 const configs: any = yaml.safeLoad(fs.readFileSync(path.join('./configs', 'dynamodb-tables.yml'), 'utf8'));

@@ -8,7 +8,7 @@ export const lambdaBasic = () => {
     .addResource(`arn:aws:logs:${new AwsRegion()}:*:*`);
 };
 
-export const lambdaDynamodb = (): PolicyStatement[] => {
+export const dynamodb = (): PolicyStatement[] => {
   return [
     new PolicyStatement(PolicyStatementEffect.Allow)
       .addAction('dynamodb:PutItem')
@@ -29,15 +29,19 @@ export const lambdaDynamodb = (): PolicyStatement[] => {
   ];
 };
 
-export const lambdaS3 = (): PolicyStatement[] => {
+export const s3 = (bucketName: string): PolicyStatement[] => {
   return [
     new PolicyStatement(PolicyStatementEffect.Allow)
+      .addAction('s3:HeadBucket')
       .addAction('s3:ListBucket')
-      .addResource('arn:aws:s3:::*'),
+      .addResource(`arn:aws:s3:::*`),
     new PolicyStatement(PolicyStatementEffect.Allow)
       .addAction('s3:PutObject')
       .addAction('s3:GetObject')
       .addAction('s3:DeleteObject')
-      .addResource('arn:aws:s3:::*/*'),
+      .addAction('s3:ReplicateObject')
+      .addAction('s3:RestoreObject')
+      .addResource(`arn:aws:s3:::${bucketName}`)
+      .addResource(`arn:aws:s3:::${bucketName}/*`),
   ];
 };

@@ -5,3 +5,5 @@ export const HttpMethod = {
   GET: 'GET',
   PUT: 'PUT',
 }
+
+export const bucketName = (env: string) => `${env}-${PROJECT_NAME.toLowerCase()}`;

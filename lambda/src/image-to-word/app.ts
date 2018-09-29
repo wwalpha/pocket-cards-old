@@ -18,8 +18,8 @@ export const handler = (event: any, context: Context, callback: Callback) => {
       S3Object: {
         Bucket: bucket,
         Name: event.filePath,
-      }
-    }
+      },
+    },
   };
 
   // text検測
@@ -42,7 +42,7 @@ export const handler = (event: any, context: Context, callback: Callback) => {
 
     callback(null, {
       words: results,
-    })
+    });
   });
 };
 
@@ -80,4 +80,4 @@ const filter = (item: Rekognition.TextDetection): boolean => {
   if (target) return false;
 
   return true;
-}
+};

@@ -1,8 +1,8 @@
 import { Construct, ServicePrincipal } from '@aws-cdk/cdk';
 import { Runtime, Function } from '@aws-cdk/aws-lambda';
 import { Role, Policy } from '@aws-cdk/aws-iam';
-import { lambdaBasic, lambdaS3 } from '../utils/policyStmt';
-import { PROJECT_NAME } from '../utils/consts';
+import { lambdaBasic, s3 } from '../utils/policyStmt';
+import { PROJECT_NAME, bucketName } from '../utils/consts';
 import { getHandler, LambdaInput } from '.';
 import { dummyCode } from '../utils/refs';
 
@@ -21,7 +21,7 @@ export default (parent: Construct, props: LambdaInput): Function => {
   role.attachInlinePolicy(new Policy(parent, `${toUpper(functionName)}Policy`, {
     statements: [
       lambdaBasic(),
-      ...lambdaS3(),
+      ...s3(bucketName(props.envType)),
     ],
   }));
 

@@ -1,9 +1,10 @@
-import { Stack, App, StackProps, Output, AwsAccountId, AwsRegion, AwsStackId, AwsStackName } from '@aws-cdk/cdk';
-import { Cognito, AppSync, Dynamodb, S3, CodeBuild, S3Event, RestApi, Lambda } from '.';
+import { Stack, App, AwsAccountId, AwsRegion, AwsStackId, AwsStackName } from '@aws-cdk/cdk';
+import { CognitoStack, S3Stack, LambdaStack, DynamodbStack } from '.';
 import { CommonProps } from './utils';
+import { PROJECT_NAME } from './utils/consts';
 
-class CdkStack extends Stack {
-  constructor(parent: App, name: string, props?: StackProps) {
+class RootStack extends Stack {
+  constructor(parent: App, name: string, props: CommonProps) {
     super(parent, name, props);
 
     this.templateOptions.metadata = {
@@ -17,35 +18,28 @@ class CdkStack extends Stack {
       ],
     };
 
-    const comProps: CommonProps = {
-      envType: 'dev',
-    };
-
-    // Cognito
-    const cognito = Cognito(this, comProps);
     // S3
-    const s3 = S3(this, comProps);
-    // All Lambda
-    const lambda = Lambda(this, {
-      ...comProps,
-      bucket: s3,
-    });
-
-    // S3 Event
-    S3Event(this, {
-      ...comProps,
-      bucket: s3,
-    });
-
+    const s3 = new S3Stack(parent, `${name}-S3`, props);
     // DynamoDB
-    Dynamodb(this, comProps);
+    new DynamodbStack(parent, `${name}-Dynamodb`, comProps);
 
-    // AppSync
-    const appsync = AppSync(this, {
+    // All Lambda
+    const lambda = new LambdaStack(parent, `${name}-Lambda`, {
       ...comProps,
-      cognito,
-      lambda,
+      s3: s3.output,
     });
+
+    new CognitoStack(parent, `${name}-Cognito`, {
+      ...comProps,
+      lambda: lambda.output,
+    });
+
+
+    // // S3 Event
+    // S3Event(this, {
+    //   ...comProps,
+    //   bucket: s3,
+    // });
 
     // CloudFront(this, {
     //   bucketArn: s3.arn,
@@ -54,51 +48,41 @@ class CdkStack extends Stack {
     //   envType: 'dev',
     // });
 
-    RestApi(this, {
-      ...comProps,
-      lambda,
-    });
+    // RestApi(this, {
+    //   ...comProps,
+    //   lambda,
+    // });
 
     // CodeBuild
-    CodeBuild(this, comProps);
+    // CodeBuild(this, comProps);
 
-    new Output(this, 'BucketArn', {
-      export: 'BucketArn',
-      value: s3.bucketArn,
-    });
+    // new Output(this, 'BucketArn', {
+    //   export: 'BucketArn',
+    //   value: s3.bucketArn,
+    // });
     // new Output(this, 'BucketDomainName', {
     //   export: 'BucketDomainName',
     //   value: s3.bucket.domainName,
     // });
 
-    // Cognito
-    new Output(this, 'UserPoolId', {
-      export: 'UserPoolId',
-      value: cognito.userPoolId
-    });
-    new Output(this, 'UserPoolWebClientId', {
-      export: 'UserPoolWebClientId',
-      value: cognito.userPoolClientId
-    });
-    new Output(this, 'IdentityPoolId', {
-      export: 'IdentityPoolId',
-      value: cognito.identityPoolId
-    });
-
     // Appsync
-    new Output(this, 'AppsyncApiId', {
-      export: 'AppsyncApiId',
-      value: appsync.apiId,
-    });
-    new Output(this, 'AppsyncApiUrl', {
-      export: 'AppsyncApiUrl',
-      value: appsync.apiUrl,
-    });
+    // new Output(this, 'AppsyncApiId', {
+    //   export: 'AppsyncApiId',
+    //   value: appsync.apiId,
+    // });
+    // new Output(this, 'AppsyncApiUrl', {
+    //   export: 'AppsyncApiUrl',
+    //   value: appsync.apiUrl,
+    // });
   }
 }
+const ENV_TYPE = 'dev';
+const comProps: CommonProps = {
+  envType: ENV_TYPE,
+};
 
 const app = new App(process.argv);
 
-new CdkStack(app, 'ProjectName');
+new RootStack(app, `${ENV_TYPE}-${PROJECT_NAME}`, comProps);
 
 process.stdout.write(app.run());

@@ -1,52 +1,52 @@
 import { cloudformation } from '@aws-cdk/aws-cognito';
-import { Construct } from '@aws-cdk/cdk';
-import { UserPool, UserPoolClient, IdentityPool, IdentityPoolRoleAttachment } from './index';
-import { CommonProps } from '../utils';
-import { unauthenticatedRole, authenticatedRole } from '../utils/roles/cognito';
+import { Stack, App } from '@aws-cdk/cdk';
+import { UserPool, UserPoolClient, IdentityPool, IdentityPoolRoleAttachment, CognitoInput, CognitoOutput } from '.';
+import { AuthenticatedRole, UnauthenticatedRole } from '../utils/roles';
+import appsync from '../appsync/appsync';
 
-export default (parent: Construct, props: CognitoInput): CognitoOutput => {
-  const userpool = UserPool(parent, props);
-  const userPoolClient = UserPoolClient(parent, userpool.ref);
+export default class CognitoStack extends Stack {
+  public readonly output: CognitoOutput;
 
-  // Cognito Provider
-  const provider: cloudformation.IdentityPoolResource.CognitoIdentityProviderProperty = {
-    clientId: userPoolClient.id,
-    providerName: userpool.userPoolProviderName,
-  };
+  constructor(parent: App, name: string, props: CognitoInput) {
+    super(parent, name, props);
 
-  // Identity Pool
-  const identityPool = IdentityPool(parent, provider, props);
+    const userpool = UserPool(this, props);
+    const userPoolClient = UserPoolClient(this, userpool.ref);
 
-  IdentityPoolRoleAttachment(parent, {
-    identityPoolId: identityPool.ref,
-    authenticated: authenticatedRole(parent, identityPool.ref, {
-      ...props,
-      roleName: 'AuthenticatedRole',
-      principal: 'cognito-identity.amazonaws.com',
-      policyName: 'AuthenticatedPolicy',
-    }).roleArn,
-    unauthenticated: unauthenticatedRole(parent, identityPool.ref, {
-      ...props,
-      roleName: 'UnauthenticatedRole',
-      principal: 'cognito-identity.amazonaws.com',
-      policyName: 'UnauthenticatedPolicy',
-    }).roleArn,
-  });
+    // Cognito Provider
+    const provider: cloudformation.IdentityPoolResource.CognitoIdentityProviderProperty = {
+      clientId: userPoolClient.id,
+      providerName: userpool.userPoolProviderName,
+    };
 
-  const output: CognitoOutput = {
-    userPoolId: userpool.ref,
-    userPoolClientId: userPoolClient.userPoolClientId,
-    identityPoolId: identityPool.identityPoolId,
-  };
+    // Identity Pool
+    const identityPool = IdentityPool(this, provider, props);
 
-  return output;
-};
+    IdentityPoolRoleAttachment(this, {
+      identityPoolId: identityPool.ref,
+      authenticated: AuthenticatedRole(this, identityPool.ref, {
+        envType: props.envType,
+        roleName: 'AuthenticatedRole',
+        policyName: 'AuthenticatedPolicy',
+      }).roleArn,
+      unauthenticated: UnauthenticatedRole(this, identityPool.ref, {
+        envType: props.envType,
+        roleName: 'UnauthenticatedRole',
+        policyName: 'UnauthenticatedPolicy',
+      }).roleArn,
+    });
 
-export interface CognitoInput extends CommonProps {
-}
+    this.output = {
+      identityPoolId: identityPool.identityPoolId,
+      userPoolId: userpool.userPoolId,
+      userPoolClientId: userPoolClient.userPoolClientId,
+    };
 
-export interface CognitoOutput {
-  userPoolId: string;
-  userPoolClientId: string;
-  identityPoolId: string;
+    appsync(this, {
+      cognito: this.output,
+      envType: props.envType,
+      lambda: props.lambda,
+    })
+
+  }
 }

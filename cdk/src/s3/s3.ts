@@ -1,17 +1,17 @@
-import { Construct } from '@aws-cdk/cdk';
-import { NewBucket, S3Input, S3Output } from '.';
-import { cloudformation } from '@aws-cdk/aws-s3';
+import { Stack, App } from "@aws-cdk/cdk";
+import { S3Input, NewBucket, S3Output } from ".";
 
-export default (parent: Construct, props: S3Input): S3Output => {
-  // バケット
-  const bucket = NewBucket(parent, props);
+export default class S3Stack extends Stack {
+  public readonly output: S3Output
 
-  const ret: S3Output = {
-    bucket: bucket.findChild('Resource') as cloudformation.BucketResource,
-    bucketArn: bucket.bucketArn,
-    bucketName: bucket.bucketName,
-  };
+  constructor(parent: App, name: string, props: S3Input) {
+    super(parent, name, props);
 
-  return ret;
-};
+    const bucket = NewBucket(this, props);
 
+    this.output = {
+      bucket: bucket.export(),
+      domainName: bucket.domainName,
+    }
+  }
+}

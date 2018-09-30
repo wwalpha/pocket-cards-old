@@ -5,8 +5,7 @@ import { RoleProps } from '.';
 
 /** Cognito未認証ロール */
 export const unauthenticatedRole = (parent: Construct, identityPool: string, props: UnauthenticatedRoleProps): Role => {
-  const principal = new FederatedPrincipal(
-    props.principal,
+  const principal = new FederatedPrincipal('cognito-identity.amazonaws.com',
     {
       StringEquals: {
         'cognito-identity.amazonaws.com:aud': identityPool,
@@ -39,8 +38,7 @@ export const unauthenticatedRole = (parent: Construct, identityPool: string, pro
 
 /** Cognito認証済 */
 export const authenticatedRole = (parent: Construct, identityPool: string, props: AuthenticatedRoleProps): Role => {
-  const principal = new FederatedPrincipal(
-    props.principal,
+  const principal = new FederatedPrincipal('cognito-identity.amazonaws.com',
     {
       StringEquals: {
         'cognito-identity.amazonaws.com:aud': identityPool,

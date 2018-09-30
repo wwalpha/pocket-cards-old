@@ -7,7 +7,8 @@ import lambdaResource from './lambda';
 import dynamodbResource from './dynamodb';
 
 export default (parent: Construct, props: AppSyncInput, apiId: string) => {
-  const config: DataSource = yaml.safeLoad(fs.readFileSync(path.join('./configs', 'appsync-datasource.yml'), 'utf8'));
+
+  const config: DataSource = yaml.safeLoad(fs.readFileSync(path.join(__dirname, '../../../configs/appsync-datasource.yml'), 'utf8'));
 
   if (config.Dynamodb) {
     config.Dynamodb.forEach((item) => {

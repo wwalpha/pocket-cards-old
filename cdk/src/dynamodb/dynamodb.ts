@@ -1,29 +1,28 @@
-import { Construct } from '@aws-cdk/cdk';
-import { cloudformation } from '@aws-cdk/aws-dynamodb';
-import * as fs from 'fs';
 import * as path from 'path';
-import * as yaml from 'js-yaml';
-import { CommonProps } from '../utils';
-import createTable from './table';
+import { Stack, App } from '@aws-cdk/cdk';
+import { cloudformation } from '@aws-cdk/aws-dynamodb';
+import { safeLoad } from 'js-yaml';
+import { readFileSync } from 'fs';
+import { DynamodbOutput, DynamodbInput, Table } from '.';
 
-const configs: any = yaml.safeLoad(fs.readFileSync(path.join('./configs', 'dynamodb-tables.yml'), 'utf8'));
+const configs: any = safeLoad(readFileSync(path.join('./configs', 'dynamodb-tables.yml'), 'utf8'));
 
-export default (parent: Construct, props: DynamodbInput): DynamodbOutput => {
+export default class DynamodbStack extends Stack {
+  public readonly output: DynamodbOutput
 
-  Object.keys(configs).forEach((key) => {
-    const tableProps: cloudformation.TableResourceProps = configs[key];
+  constructor(parent: App, name: string, props: DynamodbInput) {
+    super(parent, name, props);
 
-    createTable(parent, {
-      ...props,
-      table: tableProps,
+    Object.keys(configs).forEach((key) => {
+      const tableProps: cloudformation.TableResourceProps = configs[key];
+
+      Table(this, {
+        ...props,
+        table: tableProps,
+      });
     });
-  });
 
-  return {};
-};
-
-export interface DynamodbInput extends CommonProps {
+    this.output = {}
+  }
 }
 
-export interface DynamodbOutput {
-}

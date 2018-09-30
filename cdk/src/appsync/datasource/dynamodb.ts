@@ -7,17 +7,12 @@ import { PROJECT_NAME } from '../../utils/consts';
 import { DynamodbProps } from '.';
 
 export default (parent: Construct, props: AppSyncInput, dynamodb: DynamodbProps, apiId: string): cloudformation.DataSourceResource => {
-  const role = dynamodbDataSourceRole(
-    parent,
-    {
-      envType: props.envType,
-      roleName: `invoke-${toUpper(dynamodb.TableName)}`,
-      principal: 'appsync.amazonaws.com',
-    },
-    dynamodb.TableName);
+  const role = dynamodbDataSourceRole(parent, {
+    envType: props.envType,
+    roleName: `invoke-${toUpper(dynamodb.TableName)}`,
+  }, dynamodb.TableName);
 
-  const resource = new cloudformation.DataSourceResource(
-    parent,
+  const resource = new cloudformation.DataSourceResource(parent,
     toUpper(dynamodb.TableName),
     {
       dataSourceName: `dynamodb_${toUpper(dynamodb.TableName)}`,

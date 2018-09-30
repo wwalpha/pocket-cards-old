@@ -5,3 +5,6 @@ Dynamodb:
 Lambda:
   - FunctionName: ImageToWord
   - FunctionName: AddNewWords
+  - FunctionName: StudyHistory
+  - FunctionName: StudySet
+  - FunctionName: WordToSpeech

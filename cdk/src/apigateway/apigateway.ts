@@ -1,8 +1,8 @@
 import { Construct, ServicePrincipal } from "@aws-cdk/cdk";
 import { AwsIntegration, AuthorizationType, MethodOptions } from "@aws-cdk/aws-apigateway";
-import { Role, Policy } from "@aws-cdk/aws-iam";
-import { HttpMethod, bucketName } from "../utils/consts";
-import { s3 } from "../utils/policyStmt";
+import { Role } from "@aws-cdk/aws-iam";
+import { HttpMethod, bucketName, PROJECT_NAME } from "../utils/consts";
+import { s3 } from "../utils/policy";
 import { RestApi, ApiGatewayInput, ApiGatewayOutput } from ".";
 
 export default (parent: Construct, props: ApiGatewayInput): ApiGatewayOutput => {
@@ -34,13 +34,11 @@ export default (parent: Construct, props: ApiGatewayInput): ApiGatewayOutput => 
 const IAM: MethodOptions = { authorizationType: AuthorizationType.IAM };
 
 const uploadRole = (parent: Construct, props: ApiGatewayInput): Role => {
-  const role = new Role(parent, 'UploadMethod', {
+  const role = new Role(parent, `${props.envType}-${PROJECT_NAME}-UploadMethodRole`, {
     assumedBy: new ServicePrincipal('apigateway.amazonaws.com'),
   });
 
-  role.attachInlinePolicy(new Policy(parent, 'UploadMethodPolicy', {
-    statements: s3(bucketName(props.envType)),
-  }));
+  role.attachInlinePolicy(s3(parent, `UploadMethodPolicy`, bucketName(props.envType)));
 
   return role;
 }

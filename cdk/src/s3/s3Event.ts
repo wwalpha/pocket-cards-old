@@ -1,16 +1,18 @@
 import { S3EventInput, S3EventOutput } from '.';
-import { cloudformation } from '@aws-cdk/aws-s3';
+import { cloudformation, BucketRef } from '@aws-cdk/aws-s3';
 import { Construct, AwsRegion, AwsAccountId } from '@aws-cdk/cdk';
-import { PROJECT_NAME } from '../utils/consts';
+import { PROJECT_NAME, UUID_V4 } from '../utils/consts';
 
 export default (_parent: Construct, props: S3EventInput): S3EventOutput => {
   const prefixArn = `arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${PROJECT_NAME}`;
+
+  const bucket = BucketRef.import(_parent, UUID_V4(), props.s3.bucket).findChild('Resource') as cloudformation.BucketResource;
+
   // イベント
-  addCreatedEvent(props.bucket.bucket, `${prefixArn}-image-to-word`, {
+  addCreatedEvent(bucket, `${prefixArn}-image-to-word`, {
     name: 'prefix',
     value: 'users'
   });
-
 
   return {};
 };

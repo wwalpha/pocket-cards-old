@@ -6,7 +6,7 @@ import * as path from 'path';
 import { ResolverProps, Resolvers } from '.';
 
 export default (parent: Construct, apiId: string) => {
-  const config: Resolvers = yaml.safeLoad(fs.readFileSync(path.join('./configs', 'appsync-resolver.yml'), 'utf8'));
+  const config: Resolvers = yaml.safeLoad(fs.readFileSync(path.join(__dirname, '../../configs/appsync-resolver.yml'), 'utf8'));
 
   Object.keys(config).forEach((key) => {
     const resolver: ResolverProps = config[key];

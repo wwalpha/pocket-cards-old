@@ -8,6 +8,16 @@ DeleteSetResolver:
   TypeName: Mutation
   DataSourceName: dynamodb_Set
 
+WordWithImageResolver:
+  FieldName: wordWithImage
+  TypeName: Mutation
+  DataSourceName: lambda_ImageToWord
+
+AddNewWordsResolver:
+  FieldName: addNewWords
+  TypeName: Mutation
+  DataSourceName: lambda_AddNewWords
+
 SetsResolver:
   FieldName: sets
   TypeName: Query

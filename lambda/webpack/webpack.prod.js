@@ -6,7 +6,6 @@ const merge = require('webpack-merge');
 const config = {
   mode: 'production',
   output: {
-    filename: '[name].mins.js',
     path: path.resolve(__dirname, '../dist/prod'),
   },
   plugins: [

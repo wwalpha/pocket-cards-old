@@ -1,6 +1,6 @@
 import { Rekognition, AWSError } from 'aws-sdk';
 import { Callback, Context } from 'aws-lambda';
-import { defaultEmpty } from '../commons/utils';
+import { defaultEmpty } from '../../utils/commons/utils';
 
 const excludeWord = ['Unit', 'Lesson', 'New words and expressions'];
 const excludeMark = ['\'', '(', ')', '/', '.', ',', 'ˌ', 'ˈ'];
@@ -12,12 +12,17 @@ const client = new Rekognition({
 
 const bucket: string | undefined = process.env.S3_BUCKET;
 
-export const handler = (event: any, context: Context, callback: Callback) => {
+export interface Request {
+  bucketKey: string;
+}
+
+export const handler = (event: Request, context: Context, callback: Callback) => {
+  console.log();
   const request: Rekognition.Types.DetectTextRequest = {
     Image: {
       S3Object: {
         Bucket: bucket,
-        Name: event.filePath,
+        Name: event.bucketKey,
       },
     },
   };
@@ -57,7 +62,7 @@ const filter = (item: Rekognition.TextDetection): boolean => {
 
   // 行の場合、対象外単語を含めた場合
   if (item.Type === 'LINE') {
-    if (excludeWord.find((word) => text.includes(word))) {
+    if (excludeWord.find(word => text.includes(word))) {
       if (item.Id !== undefined) {
         excludeId.push(item.Id);
       }
@@ -75,7 +80,7 @@ const filter = (item: Rekognition.TextDetection): boolean => {
   if (text.length <= 2) return false;
 
   // 記号を含むのは単語ではない
-  const target = excludeMark.find((mark) => text.indexOf(mark) !== -1);
+  const target = excludeMark.find(mark => text.indexOf(mark) !== -1);
   // 記号がある場合
   if (target) return false;
 

@@ -3,16 +3,15 @@
     "rootDirs": [
       "./src",
     ],
-    // "outDir": "dist/dev",
-    "target": "es6",
+    "target": "esnext",
     "module": "commonjs",
-    "jsx": "react",
     "lib": [
       "es5",
       "es6",
       "es2015.promise",
       "dom",
-      "es7"
+      "es7",
+      "esnext"
     ],
     "removeComments": true,
     "allowJs": true,
@@ -38,6 +37,7 @@
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts"
+    "**/*.spec.ts",
+    "**/*test*"
   ]
 }

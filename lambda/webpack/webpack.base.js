@@ -6,8 +6,9 @@ const path = require('path');
 module.exports = {
   target: 'node',
   entry: {
-    'add-words': './src/add-words/app.ts',
-    'image-to-word': './src/image-to-word/app.ts',
+    'appsync/add-new-words/app': './src/appsync/add-new-words/app.ts',
+    'appsync/image-to-word/app': './src/appsync/image-to-word/app.ts',
+    'appsync/word-to-speech/app': './src/appsync/word-to-speech/app.ts',
   },
   output: {
     filename: '[name].js',
@@ -38,7 +39,8 @@ module.exports = {
     new Webpack.NoEmitOnErrorsPlugin(),
     new Webpack.LoaderOptionsPlugin({
       debug: true
-    })
+    }),
+    new Webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
   bail: true,
 }

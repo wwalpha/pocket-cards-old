@@ -1,8 +1,7 @@
 import { Translate, AWSError, DynamoDB } from 'aws-sdk';
 import { Context, Callback } from 'aws-lambda';
 import * as fs from 'fs';
-import { putItem } from '../commons/dynamodb';
-import { defaultEmpty } from '../commons/utils';
+import { defaultEmpty } from '../../utils/commons/utils';
 
 const client = new Translate({
   region: 'us-east-1',
@@ -42,7 +41,7 @@ export const handler = async (event: AddWords, context: Context, callback: Callb
     const vocabulary = await translateText(request);
 
     // 単語情報をDBに登録する
-    await putItem(dbClient, {
+    await dbClient.put({
       TableName: defaultEmpty(process.env.TABLE_NAME),
       Item: {
         word,
@@ -52,7 +51,7 @@ export const handler = async (event: AddWords, context: Context, callback: Callb
         nextTime: '00000000',
       },
       ConditionExpression: 'attribute_not_exists(word)',
-    });
+    }).promise();
   }
 };
 

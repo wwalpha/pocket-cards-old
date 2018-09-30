@@ -5,29 +5,34 @@
   "main": "index.js",
   "scripts": {
     "build:prod": "webpack --config webpack/webpack.prod.js",
+    "build:dev": "webpack --config webpack/webpack.dev.js",
     "build:clean": "rimraf ./distzip",
-    "build:tsc": "tsc",
     "build:deploy": "ts-node deploy.ts",
-    "build": "yarn build:clean && yarn build:tsc && yarn build:deploy"
+    "build": "yarn build:clean && tsc && yarn build:deploy",
+    "test:ws": "cross-env S3_BUCKET=dev-pocketcards AWS_REGION=ap-northeast-1 S3_PREFIX=speech ts-node src/appsync/word-to-speech/test.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.320.0"
+    "@types/moment": "^2.13.0",
+    "aws-sdk": "^2.320.0",
+    "moment": "^2.22.2"
   },
   "devDependencies": {
     "@types/adm-zip": "^0.4.31",
     "@types/aws-lambda": "^8.10.13",
+    "@types/js-yaml": "^3.11.2",
     "@types/node": "^10.10.3",
     "adm-zip": "^0.4.11",
     "clean-webpack-plugin": "^0.1.19",
+    "cross-env": "^5.2.0",
     "happypack": "^5.0.0",
+    "js-yaml": "^3.12.0",
     "rimraf": "^2.6.2",
-    "serverless-plugin-warmup": "^3.6.2-rc.1",
     "ts-loader": "^5.1.1",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
-    "typescript": "^3.0.3",
+    "typescript": "^3.1.1",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.1",
     "webpack-merge": "^4.1.4"

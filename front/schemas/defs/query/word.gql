@@ -7,5 +7,5 @@ type Query {
   studyHistory(userId: String!, setId: String!): [Word]
 
   # テキストから音声に変更する
-  polly(text: String!): String
+  polly(text: String!): Speech
 }

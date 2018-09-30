@@ -27,3 +27,18 @@ WordsResolver:
   FieldName: words
   TypeName: Query
   DataSourceName: dynamodb_Word
+
+StudySetResolver:
+  FieldName: studySet
+  TypeName: Query
+  DataSourceName: lambda_StudySet
+
+StudyHistoryResolver:
+  FieldName: studyHistory
+  TypeName: Query
+  DataSourceName: lambda_StudyHistory
+
+PollyResolver:
+  FieldName: polly
+  TypeName: Query
+  DataSourceName: lambda_WordToSpeech

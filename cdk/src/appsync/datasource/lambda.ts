@@ -24,6 +24,7 @@ export default (parent: Construct, props: AppSyncInput, lambdaDef: LambdaProps, 
       type: 'AWS_LAMBDA',
       lambdaConfig: {
         lambdaFunctionArn: (props.lambda[lambdaDef.FunctionName](parent, {
+          envType: props.envType,
           s3: props.s3,
         }) as Function).functionArn,
       },

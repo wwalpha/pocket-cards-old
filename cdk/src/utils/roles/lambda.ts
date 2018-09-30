@@ -7,7 +7,7 @@ import { RoleProps } from '.';
 /** Lambda基本ロール */
 export default (parent: Construct, props: RoleProps): Role => {
   const role = new Role(parent, `${props.roleName}`, {
-    roleName: `${props.envType}-${PROJECT_NAME}-${props.roleName}`,
+    roleName: `${props.envType}-${PROJECT_NAME}-Lambda-${props.roleName}`,
     assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
   });
 

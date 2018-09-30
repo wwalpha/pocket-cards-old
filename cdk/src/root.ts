@@ -1,5 +1,5 @@
 import { Stack, App, AwsAccountId, AwsRegion, AwsStackId, AwsStackName } from '@aws-cdk/cdk';
-import { CognitoStack, S3Stack, LambdaStack, DynamodbStack } from '.';
+import { CognitoStack, S3Stack, Lambda, DynamodbStack } from '.';
 import { CommonProps } from './utils';
 import { PROJECT_NAME } from './utils/consts';
 
@@ -24,16 +24,13 @@ class RootStack extends Stack {
     new DynamodbStack(parent, `${name}-Dynamodb`, comProps);
 
     // All Lambda
-    const lambda = new LambdaStack(parent, `${name}-Lambda`, {
-      ...comProps,
-      s3: s3.output,
-    });
+    const lambda = Lambda();
 
     new CognitoStack(parent, `${name}-Cognito`, {
       ...comProps,
-      lambda: lambda.output,
+      lambda: lambda,
+      s3: s3.output,
     });
-
 
     // // S3 Event
     // S3Event(this, {

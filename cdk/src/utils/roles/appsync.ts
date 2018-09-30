@@ -4,7 +4,7 @@ import { RoleProps } from '.';
 import { PROJECT_NAME } from '../consts';
 
 const getRole = (parent: Construct, props: RoleProps): Role => new Role(parent, `${props.roleName}Resource`, {
-  roleName: `${props.envType}-${PROJECT_NAME}-${props.roleName}Role`,
+  roleName: `${props.envType}-${PROJECT_NAME}-AppSync-${props.roleName}Role`,
   assumedBy: new ServicePrincipal('appsync.amazonaws.com'),
 });
 

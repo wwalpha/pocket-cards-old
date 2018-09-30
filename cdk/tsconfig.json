@@ -2,13 +2,13 @@
   "compilerOptions": {
     "rootDir": "src",
     "outDir": "dist",
-    "target": "es6",
+    "target": "esnext",
     "module": "commonjs",
     "lib": [
       "es2015",
       "es2015.promise",
     ],
-    "declaration": true,
+    // "declaration": true,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,

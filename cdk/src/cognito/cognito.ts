@@ -42,10 +42,12 @@ export default class CognitoStack extends Stack {
       userPoolClientId: userPoolClient.userPoolClientId,
     };
 
+    // Appsync
     appsync(this, {
       cognito: this.output,
       envType: props.envType,
       lambda: props.lambda,
+      s3: props.s3,
     })
 
   }

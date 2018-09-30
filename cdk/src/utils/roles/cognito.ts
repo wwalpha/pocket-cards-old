@@ -18,7 +18,7 @@ export const unauthenticatedRole = (parent: Construct, identityPool: string, pro
   );
 
   const role = new Role(parent, props.roleName, {
-    roleName: `${props.envType}-${PROJECT_NAME}-${props.roleName}`,
+    roleName: `${props.envType}-${PROJECT_NAME}-Cognito-${props.roleName}`,
     assumedBy: principal,
   });
 
@@ -51,7 +51,7 @@ export const authenticatedRole = (parent: Construct, identityPool: string, props
   );
 
   const role = new Role(parent, props.roleName, {
-    roleName: `${props.envType}-${PROJECT_NAME}-${props.roleName}`,
+    roleName: `${props.envType}-${PROJECT_NAME}-Cognito-${props.roleName}`,
     assumedBy: principal,
   });
 

@@ -1,4 +1,0 @@
-type History {
-  # ??
-  id: ID!
-}

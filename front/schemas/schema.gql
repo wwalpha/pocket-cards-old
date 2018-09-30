@@ -8,6 +8,12 @@ type Query {
   sets(userId: ID!): [Set]
   # 単語一覧
   words(setId: ID!): [Word]
+  # 学習セット
+  studySet(userId: String!, setId: String!): [Word]
+  # 学習履歴
+  studyHistory(userId: String!, setId: String!): [Word]
+  # テキストから音声に変更する
+  polly(text: String!): String
 }
 
 type Mutation {
@@ -15,6 +21,10 @@ type Mutation {
   createSet(userId: ID!, name: String!): Set
   # セット削除
   deleteSet(setId: ID!): Set
+  # 画像から単語読み取り
+  wordWithImage(bucketKey: String!): [String]
+  # 単語新規登録
+  addNewWords(words: [String]!): [Word]
 }
 
 type Set {
@@ -24,6 +34,11 @@ type Set {
   setId: ID!
   # セット名
   name: String
+}
+
+type Speech {
+  contentType: String!
+  url: String!
 }
 
 type User {

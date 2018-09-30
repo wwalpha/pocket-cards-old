@@ -1,12 +1,4 @@
 
-type Query {
-  # セットリスト一覧
-  sets(userId: ID!): [Set]
-
-  # 単語一覧
-  words(setId: ID!): [Word]
-}
-
 type Mutation {
   # セット作成
   createSet(userId: ID!, name: String!): Set
@@ -15,7 +7,10 @@ type Mutation {
   deleteSet(setId: ID!): Set
 
   # 画像から単語読み取り
-  # wordWithImage(): [String]
+  wordWithImage(bucketKey: String!): [String]
+
+  # 単語新規登録
+  addNewWords(words: [String]!): [Word]
 }
 
 schema {

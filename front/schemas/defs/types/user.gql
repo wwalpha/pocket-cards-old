@@ -1,0 +1,6 @@
+type User {
+  # userId
+  userId: ID!
+  # user名
+  username: String
+}

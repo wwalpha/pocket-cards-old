@@ -23,6 +23,10 @@ module.exports = {
         exclude: /node_modules/,
         use: 'ts-loader',
       },
+      {
+        test: /\.dict$/,
+        use: 'raw-loader'
+      }
     ]
   },
   externals: ['aws-sdk'],
@@ -33,7 +37,7 @@ module.exports = {
   },
   plugins: [
     new HappyPack({
-      loaders: ['ts-loader'],
+      loaders: ['ts-loader', 'raw-loader'],
     }),
     new CleanWebpackPlugin(['dist'], {
       root: path.join(__dirname, '..'),

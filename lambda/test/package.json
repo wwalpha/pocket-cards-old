@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "i:ss": "cross-env TABLE_NAME=dev-PocketCards-Word ts-node import appsync/study-set",
-    "t:ss": "cross-env TABLE_NAME=dev-PocketCards-Word ts-node test appsync/study-set"
+    "t:ss": "cross-env TABLE_NAME=dev-PocketCards-Word ts-node test appsync/study-set",
+    "t:anw": "cross-env TABLE_NAME=dev-PocketCards-Word ts-node test appsync/add-new-words"
   },
   "author": "",
   "license": "ISC"

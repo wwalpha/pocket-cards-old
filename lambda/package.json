@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:prod": "webpack --config webpack/webpack.prod.js",
-    "build:dev": "webpack --config webpack/webpack.dev.js",
-    "build:clean": "rimraf ./distzip",
-    "build:deploy": "ts-node deploy.ts",
-    "build": "yarn build:clean && tsc && yarn build:deploy",
-    "test:ws": "cross-env S3_BUCKET=dev-pocketcards AWS_REGION=ap-northeast-1 S3_PREFIX=speech ts-node src/appsync/word-to-speech/test.ts"
+    "dev:deploy": "ts-node deploy.ts dev",
+    "dev:r": "yarn clean && tsc && yarn dev:deploy",
+    "prod:build": "webpack --config webpack/webpack.prod.js",
+    "prod:deploy": "ts-node deploy.ts prod",
+    "prod:r": "yarn clean && yarn prod:build && yarn prod:deploy",
+    "clean": "rimraf ./dist"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +28,7 @@
     "cross-env": "^5.2.0",
     "happypack": "^5.0.0",
     "js-yaml": "^3.12.0",
+    "raw-loader": "^0.5.1",
     "rimraf": "^2.6.2",
     "ts-loader": "^5.1.1",
     "tslint": "^5.11.0",

@@ -1,0 +1,11 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "i:ss": "cross-env TABLE_NAME=dev-PocketCards-Word ts-node import appsync/study-set",
+    "t:ss": "cross-env TABLE_NAME=dev-PocketCards-Word ts-node test appsync/study-set"
+  },
+  "author": "",
+  "license": "ISC"
+}

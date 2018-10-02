@@ -20,7 +20,7 @@ folders.forEach((folder) => {
 });
 
 fs.readdirSync('./distzip').forEach((file) => {
-  const filepath = path.join(__dirname, `./distzip/${file}`);
+  const filepath = path.join(__dirname, `./distzip/appsync/${file}`);
   const cmd = `aws lambda update-function-code --function-name dev-pocketcards-${file.slice(0, -4)} --zip-file fileb://${filepath} --publish`;
 
   child_process.execSync(cmd);

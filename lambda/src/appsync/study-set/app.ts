@@ -1,53 +1,55 @@
-import { Translate, DynamoDB } from 'aws-sdk';
-import { Context, Callback } from 'aws-lambda';
-import * as fs from 'fs';
-import { defaultEmpty } from '../../utils/commons/utils';
 
-const client = new Translate({
-  region: 'us-east-1',
-});
+import { Callback, Context } from 'aws-lambda';
+import { DynamoDB } from 'aws-sdk';
+import { Word } from '../../utils/types';
 
-const dbClient = new DynamoDB.DocumentClient({
+// 環境変数
+const tableName = process.env.TABLE_NAME as string;
+
+// クライアント
+const client = new DynamoDB.DocumentClient({
   region: process.env.AWS_REGION,
 });
 
-export const handler = async (event: Request, context: Context, callback: Callback) => {
-  console.log(event);
-
-  const dicts: string[] = fs.readFileSync('./england.dict', 'utf-8').split('\n');
-
-  for (const word in event.words) {
-    // 発音
-    const pronunciation: string | undefined = dicts.find(item => item.startsWith(word.toLowerCase()));
-
-    // 翻訳API
-    const request: Translate.TranslateTextRequest = {
-      SourceLanguageCode: 'en',
-      TargetLanguageCode: 'zh',
-      Text: word,
+/**
+ * 次の学習セットを取得する
+ */
+export const handler = async (event: Request, context: Context, callback: Callback<Response>) => {
+  try {
+    const params: DynamoDB.DocumentClient.QueryInput = {
+      TableName: tableName,
+      KeyConditionExpression: '#setId = :setId and #nextDate <= :nextDate',
+      ExpressionAttributeNames: {
+        '#setId': 'setId',
+        '#nextDate': 'nextDate',
+      },
+      ExpressionAttributeValues: {
+        ':setId': event.setId,
+        ':nextDate': '20180105',
+      },
+      ReturnConsumedCapacity: 'TOTAL',
+      IndexName: 'lsiIndex1',
+      ScanIndexForward: false,
+      Limit: 3,
     };
 
-    const result = await client.translateText(request).promise();
+    const result = await client.query(params).promise();
 
-    // 単語情報をDBに登録する
-    await dbClient.put({
-      TableName: defaultEmpty(process.env.TABLE_NAME),
-      Item: {
-        word,
-        pronunciation,
-        vocabulary: result.TranslatedText,
-        times: 0,
-        nextTime: '00000000',
-      },
-      ConditionExpression: 'attribute_not_exists(word)',
-    }).promise();
+    console.log(result.ConsumedCapacity);
+
+    callback(null, {
+      words: result.Items as Word[],
+    });
+  } catch (error) {
+    console.log(error);
+    return callback(error, (null as any));
   }
 };
 
-export interface NewWord {
-  word: string;
-}
 export interface Request {
-  setId: string;
-  words: string[];
+  setId: String;
+}
+
+export interface Response {
+  words: Word[];
 }

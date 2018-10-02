@@ -1,8 +1,7 @@
 {
   "compilerOptions": {
-    "rootDirs": [
-      "./src",
-    ],
+    "rootDir": ".",
+    "outDir": "dist/tsc",
     "target": "esnext",
     "module": "commonjs",
     "lib": [
@@ -14,11 +13,10 @@
       "esnext"
     ],
     "removeComments": true,
-    "allowJs": true,
+    "allowJs": false,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "strict": true,
-    "noImplicitAny": true,
+    // "noImplicitAny": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
@@ -30,14 +28,25 @@
     "inlineSources": false,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": [
+        "./src/*"
+      ]
+    }
   },
   "compileOnSave": true,
   "include": [
     "src/**/*",
+    "test/**/*",
   ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
-    "**/*test*"
+    "dist/**/*",
+    "distzip/**/*",
+    "webpack/**/*",
+    "deploy.ts",
+    "test"
   ]
 }

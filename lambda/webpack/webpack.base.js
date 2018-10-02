@@ -9,6 +9,8 @@ module.exports = {
     'appsync/add-new-words/app': './src/appsync/add-new-words/app.ts',
     'appsync/image-to-word/app': './src/appsync/image-to-word/app.ts',
     'appsync/word-to-speech/app': './src/appsync/word-to-speech/app.ts',
+    'appsync/study-history/app': './src/appsync/study-history/app.ts',
+    'appsync/study-set/app': './src/appsync/study-set/app.ts',
   },
   output: {
     filename: '[name].js',

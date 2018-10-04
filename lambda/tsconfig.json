@@ -3,7 +3,7 @@
     "rootDir": ".",
     "outDir": "dist/tsc",
     "target": "esnext",
-    "module": "commonjs",
+    "module": "es2015",
     "lib": [
       "es5",
       "es6",

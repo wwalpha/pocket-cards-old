@@ -1,8 +1,9 @@
 import { cloudformation } from '@aws-cdk/aws-cognito';
-import { Stack, App } from '@aws-cdk/cdk';
+import { Stack, App, Output } from '@aws-cdk/cdk';
 import { UserPool, UserPoolClient, IdentityPool, IdentityPoolRoleAttachment, CognitoInput, CognitoOutput } from '.';
 import { AuthenticatedRole, UnauthenticatedRole } from '../utils/roles';
 import appsync from '../appsync/appsync';
+import { PROJECT_NAME } from '../utils/consts';
 
 export default class CognitoStack extends Stack {
   public readonly output: CognitoOutput;
@@ -10,13 +11,13 @@ export default class CognitoStack extends Stack {
   constructor(parent: App, name: string, props: CognitoInput) {
     super(parent, name, props);
 
-    const userpool = UserPool(this, props);
-    const userPoolClient = UserPoolClient(this, userpool.ref);
+    const userPool = UserPool(this, props);
+    const userPoolClient = UserPoolClient(this, userPool.ref);
 
     // Cognito Provider
     const provider: cloudformation.IdentityPoolResource.CognitoIdentityProviderProperty = {
       clientId: userPoolClient.id,
-      providerName: userpool.userPoolProviderName,
+      providerName: userPool.userPoolProviderName,
     };
 
     // Identity Pool
@@ -38,7 +39,7 @@ export default class CognitoStack extends Stack {
 
     this.output = {
       identityPoolId: identityPool.identityPoolId,
-      userPoolId: userpool.userPoolId,
+      userPoolId: userPool.userPoolId,
       userPoolClientId: userPoolClient.userPoolClientId,
     };
 
@@ -50,5 +51,17 @@ export default class CognitoStack extends Stack {
       s3: props.s3,
     })
 
+    new Output(this, 'UserPoolId', {
+      export: `${props.env}-${PROJECT_NAME}-UserPoolId`,
+      value: userPool.userPoolId
+    });
+    new Output(this, 'UserPoolClientId', {
+      export: `${props.env}-${PROJECT_NAME}-UserPoolClientId`,
+      value: userPoolClient.userPoolClientId
+    });
+    new Output(this, 'IdentityPoolId', {
+      export: `${props.env}-${PROJECT_NAME}-IdentityPoolId`,
+      value: identityPool.identityPoolId
+    });
   }
 }

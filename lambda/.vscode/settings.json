@@ -1,9 +1,8 @@
 {
   "files.exclude": {
-    "**/dist": true,
+    // "**/dist": true,
     "**/distzip": true
   },
   "tslint.autoFixOnSave": true,
-  "tslint.run": "onSave",
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "tslint.run": "onSave"
 }

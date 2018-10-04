@@ -10,7 +10,7 @@ type Mutation {
   wordWithImage(bucketKey: String!): [String]
 
   # 単語新規登録
-  addNewWords(words: [String]!): [Word]
+  addNewWords(setId: String!, words: [String]!): [Word]
 }
 
 schema {

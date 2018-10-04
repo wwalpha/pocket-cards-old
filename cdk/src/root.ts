@@ -53,24 +53,6 @@ class RootStack extends Stack {
     // CodeBuild
     // CodeBuild(this, comProps);
 
-    // new Output(this, 'BucketArn', {
-    //   export: 'BucketArn',
-    //   value: s3.bucketArn,
-    // });
-    // new Output(this, 'BucketDomainName', {
-    //   export: 'BucketDomainName',
-    //   value: s3.bucket.domainName,
-    // });
-
-    // Appsync
-    // new Output(this, 'AppsyncApiId', {
-    //   export: 'AppsyncApiId',
-    //   value: appsync.apiId,
-    // });
-    // new Output(this, 'AppsyncApiUrl', {
-    //   export: 'AppsyncApiUrl',
-    //   value: appsync.apiUrl,
-    // });
   }
 }
 const ENV_TYPE = 'dev';

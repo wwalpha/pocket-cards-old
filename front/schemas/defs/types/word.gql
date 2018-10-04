@@ -1,5 +1,6 @@
 type Word {
-  id: ID!
+  # セットID
+  setId: ID!
   # 単語
   word: String
   # 発音

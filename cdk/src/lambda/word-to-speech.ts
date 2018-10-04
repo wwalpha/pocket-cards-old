@@ -6,6 +6,7 @@ import { dummyCode } from '../utils/refs';
 import { LambdaRole } from '../utils/roles';
 import { polly } from '../utils/policy';
 
+const service = 'appsync';
 const functionName = 'word-to-speech';
 const handler = 'app.handler';
 const runtime = Runtime.NodeJS810;
@@ -23,7 +24,7 @@ export default (parent: Construct, props: LambdaInput): Function => {
   const lambda = new Function(parent, functionName, {
     functionName: `${props.envType}-${PROJECT_NAME}-${functionName}`,
     runtime,
-    handler: getHandler(props, functionName, handler),
+    handler: getHandler(props, `${service}/${functionName}`, handler),
     code: dummyCode(parent),
     role,
     memorySize,

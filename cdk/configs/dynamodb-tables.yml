@@ -38,6 +38,17 @@ WordResource:
       attributeType: S
     - attributeName: word
       attributeType: S
+    - attributeName: nextDate
+      attributeType: S
   provisionedThroughput:
     readCapacityUnits: 1
     writeCapacityUnits: 1
+  localSecondaryIndexes:
+    - indexName: lsiIndex1
+      keySchema:
+        - attributeName: setId
+          keyType: HASH
+        - attributeName: nextDate
+          keyType: RANGE
+      projection:
+        projectionType: ALL

@@ -13,7 +13,7 @@ type Query {
   # 学習履歴
   studyHistory(userId: String!, setId: String!): [Word]
   # テキストから音声に変更する
-  polly(text: String!): String
+  polly(text: String!): Speech
 }
 
 type Mutation {
@@ -24,7 +24,7 @@ type Mutation {
   # 画像から単語読み取り
   wordWithImage(bucketKey: String!): [String]
   # 単語新規登録
-  addNewWords(words: [String]!): [Word]
+  addNewWords(setId: String!, words: [String]!): [Word]
 }
 
 type Set {
@@ -49,7 +49,8 @@ type User {
 }
 
 type Word {
-  id: ID!
+  # セットID
+  setId: ID!
   # 単語
   word: String
   # 発音

@@ -30,6 +30,7 @@ export const handler = async (event: AddWords, context: Context, callback: Callb
 };
 
 const app = async (event: AddWords, context: Context) => {
+  const ret: object[] = [];
 
   for (const idx in event.words) {
     const word = event.words[idx];
@@ -45,21 +46,24 @@ const app = async (event: AddWords, context: Context) => {
     };
 
     const response = await client.translateText(request).promise();
+    const item = {
+      setId: event.setId,
+      word,
+      pronunciation,
+      vocabulary: response.TranslatedText,
+      times: 0,
+      nextDate: '00000000',
+    };
 
     try {
       // 単語情報をDBに登録する
       await dbClient.put({
         TableName: defaultEmpty(process.env.TABLE_NAME),
-        Item: {
-          setId: event.setId,
-          word,
-          pronunciation,
-          vocabulary: response.TranslatedText,
-          times: 0,
-          nextDate: '00000000',
-        },
+        Item: item,
         ConditionExpression: 'attribute_not_exists(word) and attribute_not_exists(setId)',
       }).promise();
+
+      ret.push(item);
     } catch (error) {
       const code = (error as AWSError).code;
 
@@ -68,6 +72,8 @@ const app = async (event: AddWords, context: Context) => {
       }
     }
   }
+
+  return ret;
 };
 
 export interface NewWord {

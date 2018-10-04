@@ -4,7 +4,7 @@
       "./src",
     ],
     "outDir": "dist",
-    "target": "es6",
+    "target": "es5",
     "module": "commonjs",
     "jsx": "react",
     "lib": [
@@ -52,8 +52,7 @@
   },
   "compileOnSave": true,
   "include": [
-    "src/**/*",
-    "index.tsx",
+    "src/**/*"
   ],
   "files": [
     "./typings/types.d.ts",

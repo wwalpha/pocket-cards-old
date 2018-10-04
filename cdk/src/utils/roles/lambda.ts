@@ -1,7 +1,7 @@
 import { Construct, ServicePrincipal } from '@aws-cdk/cdk';
 import { Role } from '@aws-cdk/aws-iam';
 import { PROJECT_NAME } from '../consts';
-import { lambdaBasic } from '../policy';
+import { cloudwatch } from '../policy';
 import { RoleProps } from '.';
 
 /** Lambda基本ロール */
@@ -11,7 +11,7 @@ export default (parent: Construct, props: RoleProps): Role => {
     assumedBy: new ServicePrincipal('lambda.amazonaws.com'),
   });
 
-  role.attachInlinePolicy(lambdaBasic(parent, props.roleName));
+  role.attachInlinePolicy(cloudwatch(parent, props.roleName));
 
   return role;
 };

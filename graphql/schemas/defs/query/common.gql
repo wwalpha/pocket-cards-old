@@ -1,0 +1,10 @@
+
+type Query {
+  # セットリスト一覧
+  sets(userId: ID!): [Set]
+
+  # 単語一覧
+  words(setId: ID!): [Word]
+
+
+}

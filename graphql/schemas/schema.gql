@@ -1,0 +1,66 @@
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  # セットリスト一覧
+  sets(userId: ID!): [Set]
+  # 単語一覧
+  words(setId: ID!): [Word]
+  # 学習セット
+  studySet(userId: String!, setId: String!): [Word]
+  # 学習履歴
+  studyHistory(userId: String!, setId: String!): [Word]
+  # テキストから音声に変更する
+  polly(text: String!): Speech
+}
+
+type Mutation {
+  # セット作成
+  createSet(userId: String!, name: String!): Set
+  # セット削除
+  deleteSet(setId: String!): Set
+  # 画像から単語読み取り
+  wordWithImage(bucketKey: String!): [String]
+  # 単語新規登録
+  addNewWords(setId: String!, words: [String]!): [Word]
+}
+
+type Set {
+  # userId
+  userId: ID!
+  # setId
+  setId: ID!
+  # セット名
+  name: String
+}
+
+type Speech {
+  contentType: String!
+  url: String!
+}
+
+type User {
+  # userId
+  userId: ID!
+  # user名
+  username: String
+}
+
+type Word {
+  # セットID
+  setId: ID!
+  # 単語
+  word: String
+  # 発音
+  pronounce: String
+  # 語彙
+  vocabulary: String
+  # 学習時間
+  studyDate: String
+  # 次回学習時間
+  nextDate: String
+  # 学習回数
+  times: Int
+}

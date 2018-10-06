@@ -1,0 +1,30 @@
+{
+  "name": "resolver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "schema:init": "ts-node schemas/schema.ts",
+    "schema:json": "apollo schema:download schemas/schema.json --endpoint schemas/schema.gql",
+    "schema:query": "apollo codegen:generate --target=typescript --schema=schemas/schema.json --queries='src/gql/queries/*.gql'",
+    "schema:build": "yarn schema:init && yarn schema:json",
+    "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./schemas/schema.gql",
+    "schema": "yarn schema:build && yarn schema:update",
+    "resolver": "ts-node deploy 2hkc7dr74vhszbh3w2zstsidae"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^14.0.2",
+    "js-yaml": "^3.12.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^3.11.2",
+    "@types/node": "^10.11.4",
+    "graphql-tools": "^4.0.0",
+    "merge-graphql-schemas": "^1.5.7",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "typescript": "^3.1.1"
+  }
+}

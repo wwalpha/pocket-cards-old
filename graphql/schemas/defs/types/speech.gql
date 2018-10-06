@@ -1,0 +1,4 @@
+type Speech {
+  contentType: String!
+  url: String!
+}

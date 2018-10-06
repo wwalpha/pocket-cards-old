@@ -10,13 +10,14 @@
 			"path": "lambda"
 		},
 		{
-			"path": "resolver"
-		},
-		{
 			"path": "mobile"
 		},
 		{
-			"path": "D:\\Code\\Project\\aws\\aws-cognito-admin-cli"
+			"path": "D:\\Code\\Project\\aws\\aws-cognito-admin-cli",
+			"name": "cognito-cli"
+		},
+		{
+			"path": "graphql"
 		}
 	],
 	"settings": {

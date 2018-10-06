@@ -4,7 +4,6 @@ import { defaultEmpty } from '../../utils/commons/utils';
 import * as fs from 'fs';
 import * as path from 'path';
 
-// const dict = require('./england.dict');
 const dict = fs.readFileSync(path.join(__dirname, './england.dict'), 'utf-8');
 const dicts: string[] = dict.split('\n');
 
@@ -16,20 +15,16 @@ const dbClient = new DynamoDB.DocumentClient({
   region: process.env.AWS_REGION,
 });
 
-export const handler = async (event: AddWords, context: Context, callback: Callback) => {
-
-  try {
-    const ret = await app(event, context);
-
-    callback(null, ret);
-  } catch (error) {
-    console.log(error);
-
-    callback(error, null);
-  }
+export const handler = (event: Request, context: Context, callback: Callback<Response>) => {
+  app(event)
+    .then((value: Response) => callback(null, value))
+    .catch((err) => {
+      console.log(err);
+      callback(err, {} as Response);
+    });
 };
 
-const app = async (event: AddWords, context: Context) => {
+const app = async (event: Request): Promise<Response> => {
   const ret: object[] = [];
 
   for (const idx in event.words) {
@@ -73,13 +68,15 @@ const app = async (event: AddWords, context: Context) => {
     }
   }
 
-  return ret;
+  return {
+    words: ret,
+  } as Response;
 };
 
-export interface NewWord {
-  word: string;
+export interface Response {
+  words: object[];
 }
-export interface AddWords {
+export interface Request {
   setId: string;
   words: string[];
 }

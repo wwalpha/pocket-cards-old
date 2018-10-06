@@ -14,36 +14,39 @@ const client = new DynamoDB.DocumentClient({
 /**
  * 次の学習セットを取得する
  */
-export const handler = async (event: Request, context: Context, callback: Callback<Response>) => {
-  try {
-    const params: DynamoDB.DocumentClient.QueryInput = {
-      TableName: tableName,
-      KeyConditionExpression: '#setId = :setId and #nextDate <= :nextDate',
-      ExpressionAttributeNames: {
-        '#setId': 'setId',
-        '#nextDate': 'nextDate',
-      },
-      ExpressionAttributeValues: {
-        ':setId': event.setId,
-        ':nextDate': '20180105',
-      },
-      ReturnConsumedCapacity: 'TOTAL',
-      IndexName: 'lsiIndex1',
-      ScanIndexForward: false,
-      Limit: 3,
-    };
+export const handler = (event: Request, context: Context, callback: Callback<Response>) => {
+  app(event)
+    .then((value: Response) => callback(null, value))
+    .catch(err => callback(err, {} as Response));
+};
 
-    const result = await client.query(params).promise();
+const app = async (event: Request): Promise<Response> => {
+  const params: DynamoDB.DocumentClient.QueryInput = {
+    TableName: tableName,
+    KeyConditionExpression: '#setId = :setId and #nextDate <= :nextDate',
+    ExpressionAttributeNames: {
+      '#setId': 'setId',
+      '#nextDate': 'nextDate',
+    },
+    ExpressionAttributeValues: {
+      ':setId': event.setId,
+      ':nextDate': '20180105',
+    },
+    ReturnConsumedCapacity: 'TOTAL',
+    IndexName: 'lsiIndex1',
+    ScanIndexForward: false,
+    Limit: 3,
+  };
 
-    console.log(result.ConsumedCapacity);
+  const result = await client.query(params).promise();
 
-    callback(null, {
-      words: result.Items as Word[],
-    });
-  } catch (error) {
-    console.log(error);
-    return callback(error, (null as any));
-  }
+  console.log(`ConsumedCapacity: ${result.ConsumedCapacity}`);
+
+  const ret: Response = {
+    words: result.Items as Word[],
+  };
+
+  return ret;
 };
 
 export interface Request {
@@ -51,5 +54,5 @@ export interface Request {
 }
 
 export interface Response {
-  words: Word[];
+  words?: Word[];
 }

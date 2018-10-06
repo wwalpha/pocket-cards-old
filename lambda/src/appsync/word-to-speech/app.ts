@@ -20,47 +20,48 @@ const client = new Polly({
  * 単語リストを音声に変換し、S3保存する、S3のSignURLを返却する
  */
 export const handler = async (event: Request, context: Context, callback: Callback<Response>) => {
+  app(event)
+    .then((value: Response) => callback(null, value))
+    .catch(err => callback(err, {} as Response));
+};
 
-  try {
-    /**  */
-    const request: Polly.SynthesizeSpeechInput = {
-      Text: `<speak>${event.words.join('<break time="0.5s"/>')}</speak>`,
-      TextType: 'ssml',
-      VoiceId: 'Joanna',
-      OutputFormat: 'mp3',
-      LanguageCode: 'en-US',
-    };
+const app = async (event: Request): Promise<Response> => {
+  /**  */
+  const request: Polly.SynthesizeSpeechInput = {
+    Text: `<speak>${event.words.join('<break time="0.5s"/>')}</speak>`,
+    TextType: 'ssml',
+    VoiceId: 'Joanna',
+    OutputFormat: 'mp3',
+    LanguageCode: 'en-US',
+  };
 
-    // 音声に変換
-    const result = await client.synthesizeSpeech(request).promise();
+  // 音声に変換
+  const result = await client.synthesizeSpeech(request).promise();
 
-    // ファイル名
-    const filename: string = `${moment().format('YYYYMMDDHHmmssSSS')}.mp3`;
+  // ファイル名
+  const filename: string = `${moment().format('YYYYMMDDHHmmssSSS')}.mp3`;
 
-    const s3Request: S3.Types.PutObjectRequest = {
-      Bucket: bucket,
-      Key: `${prefix}/${filename}`,
-      Body: result.AudioStream,
-    };
+  const s3Request: S3.Types.PutObjectRequest = {
+    Bucket: bucket,
+    Key: `${prefix}/${filename}`,
+    Body: result.AudioStream,
+  };
 
-    // S3に保存する
-    await s3Client.putObject(s3Request).promise();
+  // S3に保存する
+  await s3Client.putObject(s3Request).promise();
 
-    const url = s3Client.getSignedUrl('getObject', {
-      Bucket: bucket,
-      Key: `${prefix}/${filename}`,
-      Expires: 60,
-    });
+  // SignedURLを取得する
+  const url = s3Client.getSignedUrl('getObject', {
+    Bucket: bucket,
+    Key: `${prefix}/${filename}`,
+    Expires: 60,
+  });
 
-    console.log(url);
-    // return callback(null, {
-    //   audioUrl: url,
-    // });
+  const ret: Response = {
+    audioUrl: url,
+  };
 
-  } catch (error) {
-    console.log(error);
-    // return callback(error, (null as any));
-  }
+  return ret;
 };
 
 export interface Request {

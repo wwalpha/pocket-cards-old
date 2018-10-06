@@ -1,4 +1,4 @@
-import { Rekognition, AWSError } from 'aws-sdk';
+import { Rekognition } from 'aws-sdk';
 import { Callback, Context } from 'aws-lambda';
 import { defaultEmpty } from '../../utils/commons/utils';
 
@@ -15,9 +15,21 @@ const bucket: string | undefined = process.env.S3_BUCKET;
 export interface Request {
   bucketKey: string;
 }
+export interface Response {
+  words: string[];
+}
 
-export const handler = (event: Request, context: Context, callback: Callback) => {
-  console.log();
+export const handler = (event: Request, context: Context, callback: Callback<Response>) => {
+  app(event)
+    .then((value: Response) => callback(null, value))
+    .catch((err) => {
+      console.log(err);
+      callback(err, {} as Response);
+    });
+};
+
+const app = async (event: Request): Promise<Response> => {
+
   const request: Rekognition.Types.DetectTextRequest = {
     Image: {
       S3Object: {
@@ -27,28 +39,22 @@ export const handler = (event: Request, context: Context, callback: Callback) =>
     },
   };
 
-  // text検測
-  client.detectText(request, (err: AWSError, data: Rekognition.DetectTextResponse) => {
-    if (err) {
-      console.log(err);
+  const result = await client.detectText(request).promise();
+
+  const results: string[] = [];
+
+  result.TextDetections && result.TextDetections.forEach((item) => {
+    // 対象外を除く
+    if (!filter(item)) {
       return;
     }
 
-    const results: string[] = [];
-
-    data.TextDetections && data.TextDetections.forEach((item) => {
-      // 対象外を除く
-      if (!filter(item)) {
-        return;
-      }
-
-      results.push(defaultEmpty(item.DetectedText));
-    });
-
-    callback(null, {
-      words: results,
-    });
+    results.push(defaultEmpty(item.DetectedText));
   });
+
+  return {
+    words: results,
+  } as Response;
 };
 
 // 単語以外のデータを除く

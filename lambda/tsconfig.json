@@ -1,14 +1,22 @@
 {
   "compilerOptions": {
     "rootDir": ".",
+    "typeRoots": [
+      "./typings"
+    ],
+    "types": [
+      "node",
+      "moment",
+      "aws-sdk"
+    ],
     "outDir": "dist/tsc",
     "target": "esnext",
-    "module": "es2015",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "lib": [
       "es5",
       "es6",
       "es2015.promise",
-      "dom",
       "es7",
       "esnext"
     ],

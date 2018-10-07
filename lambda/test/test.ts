@@ -3,7 +3,6 @@ import { safeLoad } from 'js-yaml';
 import { join } from 'path';
 
 const callback: any = (err, result) => {
-  console.log(result);
 };
 
 const context: any = {

@@ -16,9 +16,17 @@ const dbClient = new DynamoDB.DocumentClient({
 });
 
 export const handler = (event: Request, context: Context, callback: Callback<Response>) => {
+  // イベントログ
+  console.log(event);
+
   app(event)
-    .then((value: Response) => callback(null, value))
+    .then((response: Response) => {
+      // 終了ログ
+      console.log(response);
+      callback(null, response);
+    })
     .catch((err) => {
+      // エラーログ
       console.log(err);
       callback(err, {} as Response);
     });

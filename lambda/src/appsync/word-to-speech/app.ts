@@ -19,16 +19,27 @@ const client = new Polly({
 /**
  * 単語リストを音声に変換し、S3保存する、S3のSignURLを返却する
  */
-export const handler = async (event: Request, context: Context, callback: Callback<Response>) => {
+export const handler = (event: Request, context: Context, callback: Callback<Response>) => {
+  // イベントログ
+  console.log(event);
+
   app(event)
-    .then((value: Response) => callback(null, value))
-    .catch(err => callback(err, {} as Response));
+    .then((response: Response) => {
+      // 終了ログ
+      console.log(response);
+      callback(null, response);
+    })
+    .catch((err) => {
+      // エラーログ
+      console.log(err);
+      callback(err, {} as Response);
+    });
 };
 
 const app = async (event: Request): Promise<Response> => {
   /**  */
   const request: Polly.SynthesizeSpeechInput = {
-    Text: `<speak>${event.words.join('<break time="0.5s"/>')}</speak>`,
+    Text: `<speak>${event.text.split(',').join('<break time="0.5s"/>')}</speak>`,
     TextType: 'ssml',
     VoiceId: 'Joanna',
     OutputFormat: 'mp3',
@@ -59,15 +70,17 @@ const app = async (event: Request): Promise<Response> => {
 
   const ret: Response = {
     audioUrl: url,
+    contentType: result.ContentType,
   };
 
   return ret;
 };
 
 export interface Request {
-  words: String[];
+  text: string;
 }
 
 export interface Response {
-  audioUrl: String;
+  audioUrl: string;
+  contentType?: string;
 }

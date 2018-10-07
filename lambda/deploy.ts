@@ -24,12 +24,16 @@ if (env === 'dev') {
     if (file !== 'commons') folders.push(file);
   });
 
-  folders.forEach((folder) => {
+  const funcs = folders.map(folder => new Promise((resolve) => {
     const cmd = `aws lambda update-function-code --function-name ${env}-${project}-${folder} --zip-file fileb://${path.join(__dirname, output)} --publish`;
 
     console.log(`${fgBlue}${cmd}${reset}`);
     child_process.execSync(cmd);
-  });
+
+    resolve();
+  }));
+
+  Promise.all(funcs);
 }
 
 if (env === 'prod') {

@@ -8,15 +8,14 @@ const getRole = (parent: Construct, props: RoleProps): Role => new Role(parent, 
   assumedBy: new ServicePrincipal('appsync.amazonaws.com'),
 });
 
-export const lambdaDataSourceRole = (parent: Construct, props: RoleProps, functionName: string): Role => {
+export const lambdaDataSourceRole = (parent: Construct, props: RoleProps): Role => {
   const role = getRole(parent, props);
 
-  const policy = new Policy(parent, `${props.roleName}-policy`, {
+  const policy = new Policy(parent, `${props.roleName}Policy`, {
     statements: [
       new PolicyStatement(PolicyStatementEffect.Allow)
         .addAction('lambda:invokeFunction')
-        .addResource(`arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${PROJECT_NAME}-${functionName}`)
-        .addResource(`arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${PROJECT_NAME}-${functionName}:*`),
+        .addResource(`arn:aws:lambda:${new AwsRegion()}:${new AwsAccountId()}:function:${props.envType}-${PROJECT_NAME}*`)
     ],
   });
 

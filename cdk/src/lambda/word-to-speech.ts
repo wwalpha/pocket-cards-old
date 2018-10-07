@@ -4,7 +4,7 @@ import { PROJECT_NAME } from '../utils/consts';
 import { getHandler, LambdaInput } from '.';
 import { dummyCode } from '../utils/refs';
 import { LambdaRole } from '../utils/roles';
-import { polly } from '../utils/policy';
+import { polly, s3 } from '../utils/policy';
 
 const service = 'appsync';
 const functionName = 'word-to-speech';
@@ -20,6 +20,7 @@ export default (parent: Construct, props: LambdaInput): Function => {
   });
 
   role.attachInlinePolicy(polly(parent, `${functionName}Role`));
+  role.attachInlinePolicy(s3(parent, `${functionName}Role`, props.s3.bucket.bucketName));
 
   const lambda = new Function(parent, functionName, {
     functionName: `${props.envType}-${PROJECT_NAME}-${functionName}`,
@@ -29,6 +30,10 @@ export default (parent: Construct, props: LambdaInput): Function => {
     role,
     memorySize,
     timeout,
+    environment: {
+      S3_BUCKET: props.s3.bucket.bucketName,
+      S3_PREFIX: 'speech',
+    }
   });
 
   return lambda;

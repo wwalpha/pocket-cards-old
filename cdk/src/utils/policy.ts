@@ -14,8 +14,13 @@ export const cloudwatch = (parent: Construct, roleName: string) => new Policy(pa
 export const polly = (parent: Construct, roleName: string) => new Policy(parent, `${roleName}-Polly`, {
   statements: [
     new PolicyStatement(PolicyStatementEffect.Allow)
+      .addAction('polly:ListSpeechSynthesisTasks')
+      .addAllResources(),
+    new PolicyStatement(PolicyStatementEffect.Allow)
       .addAction('polly:SynthesizeSpeech')
-      .addResource(`arn:aws:polly:${new AwsRegion()}:${new AwsAccountId()}:lexicon/*`)
+      .addResources(
+        `arn:aws:polly:${new AwsRegion()}:${new AwsAccountId()}:lexicon/*`
+      )
   ],
 });
 
@@ -40,7 +45,7 @@ export const dynamodb = (parent: Construct, roleName: string) => new Policy(pare
   ],
 });
 
-export const s3 = (parent: Construct, roleName: string, bucketName: string) => new Policy(parent, `${roleName}-S3`, {
+export const s3 = (parent: Construct, roleName: string, bucketName?: string) => new Policy(parent, `${roleName}-S3`, {
   statements: [
     new PolicyStatement(PolicyStatementEffect.Allow)
       .addAction('s3:HeadBucket')
@@ -52,7 +57,7 @@ export const s3 = (parent: Construct, roleName: string, bucketName: string) => n
       .addAction('s3:DeleteObject')
       .addAction('s3:ReplicateObject')
       .addAction('s3:RestoreObject')
-      .addResource(`arn:aws:s3:::${bucketName}`)
-      .addResource(`arn:aws:s3:::${bucketName}/*`),
+      .addResource(`arn:aws:s3:::${bucketName === undefined ? '*' : bucketName}`)
+      .addResource(`arn:aws:s3:::${bucketName === undefined ? '*' : bucketName}/*`),
   ],
 });

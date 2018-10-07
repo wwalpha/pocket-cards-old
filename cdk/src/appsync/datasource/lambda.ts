@@ -12,8 +12,7 @@ export default (parent: Construct, props: AppSyncInput, lambdaDef: LambdaProps, 
     {
       envType: props.envType,
       roleName: `${toUpper(lambdaDef.FunctionName)}`,
-    },
-    lambdaDef.FunctionName);
+    });
 
   const resource = new cloudformation.DataSourceResource(
     parent,

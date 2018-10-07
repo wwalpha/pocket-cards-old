@@ -29,6 +29,9 @@ export default (parent: Construct, props: LambdaInput): Function => {
     role,
     memorySize,
     timeout,
+    environment: {
+      TABLE_NAME: `${props.envType}-${PROJECT_NAME}-Word`,
+    }
   });
 
   return lambda;

@@ -56,7 +56,8 @@
   ],
   "files": [
     "./typings/types.d.ts",
-    "./typings/external.d.ts"
+    "./typings/external.d.ts",
+    "./typings/graphql.d.ts"
   ],
   "exclude": [
     "node_modules",

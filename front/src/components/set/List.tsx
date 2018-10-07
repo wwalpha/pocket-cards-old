@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-// import { graphql } from 'react-apollo';
-// import Sets from '@gql/sets';
+import { graphql } from 'react-apollo';
+import Sets from '@gql/sets';
 import ListItem from './ListItem';
+import { getSetList_sets } from 'typings/graphql';
 
-class List extends React.Component<Props, {}> {
+class SetList extends React.Component<Props, {}> {
 
   render() {
 
@@ -22,13 +23,14 @@ const styles = (): StyleRules => ({
 
 });
 
-// export default withStyles(styles)(graphql<Props, {}, SetsVars>(Sets, {
-//   props: () => ({
+export default withStyles(styles)(graphql<Props, {}, GraphQLVariable>(Sets, {
+  props: ({ data: { } }) => ({
 
-//   }),
-// })(SetList));
+  }),
+})(SetList));
 
-export default withStyles(styles)(List);
+export interface GraphQLVariable extends getSetList_sets {
 
-export interface Props extends WithStyles<StyleRules> {
+}
+export interface Props extends WithStyles<StyleRules>, GraphQLVariable {
 }

@@ -1,1 +1,7 @@
-{}
+{
+  "files.exclude": {
+    "**/node_modules": true,
+  },
+  "tslint.run": "onType",
+  "tslint.autoFixOnSave": true
+}

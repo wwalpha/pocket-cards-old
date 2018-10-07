@@ -1,0 +1,14 @@
+
+type Mutation {
+  # セット作成
+  createSet(userId: String!, name: String!): Set
+
+  # セット削除
+  deleteSet(setId: String!): Set
+
+  # 画像から単語読み取り
+  wordWithImage(bucketKey: String!): [String]
+
+  # 単語新規登録
+  addNewWords(setId: String!, words: [String]!): [Word]
+}

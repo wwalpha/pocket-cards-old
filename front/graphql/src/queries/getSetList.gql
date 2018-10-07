@@ -1,0 +1,5 @@
+query getSetList {
+  sets(userId: "test") {
+    setId
+  }
+}

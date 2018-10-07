@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
+import Amplify from '@aws-amplify/core';
 import Auth from '@aws-amplify/auth';
 import AppSyncClient, { AUTH_TYPE } from 'aws-appsync';
 import { Rehydrated } from 'aws-appsync-react';
@@ -8,8 +9,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme, MuiThemeProvider, Theme } from '@material-ui/core/styles';
 import blue from '@material-ui/core/colors/blue';
 import deepOrange from '@material-ui/core/colors/deepOrange';
-import config from './aws-export';
+import config from './aws-exports';
 import App from './containers/App';
+
+Amplify.configure(config);
 
 const theme: Theme = createMuiTheme({
   palette: {
@@ -23,11 +26,11 @@ const theme: Theme = createMuiTheme({
 });
 
 const client = new AppSyncClient({
-  url: config.ApiUrl,
-  region: config.Region,
+  url: config.aws_appsync_graphqlEndpoint,
+  region: config.aws_appsync_region,
   auth: {
     type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
-    credentials: () => Auth.currentCredentials(),
+    jwtToken: async () => (await Auth.currentSession()).getAccessToken().getJwtToken(),
   },
 });
 

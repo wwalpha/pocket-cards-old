@@ -1,10 +1,10 @@
 UserInfoResource:
-  tableName: UserInfo
+  tableName: User
   keySchema: 
-    - attributeName: userId
+    - attributeName: id
       keyType: HASH
   attributeDefinitions:
-    - attributeName: userId
+    - attributeName: id
       attributeType: S
   provisionedThroughput:
     readCapacityUnits: 1

@@ -1,8 +1,0 @@
-type Set {
-  # userId
-  userId: ID!
-  # setId
-  setId: ID!
-  # セット名
-  name: String
-}

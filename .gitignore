@@ -6,3 +6,4 @@
 /lambda/dist
 /lambda/distzip
 /lambda/src/**/*.js
+/graphql/generated

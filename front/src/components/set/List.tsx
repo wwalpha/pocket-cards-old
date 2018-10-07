@@ -1,36 +1,49 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import { graphql } from 'react-apollo';
-import Sets from '@gql/sets';
+import { Query } from 'react-apollo';
 import ListItem from './ListItem';
-import { getSetList_sets } from 'typings/graphql';
+import { GetSetList, GetSetListVariables } from 'typings/graphql';
+import { getSetList } from '@gql/set';
 
-class SetList extends React.Component<Props, {}> {
+class List extends React.Component<Props, {}> {
 
   render() {
-
+    const { classes } = this.props;
     return (
-      <Grid container>
-        <ListItem key={1} primaryText="1133311" />
-        <ListItem key={2} primaryText="223332223322" />
+      <Grid container classes={{ container: classes.root }}>
+        <SetsQuery query={getSetList} variables={{ userId: 'wwalpha' }}>
+          {({ loading, data, error }) => {
+            if (loading) return <div>Loading</div>;
+            if (error) return <h1>ERROR</h1>;
+            if (!data) return <div></div>;
+
+            const { sets = [] } = data;
+
+            return sets && sets.map((item, idx) =>
+              <ListItem
+                key={idx}
+                primaryText={(item && item.name) as string}
+                setId={(item && item.setId) as string}
+                userId="wwalpha"
+              />,
+            );
+          }}
+        </SetsQuery>
       </Grid>
     );
   }
 }
 
 const styles = (): StyleRules => ({
-
+  root: {
+    margin: '8px 0px',
+  },
 });
 
-export default withStyles(styles)(graphql<Props, {}, GraphQLVariable>(Sets, {
-  props: ({ data: { } }) => ({
+export default withStyles(styles)(List);
 
-  }),
-})(SetList));
+class SetsQuery extends Query<GetSetList, GetSetListVariables> { }
 
-export interface GraphQLVariable extends getSetList_sets {
-
-}
-export interface Props extends WithStyles<StyleRules>, GraphQLVariable {
+export interface Props extends WithStyles<StyleRules>, GetSetListVariables {
 }

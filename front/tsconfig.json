@@ -34,16 +34,13 @@
     "baseUrl": ".",
     "paths": {
       "@gql/*": [
-        "./src/gql/*"
+        "./src/queries/*"
       ],
       "@actions/*": [
         "./src/actions/*"
       ],
       "@comp/*": [
         "./src/components/*"
-      ],
-      "@typings/*": [
-        "./src/typings/*"
       ],
       "@test/*": [
         "./test/*"

@@ -47,7 +47,6 @@ const styles = (): StyleRules => ({
   },
 });
 
-
 export default withStyles(styles)(Menu);
 
 export interface Props extends WithStyles<StyleRules> {

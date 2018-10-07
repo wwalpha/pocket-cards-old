@@ -5,9 +5,9 @@ schema {
 
 type Query {
   # セットリスト一覧
-  sets(userId: ID!): [Set]
+  sets(userId: String!): [Set]
   # 単語一覧
-  words(setId: ID!): [Word]
+  words(setId: String!): [Word]
   # 学習セット
   studySet(userId: String!, setId: String!): [Word]
   # 学習履歴
@@ -20,7 +20,7 @@ type Mutation {
   # セット作成
   createSet(userId: String!, name: String!): Set
   # セット削除
-  deleteSet(setId: String!): Set
+  deleteSet(userId: String!, setId: String!): Set
   # 画像から単語読み取り
   wordWithImage(bucketKey: String!): [String]
   # 単語新規登録

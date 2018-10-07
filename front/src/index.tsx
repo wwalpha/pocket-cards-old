@@ -10,7 +10,7 @@ import { createMuiTheme, MuiThemeProvider, Theme } from '@material-ui/core/style
 import blue from '@material-ui/core/colors/blue';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import config from './aws-exports';
-import App from './containers/App';
+import Router from './Router';
 
 Amplify.configure(config);
 
@@ -26,6 +26,7 @@ const theme: Theme = createMuiTheme({
 });
 
 const client = new AppSyncClient({
+  disableOffline: true,
   url: config.aws_appsync_graphqlEndpoint,
   region: config.aws_appsync_region,
   auth: {
@@ -34,15 +35,21 @@ const client = new AppSyncClient({
   },
 });
 
-render(
-  <ApolloProvider client={client}>
-    <Rehydrated>
-      <BrowserRouter>
-        <MuiThemeProvider theme={theme}>
-          <App />
-        </MuiThemeProvider>
-      </BrowserRouter>
-    </Rehydrated>
-  </ApolloProvider>,
-  document.getElementById('root'),
-);
+const start = async () => {
+  await Auth.signIn('wwalpha', 'session10');
+
+  render(
+    <ApolloProvider client={client}>
+      <Rehydrated>
+        <BrowserRouter>
+          <MuiThemeProvider theme={theme}>
+            <Router />
+          </MuiThemeProvider>
+        </BrowserRouter>
+      </Rehydrated>
+    </ApolloProvider>,
+    document.getElementById('root'),
+  );
+};
+
+start();

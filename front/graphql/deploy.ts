@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as yaml from 'js-yaml';
 import { execSync } from 'child_process';
 
-const resolvers: Resolvers = yaml.safeLoad(fs.readFileSync(path.join(__dirname, '../cdk/configs/appsync-resolver.yml'), 'utf8'));
+const resolvers: Resolvers = yaml.safeLoad(fs.readFileSync(path.join(__dirname, '../../cdk/configs/appsync-resolver.yml'), 'utf8'));
 
 const apiId: string = process.argv[2];
 

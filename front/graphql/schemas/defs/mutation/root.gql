@@ -4,7 +4,7 @@ type Mutation {
   createSet(userId: String!, name: String!): Set
 
   # セット削除
-  deleteSet(setId: String!): Set
+  deleteSet(userId: String!, setId: String!): Set
 
   # 画像から単語読み取り
   wordWithImage(bucketKey: String!): [String]

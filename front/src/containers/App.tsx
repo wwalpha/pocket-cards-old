@@ -3,22 +3,25 @@ import { hot } from 'react-hot-loader';
 import { StyleRulesCallback, withStyles, Theme, WithStyles } from '@material-ui/core';
 import Header from '../components/app/Header';
 import Footer from '../components/app/Footer';
-import Main from '../components/app/Main';
+import { Route, Switch } from 'react-router';
+import Set from './Set';
 
 class App extends React.Component<Props, {}> {
 
   render() {
-    const { classes } = this.props;
+    const { classes, children } = this.props;
 
     return (
       <div className={classes.root}>
         <Header />
         <div className={classes.main}>
-          <Main />
+          <Switch>
+            <Route path="/set" component={Set} />
+          </Switch>
+          <Route children={children} />
         </div>
-
         <Footer />
-      </div>
+      </div >
     );
   }
 }
@@ -28,8 +31,8 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
     backgroundColor: theme.palette.grey['100'],
   },
   main: {
-    height: 'calc(100vh - 136px)',
-    margin: '8px 0px',
+    height: 'calc(100vh - 160px)',
+    // margin: '8px 0px',
   },
 });
 

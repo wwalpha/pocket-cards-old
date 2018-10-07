@@ -1,30 +1,38 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
+import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
 class Header extends React.Component<Props, {}> {
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <AppBar position="static">
+      <AppBar position="static" classes={{ root: classes.root }}>
         <Toolbar>
           <IconButton color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <IconButton color="inherit" aria-label="Menu">
+          <Typography variant="title" color="inherit" className={classes.grow}>
+            Pocket Cards
+          </Typography>
+          <IconButton color="inherit">
             <MenuIcon />
           </IconButton>
         </Toolbar>
-      </AppBar>
+      </AppBar >
     );
   }
 }
 
 const styles = (): StyleRules => ({
-
+  root: {
+    flexGrow: 1,
+  },
+  grow: {
+    flexGrow: 1,
+  },
 });
 
 export default withStyles(styles)(Header);

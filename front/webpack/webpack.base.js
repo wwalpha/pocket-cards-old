@@ -17,10 +17,10 @@ module.exports = {
     alias: {
       src: path.resolve(__dirname, '../src/'),
       '@test': path.resolve(__dirname, '../test'),
-      '@gql': path.resolve(__dirname, '../src/gql'),
+      '@gql': path.resolve(__dirname, '../src/queries'),
       '@comp': path.resolve(__dirname, '../src/components'),
       '@actions': path.resolve(__dirname, '../src/actions'),
-      '@typings': path.resolve(__dirname, '../src/typings'),
+      'typings': path.resolve(__dirname, '../src/typings'),
     },
   },
   module: {

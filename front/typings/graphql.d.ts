@@ -2,38 +2,63 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getSetList
+// GraphQL query operation: GetSetList
 // ====================================================
 
-export interface getSetList_sets {
+export interface GetSetList_sets {
   __typename: "Set";
   setId: string;
+  name: string | null;
 }
 
-export interface getSetList {
-  sets: (getSetList_sets | null)[] | null;
+export interface GetSetList {
+  sets: (GetSetList_sets | null)[] | null;
+}
+
+export interface GetSetListVariables {
+  userId: string;
 }
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: getStudySet
+// GraphQL mutation operation: SetRegist
 // ====================================================
 
-export interface getStudySet_studySet {
-  __typename: "Word";
-  setId: string;
-  word: string | null;
-  pronounce: string | null;
-  vocabulary: string | null;
-  studyDate: string | null;
-  nextDate: string | null;
-  times: number | null;
+export interface SetRegist_createSet {
+  __typename: "Set";
+  name: string | null;
 }
 
-export interface getStudySet {
-  studySet: (getStudySet_studySet | null)[] | null;
+export interface SetRegist {
+  createSet: SetRegist_createSet | null;
+}
+
+export interface SetRegistVariables {
+  userId: string;
+  name: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: SetRemove
+// ====================================================
+
+export interface SetRemove_deleteSet {
+  __typename: "Set";
+  name: string | null;
+}
+
+export interface SetRemove {
+  deleteSet: SetRemove_deleteSet | null;
+}
+
+export interface SetRemoveVariables {
+  userId: string;
+  setId: string;
 }
 
 /* tslint:disable */

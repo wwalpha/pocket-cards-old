@@ -5,6 +5,7 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import RestoreIcon from '@material-ui/icons/Restore';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { Link } from 'react-router-dom';
 
 class Footer extends React.Component<Props, {}> {
   state = {
@@ -33,6 +34,9 @@ class Footer extends React.Component<Props, {}> {
           }}
           disableRipple
           disableTouchRipple
+          component={(props: any) => (
+            <Link to="/set" {...props} />
+          )}
         />
         <BottomNavigationAction
           icon={<FavoriteIcon />}
@@ -41,6 +45,9 @@ class Footer extends React.Component<Props, {}> {
           }}
           disableRipple
           disableTouchRipple
+          component={(props: any) => (
+            <Link to="/" {...props} />
+          )}
         />
         <BottomNavigationAction
           icon={<LocationOnIcon />}

@@ -10,13 +10,15 @@ const apiId: string = process.argv[2];
 Object.keys(resolvers).forEach((key) => {
   const resolver: ResolverProps = resolvers[key];
 
-  const request = path.join(__dirname, `./${resolver.TypeName}/${resolver.FieldName}/request.vtl`);
-  const response = path.join(__dirname, `./${resolver.TypeName}/${resolver.FieldName}/response.vtl`);
+  const request = path.join(__dirname, `./resolver/${resolver.TypeName}/${resolver.FieldName}/request.vtl`);
+  const response = path.join(__dirname, `./resolver/${resolver.TypeName}/${resolver.FieldName}/response.vtl`);
 
   try {
     fs.accessSync(request);
     fs.accessSync(response);
   } catch (err) {
+    console.log(`Not Exists: ${resolver.DataSourceName}`);
+
     return;
   }
 
@@ -37,7 +39,6 @@ Object.keys(resolvers).forEach((key) => {
     encoding: 'utf-8',
   });
 });
-
 
 export interface ResolverProps {
   TypeName: string;

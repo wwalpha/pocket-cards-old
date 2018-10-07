@@ -10,11 +10,13 @@
     "schema:build": "yarn schema:init && yarn schema:json",
     "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./schemas/schema.gql",
     "schema": "yarn schema:build && yarn schema:update",
-    "resolver": "ts-node deploy 2hkc7dr74vhszbh3w2zstsidae"
+    "resolver": "ts-node deploy jw4s4q3gqbgkpbhr2pnk5uziji"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@aws-amplify/api": "^1.0.17",
+    "@aws-amplify/auth": "^1.2.6",
     "graphql": "^14.0.2",
     "js-yaml": "^3.12.0"
   },

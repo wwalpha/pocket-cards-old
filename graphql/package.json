@@ -6,18 +6,35 @@
   "scripts": {
     "schema:init": "ts-node schemas/schema.ts",
     "schema:json": "apollo schema:download schemas/schema.json --endpoint schemas/schema.gql",
-    "schema:query": "apollo codegen:generate --target=typescript --schema=schemas/schema.json --queries='src/gql/queries/*.gql'",
-    "schema:build": "yarn schema:init && yarn schema:json",
+    "schema:generate": "apollo codegen:generate --addTypename --target=typescript --outputFlat=generated",
+    "schema:build": "yarn schema:init && yarn schema:json && yarn schema:generate",
     "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./schemas/schema.gql",
     "schema": "yarn schema:build && yarn schema:update",
     "resolver": "ts-node deploy jw4s4q3gqbgkpbhr2pnk5uziji"
   },
   "author": "",
   "license": "ISC",
+  "apollo": {
+    "schemas": {
+      "myPrimaryBackend": {
+        "schema": "schemas/schema.json",
+        "endpoint": "schemas/schema.gql"
+      }
+    },
+    "queries": [
+      {
+        "schema": "myPrimaryBackend",
+        "includes": [
+          "src/**/*.gql"
+        ]
+      }
+    ]
+  },
   "dependencies": {
     "@aws-amplify/api": "^1.0.17",
     "@aws-amplify/auth": "^1.2.6",
-    "graphql": "^14.0.2",
+    "apollo": "^1.9.2",
+    "graphql": "^0.13.2",
     "js-yaml": "^3.12.0"
   },
   "devDependencies": {

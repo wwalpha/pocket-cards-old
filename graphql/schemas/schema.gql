@@ -37,7 +37,9 @@ type Set {
 }
 
 type Speech {
+  # Content-Type
   contentType: String!
+  # 音声URL
   url: String!
 }
 

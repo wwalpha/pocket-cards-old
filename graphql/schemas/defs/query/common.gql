@@ -5,6 +5,4 @@ type Query {
 
   # 単語一覧
   words(setId: ID!): [Word]
-
-
 }

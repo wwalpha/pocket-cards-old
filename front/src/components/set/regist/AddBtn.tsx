@@ -4,13 +4,14 @@ import { Button } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { SetRegist, SetRegistVariables, GetSetList, GetSetListVariables } from 'typings/graphql';
-import { REGIST, GET_LIST } from '@gql/set';
+import { REGIST, GET_LIST } from '@gql';
 
 class AddBtn extends React.Component<Props> {
 
   render() {
     const { mutate, name, userId, history } = this.props;
 
+    console.log(this.props);
     return (
       <Button
         variant="contained"
@@ -20,7 +21,7 @@ class AddBtn extends React.Component<Props> {
             userId,
             name,
           },
-        }).then(() => history.push('/set'))}
+        }).then(() => history.push('/home'))}
       >
         登録
     </Button>
@@ -39,7 +40,6 @@ export default graphql<SetRegistVariables, SetRegist>(REGIST, {
       query: GET_LIST, variables: { userId },
     }],
     update: (proxy, { data }) => {
-      console.log(11111, data);
 
       // Query from cache
       const query = GET_LIST;
@@ -56,7 +56,7 @@ export default graphql<SetRegistVariables, SetRegist>(REGIST, {
       list.sets.push(data.createSet);
 
       // write to cache
-      proxy.writeQuery({ query, data: list });
+      // proxy.writeQuery({ query, data: list });
     },
   }),
   props: ({ data, mutate, ownProps }) => ({

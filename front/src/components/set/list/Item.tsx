@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   StyleRulesCallback, Theme, WithStyles, withStyles,
-  Slide, Grid, Avatar, ListItem as MListItem, ListItemText, Paper,
+  Grid, Avatar, ListItem as MListItem, ListItemText, Paper,
 } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';

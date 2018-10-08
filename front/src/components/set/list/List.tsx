@@ -4,7 +4,8 @@ import { Grid } from '@material-ui/core';
 import { Query } from 'react-apollo';
 import Item from './Item';
 import { GetSetList, GetSetListVariables } from 'typings/graphql';
-import { GET_LIST } from '@gql/set';
+import { GET_LIST, USER_INFO } from '@gql';
+// import { GET_LIST } from '@gql/local';
 
 class List extends React.Component<Props, {}> {
 
@@ -12,24 +13,29 @@ class List extends React.Component<Props, {}> {
     const { classes } = this.props;
     return (
       <Grid container classes={{ container: classes.root }}>
-        <SetsQuery query={GET_LIST} variables={{ userId: 'wwalpha' }}>
-          {({ loading, data, error }) => {
-            if (loading) return <div>Loading</div>;
-            if (error) return <h1>ERROR</h1>;
-            if (!data) return <div></div>;
+        <Query query={USER_INFO}>
+          {({ data: { user } }) => (
+            <SetsQuery query={GET_LIST} variables={{ userId: user && user.id }} >
+              {({ loading, data, error }) => {
+                console.log(error);
+                if (loading) return <div>Loading</div>;
+                if (error) return <h1>ERROR</h1>;
+                if (!data) return <div></div>;
 
-            const { sets = [] } = data;
+                const { sets = [] } = data;
 
-            return sets && sets.map((item, idx) =>
-              <Item
-                key={idx}
-                primaryText={(item && item.name) as string}
-                setId={(item && item.setId) as string}
-                userId="wwalpha"
-              />,
-            );
-          }}
-        </SetsQuery>
+                return sets && sets.map((item, idx) =>
+                  <Item
+                    key={idx}
+                    primaryText={(item && item.name) as string}
+                    setId={(item && item.setId) as string}
+                    userId="wwalpha"
+                  />,
+                );
+              }}
+            </SetsQuery>
+          )}
+        </Query>
       </Grid>
     );
   }

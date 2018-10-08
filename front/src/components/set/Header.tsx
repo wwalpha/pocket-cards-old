@@ -9,7 +9,7 @@ import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 class Header extends React.Component<Props, {}> {
 
   render() {
-    const { classes, match, history } = this.props;
+    const { classes, match } = this.props;
 
     return (
       <AppBar position="static" classes={{ root: classes.header }}>

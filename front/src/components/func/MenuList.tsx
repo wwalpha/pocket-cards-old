@@ -14,7 +14,7 @@ class MenuList extends React.Component<Props, any> {
   openMenu = () => this.setState({ menuOpened: true });
   closeMenu = () => this.setState({ menuOpened: false });
 
-  handleTouchMove = (e: any): void => {
+  handleTouchMove = (): void => {
     this.setState({ deleteOpened: !this.state.deleteOpened });
   }
 

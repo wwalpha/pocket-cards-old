@@ -2,7 +2,7 @@ import * as React from 'react';
 import { graphql, ChildProps } from 'react-apollo';
 import { Button, colors } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
-import { DELETE, GET_LIST } from '@gql/set';
+import { DELETE, GET_LIST } from '@gql';
 import { SetRemoveVariables, SetRemove_deleteSet, GetSetList, GetSetListVariables } from 'typings/graphql';
 
 class RemoveBtn extends React.Component<Props> {

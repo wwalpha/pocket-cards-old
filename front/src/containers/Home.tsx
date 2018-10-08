@@ -9,7 +9,7 @@ class Set extends React.Component<Props, {}> {
     const { match, children } = this.props;
 
     return (
-      <div>
+      <React.Fragment>
         <Header />
         <Switch>
           <Route exact path={`${match.path}`} component={List} />
@@ -17,7 +17,7 @@ class Set extends React.Component<Props, {}> {
           <Route path={`${match.path}/menu`} component={Menu} />
         </Switch>
         <Route children={children} />
-      </div>
+      </React.Fragment>
     );
   }
 }

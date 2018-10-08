@@ -4,31 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node server.js",
-    "schema:init": "ts-node graphql/schemas/schema.ts",
-    "schema:json": "apollo schema:download graphql/schemas/schema.json --endpoint graphql/schemas/schema.gql",
-    "schema:generate": "apollo codegen:generate --addTypename --target=typescript --outputFlat=./typings/graphql.d.ts",
-    "schema:build": "yarn schema:init && yarn schema:json && yarn schema:generate",
+    "dev": "node configs/server.js",
+    "schema:app:init": "ts-node graphql/schemas/schema.ts",
+    "schema:app:json": "apollo schema:download graphql/schemas/schema.json --endpoint graphql/schemas/schema.gql",
+    "schema:app:generate": "apollo codegen:generate --addTypename --target=typescript --schema=graphql/schemas/schema.json --queries=./src/queries/set.ts --outputFlat=./typings/graphql.d.ts",
+    "schema:app:build": "yarn schema:app:init && yarn schema:app:json && yarn schema:app:generate",
+    "schema:local:init": "ts-node graphql/local/schema.ts",
+    "schema:local:json": "apollo schema:download graphql/local/schema.json --endpoint graphql/local/schema.gql",
+    "schema:local:generate": "apollo codegen:generate --addTypename --target=typescript --schema=graphql/local/schema.json --queries=./src/queries/local.ts --outputFlat=./typings/local.d.ts",
+    "schema:local:build": "yarn schema:local:init && yarn schema:local:json && yarn schema:local:generate",
+    "schema:build": "yarn schema:app:build && yarn schema:local:build",
     "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./graphql/schemas/schema.gql",
     "schema": "yarn schema:build && yarn schema:update",
     "resolver": "ts-node graphql/deploy jw4s4q3gqbgkpbhr2pnk5uziji",
     "prod:build": "webpack --config webpack/webpack.prod.js"
-  },
-  "apollo": {
-    "schemas": {
-      "myPrimaryBackend": {
-        "schema": "graphql/schemas/schema.json",
-        "endpoint": "graphql/schemas/schema.gql"
-      }
-    },
-    "queries": [
-      {
-        "schema": "myPrimaryBackend",
-        "includes": [
-          "./src/queries/**/*.ts"
-        ]
-      }
-    ]
   },
   "author": "",
   "license": "ISC",
@@ -38,6 +27,7 @@
     "@material-ui/core": "^3.1.2",
     "@material-ui/icons": "^3.0.1",
     "apollo": "^1.9.2",
+    "apollo-boost": "^0.1.16",
     "apollo-client": "2.3.7",
     "aws-appsync": "^1.3.4",
     "aws-appsync-react": "^1.1.4",

@@ -12,11 +12,15 @@ class Menu extends React.Component<Props, {}> {
     return (
       <Grid
         container
-        justify="flex-start"
         classes={{
           container: classes.container,
         }}
       >
+        <Grid item xs={12} classes={{ item: classes.item }}>
+          <Button variant="contained" fullWidth >
+            新規単語
+          </Button>
+        </Grid>
         <Grid item xs={12} classes={{ item: classes.item }}>
           <Button variant="contained" fullWidth >
             単語学習
@@ -39,7 +43,7 @@ class Menu extends React.Component<Props, {}> {
 
 const styles = (): StyleRules => ({
   container: {
-    height: 'inherit',
+    // height: 'inherit',
   },
   item: {
     width: '100%',

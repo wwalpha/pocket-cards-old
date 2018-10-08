@@ -9,19 +9,20 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.min.js',
-    path: path.resolve(__dirname, '../public'),
+    path: path.resolve(__dirname, '../../public'),
     publicPath: '/',
   },
   resolve: {
+    mainFields: ['browser', 'main', 'module'],
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
-      src: path.resolve(__dirname, '../src/'),
-      '@test': path.resolve(__dirname, '../test'),
-      '@gql': path.resolve(__dirname, '../src/queries'),
-      '@hoc': path.resolve(__dirname, '../src/components/hoc'),
-      '@comp': path.resolve(__dirname, '../src/components'),
-      '@actions': path.resolve(__dirname, '../src/actions'),
-      'typings': path.resolve(__dirname, '../src/typings'),
+      src: path.resolve(__dirname, '../../src/'),
+      '@test': path.resolve(__dirname, '../../test'),
+      '@gql': path.resolve(__dirname, '../../src/queries'),
+      '@hoc': path.resolve(__dirname, '../../src/components/hoc'),
+      '@comp': path.resolve(__dirname, '../../src/components'),
+      '@actions': path.resolve(__dirname, '../../src/actions'),
+      'typings': path.resolve(__dirname, '../../src/typings'),
     },
   },
   module: {
@@ -82,7 +83,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Chat',
       filename: 'index.html',
-      template: path.join(__dirname, '../index.template.ejs'),
+      template: path.join(__dirname, '../../index.template.ejs'),
       minify: false,
       hash: true,
       inject: 'body',

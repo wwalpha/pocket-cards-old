@@ -65,14 +65,13 @@ class Footer extends React.Component<Props, {}> {
 const styles = (theme: Theme): StyleRules => ({
   actionSelected: {
     paddingTop: '8px !important',
-    color: 'white',
   },
   footer: {
     position: 'fixed',
     bottom: '0px',
     width: '100%',
-    color: 'white',
-    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.grey['400'],
+    backgroundColor: 'white',
   },
 });
 

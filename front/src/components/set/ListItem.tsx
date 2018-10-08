@@ -1,15 +1,10 @@
 import * as React from 'react';
 import {
   StyleRulesCallback, Theme, WithStyles, withStyles,
-  Slide, Grid, Avatar, ListItem as MListItem, ListItemText, Button, Paper,
+  Slide, Grid, Avatar, ListItem as MListItem, ListItemText, Paper,
 } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
-import red from '@material-ui/core/colors/red';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
-import { Mutation } from 'react-apollo';
-import { SetRemove, SetRemoveVariables } from 'typings/graphql';
-import { setRemove } from '@gql/set';
-import { Redirect } from 'react-router';
 
 class ListItem extends React.Component<Props, any> {
   state = {
@@ -28,7 +23,7 @@ class ListItem extends React.Component<Props, any> {
           classes={{
             elevation1: classes.paper,
           }}>
-          <SetRemoveMutation mutation={setRemove} variables={{ userId, setId }}>
+          {/* <SetRemoveMutation mutation={SET_DELETE} variables={{ userId, setId }}>
             {(setRemove, { data }) => {
               if (data) {
                 return (
@@ -47,7 +42,7 @@ class ListItem extends React.Component<Props, any> {
               </Button>
               );
             }}
-          </SetRemoveMutation>
+          </SetRemoveMutation> */}
           <MListItem
             button
             disableRipple
@@ -90,15 +85,6 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
     flex: 1,
     paddingTop: theme.spacing.unit,
     paddingBottom: theme.spacing.unit,
-  },
-  button: {
-    borderRadius: '0px',
-    color: '#fff',
-    backgroundColor: red[700],
-    width: '80px',
-    transform: 'translateX(130)',
-    transition: 'all 300ms 0s ease',
-    marginRight: '24px',
   },
 });
 

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-export const getSetList = gql`
+export const GET_LIST = gql`
   query GetSetList($userId: String!) {
     sets(userId: $userId) {
       setId
@@ -9,7 +9,7 @@ export const getSetList = gql`
   }
 `;
 
-export const setRegist = gql`
+export const REGIST = gql`
   mutation SetRegist($userId: String!, $name: String!) {
     createSet(userId: $userId, name: $name) {
       name
@@ -17,7 +17,7 @@ export const setRegist = gql`
   }
 `;
 
-export const setRemove = gql`
+export const DELETE = gql`
   mutation SetRemove($userId: String!, $setId: String!) {
     deleteSet(userId: $userId, setId: $setId) {
       name

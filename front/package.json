@@ -11,7 +11,8 @@
     "schema:build": "yarn schema:init && yarn schema:json && yarn schema:generate",
     "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./graphql/schemas/schema.gql",
     "schema": "yarn schema:build && yarn schema:update",
-    "resolver": "ts-node graphql/deploy jw4s4q3gqbgkpbhr2pnk5uziji"
+    "resolver": "ts-node graphql/deploy jw4s4q3gqbgkpbhr2pnk5uziji",
+    "prod:build": "webpack --config webpack/webpack.prod.js"
   },
   "apollo": {
     "schemas": {
@@ -64,6 +65,7 @@
     "babel-loader": "^8.0.2",
     "babel-plugin-graphql-tag": "^1.6.0",
     "babel-plugin-import-graphql": "^2.6.2",
+    "compression-webpack-plugin": "^2.0.0",
     "copy-webpack-plugin": "^4.5.2",
     "express": "^4.16.3",
     "graphql-code-generator": "^0.12.6",

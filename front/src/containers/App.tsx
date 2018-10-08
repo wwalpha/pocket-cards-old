@@ -31,7 +31,7 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
     backgroundColor: theme.palette.grey['100'],
   },
   main: {
-    height: 'calc(100vh - 160px)',
+    height: 'calc(100vh - 112px)',
     // margin: '8px 0px',
   },
 });

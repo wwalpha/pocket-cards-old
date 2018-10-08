@@ -1,13 +1,17 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base');
+const CompressionPlugin = require('compression-webpack-plugin');
 
 const dev = {
-  mode: 'development',
+  mode: 'production',
   plugins: [
     new webpack.LoaderOptionsPlugin({
-      debug: true,
+      debug: false,
     }),
+    new CompressionPlugin({
+      filename: '[path].gz[query]'
+    })
   ],
 };
 

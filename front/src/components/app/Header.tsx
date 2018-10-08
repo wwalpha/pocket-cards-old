@@ -29,6 +29,7 @@ class Header extends React.Component<Props, {}> {
 const styles = (): StyleRules => ({
   root: {
     flexGrow: 1,
+    boxShadow: 'none',
   },
   grow: {
     flexGrow: 1,

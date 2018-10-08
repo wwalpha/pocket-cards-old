@@ -3,7 +3,7 @@ import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/sty
 import { TextField, Button, Grid } from '@material-ui/core';
 import { Mutation } from 'react-apollo';
 import { SetRegist, SetRegistVariables } from 'typings/graphql';
-import { setRegist } from '@gql/set';
+import { REGIST } from '@gql/set';
 import { withRouter, RouteComponentProps, Redirect } from 'react-router';
 
 class Regist extends React.Component<Props, State> {
@@ -23,7 +23,7 @@ class Regist extends React.Component<Props, State> {
 
     return (
       <Grid container>
-        <SetRegistMutation mutation={setRegist} variables={{ name, userId }}>
+        <SetRegistMutation mutation={REGIST} variables={{ name, userId }}>
           {(setRegist, { data }) => {
 
             if (data) {

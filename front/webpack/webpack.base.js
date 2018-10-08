@@ -8,7 +8,7 @@ module.exports = {
     './src/index',
   ],
   output: {
-    filename: 'bundle.js',
+    filename: 'bundle.min.js',
     path: path.resolve(__dirname, '../public'),
     publicPath: '/',
   },
@@ -18,6 +18,7 @@ module.exports = {
       src: path.resolve(__dirname, '../src/'),
       '@test': path.resolve(__dirname, '../test'),
       '@gql': path.resolve(__dirname, '../src/queries'),
+      '@hoc': path.resolve(__dirname, '../src/hoc'),
       '@comp': path.resolve(__dirname, '../src/components'),
       '@actions': path.resolve(__dirname, '../src/actions'),
       'typings': path.resolve(__dirname, '../src/typings'),
@@ -57,7 +58,7 @@ module.exports = {
               transpileOnly: true,
               happyPackMode: true
             }
-          }
+          },
         ],
       },
       {
@@ -66,11 +67,16 @@ module.exports = {
         use: 'source-map-loader',
         enforce: 'pre',
       },
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader',
+      },
     ]
   },
   plugins: [
     new HappyPack({
-      loaders: ['babel-loader', 'ts-loader'],
+      loaders: ['babel-loader', 'ts-loader', 'source-map-loader', 'graphql-tag/loader'],
     }),
     new webpack.NoEmitOnErrorsPlugin(),
     new HtmlWebpackPlugin({

@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 import { Query } from 'react-apollo';
 import ListItem from './ListItem';
 import { GetSetList, GetSetListVariables } from 'typings/graphql';
-import { getSetList } from '@gql/set';
+import { GET_LIST } from '@gql/set';
 
 class List extends React.Component<Props, {}> {
 
@@ -12,7 +12,7 @@ class List extends React.Component<Props, {}> {
     const { classes } = this.props;
     return (
       <Grid container classes={{ container: classes.root }}>
-        <SetsQuery query={getSetList} variables={{ userId: 'wwalpha' }}>
+        <SetsQuery query={GET_LIST} variables={{ userId: 'wwalpha' }}>
           {({ loading, data, error }) => {
             if (loading) return <div>Loading</div>;
             if (error) return <h1>ERROR</h1>;

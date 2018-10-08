@@ -36,6 +36,9 @@
       "@gql/*": [
         "./src/queries/*"
       ],
+      "@hoc/*": [
+        "./src/hoc/*"
+      ],
       "@actions/*": [
         "./src/actions/*"
       ],

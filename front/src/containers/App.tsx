@@ -4,7 +4,7 @@ import { StyleRulesCallback, withStyles, Theme, WithStyles } from '@material-ui/
 import Header from '../components/app/Header';
 import Footer from '../components/app/Footer';
 import { Route, Switch } from 'react-router';
-import Set from './Set';
+import Home from './Home';
 
 class App extends React.Component<Props, {}> {
 
@@ -16,7 +16,7 @@ class App extends React.Component<Props, {}> {
         <Header />
         <div className={classes.main}>
           <Switch>
-            <Route path="/set" component={Set} />
+            <Route excat path="/home" component={Home} />
           </Switch>
           <Route children={children} />
         </div>

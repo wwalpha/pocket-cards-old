@@ -12,6 +12,7 @@ export const GET_LIST = gql`
 export const REGIST = gql`
   mutation SetRegist($userId: String!, $name: String!) {
     createSet(userId: $userId, name: $name) {
+      setId
       name
     }
   }

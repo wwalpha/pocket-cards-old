@@ -2,20 +2,26 @@ import * as React from 'react';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import {
-  Menu as MenuIcon,
-  Add as AddIcon,
+  Add as AddIcon, ArrowBack as BackIcon,
 } from '@material-ui/icons';
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 
 class Header extends React.Component<Props, {}> {
 
   render() {
-    const { classes, match } = this.props;
+    const { classes, match, history } = this.props;
+
     return (
       <AppBar position="static" classes={{ root: classes.header }}>
         <Toolbar classes={{ root: classes.toolbar }}>
-          <IconButton color="inherit" aria-label="Menu">
-            <MenuIcon />
+          <IconButton
+            color="inherit"
+            aria-label="Menu"
+            component={(props: any) => (
+              <Link to={`${match.path}`} {...props} />
+            )}
+          >
+            <BackIcon />
           </IconButton>
           <Typography variant="subheading" color="inherit" className={classes.grow}>
             セット一覧

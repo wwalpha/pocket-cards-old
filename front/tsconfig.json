@@ -17,7 +17,7 @@
     "allowJs": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "declaration": true,
+    "declaration": false,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -37,7 +37,7 @@
         "./src/queries/*"
       ],
       "@hoc/*": [
-        "./src/hoc/*"
+        "./src/components/hoc/*"
       ],
       "@actions/*": [
         "./src/actions/*"

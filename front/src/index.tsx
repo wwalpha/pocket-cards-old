@@ -10,7 +10,7 @@ import { createMuiTheme, MuiThemeProvider, Theme } from '@material-ui/core/style
 import blue from '@material-ui/core/colors/blue';
 import deepOrange from '@material-ui/core/colors/deepOrange';
 import config from './aws-exports';
-import Router from './Router';
+import App from './containers/App';
 
 Amplify.configure(config);
 
@@ -43,7 +43,7 @@ const start = async () => {
       <Rehydrated>
         <BrowserRouter>
           <MuiThemeProvider theme={theme}>
-            <Router />
+            <App />
           </MuiThemeProvider>
         </BrowserRouter>
       </Rehydrated>

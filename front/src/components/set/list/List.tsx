@@ -2,7 +2,7 @@ import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import { Query } from 'react-apollo';
-import ListItem from './ListItem';
+import Item from './Item';
 import { GetSetList, GetSetListVariables } from 'typings/graphql';
 import { GET_LIST } from '@gql/set';
 
@@ -21,7 +21,7 @@ class List extends React.Component<Props, {}> {
             const { sets = [] } = data;
 
             return sets && sets.map((item, idx) =>
-              <ListItem
+              <Item
                 key={idx}
                 primaryText={(item && item.name) as string}
                 setId={(item && item.setId) as string}

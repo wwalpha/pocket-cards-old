@@ -8,8 +8,6 @@ class Set extends React.Component<Props, {}> {
   render() {
     const { match, children } = this.props;
 
-    console.log(`${match.path}/regist`);
-
     return (
       <div>
         <Header />

@@ -28,6 +28,7 @@ export interface GetSetListVariables {
 
 export interface SetRegist_createSet {
   __typename: "Set";
+  setId: string;
   name: string | null;
 }
 

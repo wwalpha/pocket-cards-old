@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { RemoveBtn } from '.';
 
 class ListItem extends React.Component<Props, any> {
   state = {
@@ -23,26 +24,7 @@ class ListItem extends React.Component<Props, any> {
           classes={{
             elevation1: classes.paper,
           }}>
-          {/* <SetRemoveMutation mutation={SET_DELETE} variables={{ userId, setId }}>
-            {(setRemove, { data }) => {
-              if (data) {
-                return (
-                  <Redirect to="/set" />
-                );
-              }
-
-              return (
-                <Button
-                  variant="contained"
-                  classes={{ root: classes.button }}
-                  disableRipple
-                  onClick={setRemove as any}
-                >
-                  DELETE
-              </Button>
-              );
-            }}
-          </SetRemoveMutation> */}
+          <RemoveBtn setId={setId} userId={userId} />
           <MListItem
             button
             disableRipple
@@ -96,5 +78,3 @@ export interface Props extends WithStyles<StyleRulesCallback>, RouteComponentPro
   primaryText: string;
   secondaryText?: string;
 }
-
-class SetRemoveMutation extends Mutation<SetRemove, SetRemoveVariables> { }

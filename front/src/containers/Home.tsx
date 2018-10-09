@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Route, Switch, RouteComponentProps, withRouter } from 'react-router';
-import { Header, List, Menu, Regist } from '@comp/set';
+import { Header, List, Regist } from '@comp/set';
+import { Word } from '@comp/word';
 
 class Set extends React.Component<Props, {}> {
 
@@ -14,7 +15,7 @@ class Set extends React.Component<Props, {}> {
         <Switch>
           <Route exact path={`${match.path}`} component={List} />
           <Route path={`${match.path}/regist`} component={Regist} />
-          <Route path={`${match.path}/menu`} component={Menu} />
+          <Route path={`${match.path}/word`} component={Word} />
         </Switch>
         <Route children={children} />
       </React.Fragment>

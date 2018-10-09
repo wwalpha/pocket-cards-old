@@ -29,7 +29,7 @@ class ListItem extends React.Component<Props, any> {
             button
             disableRipple
             classes={{ root: classes.listitem }}
-            component={(props: any) => (<Link to={`${match.path}/menu`} {...props} />)}
+            component={(props: any) => (<Link to={`${match.path}/word`} {...props} />)}
           >
             <Avatar classes={{ root: classes.avatar }}>
               <FolderIcon />

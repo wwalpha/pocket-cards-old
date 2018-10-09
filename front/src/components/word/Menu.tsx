@@ -1,13 +1,12 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid, Button } from '@material-ui/core';
-// import { graphql } from 'react-apollo';
-// import Sets from '@gql/sets';
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
 
 class Menu extends React.Component<Props, {}> {
 
   render() {
-    const { classes } = this.props;
+    const { classes, match } = this.props;
 
     return (
       <Grid
@@ -17,12 +16,20 @@ class Menu extends React.Component<Props, {}> {
         }}
       >
         <Grid item xs={12} classes={{ item: classes.item }}>
-          <Button variant="contained" fullWidth >
+          <Button
+            variant="contained"
+            fullWidth
+            component={(props: any) => (<Link to={`${match.path}/regist`} {...props} />)}
+          >
             新規単語
           </Button>
         </Grid>
         <Grid item xs={12} classes={{ item: classes.item }}>
-          <Button variant="contained" fullWidth >
+          <Button
+            variant="contained"
+            fullWidth
+            component={(props: any) => (<Link to={`${match.path}/test`} {...props} />)}
+          >
             単語学習
           </Button>
         </Grid>
@@ -32,7 +39,11 @@ class Menu extends React.Component<Props, {}> {
           </Button>
         </Grid>
         <Grid item xs={12} classes={{ item: classes.item }}>
-          <Button variant="contained" fullWidth >
+          <Button
+            variant="contained"
+            fullWidth
+            component={(props: any) => (<Link to={`${match.path}/history`} {...props} />)}
+          >
             今日の単語
           </Button>
         </Grid>
@@ -51,7 +62,7 @@ const styles = (): StyleRules => ({
   },
 });
 
-export default withStyles(styles)(Menu);
+export default withStyles(styles)(withRouter(Menu));
 
-export interface Props extends WithStyles<StyleRules> {
+export interface Props extends WithStyles<StyleRules>, RouteComponentProps {
 }

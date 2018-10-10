@@ -43,7 +43,7 @@ class List extends React.Component<Props, {}> {
 
 const styles = (): StyleRules => ({
   root: {
-    margin: '8px 0px',
+    // margin: '8px 0px',
   },
 });
 

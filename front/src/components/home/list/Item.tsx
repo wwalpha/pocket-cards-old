@@ -6,6 +6,7 @@ import {
 import FolderIcon from '@material-ui/icons/Folder';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
 import { RemoveBtn } from '.';
+import { PATH } from '@const';
 
 class ListItem extends React.Component<Props, any> {
   state = {
@@ -29,7 +30,7 @@ class ListItem extends React.Component<Props, any> {
             button
             disableRipple
             classes={{ root: classes.listitem }}
-            component={(props: any) => (<Link to={`${match.path}/word`} {...props} />)}
+            component={(props: any) => (<Link to={PATH.SET_MENU} {...props} />)}
           >
             <Avatar classes={{ root: classes.avatar }}>
               <FolderIcon />

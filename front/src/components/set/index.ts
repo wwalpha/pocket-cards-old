@@ -1,3 +1,4 @@
-export { default as Header } from './Header';
-export { default as Regist } from '@comp/set/regist/Regist';
-export { default as List } from '@comp/set/list/List';
+export { default as Menu } from './Menu';
+export { default as Regist } from './regist/Regist';
+export { default as History } from './history/History';
+export { default as Study } from './study/Study';

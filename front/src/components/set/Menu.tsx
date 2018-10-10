@@ -2,6 +2,7 @@ import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid, Button } from '@material-ui/core';
 import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
+import { PATH } from '@const';
 
 class Menu extends React.Component<Props, {}> {
 
@@ -19,7 +20,7 @@ class Menu extends React.Component<Props, {}> {
           <Button
             variant="contained"
             fullWidth
-            component={(props: any) => (<Link to={`${match.path}/regist`} {...props} />)}
+            component={(props: any) => (<Link to={`${match.path}${PATH.SET_NEW_WORD}`} {...props} />)}
           >
             新規単語
           </Button>
@@ -28,7 +29,7 @@ class Menu extends React.Component<Props, {}> {
           <Button
             variant="contained"
             fullWidth
-            component={(props: any) => (<Link to={`${match.path}/test`} {...props} />)}
+            component={(props: any) => (<Link to={`${match.path}${PATH.SET_STUDY}`} {...props} />)}
           >
             単語学習
           </Button>
@@ -42,7 +43,7 @@ class Menu extends React.Component<Props, {}> {
           <Button
             variant="contained"
             fullWidth
-            component={(props: any) => (<Link to={`${match.path}/history`} {...props} />)}
+            component={(props: any) => (<Link to={`${match.path}${PATH.SET_HISTORY}`} {...props} />)}
           >
             今日の単語
           </Button>

@@ -5,6 +5,7 @@ import Header from '../components/app/Header';
 import Footer from '../components/app/Footer';
 import { Route, Switch } from 'react-router';
 import Home from './Home';
+import Set from './Set';
 
 class App extends React.Component<Props, {}> {
 
@@ -17,6 +18,7 @@ class App extends React.Component<Props, {}> {
         <div className={classes.main}>
           <Switch>
             <Route excat path="/home" component={Home} />
+            <Route excat path="/set" component={Set} />
           </Switch>
           <Route children={children} />
         </div>
@@ -28,11 +30,11 @@ class App extends React.Component<Props, {}> {
 
 const styles: StyleRulesCallback = (theme: Theme) => ({
   root: {
-    backgroundColor: theme.palette.grey['100'],
+    backgroundColor: theme.palette.grey['200'],
   },
   main: {
-    height: 'calc(100vh - 112px)',
-    // margin: '8px 0px',
+    height: 'calc(100vh - 148px)',
+    padding: theme.spacing.unit * 2,
   },
 });
 

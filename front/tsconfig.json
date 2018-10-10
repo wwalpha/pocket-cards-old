@@ -36,11 +36,11 @@
       "@gql": [
         "./src/queries/index.ts"
       ],
-      "@hoc/*": [
-        "./src/components/hoc/*"
-      ],
       "@actions/*": [
         "./src/actions/*"
+      ],
+      "@const": [
+        "./src/consts/Consts"
       ],
       "@comp/*": [
         "./src/components/*"

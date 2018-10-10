@@ -19,10 +19,11 @@ module.exports = {
       src: path.resolve(__dirname, '../../src/'),
       '@test': path.resolve(__dirname, '../../test'),
       '@gql': path.resolve(__dirname, '../../src/queries'),
-      '@hoc': path.resolve(__dirname, '../../src/components/hoc'),
       '@comp': path.resolve(__dirname, '../../src/components'),
       '@actions': path.resolve(__dirname, '../../src/actions'),
       'typings': path.resolve(__dirname, '../../src/typings'),
+      '@const': path.resolve(__dirname, '../../src/consts/Consts.ts'),
+
     },
   },
   module: {

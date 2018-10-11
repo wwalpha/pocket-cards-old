@@ -14,10 +14,11 @@ class List extends React.Component<Props, {}> {
     return (
       <Grid container classes={{ container: classes.root }}>
         <Query query={USER_INFO}>
-          {({ data: { user } }) => (
-            <SetsQuery query={GET_LIST} variables={{ userId: user && user.id }} >
+          {({ data }) => (
+            <SetsQuery query={GET_LIST} variables={{ userId: data && data.user && data.user.id }} >
               {({ loading, data, error }) => {
                 console.log(error);
+                console.log(data);
                 if (loading) return <div>Loading</div>;
                 if (error) return <h1>ERROR</h1>;
                 if (!data) return <div></div>;

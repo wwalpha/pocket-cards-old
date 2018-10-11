@@ -2,3 +2,7 @@ type User {
   id: ID!
   username: String!
 }
+
+type App {
+  screen: String!
+}

@@ -5,10 +5,12 @@ schema {
 
 type Query {
   user: User
+  app: App
 }
 
 type Mutation {
-  updateUser(user: UserInput!): User
+  updateUser(id: String!, username: String!): User
+  updateScreen(screen: String!): App
 }
 
 input UserInput {
@@ -19,4 +21,8 @@ input UserInput {
 type User {
   id: ID!
   username: String!
+}
+
+type App {
+  screen: String!
 }

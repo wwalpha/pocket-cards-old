@@ -4,5 +4,6 @@ input UserInput {
 }
 
 type Mutation {
-  updateUser(user: UserInput!): User
+  updateUser(id: String!, username: String!): User
+  updateScreen(screen: String!): App
 }

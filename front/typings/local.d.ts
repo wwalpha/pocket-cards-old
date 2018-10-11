@@ -15,7 +15,28 @@ export interface UpdateUser {
 }
 
 export interface UpdateUserVariables {
-  user: UserInput;
+  id: string;
+  username: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: UpdateScreen
+// ====================================================
+
+export interface UpdateScreen_updateScreen {
+  __typename: "App";
+  screen: string;
+}
+
+export interface UpdateScreen {
+  updateScreen: UpdateScreen_updateScreen | null;
+}
+
+export interface UpdateScreenVariables {
+  screen: string;
 }
 
 /* tslint:disable */
@@ -24,11 +45,6 @@ export interface UpdateUserVariables {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
-
-export interface UserInput {
-  id: string;
-  username: string;
-}
 
 //==============================================================
 // END Enums and Input Objects

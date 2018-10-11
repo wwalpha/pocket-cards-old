@@ -9,11 +9,10 @@ import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme, MuiThemeProvider, Theme } from '@material-ui/core/styles';
 import { blue, deepOrange } from '@material-ui/core/colors';
 import { ApolloLink } from 'apollo-link';
-import { stateLink } from './local';
+import { stateLink } from './queries/local';
 import config from './aws-exports';
 import App from './containers/App';
-
-// import { UPDATE_USER } from '@gql/local';
+import { UPDATE_USER } from '@gql';
 
 Amplify.configure(config);
 
@@ -45,14 +44,13 @@ const client = new AppSyncClient({} as any, { link });
 const start = async () => {
   await Auth.signIn('wwalpha', 'session10');
 
-  // await client.mutate({
-  //   mutation: UPDATE_USER,
-  //   variables: {
-  //     id: 'wwalpha',
-  //     username: 'test',
-  //   },
-  // });
-
+  await client.mutate({
+    mutation: UPDATE_USER,
+    variables: {
+      id: 'wwalpha',
+      username: 'test',
+    },
+  });
   render(
     <ApolloProvider client={client}>
       <Rehydrated>

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { StyleRulesCallback, withStyles, Theme, WithStyles } from '@material-ui/core';
-import Header from '../components/app/Header';
-import Footer from '../components/app/Footer';
+import { Header, Footer } from '@comp/app';
 import { Route, Switch } from 'react-router';
 import Home from './Home';
 import Set from './Set';
@@ -17,8 +16,8 @@ class App extends React.Component<Props, {}> {
         <Header />
         <div className={classes.main}>
           <Switch>
-            <Route excat path="/home" component={Home} />
-            <Route excat path="/set" component={Set} />
+            <Route path="/home" component={Home} />
+            <Route path="/set" component={Set} />
           </Switch>
           <Route children={children} />
         </div>

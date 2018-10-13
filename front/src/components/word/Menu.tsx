@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid, Button } from '@material-ui/core';
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { PATH } from '@const';
 
 class Menu extends React.Component<Props, {}> {
 
   render() {
-    const { classes, match } = this.props;
+    const { classes } = this.props;
 
     return (
       <Grid
@@ -20,7 +20,7 @@ class Menu extends React.Component<Props, {}> {
           <Button
             variant="contained"
             fullWidth
-            component={(props: any) => (<Link to={`${match.path}${PATH.SET_NEW_WORD}`} {...props} />)}
+            component={(props: any) => (<Link to={PATH.WORD.REGIST} {...props} />)}
           >
             新規単語
           </Button>
@@ -29,13 +29,17 @@ class Menu extends React.Component<Props, {}> {
           <Button
             variant="contained"
             fullWidth
-            component={(props: any) => (<Link to={`${match.path}${PATH.SET_STUDY}`} {...props} />)}
+            component={(props: any) => (<Link to={PATH.WORD.STUDY} {...props} />)}
           >
             単語学習
           </Button>
         </Grid>
         <Grid item xs={12} classes={{ item: classes.item }}>
-          <Button variant="contained" fullWidth >
+          <Button
+            variant="contained"
+            fullWidth
+            component={(props: any) => (<Link to={PATH.WORD.TEST} {...props} />)}
+          >
             単語テスト
           </Button>
         </Grid>
@@ -43,7 +47,7 @@ class Menu extends React.Component<Props, {}> {
           <Button
             variant="contained"
             fullWidth
-            component={(props: any) => (<Link to={`${match.path}${PATH.SET_HISTORY}`} {...props} />)}
+            component={(props: any) => (<Link to={PATH.WORD.HISTORY} {...props} />)}
           >
             今日の単語
           </Button>
@@ -63,7 +67,7 @@ const styles = (): StyleRules => ({
   },
 });
 
-export default withStyles(styles)(withRouter(Menu));
+export default withStyles(styles)(Menu);
 
-export interface Props extends WithStyles<StyleRules>, RouteComponentProps {
+export interface Props extends WithStyles<StyleRules> {
 }

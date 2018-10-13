@@ -40,7 +40,7 @@
         "./src/actions/*"
       ],
       "@const": [
-        "./src/consts/Consts.tsx"
+        "./src/consts/index.ts"
       ],
       "@comp/*": [
         "./src/components/*"

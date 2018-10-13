@@ -6,29 +6,20 @@ import {
 } from '@material-ui/icons';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
-import { graphql, ChildProps } from 'react-apollo';
+import { graphql } from 'react-apollo';
 import { UPDATE_PATH } from '@gql';
-import { AppInfo } from 'typings/types';
-import { UpdatePathVariables, UpdatePath, UpdatePath_updatePath } from 'typings/local';
-import { PATH } from '@const';
+import { PATH, PATH_INDEX } from '@const';
+import { UpdatePathProps, AppInfo, UpdatePathVariables, UpdatePathChildProps } from 'typings/local';
 
 class Footer extends React.Component<Props, {}> {
   state = {
     value: 0,
   };
 
-  handleChange = (e: React.ChangeEvent<{}>, value: number) => {
-    this.setState({ value });
-
-    // const { mutate } = this.props;
-    // if (value === 1) {
-
-    // }
-    console.log(this.props);
-  }
+  handleChange = (e: React.ChangeEvent<{}>, value: number) => this.setState({ value });
 
   render() {
-    const { classes, onScreenChange } = this.props;
+    const { classes, onPathChange } = this.props;
 
     return (
       <BottomNavigation
@@ -43,6 +34,7 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
+          onClick={() => onPathChange(PATH_INDEX.HOME_ROOT)}
           component={(props: any) => <Link to={PATH.HOME.ROOT} {...props} />}
         />
         <BottomNavigationAction
@@ -50,6 +42,7 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
+          onClick={() => onPathChange(PATH_INDEX.SET_ROOT)}
           component={(props: any) => <Link to={PATH.SET.ROOT} {...props} />}
         />
         <BottomNavigationAction
@@ -57,7 +50,8 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          component={(props: any) => <Link to="/user" {...props} />}
+          onClick={() => onPathChange(PATH_INDEX.USER_ROOT)}
+          component={(props: any) => <Link to={PATH.USER.ROOT} {...props} />}
         />
       </BottomNavigation>
     );
@@ -77,21 +71,13 @@ const styles = (theme: Theme): StyleRules => ({
   },
 });
 
-export interface IProps {
-  onScreenChange: (path: number) => void;
-}
+export interface Props extends UpdatePathProps, WithStyles<StyleRules>, RouteComponentProps { }
 
-export interface TProps extends UpdatePathVariables, IProps { }
-
-export type TChildProps = ChildProps<TProps, AppInfo, UpdatePathVariables>;
-
-export interface Props extends IProps, TChildProps, WithStyles<StyleRules>, RouteComponentProps { }
-
-export default graphql<TProps, AppInfo, UpdatePathVariables, TChildProps>(UPDATE_PATH, {
+export default graphql<UpdatePathProps, AppInfo, UpdatePathVariables, UpdatePathChildProps>(UPDATE_PATH, {
   props: ({ data, mutate, ownProps }) => ({
     ...data,
     ...ownProps,
-    onScreenChange: (path: number) => {
+    onPathChange: (path?: number) => {
       mutate && mutate({
         variables: { path },
       });

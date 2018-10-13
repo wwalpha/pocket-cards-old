@@ -11,7 +11,7 @@
     "schema:app:build": "yarn schema:app:init && yarn schema:app:json && yarn schema:app:generate",
     "schema:local:init": "ts-node graphql/local/schema.ts",
     "schema:local:json": "apollo schema:download graphql/local/schema.json --endpoint graphql/local/schema.gql",
-    "schema:local:generate": "apollo codegen:generate --addTypename --target=typescript --schema=graphql/local/schema.json --queries=./src/queries/local/mutation.ts --outputFlat=./typings/local.d.ts",
+    "schema:local:generate": "apollo codegen:generate --addTypename --target=typescript --schema=graphql/local/schema.json --queries=./src/queries/local/mutation.ts --outputFlat=./typings/local.generate.d.ts",
     "schema:local:build": "yarn schema:local:init && yarn schema:local:json && yarn schema:local:generate",
     "schema:build": "yarn schema:app:build && yarn schema:local:build",
     "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./graphql/schemas/schema.gql",
@@ -66,6 +66,7 @@
     "happypack": "^5.0.0",
     "html-webpack-plugin": "^3.2.0",
     "js-yaml": "^3.12.0",
+    "json-loader": "^0.5.7",
     "merge-graphql-schemas": "^1.5.7",
     "react-hot-loader": "^4.3.6",
     "rimraf": "^2.6.2",
@@ -78,6 +79,7 @@
     "webpack-cli": "^3.1.0",
     "webpack-dev-middleware": "^3.3.0",
     "webpack-hot-middleware": "^2.23.1",
-    "webpack-merge": "^4.1.4"
+    "webpack-merge": "^4.1.4",
+    "yaml-loader": "^0.5.0"
   }
 }

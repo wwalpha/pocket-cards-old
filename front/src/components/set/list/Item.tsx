@@ -1,12 +1,16 @@
 import * as React from 'react';
+import { StyleRules } from '@material-ui/core/styles';
 import {
   StyleRulesCallback, Theme, WithStyles, withStyles,
   Grid, Avatar, ListItem as MListItem, ListItemText, Paper,
 } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
 import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { graphql, ChildProps } from 'react-apollo';
+import { UpdatePathVariables, UpdatePathProps, AppInfo } from 'typings/local';
+import { UPDATE_PATH } from '@gql';
 import { RemoveBtn } from '.';
-import { PATH } from '@const';
+import { PATH, PATH_INDEX } from '@const';
 
 class ListItem extends React.Component<Props, any> {
   state = {
@@ -16,7 +20,7 @@ class ListItem extends React.Component<Props, any> {
   handleTouchMove = () => this.setState({ delOpened: !this.state.delOpened });
 
   render() {
-    const { classes, primaryText, secondaryText, match, setId, userId } = this.props;
+    const { classes, primaryText, secondaryText, setId, userId, onPathChange } = this.props;
 
     return (
       <Grid container>
@@ -30,7 +34,8 @@ class ListItem extends React.Component<Props, any> {
             button
             disableRipple
             classes={{ root: classes.listitem }}
-            component={(props: any) => (<Link to={PATH.SET_MENU} {...props} />)}
+            onClick={() => onPathChange(PATH_INDEX.WORD_ROOT)}
+            component={(props: any) => (<Link to={PATH.WORD.ROOT} {...props} />)}
           >
             <Avatar classes={{ root: classes.avatar }}>
               <FolderIcon />
@@ -71,11 +76,27 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
   },
 });
 
-export default withStyles(styles)(withRouter(ListItem));
-
-export interface Props extends WithStyles<StyleRulesCallback>, RouteComponentProps {
+export interface IProps {
   userId: string;
   setId: string;
   primaryText: string;
   secondaryText?: string;
 }
+
+export interface TProps extends UpdatePathProps, IProps { }
+
+export type TChildProps = ChildProps<TProps, AppInfo, UpdatePathVariables>;
+
+export interface Props extends TProps, WithStyles<StyleRules>, RouteComponentProps { }
+
+export default graphql<TProps, AppInfo, UpdatePathVariables, TChildProps>(UPDATE_PATH, {
+  props: ({ data, mutate, ownProps }) => ({
+    ...data,
+    ...ownProps,
+    onPathChange: (path?: number) => {
+      mutate && mutate({
+        variables: { path },
+      });
+    },
+  }),
+})(withStyles(styles)(withRouter(ListItem)));

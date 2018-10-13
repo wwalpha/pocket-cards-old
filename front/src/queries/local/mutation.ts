@@ -9,7 +9,9 @@ export const UPDATE_USER = gql`
 `;
 
 export const UPDATE_PATH = gql`
-  mutation updatePath($path: Int!) {
-    updatePath(path: $path) @client
+  mutation UpdatePath($path: Int!) {
+    updatePath(path: $path) @client {
+      screen
+    }
   }
 `;

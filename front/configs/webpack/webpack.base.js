@@ -22,14 +22,14 @@ module.exports = {
       '@comp': path.resolve(__dirname, '../../src/components'),
       '@actions': path.resolve(__dirname, '../../src/actions'),
       'typings': path.resolve(__dirname, '../../src/typings'),
-      '@const': path.resolve(__dirname, '../../src/consts/Consts.tsx'),
+      '@const': path.resolve(__dirname, '../../src/consts/index.ts'),
 
     },
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
+        test: /\.(tsx|ts)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -73,6 +73,18 @@ module.exports = {
         test: /\.(graphql|gql)$/,
         exclude: /node_modules/,
         loader: 'graphql-tag/loader',
+      },
+      {
+        test: /\.(yml|yaml)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "json-loader",
+          },
+          {
+            loader: 'yaml-loader',
+          },
+        ],
       },
     ]
   },

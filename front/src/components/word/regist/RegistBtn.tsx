@@ -5,6 +5,7 @@ import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { SetRegist, SetRegistVariables, GetSetList, GetSetListVariables } from 'typings/graphql';
 import { REGIST, GET_LIST } from '@gql';
+import { PATH } from '@const';
 
 class AddBtn extends React.Component<Props> {
 
@@ -20,7 +21,7 @@ class AddBtn extends React.Component<Props> {
             userId,
             name,
           },
-        }).then(() => history.push('/home'))}
+        }).then(() => history.push(PATH.WORD.ROOT))}
       >
         登  録
     </Button>
@@ -34,30 +35,30 @@ const styles = (): StyleRules => ({
 export interface Props extends ChildProps<SetRegistVariables, SetRegist>, WithStyles, RouteComponentProps { }
 
 export default graphql<SetRegistVariables, SetRegist>(REGIST, {
-  options: ({ userId }) => ({
-    refetchQueries: [{
-      query: GET_LIST, variables: { userId },
-    }],
-    update: (proxy, { data }) => {
+  // options: ({ userId }) => ({
+  //   refetchQueries: [{
+  //     query: GET_LIST, variables: { userId },
+  //   }],
+  //   update: (proxy, { data }) => {
 
-      // Query from cache
-      const query = GET_LIST;
-      const list = proxy.readQuery<GetSetList, GetSetListVariables>({
-        query,
-        variables: { userId },
-      });
+  //     // Query from cache
+  //     const query = GET_LIST;
+  //     const list = proxy.readQuery<GetSetList, GetSetListVariables>({
+  //       query,
+  //       variables: { userId },
+  //     });
 
-      // 必須チェック
-      if (!list || !list.sets) return;
-      if (!data) return;
+  //     // 必須チェック
+  //     if (!list || !list.sets) return;
+  //     if (!data) return;
 
-      // merge datas
-      list.sets.push(data.createSet);
+  //     // merge datas
+  //     list.sets.push(data.createSet);
 
-      // write to cache
-      // proxy.writeQuery({ query, data: list });
-    },
-  }),
+  //     // write to cache
+  //     proxy.writeQuery({ query, data: list });
+  //   },
+  // }),
   props: ({ data, mutate, ownProps }) => ({
     ...data,
     mutate,

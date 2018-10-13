@@ -11,7 +11,7 @@ export const USER_INFO = gql`
 export const APP_INFO = gql`
 {
   app @client {
-    screen
+    path
   }
 }
 `;

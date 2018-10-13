@@ -23,20 +23,20 @@ export interface UpdateUserVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: UpdateScreen
+// GraphQL mutation operation: UpdatePath
 // ====================================================
 
-export interface UpdateScreen_updateScreen {
+export interface UpdatePath_updatePath {
   __typename: "App";
   screen: string;
 }
 
-export interface UpdateScreen {
-  updateScreen: UpdateScreen_updateScreen | null;
+export interface UpdatePath {
+  updatePath: UpdatePath_updatePath | null;
 }
 
-export interface UpdateScreenVariables {
-  screen: string;
+export interface UpdatePathVariables {
+  path: string;
 }
 
 /* tslint:disable */

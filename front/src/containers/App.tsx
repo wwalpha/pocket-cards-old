@@ -3,8 +3,7 @@ import { hot } from 'react-hot-loader';
 import { StyleRulesCallback, withStyles, Theme, WithStyles } from '@material-ui/core';
 import { Header, Footer } from '@comp/app';
 import { Route, Switch } from 'react-router';
-import Home from './Home';
-import Set from './Set';
+import { Home, Set, Word } from '.';
 
 class App extends React.Component<Props, {}> {
 
@@ -16,8 +15,9 @@ class App extends React.Component<Props, {}> {
         <Header />
         <div className={classes.main}>
           <Switch>
-            <Route path="/home" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/set" component={Set} />
+            <Route path="/word" component={Word} />
           </Switch>
           <Route children={children} />
         </div>

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
 import { APP_INFO } from '@gql';
 import { Query } from 'react-apollo';
 import { AppInfo } from 'typings/types';
@@ -21,21 +20,33 @@ class Header extends React.Component<Props, {}> {
           if (error) return `Error!: ${error}`;
           if (!data) return null;
 
-          const { app } = data;
-          const info = HEADER[`${app.screen}`];
+          const { app: { screen } } = data;
+          const info = HEADER[`${screen}`];
 
+          console.log(info, screen);
           return (
             <AppBar position="static" classes={{ root: classes.root }}>
               <Toolbar>
-                <IconButton color="inherit" aria-label="Menu">
-                  <MenuIcon />
-                </IconButton>
+                {() => {
+                  if (info.left.length === 0) return null;
+                  return info.left.map(item => (
+                    <IconButton color="inherit">
+                      {item[screen]}
+                    </IconButton>
+                  ));
+                }}
                 <Typography variant="title" color="inherit" className={classes.grow}>
                   {info.title}
                 </Typography>
-                <IconButton color="inherit">
-                  <MenuIcon />
-                </IconButton>
+                {() => {
+                  if (info.right.length === 0) return null;
+                  return info.right.map(item => (
+                    <IconButton color="inherit">
+                      {item[screen]}
+                    </IconButton>
+                  ));
+                }}
+
               </Toolbar>
             </AppBar>
           );

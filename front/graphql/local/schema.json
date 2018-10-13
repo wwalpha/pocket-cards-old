@@ -180,11 +180,11 @@
             "deprecationReason": null
           },
           {
-            "name": "updateScreen",
+            "name": "updatePath",
             "description": null,
             "args": [
               {
-                "name": "screen",
+                "name": "path",
                 "description": null,
                 "type": {
                   "kind": "NON_NULL",

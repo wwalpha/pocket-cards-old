@@ -24,39 +24,39 @@ class Study extends React.Component<Props, State> {
     return (
       <div className={classes.root} style={{ transform: this.state.transform ? 'rotateY(180deg)' : '' }}>
         <Card classes={{ root: classes.card }}>
-          {/* <CardHeader
+          <CardHeader
             title="Shrimp and Chorizo Paella"
             subheader="September 14, 2016"
-          /> */}
+          />
           <CardContent classes={{ root: classes.body }} onClick={this.handleClick}>
             <Typography component="p">
               This impressive paella is a perfect party dish and a fun meal to cook together with your
               guests. Add 1 cup of frozen peas along with the mussels, if you like.
             </Typography>
           </CardContent>
-          {/* <CardActions disableActionSpacing>
+          <CardActions disableActionSpacing>
             <IconButton aria-label="Add to favorites">
               <FavoriteIcon />
             </IconButton>
-          </CardActions> */}
+          </CardActions>
         </Card>
         <Card classes={{
           root: classnames(classes.card, classes.rotate),
         }}>
-          {/* <CardHeader
+          <CardHeader
             title="Shrimp and Chorizo Paella"
             subheader="September 14, 2016"
-          /> */}
+          />
           <CardContent classes={{ root: classes.body }} onClick={this.handleClick}>
             <Typography component="p">
               解釈
             </Typography>
           </CardContent>
-          {/* <CardActions disableActionSpacing>
+          <CardActions disableActionSpacing>
             <IconButton aria-label="Add to favorites">
               <FavoriteIcon />
             </IconButton>
-          </CardActions> */}
+          </CardActions>
         </Card>
       </div>
     );

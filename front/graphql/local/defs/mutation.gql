@@ -5,5 +5,5 @@ input UserInput {
 
 type Mutation {
   updateUser(id: String!, username: String!): User
-  updateScreen(screen: String!): App
+  updatePath(path: Int!): App
 }

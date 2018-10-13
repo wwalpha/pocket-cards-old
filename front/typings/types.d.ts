@@ -1,17 +1,22 @@
+// declare module '*.gql' {
+//   const value: string;
 
-declare module '*.gql' {
-  import { DocumentNode } from 'graphql';
+//   export default value;
+// }
+import { DocumentNode } from 'graphql';
+
+declare module "*.gql" {
 
   const value: DocumentNode;
   export default value;
 }
 
-interface User {
+export interface User {
   id: string;
   username: string;
 }
 
-interface App {
+export interface App {
   screen: string;
 }
 

@@ -1,60 +1,52 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
-import { List, Grid, ListItem, ListItemText, Divider } from '@material-ui/core';
+import { TextField, Grid } from '@material-ui/core';
 import { Query } from 'react-apollo';
 import { USER_INFO } from '@gql';
-import { AddBtn, Header } from '.';
+import { AddBtn } from '.';
 
 class Regist extends React.Component<Props, State> {
-  state = {
-    words: [],
+  state: State = {
+    name,
   };
+
+  /** 入力変更 */
+  handleChange = (name: string) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
+    this.setState({
+      [name]: event.target.value,
+    })
 
   render() {
     const { classes } = this.props;
+    const { name = '' } = this.state;
 
     return (
-      <Grid container direction="column">
-        <Grid item>
-          <List component="nav" >
-            <ListItem button classes={{ root: classes.listItem }}>
-              <ListItemText primary="Inbox" />
-            </ListItem>
-            <Divider />
-            <ListItem button divider classes={{ root: classes.listItem }}>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-            <ListItem button classes={{ root: classes.listItem }}>
-              <ListItemText primary="Trash" />
-            </ListItem>
-            <Divider light />
-            <ListItem button classes={{ root: classes.listItem }}>
-              <ListItemText primary="Spam" />
-            </ListItem>
-          </List>
-        </Grid>
-        <Grid container justify="flex-end" classes={{ container: classes.command }}>
-          <Query query={USER_INFO}>
-            {({ data: { user } }) => {
-              console.log(user);
-              return (
-                <AddBtn name={name} userId={user && user.id} />
-              );
-            }}
-          </Query>
-        </Grid>
+      <Grid container>
+        <TextField
+          id="outlined-name"
+          label="セット名称"
+          className={classes.textField}
+          value={this.state['name']}
+          onChange={this.handleChange('name')}
+          margin="normal"
+          variant="outlined"
+        />
+        <Query query={USER_INFO}>
+          {({ data: { user } }) => {
+            return (
+              <AddBtn name={name} userId={user && user.id} />
+            );
+          }}
+        </Query>
       </Grid>
     );
   }
 }
 
 const styles = (theme: Theme): StyleRules => ({
-  listItem: {
-    backgroundColor: theme.palette.grey['200'],
-    width: 'inherit',
-  },
-  command: {
-    padding: `0px ${theme.spacing.unit * 2}px`,
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
   },
 });
 

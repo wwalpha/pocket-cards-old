@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import {
-  Home as HomeIcon, Person as PersonIcon,
+  Home as HomeIcon, Person as PersonIcon, WebAsset as WebAssetIcon,
 } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { graphql, ChildProps } from 'react-apollo';
+import { UPDATE_PATH } from '@gql';
+import { AppInfo } from 'typings/types';
+import { UpdatePathVariables, UpdatePath, UpdatePath_updatePath } from 'typings/local';
+import { PATH } from '@const';
 
 class Footer extends React.Component<Props, {}> {
   state = {
@@ -14,10 +19,16 @@ class Footer extends React.Component<Props, {}> {
 
   handleChange = (e: React.ChangeEvent<{}>, value: number) => {
     this.setState({ value });
+
+    // const { mutate } = this.props;
+    // if (value === 1) {
+
+    // }
+    console.log(this.props);
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, onScreenChange } = this.props;
 
     return (
       <BottomNavigation
@@ -29,25 +40,24 @@ class Footer extends React.Component<Props, {}> {
       >
         <BottomNavigationAction
           icon={<HomeIcon />}
-          classes={{
-            root: classes.actionSelected,
-          }}
+          classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          component={(props: any) => (
-            <Link to="/home" {...props} />
-          )}
+          component={(props: any) => <Link to={PATH.HOME.ROOT} {...props} />}
+        />
+        <BottomNavigationAction
+          icon={<WebAssetIcon />}
+          classes={{ root: classes.actionSelected }}
+          disableRipple
+          disableTouchRipple
+          component={(props: any) => <Link to={PATH.SET.ROOT} {...props} />}
         />
         <BottomNavigationAction
           icon={<PersonIcon />}
-          classes={{
-            root: classes.actionSelected,
-          }}
+          classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          component={(props: any) => (
-            <Link to="/user" {...props} />
-          )}
+          component={(props: any) => <Link to="/user" {...props} />}
         />
       </BottomNavigation>
     );
@@ -67,8 +77,24 @@ const styles = (theme: Theme): StyleRules => ({
   },
 });
 
-export default withStyles(styles)(Footer);
-
-export interface Props extends WithStyles<StyleRules> {
-
+export interface IProps {
+  onScreenChange: (path: number) => void;
 }
+
+export interface TProps extends UpdatePathVariables, IProps { }
+
+export type TChildProps = ChildProps<TProps, AppInfo, UpdatePathVariables>;
+
+export interface Props extends IProps, TChildProps, WithStyles<StyleRules>, RouteComponentProps { }
+
+export default graphql<TProps, AppInfo, UpdatePathVariables, TChildProps>(UPDATE_PATH, {
+  props: ({ data, mutate, ownProps }) => ({
+    ...data,
+    ...ownProps,
+    onScreenChange: (path: number) => {
+      mutate && mutate({
+        variables: { path },
+      });
+    },
+  }),
+})(withStyles(styles)(withRouter(Footer)));

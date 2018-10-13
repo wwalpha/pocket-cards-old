@@ -1,35 +1,36 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
-import { Grid } from '@material-ui/core';
-import { Switch, Route, withRouter, RouteComponentProps } from 'react-router-dom';
-import { Regist, History, Menu, Study } from '@comp/set';
+import { Route, Switch, RouteComponentProps, withRouter } from 'react-router';
+import { List, Regist } from '@comp/set';
 
-class Main extends React.Component<Props, {}> {
+class Set extends React.Component<Props, {}> {
 
   render() {
-    const { classes, match, children } = this.props;
+    const { match, children } = this.props;
 
     return (
-      <div className={classes.container}>
+      <React.Fragment>
         <Switch>
-          <Route exact path={`${match.path}`} component={Menu} />
-          <Route path={`${match.path}/newword`} component={Regist} />
-          <Route path={`${match.path}/study`} component={Study} />
-          <Route path={`${match.path}/history`} component={History} />
+          <Route exact path={`${match.path}`} component={List} />
+          <Route path={`${match.path}/regist`} component={Regist} />
         </Switch>
         <Route children={children} />
-      </div>
+      </React.Fragment>
     );
   }
 }
 
 const styles = (): StyleRules => ({
   container: {
-    height: '100%',
+    height: 'inherit',
+  },
+  item: {
+    width: '100%',
+    padding: '0px 16px',
   },
 });
 
-export default withStyles(styles)(withRouter(Main));
+export default withRouter(withStyles(styles)(Set));
 
 export interface Props extends WithStyles<StyleRules>, RouteComponentProps {
 }

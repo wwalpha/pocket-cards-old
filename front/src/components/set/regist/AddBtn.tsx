@@ -11,6 +11,7 @@ class AddBtn extends React.Component<Props> {
   render() {
     const { mutate, name, userId, history } = this.props;
 
+    console.log(this.props);
     return (
       <Button
         variant="contained"
@@ -22,7 +23,7 @@ class AddBtn extends React.Component<Props> {
           },
         }).then(() => history.push('/home'))}
       >
-        登  録
+        登録
     </Button>
     );
   }

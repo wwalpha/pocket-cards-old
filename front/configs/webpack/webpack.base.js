@@ -22,7 +22,7 @@ module.exports = {
       '@comp': path.resolve(__dirname, '../../src/components'),
       '@actions': path.resolve(__dirname, '../../src/actions'),
       'typings': path.resolve(__dirname, '../../src/typings'),
-      '@const': path.resolve(__dirname, '../../src/consts/Consts.ts'),
+      '@const': path.resolve(__dirname, '../../src/consts/Consts.tsx'),
 
     },
   },

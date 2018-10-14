@@ -36,6 +36,7 @@
     "inlineSources": false,
     "experimentalDecorators": true,
     "strictPropertyInitialization": false,
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@src/*": [

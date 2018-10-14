@@ -10,7 +10,7 @@ type Query {
 
 type Mutation {
   updateUser(id: String!, username: String!): User
-  updatePath(path: Int!): App
+  updatePath(path: Int): App
 }
 
 input UserInput {

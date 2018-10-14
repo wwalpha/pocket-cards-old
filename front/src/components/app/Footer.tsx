@@ -5,11 +5,9 @@ import {
   Home as HomeIcon, Person as PersonIcon, WebAsset as WebAssetIcon,
 } from '@material-ui/icons';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
-import { graphql } from 'react-apollo';
-import { UPDATE_PATH } from '@gql';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { PATH, PATH_INDEX } from '@const';
-import { UpdatePathProps, AppInfo, UpdatePathVariables, UpdatePathChildProps } from 'typings/local';
+import UpdatePath from '@comp/hoc/UpdatePath';
 
 class Footer extends React.Component<Props, {}> {
   state = {
@@ -19,7 +17,7 @@ class Footer extends React.Component<Props, {}> {
   handleChange = (e: React.ChangeEvent<{}>, value: number) => this.setState({ value });
 
   render() {
-    const { classes, onPathChange } = this.props;
+    const { classes } = this.props;
 
     return (
       <BottomNavigation
@@ -34,24 +32,22 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          onClick={() => onPathChange(PATH_INDEX.HOME_ROOT)}
-          component={(props: any) => <Link to={PATH.HOME.ROOT} {...props} />}
+          component={() => <UpdatePath to={PATH.HOME.ROOT} path={PATH_INDEX.HOME_ROOT} />}
+
         />
         <BottomNavigationAction
           icon={<WebAssetIcon />}
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          onClick={() => onPathChange(PATH_INDEX.SET_ROOT)}
-          component={(props: any) => <Link to={PATH.SET.ROOT} {...props} />}
+          component={() => <UpdatePath to={PATH.SET.ROOT} path={PATH_INDEX.SET_ROOT} />}
         />
         <BottomNavigationAction
           icon={<PersonIcon />}
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          onClick={() => onPathChange(PATH_INDEX.USER_ROOT)}
-          component={(props: any) => <Link to={PATH.USER.ROOT} {...props} />}
+          component={() => <UpdatePath to={PATH.USER.ROOT} path={PATH_INDEX.USER_ROOT} />}
         />
       </BottomNavigation>
     );
@@ -71,16 +67,6 @@ const styles = (theme: Theme): StyleRules => ({
   },
 });
 
-export interface Props extends UpdatePathProps, WithStyles<StyleRules>, RouteComponentProps { }
+export interface Props extends WithStyles<StyleRules>, RouteComponentProps { }
 
-export default graphql<UpdatePathProps, AppInfo, UpdatePathVariables, UpdatePathChildProps>(UPDATE_PATH, {
-  props: ({ data, mutate, ownProps }) => ({
-    ...data,
-    ...ownProps,
-    onPathChange: (path?: number) => {
-      mutate && mutate({
-        variables: { path },
-      });
-    },
-  }),
-})(withStyles(styles)(withRouter(Footer)));
+export default withStyles(styles)(withRouter(Footer));

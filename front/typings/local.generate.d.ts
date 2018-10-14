@@ -36,7 +36,7 @@ export interface UpdatePath {
 }
 
 export interface UpdatePathVariables {
-  path: number;
+  path?: number;
 }
 
 /* tslint:disable */

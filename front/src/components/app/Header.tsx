@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
-import { APP_INFO, UPDATE_PATH } from '@gql';
-import { Query, graphql } from 'react-apollo';
+import { APP_INFO } from '@gql';
+import { Query } from 'react-apollo';
 import { HEADER } from '@const';
-import { Link } from 'react-router-dom';
-import { AppInfo, UpdatePathChildProps, UpdatePathProps, UpdatePathVariables } from 'typings/local';
+import { AppInfo } from 'typings/local';
+import UpdatePath from '@comp/hoc/UpdatePath';
 
 class Header extends React.Component<Props> {
 
   render() {
-    const { classes, onPathChange } = this.props;
+    const { classes } = this.props;
 
     return (
       <AppQuery
@@ -34,12 +34,8 @@ class Header extends React.Component<Props> {
                     <IconButton
                       key={idx}
                       color="inherit"
-                      component={(props: any) => (
-                        <Link
-                          to={item.path}
-                          {...props}
-                          onClick={() => onPathChange(item.index)}
-                        />
+                      component={() => (
+                        <UpdatePath to={item.path} path={item.index} />
                       )}
                     >
                       <item.icon />
@@ -56,12 +52,8 @@ class Header extends React.Component<Props> {
                     <IconButton
                       key={idx}
                       color="inherit"
-                      component={(props: any) => (
-                        <Link
-                          to={item.path}
-                          {...props}
-                          onClick={() => onPathChange(item.index)}
-                        />
+                      component={() => (
+                        <UpdatePath to={item.path} path={item.index} />
                       )}
                     >
                       <item.icon />
@@ -92,16 +84,6 @@ const styles = (): StyleRules => ({
 
 class AppQuery extends Query<AppInfo, any> { }
 
-export interface Props extends UpdatePathChildProps, WithStyles<StyleRules> { }
+export interface Props extends WithStyles<StyleRules> { }
 
-export default graphql<UpdatePathProps, AppInfo, UpdatePathVariables, UpdatePathChildProps>(UPDATE_PATH, {
-  props: ({ data, mutate, ownProps }) => ({
-    ...data,
-    ...ownProps,
-    onPathChange: (path?: number) => {
-      mutate && mutate({
-        variables: { path },
-      });
-    },
-  }),
-})(withStyles(styles)(Header));
+export default withStyles(styles)(Header);

@@ -7,9 +7,6 @@
 			"path": "front"
 		},
 		{
-			"path": "lambda"
-		},
-		{
 			"path": "mobile"
 		},
 		{
@@ -17,7 +14,7 @@
 			"name": "cognito-cli"
 		},
 		{
-			"path": "graphql"
+			"path": "backend"
 		}
 	],
 	"settings": {

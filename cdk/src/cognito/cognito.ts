@@ -16,7 +16,7 @@ export default class CognitoStack extends Stack {
 
     // Cognito Provider
     const provider: cloudformation.IdentityPoolResource.CognitoIdentityProviderProperty = {
-      clientId: userPoolClient.id,
+      clientId: userPoolClient.userPoolClientId,
       providerName: userPool.userPoolProviderName,
     };
 

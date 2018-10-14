@@ -1,6 +1,6 @@
-import { Construct, ServicePrincipal } from "@aws-cdk/cdk";
+import { Construct } from "@aws-cdk/cdk";
 import { AwsIntegration, AuthorizationType, MethodOptions } from "@aws-cdk/aws-apigateway";
-import { Role } from "@aws-cdk/aws-iam";
+import { Role, ServicePrincipal } from "@aws-cdk/aws-iam";
 import { HttpMethod, bucketName, PROJECT_NAME } from "../utils/consts";
 import { s3 } from "../utils/policy";
 import { RestApi, ApiGatewayInput, ApiGatewayOutput } from ".";

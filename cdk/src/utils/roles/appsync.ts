@@ -1,5 +1,5 @@
-import { Construct, ServicePrincipal, PolicyStatement, PolicyStatementEffect, AwsRegion, AwsAccountId } from '@aws-cdk/cdk';
-import { Role, Policy } from '@aws-cdk/aws-iam';
+import { Construct, AwsRegion, AwsAccountId } from '@aws-cdk/cdk';
+import { Role, Policy, ServicePrincipal, PolicyStatement, PolicyStatementEffect } from '@aws-cdk/aws-iam';
 import { RoleProps } from '.';
 import { PROJECT_NAME } from '../consts';
 

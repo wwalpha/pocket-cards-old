@@ -1,8 +1,8 @@
-import { Construct, AwsRegion, ServicePrincipal } from '@aws-cdk/cdk';
+import { Construct, AwsRegion } from '@aws-cdk/cdk';
 import { cloudformation } from '@aws-cdk/aws-appsync';
 import { PROJECT_NAME } from '../utils/consts';
 import { AppSyncInput } from '.';
-import { Role } from '@aws-cdk/aws-iam';
+import { Role, ServicePrincipal } from '@aws-cdk/aws-iam';
 import { cloudwatch } from '../utils/policy';
 
 export default (parent: Construct, props: AppSyncInput) => {

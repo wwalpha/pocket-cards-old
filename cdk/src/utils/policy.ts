@@ -1,5 +1,5 @@
-import { PolicyStatement, PolicyStatementEffect, AwsRegion, AwsAccountId, Construct } from '@aws-cdk/cdk';
-import { Policy } from '@aws-cdk/aws-iam';
+import { AwsRegion, AwsAccountId, Construct } from '@aws-cdk/cdk';
+import { Policy, PolicyStatement, PolicyStatementEffect } from '@aws-cdk/aws-iam';
 
 export const cloudwatch = (parent: Construct, roleName: string) => new Policy(parent, `${roleName}-Basic`, {
   statements: [

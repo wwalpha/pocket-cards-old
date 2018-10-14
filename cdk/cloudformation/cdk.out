@@ -1,0 +1,4144 @@
+{
+  "stacks": [
+    {
+      "name": "dev-PocketCards",
+      "environment": {
+        "name": "unknown-account/unknown-region",
+        "account": "unknown-account",
+        "region": "unknown-region"
+      },
+      "template": {
+        "Metadata": {
+          "PseudoParameters": [
+            {
+              "Ref": "AWS::AccountId"
+            },
+            {
+              "Ref": "AWS::Region"
+            },
+            {
+              "Ref": "AWS::StackId"
+            },
+            {
+              "Ref": "AWS::StackName"
+            }
+          ]
+        }
+      },
+      "metadata": {}
+    },
+    {
+      "name": "dev-PocketCards-S3",
+      "environment": {
+        "name": "unknown-account/unknown-region",
+        "account": "unknown-account",
+        "region": "unknown-region"
+      },
+      "template": {
+        "Resources": {
+          "BucketResourceF673689C": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "BucketEncryption": {
+                "ServerSideEncryptionConfiguration": [
+                  {
+                    "ServerSideEncryptionByDefault": {
+                      "SSEAlgorithm": "AES256"
+                    }
+                  }
+                ]
+              },
+              "BucketName": "dev-pocketcards",
+              "VersioningConfiguration": {
+                "Status": "Enabled"
+              }
+            }
+          }
+        },
+        "Outputs": {
+          "BucketResourceBucketArn2A4661AF": {
+            "Value": {
+              "Fn::GetAtt": [
+                "BucketResourceF673689C",
+                "Arn"
+              ]
+            },
+            "Export": {
+              "Name": "dev-PocketCards-S3:BucketResourceBucketArn2A4661AF"
+            }
+          },
+          "BucketResourceBucketName6152AE21": {
+            "Value": {
+              "Ref": "BucketResourceF673689C"
+            },
+            "Export": {
+              "Name": "dev-PocketCards-S3:BucketResourceBucketName6152AE21"
+            }
+          },
+          "BucketResourceDomainName555482B6": {
+            "Value": {
+              "Fn::GetAtt": [
+                "BucketResourceF673689C",
+                "DomainName"
+              ]
+            },
+            "Export": {
+              "Name": "dev-PocketCards-S3:BucketResourceDomainName555482B6"
+            }
+          },
+          "BucketName": {
+            "Value": {
+              "Ref": "BucketResourceF673689C"
+            },
+            "Export": {
+              "Name": "undefined-PocketCards-BucketName"
+            }
+          },
+          "BucketArn": {
+            "Value": {
+              "Fn::GetAtt": [
+                "BucketResourceF673689C",
+                "Arn"
+              ]
+            },
+            "Export": {
+              "Name": "undefined-PocketCards-BucketArn"
+            }
+          },
+          "DomainName": {
+            "Value": {
+              "Fn::GetAtt": [
+                "BucketResourceF673689C",
+                "DomainName"
+              ]
+            },
+            "Export": {
+              "Name": "undefined-PocketCards-DomainName"
+            }
+          }
+        }
+      },
+      "metadata": {
+        "/dev-PocketCards-S3/BucketResource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketResourceF673689C",
+            "trace": [
+              "new Bucket (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:253:26)",
+              "Object.exports.default [as NewBucket] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\s3\\bucket.js:5:38)",
+              "new S3Stack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\s3\\s3.js:9:27)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:19:20)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-S3/BucketResource/BucketArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketResourceBucketArn2A4661AF",
+            "trace": [
+              "Bucket.export (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:54:24)",
+              "new S3Stack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\s3\\s3.js:11:34)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:19:20)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-S3/BucketResource/BucketName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketResourceBucketName6152AE21",
+            "trace": [
+              "Bucket.export (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:55:25)",
+              "new S3Stack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\s3\\s3.js:11:34)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:19:20)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-S3/BucketResource/DomainName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketResourceDomainName555482B6",
+            "trace": [
+              "Bucket.export (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-s3\\lib\\bucket.js:56:31)",
+              "new S3Stack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\s3\\s3.js:11:34)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:19:20)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-S3/BucketName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketName",
+            "trace": [
+              "new S3Stack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\s3\\s3.js:14:9)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:19:20)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-S3/BucketArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BucketArn",
+            "trace": [
+              "new S3Stack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\s3\\s3.js:18:9)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:19:20)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-S3/DomainName": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "DomainName",
+            "trace": [
+              "new S3Stack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\s3\\s3.js:22:9)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:19:20)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "dev-PocketCards-Dynamodb",
+      "environment": {
+        "name": "unknown-account/unknown-region",
+        "account": "unknown-account",
+        "region": "unknown-region"
+      },
+      "template": {
+        "Resources": {
+          "UserResource": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "KeySchema": [
+                {
+                  "AttributeName": "id",
+                  "KeyType": "HASH"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              },
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "id",
+                  "AttributeType": "S"
+                }
+              ],
+              "TableName": "dev-PocketCards-User"
+            }
+          },
+          "SetResource": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "KeySchema": [
+                {
+                  "AttributeName": "userId",
+                  "KeyType": "HASH"
+                },
+                {
+                  "AttributeName": "setId",
+                  "KeyType": "RANGE"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              },
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "userId",
+                  "AttributeType": "S"
+                },
+                {
+                  "AttributeName": "setId",
+                  "AttributeType": "S"
+                }
+              ],
+              "TableName": "dev-PocketCards-Set"
+            }
+          },
+          "WordResource": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+              "KeySchema": [
+                {
+                  "AttributeName": "setId",
+                  "KeyType": "HASH"
+                },
+                {
+                  "AttributeName": "word",
+                  "KeyType": "RANGE"
+                }
+              ],
+              "ProvisionedThroughput": {
+                "ReadCapacityUnits": 1,
+                "WriteCapacityUnits": 1
+              },
+              "AttributeDefinitions": [
+                {
+                  "AttributeName": "setId",
+                  "AttributeType": "S"
+                },
+                {
+                  "AttributeName": "word",
+                  "AttributeType": "S"
+                },
+                {
+                  "AttributeName": "nextDate",
+                  "AttributeType": "S"
+                }
+              ],
+              "LocalSecondaryIndexes": [
+                {
+                  "IndexName": "lsiIndex1",
+                  "KeySchema": [
+                    {
+                      "AttributeName": "setId",
+                      "KeyType": "HASH"
+                    },
+                    {
+                      "AttributeName": "nextDate",
+                      "KeyType": "RANGE"
+                    }
+                  ],
+                  "Projection": {
+                    "ProjectionType": "ALL"
+                  }
+                }
+              ],
+              "TableName": "dev-PocketCards-Word"
+            }
+          }
+        }
+      },
+      "metadata": {
+        "/dev-PocketCards-Dynamodb/UserResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserResource",
+            "trace": [
+              "Object.exports.default [as Table] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\dynamodb\\table.js:5:38)",
+              "DynamodbStack.Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\dynamodb\\dynamodb.js:14:16)",
+              "Array.forEach (<anonymous>)",
+              "new DynamodbStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\dynamodb\\dynamodb.js:12:30)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:21:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Dynamodb/SetResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "SetResource",
+            "trace": [
+              "Object.exports.default [as Table] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\dynamodb\\table.js:5:38)",
+              "DynamodbStack.Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\dynamodb\\dynamodb.js:14:16)",
+              "Array.forEach (<anonymous>)",
+              "new DynamodbStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\dynamodb\\dynamodb.js:12:30)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:21:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Dynamodb/WordResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordResource",
+            "trace": [
+              "Object.exports.default [as Table] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\dynamodb\\table.js:5:38)",
+              "DynamodbStack.Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\dynamodb\\dynamodb.js:14:16)",
+              "Array.forEach (<anonymous>)",
+              "new DynamodbStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\dynamodb\\dynamodb.js:12:30)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:21:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "dev-PocketCards-Cognito",
+      "environment": {
+        "name": "unknown-account/unknown-region",
+        "account": "unknown-account",
+        "region": "unknown-region"
+      },
+      "template": {
+        "Resources": {
+          "UserPoolResource": {
+            "Type": "AWS::Cognito::UserPool",
+            "Properties": {
+              "AdminCreateUserConfig": {
+                "AllowAdminCreateUserOnly": true,
+                "UnusedAccountValidityDays": 365
+              },
+              "AutoVerifiedAttributes": [
+                "email"
+              ],
+              "Policies": {
+                "PasswordPolicy": {
+                  "MinimumLength": 8,
+                  "RequireLowercase": true,
+                  "RequireNumbers": true,
+                  "RequireSymbols": false,
+                  "RequireUppercase": false
+                }
+              },
+              "Schema": [
+                {
+                  "AttributeDataType": "String",
+                  "DeveloperOnlyAttribute": false,
+                  "Mutable": true,
+                  "Name": "email",
+                  "Required": true,
+                  "StringAttributeConstraints": {
+                    "MaxLength": "200",
+                    "MinLength": "0"
+                  }
+                }
+              ],
+              "UserPoolName": "dev-PocketCards"
+            }
+          },
+          "UserPoolClientResource": {
+            "Type": "AWS::Cognito::UserPoolClient",
+            "Properties": {
+              "UserPoolId": {
+                "Ref": "UserPoolResource"
+              },
+              "ClientName": "mobile-client",
+              "ExplicitAuthFlows": [
+                "ADMIN_NO_SRP_AUTH"
+              ],
+              "GenerateSecret": false,
+              "RefreshTokenValidity": 6
+            }
+          },
+          "IdentityPoolResource": {
+            "Type": "AWS::Cognito::IdentityPool",
+            "Properties": {
+              "AllowUnauthenticatedIdentities": true,
+              "CognitoIdentityProviders": [
+                {
+                  "ClientId": "UserPoolClientResource",
+                  "ProviderName": {
+                    "Fn::GetAtt": [
+                      "UserPoolResource",
+                      "ProviderName"
+                    ]
+                  }
+                }
+              ],
+              "IdentityPoolName": "dev_PocketCards"
+            }
+          },
+          "AuthenticatedRole86104F1A": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRoleWithWebIdentity",
+                    "Condition": {
+                      "StringEquals": {
+                        "cognito-identity.amazonaws.com:aud": {
+                          "Ref": "IdentityPoolResource"
+                        }
+                      },
+                      "ForAnyValue:StringLike": {
+                        "cognito-identity.amazonaws.com:amr": "authenticated"
+                      }
+                    },
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Federated": "cognito-identity.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-Cognito-AuthenticatedRole"
+            }
+          },
+          "AuthenticatedPolicyE0CF12E2": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "mobileanalytics:PutEvents",
+                      "cognito-sync:*",
+                      "cognito-identity:*",
+                      "execute-api:Invoke"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "dev-PocketCards-AuthenticatedPolicy",
+              "Roles": [
+                {
+                  "Ref": "AuthenticatedRole86104F1A"
+                }
+              ]
+            }
+          },
+          "UnauthenticatedRole01CC4258": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRoleWithWebIdentity",
+                    "Condition": {
+                      "StringEquals": {
+                        "cognito-identity.amazonaws.com:aud": {
+                          "Ref": "IdentityPoolResource"
+                        }
+                      },
+                      "ForAnyValue:StringLike": {
+                        "cognito-identity.amazonaws.com:amr": "unauthenticated"
+                      }
+                    },
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Federated": "cognito-identity.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-Cognito-UnauthenticatedRole"
+            }
+          },
+          "UnauthenticatedPolicy07F4FBE4": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "mobileanalytics:PutEvents",
+                      "cognito-sync:*"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "*"
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "dev-PocketCards-UnauthenticatedPolicy",
+              "Roles": [
+                {
+                  "Ref": "UnauthenticatedRole01CC4258"
+                }
+              ]
+            }
+          },
+          "IdentityPoolRoleAttachmentResource": {
+            "Type": "AWS::Cognito::IdentityPoolRoleAttachment",
+            "Properties": {
+              "IdentityPoolId": {
+                "Ref": "IdentityPoolResource"
+              },
+              "Roles": {
+                "unauthenticated": {
+                  "Fn::GetAtt": [
+                    "UnauthenticatedRole01CC4258",
+                    "Arn"
+                  ]
+                },
+                "authenticated": {
+                  "Fn::GetAtt": [
+                    "AuthenticatedRole86104F1A",
+                    "Arn"
+                  ]
+                }
+              }
+            }
+          },
+          "AppsyncLogRole2F590BC3": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "appsync.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-Appsync-LogRole"
+            }
+          },
+          "devPocketCardsAppsyncLogBasicC3F7F00C": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "logs:CreateLogGroup",
+                      "logs:CreateLogStream",
+                      "logs:PutLogEvents"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:logs:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":*:*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "devPocketCardsAppsyncLogBasicC3F7F00C",
+              "Roles": [
+                {
+                  "Ref": "AppsyncLogRole2F590BC3"
+                }
+              ]
+            }
+          },
+          "GraphQLApi": {
+            "Type": "AWS::AppSync::GraphQLApi",
+            "Properties": {
+              "AuthenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "Name": "dev-PocketCards",
+              "LogConfig": {
+                "CloudWatchLogsRoleArn": {
+                  "Fn::GetAtt": [
+                    "AppsyncLogRole2F590BC3",
+                    "Arn"
+                  ]
+                },
+                "FieldLogLevel": "ALL"
+              },
+              "UserPoolConfig": {
+                "AwsRegion": {
+                  "Ref": "AWS::Region"
+                },
+                "DefaultAction": "ALLOW",
+                "UserPoolId": {
+                  "Ref": "UserPoolResource"
+                }
+              }
+            }
+          },
+          "GraphQLSchemaResource": {
+            "Type": "AWS::AppSync::GraphQLSchema",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "Definition": "schema {\n  query: Query\n  mutation: Mutation\n}\n\ntype Query {\n  # セットリスト一覧\n  sets(userId: String!): [Set]\n  # 単語一覧\n  words(setId: String!): [Word]\n  # 学習セット\n  studySet(userId: String!, setId: String!): [Word]\n  # 学習履歴\n  studyHistory(userId: String!, setId: String!): [Word]\n  # テキストから音声に変更する\n  polly(text: String!): Speech\n}\n\ntype Mutation {\n  # セット作成\n  createSet(userId: String!, name: String!): Set\n  # セット削除\n  deleteSet(userId: String!, setId: String!): Set\n  # 画像から単語読み取り\n  wordWithImage(bucketKey: String!): [String]\n  # 単語新規登録\n  addNewWords(setId: String!, words: [String]!): [Word]\n}\n\ntype Set {\n  # userId\n  userId: ID!\n  # setId\n  setId: ID!\n  # セット名\n  name: String\n}\n\ntype Speech {\n  # Content-Type\n  contentType: String!\n  # 音声URL\n  url: String!\n}\n\ntype User {\n  # userId\n  userId: ID!\n  # user名\n  username: String\n}\n\ntype Word {\n  # セットID\n  setId: ID!\n  # 単語\n  word: String\n  # 発音\n  pronounce: String\n  # 語彙\n  vocabulary: String\n  # 学習時間\n  studyDate: String\n  # 次回学習時間\n  nextDate: String\n  # 学習回数\n  times: Int\n}\n"
+            }
+          },
+          "dbSetResource8C875542": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "appsync.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-AppSync-db-SetRole"
+            }
+          },
+          "dbSetpolicy04FE745E": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "dynamodb:DeleteItem",
+                      "dynamodb:GetItem",
+                      "dynamodb:PutItem",
+                      "dynamodb:Scan",
+                      "dynamodb:Query",
+                      "dynamodb:UpdateItem"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:dynamodb:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":*:table/dev-PocketCards-Set"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:dynamodb:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":*:table/dev-PocketCards-Set/*"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "dbSetpolicy04FE745E",
+              "Roles": [
+                {
+                  "Ref": "dbSetResource8C875542"
+                }
+              ]
+            }
+          },
+          "Set": {
+            "Type": "AWS::AppSync::DataSource",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "Name": "dynamodb_Set",
+              "Type": "AMAZON_DYNAMODB",
+              "DynamoDBConfig": {
+                "AwsRegion": {
+                  "Ref": "AWS::Region"
+                },
+                "TableName": "dev-PocketCards-Set"
+              },
+              "ServiceRoleArn": {
+                "Fn::GetAtt": [
+                  "dbSetResource8C875542",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "dbWordResourceB74540FC": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "appsync.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-AppSync-db-WordRole"
+            }
+          },
+          "dbWordpolicy1D492564": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "dynamodb:DeleteItem",
+                      "dynamodb:GetItem",
+                      "dynamodb:PutItem",
+                      "dynamodb:Scan",
+                      "dynamodb:Query",
+                      "dynamodb:UpdateItem"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:dynamodb:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":*:table/dev-PocketCards-Word"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:dynamodb:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":*:table/dev-PocketCards-Word/*"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "dbWordpolicy1D492564",
+              "Roles": [
+                {
+                  "Ref": "dbWordResourceB74540FC"
+                }
+              ]
+            }
+          },
+          "Word": {
+            "Type": "AWS::AppSync::DataSource",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "Name": "dynamodb_Word",
+              "Type": "AMAZON_DYNAMODB",
+              "DynamoDBConfig": {
+                "AwsRegion": {
+                  "Ref": "AWS::Region"
+                },
+                "TableName": "dev-PocketCards-Word"
+              },
+              "ServiceRoleArn": {
+                "Fn::GetAtt": [
+                  "dbWordResourceB74540FC",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "dbUserResource52673C72": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "appsync.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-AppSync-db-UserRole"
+            }
+          },
+          "dbUserpolicyE6043560": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "dynamodb:DeleteItem",
+                      "dynamodb:GetItem",
+                      "dynamodb:PutItem",
+                      "dynamodb:Scan",
+                      "dynamodb:Query",
+                      "dynamodb:UpdateItem"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:dynamodb:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":*:table/dev-PocketCards-User"
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:dynamodb:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":*:table/dev-PocketCards-User/*"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "dbUserpolicyE6043560",
+              "Roles": [
+                {
+                  "Ref": "dbUserResource52673C72"
+                }
+              ]
+            }
+          },
+          "User": {
+            "Type": "AWS::AppSync::DataSource",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "Name": "dynamodb_User",
+              "Type": "AMAZON_DYNAMODB",
+              "DynamoDBConfig": {
+                "AwsRegion": {
+                  "Ref": "AWS::Region"
+                },
+                "TableName": "dev-PocketCards-User"
+              },
+              "ServiceRoleArn": {
+                "Fn::GetAtt": [
+                  "dbUserResource52673C72",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "ImageToWordResource33EB2F97": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "appsync.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-AppSync-ImageToWordRole"
+            }
+          },
+          "ImageToWordPolicyE83CFA08": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "lambda:invokeFunction",
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:lambda:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":",
+                          {
+                            "Ref": "AWS::AccountId"
+                          },
+                          ":function:dev-PocketCards*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "ImageToWordPolicyE83CFA08",
+              "Roles": [
+                {
+                  "Ref": "ImageToWordResource33EB2F97"
+                }
+              ]
+            }
+          },
+          "imagetowordRoleE73F354D": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-Lambda-image-to-wordRole"
+            }
+          },
+          "imagetowordRoleBasic0D174BB2": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "logs:CreateLogGroup",
+                      "logs:CreateLogStream",
+                      "logs:PutLogEvents"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:logs:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":*:*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "imagetowordRoleBasic0D174BB2",
+              "Roles": [
+                {
+                  "Ref": "imagetowordRoleE73F354D"
+                }
+              ]
+            }
+          },
+          "imagetowordRoleS36F4C6743": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "s3:HeadBucket",
+                      "s3:ListBucket"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "arn:aws:s3:::*"
+                  },
+                  {
+                    "Action": [
+                      "s3:PutObject",
+                      "s3:GetObject",
+                      "s3:DeleteObject",
+                      "s3:ReplicateObject",
+                      "s3:RestoreObject"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": [
+                      "arn:aws:s3:::dev-pocketcards",
+                      "arn:aws:s3:::dev-pocketcards/*"
+                    ]
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "imagetowordRoleS36F4C6743",
+              "Roles": [
+                {
+                  "Ref": "imagetowordRoleE73F354D"
+                }
+              ]
+            }
+          },
+          "imagetowordBBD464ED": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "deployment-projects",
+                "S3Key": "PocketCards/dummy.zip"
+              },
+              "Handler": "appsync/image-to-word/app.handler",
+              "Role": {
+                "Fn::GetAtt": [
+                  "imagetowordRoleE73F354D",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs8.10",
+              "Environment": {
+                "Variables": {
+                  "S3_BUCKET": "dev-pocketcards"
+                }
+              },
+              "FunctionName": "dev-PocketCards-image-to-word",
+              "MemorySize": 256,
+              "Timeout": 10
+            },
+            "DependsOn": [
+              "imagetowordRoleE73F354D"
+            ]
+          },
+          "imagetowordimageToWordInvokeDD38AE55": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "Action": "lambda:InvokeFunction",
+              "FunctionName": {
+                "Ref": "imagetowordBBD464ED"
+              },
+              "Principal": "s3.amazonaws.com",
+              "SourceAccount": {
+                "Ref": "AWS::AccountId"
+              },
+              "SourceArn": {
+                "Fn::ImportValue": "dev-PocketCards-S3:BucketResourceBucketArn2A4661AF"
+              }
+            }
+          },
+          "ImageToWord": {
+            "Type": "AWS::AppSync::DataSource",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "Name": "lambda_ImageToWord",
+              "Type": "AWS_LAMBDA",
+              "LambdaConfig": {
+                "LambdaFunctionArn": {
+                  "Fn::GetAtt": [
+                    "imagetowordBBD464ED",
+                    "Arn"
+                  ]
+                }
+              },
+              "ServiceRoleArn": {
+                "Fn::GetAtt": [
+                  "ImageToWordResource33EB2F97",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "AddNewWordsResource41F9B45E": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "appsync.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-AppSync-AddNewWordsRole"
+            }
+          },
+          "AddNewWordsPolicyFE2B35BD": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "lambda:invokeFunction",
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:lambda:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":",
+                          {
+                            "Ref": "AWS::AccountId"
+                          },
+                          ":function:dev-PocketCards*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "AddNewWordsPolicyFE2B35BD",
+              "Roles": [
+                {
+                  "Ref": "AddNewWordsResource41F9B45E"
+                }
+              ]
+            }
+          },
+          "addnewwordsRole602A0B09": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-Lambda-add-new-wordsRole"
+            }
+          },
+          "addnewwordsRoleBasic463104BF": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "logs:CreateLogGroup",
+                      "logs:CreateLogStream",
+                      "logs:PutLogEvents"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:logs:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":*:*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "addnewwordsRoleBasic463104BF",
+              "Roles": [
+                {
+                  "Ref": "addnewwordsRole602A0B09"
+                }
+              ]
+            }
+          },
+          "addnewwordsRoleS3C3E0A31F": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "s3:HeadBucket",
+                      "s3:ListBucket"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "arn:aws:s3:::*"
+                  },
+                  {
+                    "Action": [
+                      "s3:PutObject",
+                      "s3:GetObject",
+                      "s3:DeleteObject",
+                      "s3:ReplicateObject",
+                      "s3:RestoreObject"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": [
+                      "arn:aws:s3:::dev-pocketcards",
+                      "arn:aws:s3:::dev-pocketcards/*"
+                    ]
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "addnewwordsRoleS3C3E0A31F",
+              "Roles": [
+                {
+                  "Ref": "addnewwordsRole602A0B09"
+                }
+              ]
+            }
+          },
+          "addnewwords3C41510A": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "deployment-projects",
+                "S3Key": "PocketCards/dummy.zip"
+              },
+              "Handler": "appsync/add-new-words/app.handler",
+              "Role": {
+                "Fn::GetAtt": [
+                  "addnewwordsRole602A0B09",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs8.10",
+              "Environment": {
+                "Variables": {
+                  "S3_BUCKET": {
+                    "Fn::ImportValue": "dev-PocketCards-S3:BucketResourceBucketName6152AE21"
+                  }
+                }
+              },
+              "FunctionName": "dev-PocketCards-add-new-words",
+              "MemorySize": 256,
+              "Timeout": 10
+            },
+            "DependsOn": [
+              "addnewwordsRole602A0B09"
+            ]
+          },
+          "AddNewWords": {
+            "Type": "AWS::AppSync::DataSource",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "Name": "lambda_AddNewWords",
+              "Type": "AWS_LAMBDA",
+              "LambdaConfig": {
+                "LambdaFunctionArn": {
+                  "Fn::GetAtt": [
+                    "addnewwords3C41510A",
+                    "Arn"
+                  ]
+                }
+              },
+              "ServiceRoleArn": {
+                "Fn::GetAtt": [
+                  "AddNewWordsResource41F9B45E",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "StudyHistoryResourceF8E5C2CC": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "appsync.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-AppSync-StudyHistoryRole"
+            }
+          },
+          "StudyHistoryPolicyB1F81288": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "lambda:invokeFunction",
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:lambda:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":",
+                          {
+                            "Ref": "AWS::AccountId"
+                          },
+                          ":function:dev-PocketCards*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "StudyHistoryPolicyB1F81288",
+              "Roles": [
+                {
+                  "Ref": "StudyHistoryResourceF8E5C2CC"
+                }
+              ]
+            }
+          },
+          "studyhistoryRoleFB1C7471": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-Lambda-study-historyRole"
+            }
+          },
+          "studyhistoryRoleBasic83D5C6A3": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "logs:CreateLogGroup",
+                      "logs:CreateLogStream",
+                      "logs:PutLogEvents"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:logs:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":*:*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "studyhistoryRoleBasic83D5C6A3",
+              "Roles": [
+                {
+                  "Ref": "studyhistoryRoleFB1C7471"
+                }
+              ]
+            }
+          },
+          "studyhistoryRoleDynamodbEBED1E6B": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "dynamodb:PutItem",
+                      "dynamodb:DeleteItem",
+                      "dynamodb:GetItem",
+                      "dynamodb:Scan",
+                      "dynamodb:Query",
+                      "dynamodb:UpdateItem",
+                      "dynamodb:DescribeStream",
+                      "dynamodb:GetRecords",
+                      "dynamodb:GetShardIterator",
+                      "dynamodb:ListStreams"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:dynamodb:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":*:table/*"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "Action": [
+                      "dynamodb:Scan",
+                      "dynamodb:Query"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:dynamodb:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":*:table/*/index/*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "studyhistoryRoleDynamodbEBED1E6B",
+              "Roles": [
+                {
+                  "Ref": "studyhistoryRoleFB1C7471"
+                }
+              ]
+            }
+          },
+          "studyhistory17F8CAC0": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "deployment-projects",
+                "S3Key": "PocketCards/dummy.zip"
+              },
+              "Handler": "appsync/study-history/app.handler",
+              "Role": {
+                "Fn::GetAtt": [
+                  "studyhistoryRoleFB1C7471",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs8.10",
+              "Environment": {
+                "Variables": {
+                  "S3_BUCKET": "dev-pocketcards"
+                }
+              },
+              "FunctionName": "dev-PocketCards-study-history",
+              "MemorySize": 256,
+              "Timeout": 10
+            },
+            "DependsOn": [
+              "studyhistoryRoleFB1C7471"
+            ]
+          },
+          "studyhistoryimageToWordInvoke5E6221C6": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+              "Action": "lambda:InvokeFunction",
+              "FunctionName": {
+                "Ref": "studyhistory17F8CAC0"
+              },
+              "Principal": "s3.amazonaws.com",
+              "SourceAccount": {
+                "Ref": "AWS::AccountId"
+              },
+              "SourceArn": {
+                "Fn::ImportValue": "dev-PocketCards-S3:BucketResourceBucketArn2A4661AF"
+              }
+            }
+          },
+          "StudyHistory": {
+            "Type": "AWS::AppSync::DataSource",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "Name": "lambda_StudyHistory",
+              "Type": "AWS_LAMBDA",
+              "LambdaConfig": {
+                "LambdaFunctionArn": {
+                  "Fn::GetAtt": [
+                    "studyhistory17F8CAC0",
+                    "Arn"
+                  ]
+                }
+              },
+              "ServiceRoleArn": {
+                "Fn::GetAtt": [
+                  "StudyHistoryResourceF8E5C2CC",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "StudySetResource508CA452": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "appsync.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-AppSync-StudySetRole"
+            }
+          },
+          "StudySetPolicy2A5CE576": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "lambda:invokeFunction",
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:lambda:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":",
+                          {
+                            "Ref": "AWS::AccountId"
+                          },
+                          ":function:dev-PocketCards*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "StudySetPolicy2A5CE576",
+              "Roles": [
+                {
+                  "Ref": "StudySetResource508CA452"
+                }
+              ]
+            }
+          },
+          "studysetRole53CCC5AF": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-Lambda-study-setRole"
+            }
+          },
+          "studysetRoleBasic38AB9F43": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "logs:CreateLogGroup",
+                      "logs:CreateLogStream",
+                      "logs:PutLogEvents"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:logs:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":*:*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "studysetRoleBasic38AB9F43",
+              "Roles": [
+                {
+                  "Ref": "studysetRole53CCC5AF"
+                }
+              ]
+            }
+          },
+          "studysetRoleDynamodb283EA571": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "dynamodb:PutItem",
+                      "dynamodb:DeleteItem",
+                      "dynamodb:GetItem",
+                      "dynamodb:Scan",
+                      "dynamodb:Query",
+                      "dynamodb:UpdateItem",
+                      "dynamodb:DescribeStream",
+                      "dynamodb:GetRecords",
+                      "dynamodb:GetShardIterator",
+                      "dynamodb:ListStreams"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:dynamodb:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":*:table/*"
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "Action": [
+                      "dynamodb:Scan",
+                      "dynamodb:Query"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:dynamodb:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":*:table/*/index/*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "studysetRoleDynamodb283EA571",
+              "Roles": [
+                {
+                  "Ref": "studysetRole53CCC5AF"
+                }
+              ]
+            }
+          },
+          "studysetD1F974B9": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "deployment-projects",
+                "S3Key": "PocketCards/dummy.zip"
+              },
+              "Handler": "appsync/study-set/app.handler",
+              "Role": {
+                "Fn::GetAtt": [
+                  "studysetRole53CCC5AF",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs8.10",
+              "Environment": {
+                "Variables": {
+                  "TABLE_NAME": "dev-PocketCards-Word"
+                }
+              },
+              "FunctionName": "dev-PocketCards-study-set",
+              "MemorySize": 256,
+              "Timeout": 10
+            },
+            "DependsOn": [
+              "studysetRole53CCC5AF"
+            ]
+          },
+          "StudySet": {
+            "Type": "AWS::AppSync::DataSource",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "Name": "lambda_StudySet",
+              "Type": "AWS_LAMBDA",
+              "LambdaConfig": {
+                "LambdaFunctionArn": {
+                  "Fn::GetAtt": [
+                    "studysetD1F974B9",
+                    "Arn"
+                  ]
+                }
+              },
+              "ServiceRoleArn": {
+                "Fn::GetAtt": [
+                  "StudySetResource508CA452",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "WordToSpeechResource78FE98A3": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "appsync.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-AppSync-WordToSpeechRole"
+            }
+          },
+          "WordToSpeechPolicy94FA87FB": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "lambda:invokeFunction",
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:lambda:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":",
+                          {
+                            "Ref": "AWS::AccountId"
+                          },
+                          ":function:dev-PocketCards*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "WordToSpeechPolicy94FA87FB",
+              "Roles": [
+                {
+                  "Ref": "WordToSpeechResource78FE98A3"
+                }
+              ]
+            }
+          },
+          "wordtospeechRole4E8D7AFA": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+              "AssumeRolePolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "sts:AssumeRole",
+                    "Effect": "Allow",
+                    "Principal": {
+                      "Service": "lambda.amazonaws.com"
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "RoleName": "dev-PocketCards-Lambda-word-to-speechRole"
+            }
+          },
+          "wordtospeechRoleBasic6ADFAE28": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "logs:CreateLogGroup",
+                      "logs:CreateLogStream",
+                      "logs:PutLogEvents"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:logs:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":*:*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "wordtospeechRoleBasic6ADFAE28",
+              "Roles": [
+                {
+                  "Ref": "wordtospeechRole4E8D7AFA"
+                }
+              ]
+            }
+          },
+          "wordtospeechRolePolly401E7632": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": "polly:ListSpeechSynthesisTasks",
+                    "Effect": "Allow",
+                    "Resource": "*"
+                  },
+                  {
+                    "Action": "polly:SynthesizeSpeech",
+                    "Effect": "Allow",
+                    "Resource": {
+                      "Fn::Join": [
+                        "",
+                        [
+                          "arn:aws:polly:",
+                          {
+                            "Ref": "AWS::Region"
+                          },
+                          ":",
+                          {
+                            "Ref": "AWS::AccountId"
+                          },
+                          ":lexicon/*"
+                        ]
+                      ]
+                    }
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "wordtospeechRolePolly401E7632",
+              "Roles": [
+                {
+                  "Ref": "wordtospeechRole4E8D7AFA"
+                }
+              ]
+            }
+          },
+          "wordtospeechRoleS384AE4779": {
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyDocument": {
+                "Statement": [
+                  {
+                    "Action": [
+                      "s3:HeadBucket",
+                      "s3:ListBucket"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": "arn:aws:s3:::*"
+                  },
+                  {
+                    "Action": [
+                      "s3:PutObject",
+                      "s3:GetObject",
+                      "s3:DeleteObject",
+                      "s3:ReplicateObject",
+                      "s3:RestoreObject"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": [
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:s3:::",
+                            {
+                              "Fn::ImportValue": "dev-PocketCards-S3:BucketResourceBucketName6152AE21"
+                            }
+                          ]
+                        ]
+                      },
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:s3:::",
+                            {
+                              "Fn::ImportValue": "dev-PocketCards-S3:BucketResourceBucketName6152AE21"
+                            },
+                            "/*"
+                          ]
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "Version": "2012-10-17"
+              },
+              "PolicyName": "wordtospeechRoleS384AE4779",
+              "Roles": [
+                {
+                  "Ref": "wordtospeechRole4E8D7AFA"
+                }
+              ]
+            }
+          },
+          "wordtospeechE1E2F116": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+              "Code": {
+                "S3Bucket": "deployment-projects",
+                "S3Key": "PocketCards/dummy.zip"
+              },
+              "Handler": "appsync/word-to-speech/app.handler",
+              "Role": {
+                "Fn::GetAtt": [
+                  "wordtospeechRole4E8D7AFA",
+                  "Arn"
+                ]
+              },
+              "Runtime": "nodejs8.10",
+              "Environment": {
+                "Variables": {
+                  "S3_BUCKET": {
+                    "Fn::ImportValue": "dev-PocketCards-S3:BucketResourceBucketName6152AE21"
+                  },
+                  "S3_PREFIX": "speech"
+                }
+              },
+              "FunctionName": "dev-PocketCards-word-to-speech",
+              "MemorySize": 256,
+              "Timeout": 10
+            },
+            "DependsOn": [
+              "wordtospeechRole4E8D7AFA"
+            ]
+          },
+          "WordToSpeech": {
+            "Type": "AWS::AppSync::DataSource",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "Name": "lambda_WordToSpeech",
+              "Type": "AWS_LAMBDA",
+              "LambdaConfig": {
+                "LambdaFunctionArn": {
+                  "Fn::GetAtt": [
+                    "wordtospeechE1E2F116",
+                    "Arn"
+                  ]
+                }
+              },
+              "ServiceRoleArn": {
+                "Fn::GetAtt": [
+                  "WordToSpeechResource78FE98A3",
+                  "Arn"
+                ]
+              }
+            }
+          },
+          "createSet": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "DataSourceName": "dynamodb_Set",
+              "FieldName": "createSet",
+              "TypeName": "Mutation",
+              "RequestMappingTemplate": "dummy",
+              "ResponseMappingTemplate": "dummy"
+            }
+          },
+          "deleteSet": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "DataSourceName": "dynamodb_Set",
+              "FieldName": "deleteSet",
+              "TypeName": "Mutation",
+              "RequestMappingTemplate": "dummy",
+              "ResponseMappingTemplate": "dummy"
+            }
+          },
+          "wordWithImage": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "DataSourceName": "lambda_ImageToWord",
+              "FieldName": "wordWithImage",
+              "TypeName": "Mutation",
+              "RequestMappingTemplate": "dummy",
+              "ResponseMappingTemplate": "dummy"
+            }
+          },
+          "addNewWords": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "DataSourceName": "lambda_AddNewWords",
+              "FieldName": "addNewWords",
+              "TypeName": "Mutation",
+              "RequestMappingTemplate": "dummy",
+              "ResponseMappingTemplate": "dummy"
+            }
+          },
+          "sets": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "DataSourceName": "dynamodb_Set",
+              "FieldName": "sets",
+              "TypeName": "Query",
+              "RequestMappingTemplate": "dummy",
+              "ResponseMappingTemplate": "dummy"
+            }
+          },
+          "words": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "DataSourceName": "dynamodb_Word",
+              "FieldName": "words",
+              "TypeName": "Query",
+              "RequestMappingTemplate": "dummy",
+              "ResponseMappingTemplate": "dummy"
+            }
+          },
+          "studySet": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "DataSourceName": "lambda_StudySet",
+              "FieldName": "studySet",
+              "TypeName": "Query",
+              "RequestMappingTemplate": "dummy",
+              "ResponseMappingTemplate": "dummy"
+            }
+          },
+          "studyHistory": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "DataSourceName": "lambda_StudyHistory",
+              "FieldName": "studyHistory",
+              "TypeName": "Query",
+              "RequestMappingTemplate": "dummy",
+              "ResponseMappingTemplate": "dummy"
+            }
+          },
+          "polly": {
+            "Type": "AWS::AppSync::Resolver",
+            "Properties": {
+              "ApiId": {
+                "Fn::GetAtt": [
+                  "GraphQLApi",
+                  "ApiId"
+                ]
+              },
+              "DataSourceName": "lambda_WordToSpeech",
+              "FieldName": "polly",
+              "TypeName": "Query",
+              "RequestMappingTemplate": "dummy",
+              "ResponseMappingTemplate": "dummy"
+            }
+          }
+        },
+        "Outputs": {
+          "UserPoolId": {
+            "Value": {
+              "Ref": "UserPoolResource"
+            },
+            "Export": {
+              "Name": "undefined-PocketCards-UserPoolId"
+            }
+          },
+          "UserPoolClientId": {
+            "Value": {
+              "Ref": "UserPoolClientResource"
+            },
+            "Export": {
+              "Name": "undefined-PocketCards-UserPoolClientId"
+            }
+          },
+          "IdentityPoolId": {
+            "Value": {
+              "Ref": "IdentityPoolResource"
+            },
+            "Export": {
+              "Name": "undefined-PocketCards-IdentityPoolId"
+            }
+          }
+        }
+      },
+      "metadata": {
+        "/dev-PocketCards-Cognito/UserPoolResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserPoolResource",
+            "trace": [
+              "Object.exports.default [as UserPool] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\userPool.js:5:38)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:11:29)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/UserPoolClientResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserPoolClientResource",
+            "trace": [
+              "Object.exports.default [as UserPoolClient] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\userPoolClient.js:4:43)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:12:35)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/IdentityPoolResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdentityPoolResource",
+            "trace": [
+              "Object.exports.default [as IdentityPool] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\identityPool.js:5:48)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:19:33)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/AuthenticatedRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthenticatedRole86104F1A",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "Object.exports.authenticatedRole [as AuthenticatedRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\cognito.js:39:18)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:22:36)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/AuthenticatedPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AuthenticatedPolicyE0CF12E2",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.authenticatedRole [as AuthenticatedRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\cognito.js:46:20)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:22:36)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/UnauthenticatedRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UnauthenticatedRole01CC4258",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "Object.exports.unauthenticatedRole [as UnauthenticatedRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\cognito.js:15:18)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:27:38)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/UnauthenticatedPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UnauthenticatedPolicy07F4FBE4",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.unauthenticatedRole [as UnauthenticatedRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\cognito.js:22:20)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:27:38)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/IdentityPoolRoleAttachmentResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdentityPoolRoleAttachmentResource",
+            "trace": [
+              "Object.exports.default [as IdentityPoolRoleAttachment] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\identityPoolRoleAttachment.js:4:38)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:20:12)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/AppsyncLogRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AppsyncLogRole2F590BC3",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "Object.exports.default [as GraphQLApi] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\graphQLApi.js:9:18)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:6:20)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/dev-PocketCards-Appsync-Log-Basic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "devPocketCardsAppsyncLogBasicC3F7F00C",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.cloudwatch (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:5:44)",
+              "Object.exports.default [as GraphQLApi] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\graphQLApi.js:13:38)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:6:20)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/GraphQLApi": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GraphQLApi",
+            "trace": [
+              "Object.exports.default [as GraphQLApi] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\graphQLApi.js:14:22)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:6:20)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/GraphQLSchemaResource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GraphQLSchemaResource",
+            "trace": [
+              "Object.exports.default [as GraphQLSchema] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\graphQLSchema.js:8:12)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:8:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/db-SetResource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbSetResource8C875542",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "getRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:6:36)",
+              "Object.exports.dynamodbDataSourceRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:23:18)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\dynamodb.js:9:28)",
+              "config.Dynamodb.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:12:31)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:11:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/db-Set-policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbSetpolicy04FE745E",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.dynamodbDataSourceRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:24:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\dynamodb.js:9:28)",
+              "config.Dynamodb.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:12:31)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:11:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/Set": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Set",
+            "trace": [
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\dynamodb.js:13:22)",
+              "config.Dynamodb.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:12:31)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:11:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/db-WordResource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbWordResourceB74540FC",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "getRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:6:36)",
+              "Object.exports.dynamodbDataSourceRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:23:18)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\dynamodb.js:9:28)",
+              "config.Dynamodb.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:12:31)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:11:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/db-Word-policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbWordpolicy1D492564",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.dynamodbDataSourceRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:24:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\dynamodb.js:9:28)",
+              "config.Dynamodb.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:12:31)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:11:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/Word": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "Word",
+            "trace": [
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\dynamodb.js:13:22)",
+              "config.Dynamodb.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:12:31)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:11:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/db-UserResource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbUserResource52673C72",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "getRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:6:36)",
+              "Object.exports.dynamodbDataSourceRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:23:18)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\dynamodb.js:9:28)",
+              "config.Dynamodb.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:12:31)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:11:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/db-User-policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "dbUserpolicyE6043560",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.dynamodbDataSourceRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:24:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\dynamodb.js:9:28)",
+              "config.Dynamodb.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:12:31)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:11:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/User": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "User",
+            "trace": [
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\dynamodb.js:13:22)",
+              "config.Dynamodb.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:12:31)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:11:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/ImageToWordResource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ImageToWordResource33EB2F97",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "getRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:6:36)",
+              "Object.exports.lambdaDataSourceRole [as LambdaDataSourceRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:11:18)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:7:26)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/ImageToWordPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ImageToWordPolicyE83CFA08",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.lambdaDataSourceRole [as LambdaDataSourceRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:12:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:7:26)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/image-to-wordRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "imagetowordRoleE73F354D",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "Object.exports.default [as LambdaRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\lambda.js:8:18)",
+              "Object.exports.default [as ImageToWord] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\image-to-word.js:18:26)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/image-to-wordRole-Basic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "imagetowordRoleBasic0D174BB2",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.cloudwatch (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:5:44)",
+              "Object.exports.default [as LambdaRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\lambda.js:12:38)",
+              "Object.exports.default [as ImageToWord] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\image-to-word.js:18:26)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/image-to-wordRole-S3/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "imagetowordRoleS36F4C6743",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.s3 (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:44:48)",
+              "Object.exports.default [as ImageToWord] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\image-to-word.js:22:38)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/image-to-word/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "imagetowordBBD464ED",
+            "trace": [
+              "new Function (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-lambda\\lib\\lambda.js:60:26)",
+              "Object.exports.default [as ImageToWord] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\image-to-word.js:23:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/image-to-word/imageToWordInvoke": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "imagetowordimageToWordInvokeDD38AE55",
+            "trace": [
+              "Function.addPermission (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-lambda\\lib\\lambda-ref.js:103:9)",
+              "Object.exports.default [as ImageToWord] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\image-to-word.js:35:12)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/ImageToWord": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ImageToWord",
+            "trace": [
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:11:22)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/AddNewWordsResource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AddNewWordsResource41F9B45E",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "getRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:6:36)",
+              "Object.exports.lambdaDataSourceRole [as LambdaDataSourceRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:11:18)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:7:26)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/AddNewWordsPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AddNewWordsPolicyFE2B35BD",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.lambdaDataSourceRole [as LambdaDataSourceRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:12:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:7:26)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/add-new-wordsRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "addnewwordsRole602A0B09",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "Object.exports.default [as LambdaRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\lambda.js:8:18)",
+              "Object.exports.default [as AddNewWords] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\add-new-words.js:16:26)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/add-new-wordsRole-Basic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "addnewwordsRoleBasic463104BF",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.cloudwatch (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:5:44)",
+              "Object.exports.default [as LambdaRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\lambda.js:12:38)",
+              "Object.exports.default [as AddNewWords] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\add-new-words.js:16:26)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/add-new-wordsRole-S3/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "addnewwordsRoleS3C3E0A31F",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.s3 (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:44:48)",
+              "Object.exports.default [as AddNewWords] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\add-new-words.js:20:38)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/add-new-words/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "addnewwords3C41510A",
+            "trace": [
+              "new Function (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-lambda\\lib\\lambda.js:60:26)",
+              "Object.exports.default [as AddNewWords] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\add-new-words.js:21:12)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/AddNewWords": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AddNewWords",
+            "trace": [
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:11:22)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/StudyHistoryResource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StudyHistoryResourceF8E5C2CC",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "getRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:6:36)",
+              "Object.exports.lambdaDataSourceRole [as LambdaDataSourceRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:11:18)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:7:26)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/StudyHistoryPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StudyHistoryPolicyB1F81288",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.lambdaDataSourceRole [as LambdaDataSourceRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:12:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:7:26)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/study-historyRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studyhistoryRoleFB1C7471",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "Object.exports.default [as LambdaRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\lambda.js:8:18)",
+              "Object.exports.default [as StudyHistory] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\study-history.js:18:26)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/study-historyRole-Basic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studyhistoryRoleBasic83D5C6A3",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.cloudwatch (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:5:44)",
+              "Object.exports.default [as LambdaRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\lambda.js:12:38)",
+              "Object.exports.default [as StudyHistory] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\study-history.js:18:26)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/study-historyRole-Dynamodb/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studyhistoryRoleDynamodbEBED1E6B",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.dynamodb (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:24:42)",
+              "Object.exports.default [as StudyHistory] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\study-history.js:22:38)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/study-history/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studyhistory17F8CAC0",
+            "trace": [
+              "new Function (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-lambda\\lib\\lambda.js:60:26)",
+              "Object.exports.default [as StudyHistory] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\study-history.js:23:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/study-history/imageToWordInvoke": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studyhistoryimageToWordInvoke5E6221C6",
+            "trace": [
+              "Function.addPermission (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-lambda\\lib\\lambda-ref.js:103:9)",
+              "Object.exports.default [as StudyHistory] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\study-history.js:35:12)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/StudyHistory": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StudyHistory",
+            "trace": [
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:11:22)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/StudySetResource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StudySetResource508CA452",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "getRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:6:36)",
+              "Object.exports.lambdaDataSourceRole [as LambdaDataSourceRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:11:18)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:7:26)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/StudySetPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StudySetPolicy2A5CE576",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.lambdaDataSourceRole [as LambdaDataSourceRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:12:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:7:26)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/study-setRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studysetRole53CCC5AF",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "Object.exports.default [as LambdaRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\lambda.js:8:18)",
+              "Object.exports.default [as StudySet] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\study-set.js:16:26)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/study-setRole-Basic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studysetRoleBasic38AB9F43",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.cloudwatch (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:5:44)",
+              "Object.exports.default [as LambdaRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\lambda.js:12:38)",
+              "Object.exports.default [as StudySet] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\study-set.js:16:26)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/study-setRole-Dynamodb/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studysetRoleDynamodb283EA571",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.dynamodb (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:24:42)",
+              "Object.exports.default [as StudySet] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\study-set.js:20:38)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/study-set/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studysetD1F974B9",
+            "trace": [
+              "new Function (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-lambda\\lib\\lambda.js:60:26)",
+              "Object.exports.default [as StudySet] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\study-set.js:21:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/StudySet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "StudySet",
+            "trace": [
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:11:22)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/WordToSpeechResource/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordToSpeechResource78FE98A3",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "getRole (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:6:36)",
+              "Object.exports.lambdaDataSourceRole [as LambdaDataSourceRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:11:18)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:7:26)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/WordToSpeechPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordToSpeechPolicy94FA87FB",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.lambdaDataSourceRole [as LambdaDataSourceRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\appsync.js:12:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:7:26)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/word-to-speechRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "wordtospeechRole4E8D7AFA",
+            "trace": [
+              "new Role (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\role.js:21:22)",
+              "Object.exports.default [as LambdaRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\lambda.js:8:18)",
+              "Object.exports.default [as WordToSpeech] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\word-to-speech.js:16:26)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/word-to-speechRole-Basic/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "wordtospeechRoleBasic6ADFAE28",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.cloudwatch (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:5:44)",
+              "Object.exports.default [as LambdaRole] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\roles\\lambda.js:12:38)",
+              "Object.exports.default [as WordToSpeech] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\word-to-speech.js:16:26)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/word-to-speechRole-Polly/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "wordtospeechRolePolly401E7632",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.polly (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:14:39)",
+              "Object.exports.default [as WordToSpeech] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\word-to-speech.js:20:38)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/word-to-speechRole-S3/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "wordtospeechRoleS384AE4779",
+            "trace": [
+              "new Policy (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-iam\\lib\\policy.js:23:26)",
+              "Object.exports.s3 (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\utils\\policy.js:44:48)",
+              "Object.exports.default [as WordToSpeech] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\word-to-speech.js:21:38)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/word-to-speech/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "wordtospeechE1E2F116",
+            "trace": [
+              "new Function (D:\\Code\\Project\\pocket-cards\\cdk\\node_modules\\@aws-cdk\\aws-lambda\\lib\\lambda.js:60:26)",
+              "Object.exports.default [as WordToSpeech] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\lambda\\word-to-speech.js:22:20)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:16:68)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/WordToSpeech": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WordToSpeech",
+            "trace": [
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\lambda.js:11:22)",
+              "config.Lambda.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:17:29)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as DataSource] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\datasource\\index.js:16:23)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:10:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/createSet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "createSet",
+            "trace": [
+              "createResolver (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:15:5)",
+              "Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:11:9)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as Resolver] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:9:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:12:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/deleteSet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "deleteSet",
+            "trace": [
+              "createResolver (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:15:5)",
+              "Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:11:9)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as Resolver] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:9:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:12:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/wordWithImage": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "wordWithImage",
+            "trace": [
+              "createResolver (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:15:5)",
+              "Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:11:9)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as Resolver] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:9:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:12:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/addNewWords": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "addNewWords",
+            "trace": [
+              "createResolver (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:15:5)",
+              "Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:11:9)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as Resolver] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:9:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:12:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/sets": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "sets",
+            "trace": [
+              "createResolver (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:15:5)",
+              "Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:11:9)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as Resolver] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:9:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:12:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/words": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "words",
+            "trace": [
+              "createResolver (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:15:5)",
+              "Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:11:9)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as Resolver] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:9:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:12:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/studySet": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studySet",
+            "trace": [
+              "createResolver (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:15:5)",
+              "Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:11:9)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as Resolver] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:9:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:12:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/studyHistory": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "studyHistory",
+            "trace": [
+              "createResolver (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:15:5)",
+              "Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:11:9)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as Resolver] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:9:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:12:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/polly": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "polly",
+            "trace": [
+              "createResolver (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:15:5)",
+              "Object.keys.forEach (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:11:9)",
+              "Array.forEach (<anonymous>)",
+              "Object.exports.default [as Resolver] (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\resolver.js:9:25)",
+              "Object.exports.default (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\appsync\\appsync.js:12:8)",
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:39:26)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/UserPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserPoolId",
+            "trace": [
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:45:9)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/UserPoolClientId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "UserPoolClientId",
+            "trace": [
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:49:9)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ],
+        "/dev-PocketCards-Cognito/IdentityPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "IdentityPoolId",
+            "trace": [
+              "new CognitoStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\cognito\\cognito.js:53:9)",
+              "new RootStack (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:24:9)",
+              "Object.<anonymous> (D:\\Code\\Project\\pocket-cards\\cdk\\dist\\root.js:53:1)",
+              "Module._compile (module.js:653:30)",
+              "Object.Module._extensions..js (module.js:664:10)",
+              "Module.load (module.js:566:32)",
+              "tryModuleLoad (module.js:506:12)",
+              "Function.Module._load (module.js:498:3)",
+              "Function.Module.runMain (module.js:694:10)",
+              "startup (bootstrap_node.js:204:16)",
+              "bootstrap_node.js:625:3"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "runtime": {
+    "libraries": {
+      "cdk": "0.1.0",
+      "@aws-cdk/cdk": "0.12.0",
+      "@aws-cdk/cx-api": "0.12.0",
+      "@aws-cdk/aws-cognito": "0.12.0",
+      "uuid": "3.3.2",
+      "@aws-cdk/aws-iam": "0.12.0",
+      "@aws-cdk/aws-appsync": "0.12.0",
+      "js-yaml": "3.12.0",
+      "esprima": "4.0.1",
+      "@aws-cdk/aws-dynamodb": "0.12.0",
+      "@aws-cdk/aws-applicationautoscaling": "0.12.0",
+      "@aws-cdk/aws-s3": "0.12.0",
+      "@aws-cdk/aws-kms": "0.12.0",
+      "@aws-cdk/aws-s3-notifications": "0.12.0",
+      "@aws-cdk/aws-codepipeline-api": "0.12.0",
+      "@aws-cdk/aws-events": "0.12.0",
+      "@aws-cdk/aws-cloudfront": "0.12.0",
+      "@aws-cdk/aws-codebuild": "0.12.0",
+      "@aws-cdk/aws-cloudwatch": "0.12.0",
+      "@aws-cdk/aws-lambda": "0.12.0",
+      "@aws-cdk/aws-ec2": "0.12.0",
+      "@aws-cdk/aws-sqs": "0.12.0",
+      "@aws-cdk/assets": "0.12.0",
+      "@aws-cdk/aws-apigateway": "0.12.0"
+    }
+  }
+}

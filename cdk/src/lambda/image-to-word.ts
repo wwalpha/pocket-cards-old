@@ -1,10 +1,11 @@
-import { Construct, ServicePrincipal, AwsAccountId } from '@aws-cdk/cdk';
+import { Construct, AwsAccountId } from '@aws-cdk/cdk';
 import { Runtime, Function } from '@aws-cdk/aws-lambda';
 import { s3 } from '../utils/policy';
 import { PROJECT_NAME, bucketName } from '../utils/consts';
 import { getHandler, LambdaInput } from '.';
 import { dummyCode } from '../utils/refs';
 import { LambdaRole } from '../utils/roles';
+import { ServicePrincipal } from '@aws-cdk/aws-iam';
 
 const service = 'appsync';
 const functionName = 'image-to-word';

@@ -1,6 +1,7 @@
-import { Construct, PolicyDocument, PolicyStatement, PolicyStatementEffect } from '@aws-cdk/cdk';
+import { Construct } from '@aws-cdk/cdk';
 import { cloudformation } from '@aws-cdk/aws-s3';
 import { CloudFrontInput } from './cloudfront';
+import { PolicyDocument, PolicyStatement, PolicyStatementEffect } from '@aws-cdk/aws-iam';
 
 const getPolicyDocument = (bucketArn: string): object => {
   const policy = new PolicyDocument();

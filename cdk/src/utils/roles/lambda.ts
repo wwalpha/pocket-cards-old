@@ -1,5 +1,5 @@
-import { Construct, ServicePrincipal } from '@aws-cdk/cdk';
-import { Role } from '@aws-cdk/aws-iam';
+import { Construct } from '@aws-cdk/cdk';
+import { Role, ServicePrincipal } from '@aws-cdk/aws-iam';
 import { PROJECT_NAME } from '../consts';
 import { cloudwatch } from '../policy';
 import { RoleProps } from '.';

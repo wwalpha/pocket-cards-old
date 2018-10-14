@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 export default (parent: Construct, apiId: string) => {
-  const graphql: string = fs.readFileSync(path.join(__dirname, '../../../graphql/schemas/schema.gql')).toString();
+  const graphql: string = fs.readFileSync(path.join(__dirname, '../../../front/graphql/schemas/schema.gql')).toString();
 
   return new cloudformation.GraphQLSchemaResource(
     parent,

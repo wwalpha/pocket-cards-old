@@ -60,8 +60,8 @@ const comProps: CommonProps = {
   envType: ENV_TYPE,
 };
 
-const app = new App(process.argv);
+const app = new App();
 
 new RootStack(app, `${ENV_TYPE}-${PROJECT_NAME}`, comProps);
 
-process.stdout.write(app.run());
+app.run();

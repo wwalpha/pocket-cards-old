@@ -24,6 +24,14 @@ export const polly = (parent: Construct, roleName: string) => new Policy(parent,
   ],
 });
 
+export const rekognition = (parent: Construct, roleName: string) => new Policy(parent, `${roleName}-Rekognition`, {
+  statements: [
+    new PolicyStatement(PolicyStatementEffect.Allow)
+      .addAction('rekognition:DetectText')
+      .addAllResources()
+  ]
+});
+
 export const dynamodb = (parent: Construct, roleName: string) => new Policy(parent, `${roleName}-Dynamodb`, {
   statements: [
     new PolicyStatement(PolicyStatementEffect.Allow)

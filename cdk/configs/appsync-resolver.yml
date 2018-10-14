@@ -9,7 +9,7 @@ DeleteSetResolver:
   DataSourceName: dynamodb_Set
 
 WordWithImageResolver:
-  FieldName: wordWithImage
+  FieldName: image2Word
   TypeName: Mutation
   DataSourceName: lambda_ImageToWord
 

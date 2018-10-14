@@ -23,7 +23,7 @@ module.exports = {
       '@actions': path.resolve(__dirname, '../../src/actions'),
       'typings': path.resolve(__dirname, '../../src/typings'),
       '@const': path.resolve(__dirname, '../../src/consts/index.ts'),
-
+      '@hoc': path.resolve(__dirname, '../../src/components/hoc/index.ts'),
     },
   },
   module: {

@@ -11,7 +11,15 @@ export const UPDATE_USER = gql`
 export const UPDATE_PATH = gql`
   mutation UpdatePath($path: Int) {
     updatePath(path: $path) @client {
-      screen
+      path
+    }
+  }
+`;
+
+export const REGIST_WORDS = gql`
+  mutation RegistWords($path: Int) {
+    registWords(path: $path) @client {
+      path
     }
   }
 `;

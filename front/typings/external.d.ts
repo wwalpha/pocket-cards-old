@@ -7,4 +7,6 @@
 /// <reference path="../node_modules/react-apollo/index.d.ts" />
 /// <reference path="../node_modules/graphql-tag/index.d.ts" />
 /// <reference path="../node_modules/graphql-tools/dist/index.d.ts" />
+/// <reference path="../node_modules/aws-amplify/lib/index.d.ts" />
+
 /// <reference path="./types.d.ts" />

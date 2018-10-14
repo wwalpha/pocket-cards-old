@@ -15,7 +15,8 @@ export interface HeaderInfo {
 }
 
 export interface IconInfo {
-  icon: React.ComponentType<SvgIconProps>;
+  icon?: React.ComponentType<SvgIconProps>;
   path?: string;
   index?: number;
+  customize?: React.ComponentType<any>;
 }

@@ -1,6 +1,7 @@
 import {
   Add, ArrowBack, CameraAlt,
 } from '@material-ui/icons';
+import { UploadImage } from '@hoc';
 import { PATH, Header, HeaderInfo } from '.';
 
 export const PATH_INDEX = {
@@ -10,6 +11,9 @@ export const PATH_INDEX = {
   WORD_ROOT: 2,
   WORD_REGIST: 5,
   USER_ROOT: 3,
+  WORD_STUDY: 6,
+  WORD_TEST: 7,
+  WORD_HISTORY: 8,
 };
 
 const home: Header = {
@@ -49,22 +53,26 @@ const word: Header = {
       path: PATH.SET.ROOT,
       index: PATH_INDEX.SET_ROOT,
     }],
-    right: [{
-      icon: Add,
-      path: PATH.SET.REGIST,
-      index: PATH_INDEX.SET_REGIST,
-    }],
   },
   [PATH_INDEX.WORD_REGIST]: {
     title: '新規単語',
     path: PATH.WORD.REGIST,
     left: [{
       icon: ArrowBack,
-      path: PATH.SET.ROOT,
-      index: PATH_INDEX.SET_ROOT,
+      path: PATH.WORD.ROOT,
+      index: PATH_INDEX.WORD_ROOT,
     }],
     right: [{
-      icon: CameraAlt,
+      customize: UploadImage,
+    }],
+  },
+  [PATH_INDEX.WORD_STUDY]: {
+    title: '単語学習',
+    path: PATH.WORD.STUDY,
+    left: [{
+      icon: ArrowBack,
+      path: PATH.WORD.ROOT,
+      index: PATH_INDEX.WORD_ROOT,
     }],
   },
 };

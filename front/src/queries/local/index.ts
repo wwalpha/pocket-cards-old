@@ -3,8 +3,9 @@ export * from './query';
 
 import { createLinkWithCache } from 'aws-appsync';
 import { withClientState } from 'apollo-link-state';
-import { resolvers, defaults } from './resolvers';
+import { resolvers } from './resolvers';
 import { DocumentNode } from 'graphql';
+import { default as defaults } from './defaults';
 
 const typeDefs: DocumentNode = require('./schema.gql');
 

@@ -15,3 +15,11 @@ export const APP_INFO = gql`
   }
 }
 `;
+
+export const NEW_WORD_INFO = gql`
+{
+  newword @client {
+    word
+  }
+}
+`;

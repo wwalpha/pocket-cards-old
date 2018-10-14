@@ -1,2 +1,3 @@
 export * from './local';
-export * from './set';
+export * from './appsync/set';
+export * from './appsync/word';

@@ -3,11 +3,38 @@ import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import { APP_INFO } from '@gql';
 import { Query } from 'react-apollo';
-import { HEADER } from '@const';
+import { HEADER, IconInfo } from '@const';
 import { AppInfo } from 'typings/local';
 import UpdatePath from '@comp/hoc/UpdatePath';
 
 class Header extends React.Component<Props> {
+
+  renderIcon = (item: IconInfo, key: number) => {
+    // カスタマイズあり
+    if (item.customize) {
+      return <item.customize />;
+    }
+    // Icon未設定、表示しない
+    if (!item.icon) return null;
+
+    if (item.path) {
+      return (
+        <IconButton
+          key={key}
+          color="inherit"
+          component={(props: any) => <UpdatePath to={item.path} path={item.index} {...props} />}
+        >
+          <item.icon />
+        </IconButton>
+      );
+    }
+
+    return (
+      <IconButton key={key} color="inherit" >
+        <item.icon />
+      </IconButton>
+    );
+  }
 
   render() {
     const { classes } = this.props;
@@ -30,38 +57,17 @@ class Header extends React.Component<Props> {
               <Toolbar>
                 {(() => {
                   if (!info.left || info.left.length === 0) return null;
-                  const btns = info.left.map((item, idx) => (
-                    <IconButton
-                      key={idx}
-                      color="inherit"
-                      component={() => (
-                        <UpdatePath to={item.path} path={item.index} />
-                      )}
-                    >
-                      <item.icon />
-                    </IconButton>
-                  ));
-                  return btns;
+
+                  return info.left.map((item, idx) => this.renderIcon(item, idx));
                 })()}
                 <Typography variant="title" color="inherit" className={classes.grow}>
                   {info.title}
                 </Typography>
                 {(() => {
                   if (!info.right || info.right.length === 0) return null;
-                  const btns = info.right.map((item, idx) => (
-                    <IconButton
-                      key={idx}
-                      color="inherit"
-                      component={() => (
-                        <UpdatePath to={item.path} path={item.index} />
-                      )}
-                    >
-                      <item.icon />
-                    </IconButton>
-                  ));
-                  return btns;
-                })()}
 
+                  return info.right.map((item, idx) => this.renderIcon(item, idx));
+                })()}
               </Toolbar>
             </AppBar>
           );

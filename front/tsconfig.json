@@ -47,6 +47,9 @@
       ],
       "@test/*": [
         "./test/*"
+      ],
+      "@hoc": [
+        "./src/components/hoc/index.ts"
       ]
     }
   },

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { render } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
-import Amplify from '@aws-amplify/core';
-import Auth from '@aws-amplify/auth';
+import Amplify, { Auth, Storage } from 'aws-amplify';
+
 import AppSyncClient, { AUTH_TYPE, createAppSyncLink } from 'aws-appsync';
 import { Rehydrated } from 'aws-appsync-react';
 import { BrowserRouter } from 'react-router-dom';
@@ -15,6 +15,10 @@ import App from './containers/App';
 import { UPDATE_USER } from '@gql';
 
 Amplify.configure(config);
+// Storage.configure({
+//   bucket: 'dev-pocketcards',
+//   identityPoolId: 'ap-northeast-1:a1e28e02-d12a-4c5e-9d80-893d7c23b286',
+// });
 
 const theme: Theme = createMuiTheme({
   palette: {
@@ -43,6 +47,10 @@ const client = new AppSyncClient({} as any, { link });
 
 const start = async () => {
   await Auth.signIn('wwalpha', 'session10');
+
+  Storage.configure({ level: 'private' });
+
+  await Storage.put('test.txt', 'Hello');
 
   await client.mutate({
     mutation: UPDATE_USER,

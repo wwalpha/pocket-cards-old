@@ -2,7 +2,7 @@ import * as React from 'react';
 import { graphql, ChildProps } from 'react-apollo';
 import { Button, colors } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
-import { DELETE, GET_LIST } from '@gql';
+import { SET_DELETE, GET_LIST } from '@gql';
 import { SetRemoveVariables, SetRemove_deleteSet, GetSetList, GetSetListVariables } from 'typings/graphql';
 
 class RemoveBtn extends React.Component<Props> {
@@ -37,7 +37,7 @@ const styles = (): StyleRules => ({
 
 export interface Props extends ChildProps<SetRemoveVariables, SetRemove_deleteSet>, WithStyles { }
 
-export default graphql<SetRemoveVariables, SetRemove_deleteSet>(DELETE, {
+export default graphql<SetRemoveVariables, SetRemove_deleteSet>(SET_DELETE, {
   options: ({ userId, setId }) => ({
     variables: { userId, setId },
     refetchQueries: [{

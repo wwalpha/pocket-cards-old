@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 class UpdatePath extends React.Component<Props> {
 
   render() {
-    const { to, path, onPathChange } = this.props;
+    const { to, path, onPathChange, ...props } = this.props;
 
     if (!to || !onPathChange) return null;
 
@@ -15,6 +15,7 @@ class UpdatePath extends React.Component<Props> {
       <Link
         to={to}
         onClick={() => onPathChange(path)}
+        {...props}
       />
     );
   }

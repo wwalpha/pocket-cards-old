@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { SetRegist, SetRegistVariables, GetSetList, GetSetListVariables } from 'typings/graphql';
-import { REGIST, GET_LIST } from '@gql';
+import { SET_REGIST, GET_LIST } from '@gql';
 import { PATH } from '@const';
 
 class AddBtn extends React.Component<Props> {
@@ -34,7 +34,7 @@ const styles = (): StyleRules => ({
 
 export interface Props extends ChildProps<SetRegistVariables, SetRegist>, WithStyles, RouteComponentProps { }
 
-export default graphql<SetRegistVariables, SetRegist>(REGIST, {
+export default graphql<SetRegistVariables, SetRegist>(SET_REGIST, {
   // options: ({ userId }) => ({
   //   refetchQueries: [{
   //     query: GET_LIST, variables: { userId },

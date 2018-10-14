@@ -22,7 +22,7 @@ type Mutation {
   # セット削除
   deleteSet(userId: String!, setId: String!): Set
   # 画像から単語読み取り
-  wordWithImage(bucketKey: String!): [String]
+  wordWithImage(bucketKey: String!): [Word]
   # 単語新規登録
   addNewWords(setId: String!, words: [String]!): [Word]
 }

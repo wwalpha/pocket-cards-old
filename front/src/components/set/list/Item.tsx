@@ -32,7 +32,7 @@ class ListItem extends React.Component<Props, any> {
             button
             disableRipple
             classes={{ root: classes.listitem }}
-            component={() => <UpdatePath to={PATH.WORD.ROOT} path={PATH_INDEX.WORD_ROOT} />}
+            component={(props: any) => <UpdatePath to={PATH.WORD.ROOT} path={PATH_INDEX.WORD_ROOT} {...props} />}
           >
             <Avatar classes={{ root: classes.avatar }}>
               <FolderIcon />

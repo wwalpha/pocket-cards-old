@@ -65,6 +65,26 @@ export interface SetRemoveVariables {
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: WordRegist
+// ====================================================
+
+export interface WordRegist_wordWithImage {
+  __typename: "Word";
+  word: string | null;
+}
+
+export interface WordRegist {
+  wordWithImage: (WordRegist_wordWithImage | null)[] | null;
+}
+
+export interface WordRegistVariables {
+  bucketKey: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================

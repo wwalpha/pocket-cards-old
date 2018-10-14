@@ -6,4 +6,5 @@ input UserInput {
 type Mutation {
   updateUser(id: String!, username: String!): User
   updatePath(path: Int!): App
+  test(input: UserInput!): App
 }

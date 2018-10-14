@@ -32,22 +32,21 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          component={() => <UpdatePath to={PATH.HOME.ROOT} path={PATH_INDEX.HOME_ROOT} />}
-
+          component={(props: any) => <UpdatePath to={PATH.HOME.ROOT} path={PATH_INDEX.HOME_ROOT} {...props} />}
         />
         <BottomNavigationAction
           icon={<WebAssetIcon />}
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          component={() => <UpdatePath to={PATH.SET.ROOT} path={PATH_INDEX.SET_ROOT} />}
+          component={(props: any) => <UpdatePath to={PATH.SET.ROOT} path={PATH_INDEX.SET_ROOT} {...props} />}
         />
         <BottomNavigationAction
           icon={<PersonIcon />}
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          component={() => <UpdatePath to={PATH.USER.ROOT} path={PATH_INDEX.USER_ROOT} />}
+          component={(props: any) => <UpdatePath to={PATH.USER.ROOT} path={PATH_INDEX.USER_ROOT} {...props} />}
         />
       </BottomNavigation>
     );

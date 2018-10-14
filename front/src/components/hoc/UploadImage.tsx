@@ -64,7 +64,7 @@ export interface Props extends TProps, WithStyles { }
 export default graphql<TProps, WordRegist, WordRegistVariables, TChildProps>(WORD_REGIST, {
   options: {
     update: (proxy, result) => {
-
+      
     },
   },
   props: ({ data, mutate, ownProps }) => ({

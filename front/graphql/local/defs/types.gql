@@ -4,5 +4,9 @@ type User {
 }
 
 type App {
-  screen: String!
+  path: String!
+}
+
+type Newwords {
+  words: [String]
 }

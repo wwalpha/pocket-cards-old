@@ -1,0 +1,4 @@
+type Newwords {
+  # 新規単語
+  words: [String]
+}

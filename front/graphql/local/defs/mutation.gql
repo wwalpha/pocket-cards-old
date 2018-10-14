@@ -3,8 +3,12 @@ input UserInput {
   username: String!
 }
 
+input RegistWordInput {
+  words: [String]
+}
+
 type Mutation {
   updateUser(id: String!, username: String!): User
   updatePath(path: Int!): App
-  test(input: UserInput!): App
+  registWords(words: RegistWordInput!): Newwords
 }

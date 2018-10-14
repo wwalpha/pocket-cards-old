@@ -66,19 +66,19 @@ export interface SetRemoveVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: WordRegist
+// GraphQL mutation operation: Image2Word
 // ====================================================
 
-export interface WordRegist_wordWithImage {
-  __typename: "Word";
-  word: string | null;
+export interface Image2Word_image2Word {
+  __typename: "Newwords";
+  words: (string | null)[] | null;
 }
 
-export interface WordRegist {
-  wordWithImage: (WordRegist_wordWithImage | null)[] | null;
+export interface Image2Word {
+  image2Word: Image2Word_image2Word | null;
 }
 
-export interface WordRegistVariables {
+export interface Image2WordVariables {
   bucketKey: string;
 }
 

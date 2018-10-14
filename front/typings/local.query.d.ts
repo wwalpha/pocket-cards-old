@@ -2,7 +2,7 @@ import { ChildProps } from "react-apollo";
 import { UpdatePathVariables } from "./local.generate";
 
 export interface UpdatePathProps extends UpdatePathVariables {
-  onPathChange?: (path?: number) => void;
+  onPathChange?: (path: number) => void;
 }
 
 export type UpdatePathChildProps = ChildProps<UpdatePathProps, AppInfo, UpdatePathVariables>;

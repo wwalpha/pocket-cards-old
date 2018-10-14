@@ -513,7 +513,7 @@
             "deprecationReason": null
           },
           {
-            "name": "wordWithImage",
+            "name": "image2Word",
             "description": null,
             "args": [
               {
@@ -532,13 +532,9 @@
               }
             ],
             "type": {
-              "kind": "LIST",
-              "name": null,
-              "ofType": {
-                "kind": "OBJECT",
-                "name": "Word",
-                "ofType": null
-              }
+              "kind": "OBJECT",
+              "name": "Newwords",
+              "ofType": null
             },
             "isDeprecated": false,
             "deprecationReason": null
@@ -586,6 +582,33 @@
               "ofType": {
                 "kind": "OBJECT",
                 "name": "Word",
+                "ofType": null
+              }
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          }
+        ],
+        "inputFields": null,
+        "interfaces": [],
+        "enumValues": null,
+        "possibleTypes": null
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Newwords",
+        "description": null,
+        "fields": [
+          {
+            "name": "words",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "name": null,
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String",
                 "ofType": null
               }
             },

@@ -15,7 +15,7 @@
     "schema:local:build": "yarn schema:local:init && yarn schema:local:json && yarn schema:local:generate",
     "schema:build": "yarn schema:app:build && yarn schema:local:build",
     "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./graphql/schemas/schema.gql",
-    "schema": "yarn schema:build && yarn schema:update",
+    "schema": "yarn schema:app:build && yarn schema:update",
     "resolver": "ts-node graphql/deploy jw4s4q3gqbgkpbhr2pnk5uziji",
     "prod:build": "webpack --config webpack/webpack.prod.js"
   },

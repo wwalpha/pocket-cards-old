@@ -28,7 +28,7 @@ export interface UpdateUserVariables {
 
 export interface UpdatePath_updatePath {
   __typename: "App";
-  screen: string;
+  path: string;
 }
 
 export interface UpdatePath {
@@ -42,9 +42,33 @@ export interface UpdatePathVariables {
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: RegistWords
+// ====================================================
+
+export interface RegistWords_registWords {
+  __typename: "Newwords";
+  words: (string | null)[] | null;
+}
+
+export interface RegistWords {
+  registWords: RegistWords_registWords | null;
+}
+
+export interface RegistWordsVariables {
+  words: RegistWordInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+export interface RegistWordInput {
+  words?: (string | null)[] | null;
+}
 
 //==============================================================
 // END Enums and Input Objects

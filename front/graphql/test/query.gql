@@ -11,6 +11,11 @@ mutation DeleteSet {
   }
 }
 
+mutation WordWithImage {
+  wordWithImage(bucketKey: "private/ap-northeast-1:ca61500a-e732-4cb6-a0f4-cddf75336eb9/IMG_1144.jpg") {
+    word
+  }
+}
 
 query Sets {
   sets(userId: "wwalpha") {

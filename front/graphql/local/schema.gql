@@ -11,11 +11,16 @@ type Query {
 type Mutation {
   updateUser(id: String!, username: String!): User
   updatePath(path: Int!): App
+  registWords(words: RegistWordInput!): Newwords
 }
 
 input UserInput {
   id: ID!
   username: String!
+}
+
+input RegistWordInput {
+  words: [String]
 }
 
 type User {
@@ -24,5 +29,9 @@ type User {
 }
 
 type App {
-  screen: String!
+  path: String!
+}
+
+type Newwords {
+  words: [String]
 }

@@ -85,9 +85,35 @@ export interface Image2WordVariables {
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: RegistWords
+// ====================================================
+
+export interface RegistWords_registWords {
+  __typename: "Word";
+  word: string | null;
+}
+
+export interface RegistWords {
+  registWords: (RegistWords_registWords | null)[] | null;
+}
+
+export interface RegistWordsVariables {
+  userId: string;
+  setId: string;
+  words?: NewwordsInput | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+export interface NewwordsInput {
+  words: (string | null)[];
+}
 
 //==============================================================
 // END Enums and Input Objects

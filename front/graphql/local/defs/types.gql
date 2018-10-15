@@ -1,12 +1,24 @@
-type User {
-  id: ID!
-  username: String!
-}
+
 
 type App {
-  path: String!
+  screen: Screen
+  user: User
+  status: Status
 }
 
 type Newwords {
   words: [String]
+}
+
+type User {
+  id: ID!
+  username: String
+}
+
+type Screen {
+  path: Int!
+}
+
+type Status {
+  setId: String
 }

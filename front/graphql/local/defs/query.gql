@@ -1,5 +1,7 @@
 type Query {
-  user: User
-
+  # アプリ全般情報
   app: App
+
+  # 新規登録単語
+  newwords: Newwords
 }

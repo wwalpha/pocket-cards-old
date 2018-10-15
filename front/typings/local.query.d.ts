@@ -8,19 +8,29 @@ export interface UpdatePathProps extends UpdatePathVariables {
 export type UpdatePathChildProps = ChildProps<UpdatePathProps, AppInfo, UpdatePathVariables>;
 
 
-export interface User {
-  id: string;
-  username: string;
-}
-
 export interface App {
-  path: number;
+  status: Status;
+  screen: Screen;
+  user: User;
 }
 
 export interface AppInfo {
   app: App;
 }
 
-export interface UserInfo {
-  user: User;
+export interface NewwordInfo {
+  words: string[];
+}
+
+export interface User {
+  id: string;
+  username: string;
+}
+
+export interface Screen {
+  path: number;
+}
+
+export interface Status {
+  setId: string;
 }

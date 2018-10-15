@@ -1,31 +1,41 @@
 import * as React from 'react';
-import { graphql, ChildProps } from 'react-apollo';
+import { ChildProps, withApollo, WithApolloClient } from 'react-apollo';
 import { Button } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
-import { withRouter, RouteComponentProps } from 'react-router';
-import { SetRegist, SetRegistVariables, GetSetList, GetSetListVariables } from 'typings/graphql';
-import { SET_REGIST, GET_LIST } from '@gql';
+import { RegistWords, RegistWordsVariables } from 'typings/graphql';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { APP_INFO } from '@gql';
+import { ApolloQueryResult } from 'apollo-client';
 import { PATH } from '@const';
+import { AppInfo } from 'typings/local';
 
-class AddBtn extends React.Component<Props> {
+class RegistBtn extends React.Component<Props> {
+
+  handleRegist = () => {
+    const { client, history, regist, words } = this.props;
+
+    // Cache検索
+    const data = client.readQuery<AppInfo>(APP_INFO);
+    if (!data) return;
+
+    const { user, status } = data.app;
+
+    // 新規単語登録
+    const ret = regist(user.id, status.setId, words);
+
+    // メニュー画面に戻る
+    ret && ret.then(() => history.push(PATH.WORD.ROOT));
+  }
 
   render() {
-    const { mutate, name, userId, history } = this.props;
-
-    console.log(this.props);
     return (
       <Button
         variant="contained"
         color="primary"
-        onClick={() => mutate && mutate({
-          variables: {
-            userId,
-            name,
-          },
-        }).then(() => history.push(PATH.SET.ROOT))}
+        onClick={this.handleRegist}
       >
         登録
-    </Button>
+     </Button>
     );
   }
 }
@@ -33,35 +43,58 @@ class AddBtn extends React.Component<Props> {
 const styles = (): StyleRules => ({
 });
 
-export interface Props extends ChildProps<SetRegistVariables, SetRegist>, WithStyles, RouteComponentProps { }
+export interface IProps {
+  words: string[];
+  regist: (userId: string, setId: string, words: string[]) => Promise<ApolloQueryResult<RegistWords>> | undefined;
+}
 
-export default graphql<SetRegistVariables, SetRegist>(SET_REGIST, {
-  options: ({ userId }) => ({
-    refetchQueries: [{
-      query: GET_LIST, variables: { userId },
-    }],
-    update: (proxy, { data }) => {
-      // Query from cache
-      const query = GET_LIST;
-      const list = proxy.readQuery<GetSetList, GetSetListVariables>({
-        query,
-        variables: { userId },
-      });
+export interface TProps extends IProps { }
 
-      // 必須チェック
-      if (!list || !list.sets) return;
-      if (!data) return;
+export type TChildProps = ChildProps<TProps, RegistWords, RegistWordsVariables>;
 
-      // merge datas
-      list.sets.push(data.createSet);
+export interface Props extends WithApolloClient<TProps>, WithStyles, RouteComponentProps { }
 
-      // write to cache
-      proxy.writeQuery({ query, data: list });
-    },
-  }),
-  props: ({ data, mutate, ownProps }) => ({
+export default withApollo<TProps, RegistWords>(withStyles(styles)(withRouter(RegistBtn)), {
+  props: ({ mutate, data, ownProps }) => ({
     ...data,
-    mutate,
     ...ownProps,
+    regist: (userId: string, setId: string, words: string[]) => mutate && mutate({
+      variables: {
+        userId, setId, words,
+      },
+    }),
   }),
-})(withStyles(styles)(withRouter(AddBtn)));
+});
+// export default withRouter(withStyles(styles)(withApollo<TProps, RegistWords>(RegistBtn)));
+// export interface Props extends ChildProps<SetRegistVariables, SetRegist>, WithStyles { }
+
+// export default graphql<SetRegistVariables, SetRegist>(SET_REGIST, {
+//   options: ({ userId }) => ({
+//     refetchQueries: [{
+//       query: GET_LIST, variables: { userId },
+//     }],
+//     update: (proxy, { data }) => {
+//       // Query from cache
+//       const query = GET_LIST;
+//       const list = proxy.readQuery<GetSetList, GetSetListVariables>({
+//         query,
+//         variables: { userId },
+//       });
+
+//       // 必須チェック
+//       if (!list || !list.sets) return;
+//       if (!data) return;
+
+//       // merge datas
+//       list.sets.push(data.createSet);
+
+//       // write to cache
+//       proxy.writeQuery({ query, data: list });
+//     },
+//   }),
+//   props: ({ data, mutate, ownProps }) => ({
+//     ...data,
+//     mutate,
+//     ...ownProps,
+//   }),
+// })(withStyles(styles)(AddBtn));

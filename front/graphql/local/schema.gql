@@ -4,14 +4,23 @@ schema {
 }
 
 type Query {
-  user: User
+  # アプリ全般情報
   app: App
+  # 新規登録単語
+  newwords: Newwords
 }
 
 type Mutation {
-  updateUser(id: String!, username: String!): User
+  # ユーザ情報を更新する
+  updateUser(id: String!, username: String!): App
+  # 画面パスを更新する
   updatePath(path: Int!): App
-  registWords(words: RegistWordInput!): Newwords
+  # 新規単語をローカルに保存する
+  saveNewwords(words: RegistWordInput): Newwords
+  # ローカルの新規単語リストをクリアする
+  clearNewwords: Newwords
+  # ローカルの単語リストから単語を削除する
+  removeWord(word: String!): Newwords
 }
 
 input UserInput {
@@ -23,15 +32,25 @@ input RegistWordInput {
   words: [String]
 }
 
-type User {
-  id: ID!
-  username: String!
-}
-
 type App {
-  path: String!
+  screen: Screen
+  user: User
+  status: Status
 }
 
 type Newwords {
   words: [String]
+}
+
+type User {
+  id: ID!
+  username: String
+}
+
+type Screen {
+  path: Int!
+}
+
+type Status {
+  setId: String
 }

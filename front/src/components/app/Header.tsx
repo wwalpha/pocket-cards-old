@@ -48,7 +48,8 @@ class Header extends React.Component<Props> {
           if (error) return `Error!: ${error}`;
           if (!data) return null;
 
-          const { app: { path } } = data;
+          console.log(data);
+          const { app: { screen: { path } } } = data;
           const info = HEADER[path];
 
           console.log('info', info);

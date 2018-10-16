@@ -1,10 +1,10 @@
 input UserInput {
   id: ID!
-  username: String!
+  username: String
 }
 
 input RegistWordInput {
-  words: [String]
+  words: [String]!
 }
 
 type Mutation {
@@ -13,7 +13,7 @@ type Mutation {
   # 画面パスを更新する
   updatePath(path: Int!): App
   # 新規単語をローカルに保存する
-  saveNewwords(words: RegistWordInput): Newwords
+  saveNewwords(words: RegistWordInput!): Newwords
   # ローカルの新規単語リストをクリアする
   clearNewwords: Newwords
   # ローカルの単語リストから単語を削除する

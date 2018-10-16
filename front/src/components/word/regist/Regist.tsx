@@ -2,8 +2,8 @@ import * as React from 'react';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import { List, Grid, ListItem, ListItemText, Divider } from '@material-ui/core';
 import { Query } from 'react-apollo';
-import { USER_INFO } from '@gql';
-import { AddBtn, Header } from '.';
+import { APP_INFO } from '@gql';
+import { AddBtn } from '.';
 
 class Regist extends React.Component<Props, State> {
   state = {
@@ -34,7 +34,7 @@ class Regist extends React.Component<Props, State> {
           </List>
         </Grid>
         <Grid container justify="flex-end" classes={{ container: classes.command }}>
-          <Query query={USER_INFO}>
+          <Query query={APP_INFO}>
             {({ data: { user } }) => {
               console.log(user);
               return (

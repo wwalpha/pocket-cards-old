@@ -11,8 +11,8 @@ export const UPDATE_USER = gql`
 `;
 
 export const UPDATE_PATH = gql`
-  mutation UpdatePath($path: Int!) @client {
-    updatePath(path: $path) {
+  mutation UpdatePath($path: Int!) {
+    updatePath(path: $path) @client {
       screen {
         path
       }
@@ -22,8 +22,8 @@ export const UPDATE_PATH = gql`
 
 // 新規単語をローカルに保存する
 export const SAVE_NEW_WORDS = gql`
-  mutation SaveNewwords($words: RegistWordInput!) @client {
-    saveNewwords(words: $words) {
+  mutation SaveNewwords($words: RegistWordInput!) {
+    saveNewwords(words: $words) @client {
       words
     }
   }
@@ -31,8 +31,8 @@ export const SAVE_NEW_WORDS = gql`
 
 // ローカルの新規単語リストをクリアする
 export const CLEAR_NEW_WORDS = gql`
-  mutation ClearNewwords @client {
-    clearNewwords {
+  mutation ClearNewwords {
+    clearNewwords @client {
       words
     }
   }
@@ -40,8 +40,8 @@ export const CLEAR_NEW_WORDS = gql`
 
 // ローカルの単語リストから単語を削除する
 export const REMOVE_WORD = gql`
-  mutation RemoveWord($word: String!) @client {
-    removeWord(word: $word) {
+  mutation RemoveWord($word: String!) {
+    removeWord(word: $word)  @client {
       words
     }
   }

@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { SetRegist, SetRegistVariables, GetSetList, GetSetListVariables } from 'typings/graphql';
-import { SET_REGIST, GET_LIST } from '@gql';
+import { SET_REGIST } from '@gql';
 import { PATH } from '@const';
 
 class AddBtn extends React.Component<Props> {

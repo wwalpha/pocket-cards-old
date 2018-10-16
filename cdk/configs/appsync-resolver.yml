@@ -14,7 +14,7 @@ WordWithImageResolver:
   DataSourceName: lambda_ImageToWord
 
 AddNewWordsResolver:
-  FieldName: addNewWords
+  FieldName: registWords
   TypeName: Mutation
   DataSourceName: lambda_AddNewWords
 

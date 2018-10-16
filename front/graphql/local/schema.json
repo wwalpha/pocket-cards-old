@@ -317,9 +317,13 @@
                 "name": "words",
                 "description": null,
                 "type": {
-                  "kind": "INPUT_OBJECT",
-                  "name": "RegistWordInput",
-                  "ofType": null
+                  "kind": "NON_NULL",
+                  "name": null,
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "RegistWordInput",
+                    "ofType": null
+                  }
                 },
                 "defaultValue": null
               }
@@ -387,12 +391,16 @@
             "name": "words",
             "description": null,
             "type": {
-              "kind": "LIST",
+              "kind": "NON_NULL",
               "name": null,
               "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
               }
             },
             "defaultValue": null
@@ -1274,13 +1282,9 @@
             "name": "username",
             "description": null,
             "type": {
-              "kind": "NON_NULL",
-              "name": null,
-              "ofType": {
-                "kind": "SCALAR",
-                "name": "String",
-                "ofType": null
-              }
+              "kind": "SCALAR",
+              "name": "String",
+              "ofType": null
             },
             "defaultValue": null
           }

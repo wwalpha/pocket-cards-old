@@ -4,7 +4,8 @@ import { Grid } from '@material-ui/core';
 import { Query } from 'react-apollo';
 import Item from './Item';
 import { GetSetList, GetSetListVariables } from 'typings/graphql';
-import { GET_LIST, USER_INFO } from '@gql';
+import { GET_LIST, APP_INFO } from '@gql';
+import { AppInfo } from 'typings/local';
 
 class List extends React.Component<Props, {}> {
 
@@ -12,9 +13,9 @@ class List extends React.Component<Props, {}> {
     const { classes } = this.props;
     return (
       <Grid container classes={{ container: classes.root }}>
-        <Query query={USER_INFO}>
-          {({ data: { user } }) => (
-            <SetsQuery query={GET_LIST} variables={{ userId: user && user.id }} >
+        <AppQuery query={APP_INFO}>
+          {({ data: { app } }) => (
+            <SetsQuery query={GET_LIST} variables={{ userId: app && app.user.id }} >
               {({ loading, data, error }) => {
                 if (loading) return <div>Loading</div>;
                 if (error) return <h1>ERROR</h1>;
@@ -34,7 +35,7 @@ class List extends React.Component<Props, {}> {
               }}
             </SetsQuery>
           )}
-        </Query>
+        </AppQuery>
       </Grid>
     );
   }
@@ -49,6 +50,7 @@ const styles = (): StyleRules => ({
 export default withStyles(styles)(List);
 
 class SetsQuery extends Query<GetSetList, GetSetListVariables> { }
+class AppQuery extends Query<AppInfo, any> { }
 
 export interface Props extends WithStyles<StyleRules>, GetSetListVariables {
 }

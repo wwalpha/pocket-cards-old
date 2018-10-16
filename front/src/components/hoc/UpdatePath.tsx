@@ -11,6 +11,7 @@ class UpdatePath extends React.Component<Props> {
 
     if (!to || !onPathChange) return null;
 
+    console.log('UPdatepath', onPathChange);
     return (
       <Link
         to={to}
@@ -36,6 +37,7 @@ export default graphql<TProps, AppInfo, UpdatePathVariables, TChildProps>(UPDATE
     ...data,
     ...ownProps,
     onPathChange: (path?: number) => {
+      console.log('onPathChange', path);
       mutate && mutate({
         variables: { path },
       });

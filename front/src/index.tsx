@@ -9,10 +9,12 @@ import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme, MuiThemeProvider, Theme } from '@material-ui/core/styles';
 import { blue, deepOrange } from '@material-ui/core/colors';
 import { ApolloLink } from 'apollo-link';
-import { stateLink } from './queries/local';
+import { stateLink, UPDATE_PATH } from './queries/local';
 import config from './aws-exports';
 import App from './containers/App';
 import { UPDATE_USER } from '@gql';
+import { UpdatePathVariables } from 'typings/local';
+import { PATH_INDEX } from '@const';
 
 Amplify.configure(config);
 // Storage.configure({
@@ -50,8 +52,6 @@ const start = async () => {
 
   Storage.configure({ level: 'private' });
 
-  await Storage.put('test.txt', 'Hello');
-
   await client.mutate({
     mutation: UPDATE_USER,
     variables: {
@@ -59,6 +59,14 @@ const start = async () => {
       username: 'test',
     },
   });
+
+  await client.mutate<any, UpdatePathVariables>({
+    mutation: UPDATE_PATH,
+    variables: {
+      path: PATH_INDEX.HOME_ROOT,
+    },
+  });
+
   render(
     <ApolloProvider client={client}>
       <Rehydrated>

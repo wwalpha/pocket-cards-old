@@ -1,13 +1,10 @@
-schema {
-  query: Query
-  mutation: Mutation
+input UserInput {
+  id: ID!
+  username: String!
 }
 
-type Query {
-  # アプリ全般情報
-  app: App
-  # 新規登録単語
-  newwords: Newwords
+input RegistWordInput {
+  words: [String]
 }
 
 type Mutation {
@@ -21,36 +18,4 @@ type Mutation {
   clearNewwords: Newwords
   # ローカルの単語リストから単語を削除する
   removeWord(word: String!): Newwords
-}
-
-input UserInput {
-  id: ID!
-  username: String!
-}
-
-input RegistWordInput {
-  words: [String]
-}
-
-type App {
-  screen: Screen
-  user: User
-  status: Status
-}
-
-type Newwords {
-  words: [String]
-}
-
-type User {
-  id: ID!
-  username: String
-}
-
-type Screen {
-  path: Int!
-}
-
-type Status {
-  setId: String
 }

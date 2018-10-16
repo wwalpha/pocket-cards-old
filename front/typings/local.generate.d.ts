@@ -113,7 +113,7 @@ export interface RemoveWordVariables {
 //==============================================================
 
 export interface RegistWordInput {
-  words?: (string | null)[] | null;
+  words: (string | null)[];
 }
 
 //==============================================================

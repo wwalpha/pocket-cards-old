@@ -9,6 +9,7 @@ export type UpdatePathChildProps = ChildProps<UpdatePathProps, AppInfo, UpdatePa
 
 
 export interface App {
+  __typename: 'App',
   status: Status;
   screen: Screen;
   user: User;
@@ -16,6 +17,7 @@ export interface App {
 
 export interface AppInfo {
   app: App;
+  newwords: NewwordInfo;
 }
 
 export interface NewwordInfo {
@@ -23,14 +25,17 @@ export interface NewwordInfo {
 }
 
 export interface User {
+  __typename: 'User';
   id: string;
   username: string;
 }
 
 export interface Screen {
+  __typename: 'Screen';
   path: number;
 }
 
 export interface Status {
+  __typename: 'Status';
   setId: string;
 }

@@ -1,9 +1,17 @@
-import { PATH_INDEX } from '@const';
+import { AppInfo } from 'typings/local';
 
 export default {
-  user: null,
   app: {
     __typename: 'App',
-    path: PATH_INDEX.HOME_ROOT,
+    user: {
+      __typename: 'User',
+    },
+    screen: {
+      __typename: 'Screen',
+    },
+    status: {
+      __typename: 'Status',
+    },
   },
-};
+  newwords: null as any,
+} as AppInfo;

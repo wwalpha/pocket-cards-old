@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { UpdatePathProps, AppInfo, UpdatePathVariables } from 'typings/local';
+import { UpdatePathProps, UpdatePathVariables, ScreenInfo } from 'typings/local';
 import { UPDATE_PATH } from '@gql';
 import { graphql, ChildProps } from 'react-apollo';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,6 @@ class UpdatePath extends React.Component<Props> {
 
     if (!to || !onPathChange) return null;
 
-    console.log('UPdatepath', onPathChange);
     return (
       <Link
         to={to}
@@ -28,11 +27,11 @@ export interface IProps {
 
 export interface TProps extends UpdatePathProps, IProps { }
 
-export type TChildProps = ChildProps<TProps, AppInfo, {}>;
+export type TChildProps = ChildProps<TProps, ScreenInfo, {}>;
 
 export interface Props extends TProps { }
 
-export default graphql<TProps, AppInfo, UpdatePathVariables, TChildProps>(UPDATE_PATH, {
+export default graphql<TProps, ScreenInfo, UpdatePathVariables, TChildProps>(UPDATE_PATH, {
   props: ({ data, mutate, ownProps }) => ({
     ...data,
     ...ownProps,

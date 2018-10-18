@@ -1,30 +1,45 @@
 import * as React from 'react';
-import { graphql, ChildProps } from 'react-apollo';
+import { withApollo, WithApolloClient } from 'react-apollo';
 import { Button } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
-import { withRouter, RouteComponentProps } from 'react-router';
-import { SetRegist, SetRegistVariables, GetSetList, GetSetListVariables } from 'typings/graphql';
-import { SET_REGIST } from '@gql';
+import { RegistWords, RegistWordsVariables } from 'typings/graphql';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { UserInfo, StatusInfo } from 'typings/local';
+import { USER_INFO, STATUS_INFO, WORDS_REGIST } from '@gql';
 import { PATH } from '@const';
 
-class AddBtn extends React.Component<Props> {
+class RegistBtn extends React.Component<Props> {
+
+  handleRegist = async () => {
+    const { client, history } = this.props;
+
+    // Cache検索
+    const userInfo = client.readQuery<UserInfo>({ query: USER_INFO });
+    if (!userInfo) return;
+    const statusInfo = client.readQuery<StatusInfo>({ query: STATUS_INFO });
+    if (!statusInfo) return;
+
+    // 新規単語登録
+    await client.mutate<RegistWords, RegistWordsVariables>({
+      mutation: WORDS_REGIST,
+      variables: {
+        userId: userInfo.user.id,
+        setId: statusInfo.status.setId,
+      },
+    });
+
+    history.push(PATH.WORD.ROOT);
+  }
 
   render() {
-    const { mutate, name, userId, history } = this.props;
-
     return (
       <Button
         variant="contained"
         color="primary"
-        onClick={() => mutate && mutate({
-          variables: {
-            userId,
-            name,
-          },
-        }).then(() => history.push(PATH.WORD.ROOT))}
+        onClick={this.handleRegist}
       >
-        登  録
-    </Button>
+        登録
+     </Button>
     );
   }
 }
@@ -32,36 +47,14 @@ class AddBtn extends React.Component<Props> {
 const styles = (): StyleRules => ({
 });
 
-export interface Props extends ChildProps<SetRegistVariables, SetRegist>, WithStyles, RouteComponentProps { }
+export interface IProps {
+  words: string[];
+}
 
-export default graphql<SetRegistVariables, SetRegist>(SET_REGIST, {
-  // options: ({ userId }) => ({
-  //   refetchQueries: [{
-  //     query: GET_LIST, variables: { userId },
-  //   }],
-  //   update: (proxy, { data }) => {
+export interface Props extends WithApolloClient<IProps>, RouteComponentProps, WithStyles { }
 
-  //     // Query from cache
-  //     const query = GET_LIST;
-  //     const list = proxy.readQuery<GetSetList, GetSetListVariables>({
-  //       query,
-  //       variables: { userId },
-  //     });
+export default withApollo<IProps>(withStyles(styles)(withRouter(RegistBtn)), {
+  props: ({ }) => ({
 
-  //     // 必須チェック
-  //     if (!list || !list.sets) return;
-  //     if (!data) return;
-
-  //     // merge datas
-  //     list.sets.push(data.createSet);
-
-  //     // write to cache
-  //     proxy.writeQuery({ query, data: list });
-  //   },
-  // }),
-  props: ({ data, mutate, ownProps }) => ({
-    ...data,
-    mutate,
-    ...ownProps,
   }),
-})(withStyles(styles)(withRouter(AddBtn)));
+});

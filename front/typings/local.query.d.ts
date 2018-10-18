@@ -5,23 +5,23 @@ export interface UpdatePathProps extends UpdatePathVariables {
   onPathChange?: (path: number) => void;
 }
 
-export type UpdatePathChildProps = ChildProps<UpdatePathProps, AppInfo, UpdatePathVariables>;
-
+export type UpdatePathChildProps = ChildProps<UpdatePathProps, Screen, UpdatePathVariables>;
 
 export interface App {
   __typename: 'App',
   status: Status;
   screen: Screen;
   user: User;
+  newwords: Newwords;
 }
 
-export interface AppInfo {
-  app: App;
-  newwords: NewwordInfo;
+export interface Newwords {
+  newwords?: string[];
+  user: User
 }
 
-export interface NewwordInfo {
-  words: string[];
+export interface UserInfo {
+  user: User
 }
 
 export interface User {
@@ -30,9 +30,17 @@ export interface User {
   username: string;
 }
 
+export interface ScreenInfo {
+  screen: Screen
+}
+
 export interface Screen {
   __typename: 'Screen';
   path: number;
+}
+
+export interface StatusInfo {
+  status: Status
 }
 
 export interface Status {

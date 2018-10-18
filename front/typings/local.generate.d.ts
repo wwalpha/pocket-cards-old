@@ -5,14 +5,10 @@
 // GraphQL mutation operation: UpdateUser
 // ====================================================
 
-export interface UpdateUser_updateUser_user {
+export interface UpdateUser_updateUser {
   __typename: "User";
   id: string;
-}
-
-export interface UpdateUser_updateUser {
-  __typename: "App";
-  user: UpdateUser_updateUser_user | null;
+  username: string | null;
 }
 
 export interface UpdateUser {
@@ -31,14 +27,9 @@ export interface UpdateUserVariables {
 // GraphQL mutation operation: UpdatePath
 // ====================================================
 
-export interface UpdatePath_updatePath_screen {
+export interface UpdatePath_updatePath {
   __typename: "Screen";
   path: number;
-}
-
-export interface UpdatePath_updatePath {
-  __typename: "App";
-  screen: UpdatePath_updatePath_screen | null;
 }
 
 export interface UpdatePath {

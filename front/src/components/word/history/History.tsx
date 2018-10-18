@@ -2,7 +2,6 @@ import * as React from 'react';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import { TextField, Grid } from '@material-ui/core';
 import { Query } from 'react-apollo';
-import { APP_INFO } from '@gql';
 import { AddBtn } from '.';
 
 class Regist extends React.Component<Props, State> {
@@ -31,13 +30,13 @@ class Regist extends React.Component<Props, State> {
           margin="normal"
           variant="outlined"
         />
-        <Query query={APP_INFO}>
+        {/* <Query query={APP_INFO}>
           {({ data: { user } }) => {
             return (
               <AddBtn name={name} userId={user && user.id} />
             );
           }}
-        </Query>
+        </Query> */}
       </Grid>
     );
   }

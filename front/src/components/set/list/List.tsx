@@ -1,41 +1,49 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import { Query } from 'react-apollo';
+import { Query, withApollo, WithApolloClient } from 'react-apollo';
 import Item from './Item';
 import { GetSetList, GetSetListVariables } from 'typings/graphql';
-import { GET_LIST, APP_INFO } from '@gql';
-import { AppInfo } from 'typings/local';
+import { GET_LIST, USER_INFO } from '@gql';
+import { UserInfo } from 'typings/local';
 
 class List extends React.Component<Props, {}> {
 
   render() {
     const { classes } = this.props;
+
     return (
       <Grid container classes={{ container: classes.root }}>
-        <AppQuery query={APP_INFO}>
-          {({ data: { app } }) => (
-            <SetsQuery query={GET_LIST} variables={{ userId: app && app.user.id }} >
-              {({ loading, data, error }) => {
-                if (loading) return <div>Loading</div>;
-                if (error) return <h1>ERROR</h1>;
-                if (!data) return <div></div>;
+        <UserQuery query={USER_INFO} >
+          {({ data, loading, error }) => {
+            if (loading) return <div>Loading</div>;
+            if (error) return <h1>ERROR</h1>;
+            if (!data) return null;
 
-                console.log('data', data);
-                const { sets = [] } = data;
+            const userId = data.user.id;
+            return (
+              <SetsQuery query={GET_LIST} variables={{ userId }} >
+                {({ loading, data, error }) => {
+                  if (loading) return <div>Loading</div>;
+                  if (error) return <h1>ERROR</h1>;
+                  if (!data) return <div></div>;
 
-                return sets && sets.map((item, idx) =>
-                  <Item
-                    key={idx}
-                    primaryText={(item && item.name) as string}
-                    setId={(item && item.setId) as string}
-                    userId={user.id}
-                  />,
-                );
-              }}
-            </SetsQuery>
-          )}
-        </AppQuery>
+                  console.log('data', data);
+                  const { sets = [] } = data;
+
+                  return sets && sets.map((item, idx) =>
+                    <Item
+                      key={idx}
+                      primaryText={(item && item.name) as string}
+                      setId={(item && item.setId) as string}
+                      userId={userId}
+                    />,
+                  );
+                }}
+              </SetsQuery>
+            );
+          }}
+        </UserQuery>
       </Grid>
     );
   }
@@ -47,10 +55,11 @@ const styles = (): StyleRules => ({
   },
 });
 
-export default withStyles(styles)(List);
-
 class SetsQuery extends Query<GetSetList, GetSetListVariables> { }
-class AppQuery extends Query<AppInfo, any> { }
+class UserQuery extends Query<UserInfo, any> { }
 
-export interface Props extends WithStyles<StyleRules>, GetSetListVariables {
-}
+export interface Props extends WithApolloClient<TProps>, WithStyles<StyleRules> { }
+
+export interface TProps { }
+
+export default withApollo<TProps, UserInfo>(withStyles(styles)(List));

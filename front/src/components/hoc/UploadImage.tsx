@@ -4,9 +4,9 @@ import { IconButton, Theme } from '@material-ui/core';
 import { CameraAlt } from '@material-ui/icons';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Storage } from 'aws-amplify';
-import { IMAGE_TO_WORDS, SAVE_NEW_WORDS, NEW_WORD_INFO } from '@gql';
-import { SaveNewwords, SaveNewwordsVariables } from 'typings/local';
+import { IMAGE_TO_WORDS, NEW_WORD_INFO } from '@gql';
 import { Image2Word, Image2WordVariables, Image2Word_image2Word } from 'typings/graphql';
+import { Newwords } from 'typings/local';
 
 class UploadImage extends React.Component<Props> {
 
@@ -64,21 +64,23 @@ export interface Props extends TProps, WithStyles { }
 
 export default graphql<TProps, Image2Word, Image2WordVariables, TChildProps>(IMAGE_TO_WORDS, {
   options: {
-    refetchQueries: [{
-      query: NEW_WORD_INFO,
-    }],
+    // refetchQueries: [{
+    //   query: NEW_WORD_INFO,
+    // }],
     update: (proxy, result) => {
-      if (!result.data) return;
+      if (!result.data || !result.data.image2Word) return;
 
-      const words = result.data as string[];
+      const words = result.data.image2Word.words;
+
+      const cache = proxy.readQuery<Newwords>({ query: NEW_WORD_INFO });
+      if (!cache) return;
+
       // ローカルに保存する
-      proxy.writeQuery<SaveNewwords, SaveNewwordsVariables>({
-        query: SAVE_NEW_WORDS,
+      proxy.writeQuery<Newwords>({
+        query: NEW_WORD_INFO,
         data: {
-          saveNewwords: {
-            __typename: 'Newwords',
-            words,
-          },
+          ...cache,
+          newwords: words,
         },
       });
     },

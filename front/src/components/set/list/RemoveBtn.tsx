@@ -43,9 +43,9 @@ export default graphql<SetRemoveVariables, SetRemove_deleteSet>(SET_DELETE, {
     refetchQueries: [{
       query: GET_LIST, variables: { userId },
     }],
-    update: (client) => {
+    update: (proxy) => {
       const query = GET_LIST;
-      const data = client.readQuery<GetSetList, GetSetListVariables>({
+      const data = proxy.readQuery<GetSetList, GetSetListVariables>({
         query,
         variables: { userId },
       });
@@ -56,7 +56,7 @@ export default graphql<SetRemoveVariables, SetRemove_deleteSet>(SET_DELETE, {
         ...data.sets.filter(item => item && item.setId !== setId),
       ];
 
-      client.writeQuery({ query, data });
+      proxy.writeQuery({ query, data });
     },
   }),
   props: ({ data, mutate, ownProps }) => ({ ...data, mutate, ownProps }),

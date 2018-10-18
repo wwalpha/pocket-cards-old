@@ -1,5 +1,5 @@
 import {
-  Add, ArrowBack, CameraAlt,
+  Add, ArrowBack,
 } from '@material-ui/icons';
 import { UploadImage } from '@hoc';
 import { PATH, Header, HeaderInfo } from '.';

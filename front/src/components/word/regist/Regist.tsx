@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
-import { List, Grid, ListItem, ListItemText, Divider } from '@material-ui/core';
+import { Grid, List, ListItem, ListItemText, Theme, WithStyles, withStyles } from '@material-ui/core';
 import { Query } from 'react-apollo';
-import { APP_INFO } from '@gql';
-import { AddBtn } from '.';
+import { NEW_WORD_INFO } from '@gql';
+import { StyleRules } from '@material-ui/core/styles';
+import { Newwords } from 'typings/local';
+import { RegistBtn } from '.';
 
-class Regist extends React.Component<Props, State> {
+class WordList extends React.Component<Props, State> {
   state = {
     words: [],
   };
@@ -14,36 +15,35 @@ class Regist extends React.Component<Props, State> {
     const { classes } = this.props;
 
     return (
-      <Grid container direction="column">
-        <Grid item>
-          <List component="nav" >
-            <ListItem button classes={{ root: classes.listItem }}>
-              <ListItemText primary="Inbox" />
+      <NewwordQuery query={NEW_WORD_INFO}>
+        {({ data, error, loading }) => {
+          if (loading) return 'loading';
+          if (error) return 'Error';
+          if (!data || !data.newwords) return null;
+
+          const items = data.newwords.map((item, idx) => (
+            <ListItem key={idx} divider button classes={{ root: classes.listItem }}>
+              <ListItemText primary={item} />
             </ListItem>
-            <Divider />
-            <ListItem button divider classes={{ root: classes.listItem }}>
-              <ListItemText primary="Drafts" />
-            </ListItem>
-            <ListItem button classes={{ root: classes.listItem }}>
-              <ListItemText primary="Trash" />
-            </ListItem>
-            <Divider light />
-            <ListItem button classes={{ root: classes.listItem }}>
-              <ListItemText primary="Spam" />
-            </ListItem>
-          </List>
-        </Grid>
-        <Grid container justify="flex-end" classes={{ container: classes.command }}>
-          <Query query={APP_INFO}>
-            {({ data: { user } }) => {
-              console.log(user);
-              return (
-                <AddBtn name={name} userId={user && user.id} />
-              );
-            }}
-          </Query>
-        </Grid>
-      </Grid>
+          ));
+
+          const userId = data.user.id;
+
+          return (
+            <Grid container direction="column">
+              <Grid item>
+                <List component="nav" >
+                  {items}
+                </List>
+              </Grid>
+              <Grid container justify="flex-end" classes={{ container: classes.command }}>
+                <RegistBtn words={data.newwords} />
+              </Grid>
+            </Grid>
+
+          );
+        }}
+      </NewwordQuery>
     );
   }
 }
@@ -64,4 +64,6 @@ export interface State {
   [key: string]: any;
 }
 
-export default withStyles(styles)(Regist);
+class NewwordQuery extends Query<Newwords, any> { }
+
+export default withStyles(styles)(WordList);

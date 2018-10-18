@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
-import { APP_INFO } from '@gql';
 import { Query } from 'react-apollo';
 import { HEADER, IconInfo } from '@const';
-import { AppInfo } from 'typings/local';
 import UpdatePath from '@comp/hoc/UpdatePath';
+import { SCREEN_INFO } from '@gql';
+import { ScreenInfo } from 'typings/local';
 
 class Header extends React.Component<Props> {
 
   renderIcon = (item: IconInfo, key: number) => {
     // カスタマイズあり
     if (item.customize) {
-      return <item.customize />;
+      return <item.customize key={key} />;
     }
     // Icon未設定、表示しない
     if (!item.icon) return null;
@@ -40,16 +40,13 @@ class Header extends React.Component<Props> {
     const { classes } = this.props;
 
     return (
-      <AppQuery
-        query={APP_INFO}
-      >
+      <ScreenQuery query={SCREEN_INFO}>
         {({ loading, error, data }) => {
           if (loading) return null;
           if (error) return `Error!: ${error}`;
           if (!data) return null;
 
-          console.log(data);
-          const { app: { screen: { path } } } = data;
+          const { screen: { path } } = data;
           const info = HEADER[path];
 
           console.log('info', info);
@@ -73,7 +70,7 @@ class Header extends React.Component<Props> {
             </AppBar>
           );
         }}
-      </AppQuery>
+      </ScreenQuery>
     );
   }
 }
@@ -89,7 +86,7 @@ const styles = (): StyleRules => ({
   },
 });
 
-class AppQuery extends Query<AppInfo, any> { }
+class ScreenQuery extends Query<ScreenInfo, any> { }
 
 export interface Props extends WithStyles<StyleRules> { }
 

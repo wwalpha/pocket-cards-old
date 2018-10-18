@@ -8,7 +8,7 @@ export const IMAGE_TO_WORDS = gql`
   }
 `;
 
-export const REGIST_WORDS = gql`
+export const WORDS_REGIST = gql`
   mutation RegistWords($userId: String!, $setId: String!, $words: NewwordsInput) {
     registWords(userId: $userId, setId: $setId, words: $words) {
       word

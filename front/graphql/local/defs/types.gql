@@ -1,11 +1,5 @@
 
 
-type App {
-  screen: Screen
-  user: User
-  status: Status
-}
-
 type Newwords {
   words: [String]
 }

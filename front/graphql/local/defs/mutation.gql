@@ -3,19 +3,19 @@ input UserInput {
   username: String
 }
 
-input RegistWordInput {
-  words: [String]!
-}
+# input RegistWordInput {
+#   words: [String]!
+# }
 
 type Mutation {
   # ユーザ情報を更新する
-  updateUser(id: String!, username: String!): App
+  updateUser(id: String!, username: String!): User
   # 画面パスを更新する
-  updatePath(path: Int!): App
-  # 新規単語をローカルに保存する
-  saveNewwords(words: RegistWordInput!): Newwords
-  # ローカルの新規単語リストをクリアする
-  clearNewwords: Newwords
-  # ローカルの単語リストから単語を削除する
-  removeWord(word: String!): Newwords
+  updatePath(path: Int!): Screen
+  # # 新規単語をローカルに保存する
+  # saveNewwords(words: RegistWordInput!): Newwords
+  # # ローカルの新規単語リストをクリアする
+  # clearNewwords: Newwords
+  # # ローカルの単語リストから単語を削除する
+  # removeWord(word: String!): Newwords
 }

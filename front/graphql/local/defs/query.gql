@@ -1,7 +1,10 @@
 type Query {
-  # アプリ全般情報
-  app: App
-
+  # ユーザ情報
+  user: User
+  # 操作ステータス
+  status: Status
+  # 画面情報
+  screen: Screen
   # 新規登録単語
   newwords: Newwords
 }

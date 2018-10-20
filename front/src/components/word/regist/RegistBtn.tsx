@@ -12,13 +12,14 @@ import { user, status } from '@queries';
 class RegistBtn extends React.Component<Props> {
 
   handleRegist = async () => {
-    const { history, user, status, mutate } = this.props;
+    const { history, user, status, mutate, words } = this.props;
 
     // 新規単語登録
     await mutate({
       variables: {
         userId: user.id,
         setId: status.setId,
+        words,
       },
     });
 

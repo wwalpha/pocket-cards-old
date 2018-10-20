@@ -24,11 +24,7 @@ type Mutation {
   # 画像から単語読み取り
   image2Word(bucketKey: String!): Newwords
   # 単語新規登録
-  registWords(userId: String!, setId: String!, words: NewwordsInput): [Word]
-}
-
-input NewwordsInput {
-  words: [String]!
+  registWords(userId: String!, setId: String!, words: [String!]): [Word]
 }
 
 type Newwords {

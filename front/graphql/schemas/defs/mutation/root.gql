@@ -1,7 +1,3 @@
-input NewwordsInput {
-  words: [String]!
-}
-
 type Mutation {
   # セット作成
   createSet(userId: String!, name: String!): Set
@@ -13,5 +9,5 @@ type Mutation {
   image2Word(bucketKey: String!): Newwords
 
   # 単語新規登録
-  registWords(userId: String!, setId: String!, words: NewwordsInput): [Word]
+  registWords(userId: String!, setId: String!, words: [String!]): [Word]
 }

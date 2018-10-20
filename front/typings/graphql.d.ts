@@ -101,7 +101,7 @@ export interface RegistWords {
 export interface RegistWordsVariables {
   userId: string;
   setId: string;
-  words?: NewwordsInput | null;
+  words?: string[] | null;
 }
 
 /* tslint:disable */
@@ -110,10 +110,6 @@ export interface RegistWordsVariables {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
-
-export interface NewwordsInput {
-  words: (string | null)[];
-}
 
 //==============================================================
 // END Enums and Input Objects

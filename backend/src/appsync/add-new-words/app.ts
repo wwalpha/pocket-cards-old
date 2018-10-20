@@ -38,6 +38,7 @@ const app = async (event: Request): Promise<Response> => {
   for (const idx in event.words) {
     const word = event.words[idx];
     // 発音
+    console.log(word);
     const line: string | undefined = dicts.find(item => item.startsWith(word.toLowerCase()));
     const pronunciation = line && line.split(' ')[1];
 
@@ -73,6 +74,8 @@ const app = async (event: Request): Promise<Response> => {
       if (code !== 'ConditionalCheckFailedException') {
         throw error;
       }
+
+      ret.push(item);
     }
   }
 
@@ -85,6 +88,7 @@ export interface Response {
   words: object[];
 }
 export interface Request {
+  userId: string;
   setId: string;
   words: string[];
 }

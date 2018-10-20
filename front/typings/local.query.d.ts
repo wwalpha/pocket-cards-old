@@ -1,11 +1,18 @@
 import { ChildProps } from "react-apollo";
-import { UpdatePathVariables } from "./local.generate";
+import { UpdatePathVariables, UpdateSetIdVariables } from "./local.generate";
 
-export interface UpdatePathProps extends UpdatePathVariables {
-  onPathChange?: (path: number) => void;
+// export interface UpdatePathProps extends UpdatePathVariables {
+//   updatePath?: (path: number) => void;
+// }
+
+// export type UpdatePathChildProps = ChildProps<UpdatePathProps, Screen, UpdatePathVariables>;
+
+export interface UpdateSetIdProps extends UpdateSetIdVariables {
+  updateSetId?: (id: string) => void;
 }
 
-export type UpdatePathChildProps = ChildProps<UpdatePathProps, Screen, UpdatePathVariables>;
+export type UpdateSetIdChildProps = ChildProps<UpdateSetIdProps, Status, UpdateSetIdVariables>;
+
 
 export interface App {
   __typename: 'App',
@@ -17,7 +24,6 @@ export interface App {
 
 export interface Newwords {
   newwords?: string[];
-  user: User
 }
 
 export interface UserInfo {

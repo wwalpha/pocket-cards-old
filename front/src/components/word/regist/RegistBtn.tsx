@@ -1,30 +1,24 @@
 import * as React from 'react';
-import { withApollo, WithApolloClient } from 'react-apollo';
+import { compose, graphql, MutateProps } from 'react-apollo';
 import { Button } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { RegistWords, RegistWordsVariables } from 'typings/graphql';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { UserInfo, StatusInfo } from 'typings/local';
-import { USER_INFO, STATUS_INFO, WORDS_REGIST } from '@gql';
+import { WORDS_REGIST } from '@gql';
 import { PATH } from '@const';
+import { user, status } from '@queries';
 
 class RegistBtn extends React.Component<Props> {
 
   handleRegist = async () => {
-    const { client, history } = this.props;
-
-    // Cache検索
-    const userInfo = client.readQuery<UserInfo>({ query: USER_INFO });
-    if (!userInfo) return;
-    const statusInfo = client.readQuery<StatusInfo>({ query: STATUS_INFO });
-    if (!statusInfo) return;
+    const { history, user, status, mutate } = this.props;
 
     // 新規単語登録
-    await client.mutate<RegistWords, RegistWordsVariables>({
-      mutation: WORDS_REGIST,
+    await mutate({
       variables: {
-        userId: userInfo.user.id,
-        setId: statusInfo.status.setId,
+        userId: user.id,
+        setId: status.setId,
       },
     });
 
@@ -47,14 +41,13 @@ class RegistBtn extends React.Component<Props> {
 const styles = (): StyleRules => ({
 });
 
-export interface IProps {
+// GraphQL Props
+export interface IProps extends MutateProps<RegistWords, RegistWordsVariables>, UserInfo, StatusInfo { }
+// React Props
+export interface Props extends IProps, RouteComponentProps, WithStyles {
   words: string[];
 }
 
-export interface Props extends WithApolloClient<IProps>, RouteComponentProps, WithStyles { }
-
-export default withApollo<IProps>(withStyles(styles)(withRouter(RegistBtn)), {
-  props: ({ }) => ({
-
-  }),
-});
+export default compose(user, status, graphql(WORDS_REGIST, {
+  props: ({ mutate }) => ({ mutate }),
+}))(withStyles(styles)(withRouter(RegistBtn)));

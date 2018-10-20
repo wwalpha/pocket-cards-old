@@ -85,8 +85,7 @@ export default graphql<TProps, Image2Word, Image2WordVariables, TChildProps>(IMA
       });
     },
   },
-  props: ({ data, mutate, ownProps }) => ({
-    ...data,
+  props: ({ mutate, ownProps }) => ({
     ...ownProps,
     onWordRegist: (key: string) => {
       mutate && mutate({

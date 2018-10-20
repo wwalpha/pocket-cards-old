@@ -44,56 +44,20 @@ export interface UpdatePathVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: SaveNewwords
+// GraphQL mutation operation: UpdateSetId
 // ====================================================
 
-export interface SaveNewwords_saveNewwords {
-  __typename: "Newwords";
-  words: (string | null)[] | null;
+export interface UpdateSetId_updateSetId {
+  __typename: "Status";
+  setId: string | null;
 }
 
-export interface SaveNewwords {
-  saveNewwords: SaveNewwords_saveNewwords | null;
+export interface UpdateSetId {
+  updateSetId: UpdateSetId_updateSetId | null;
 }
 
-export interface SaveNewwordsVariables {
-  words: RegistWordInput;
-}
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: ClearNewwords
-// ====================================================
-
-export interface ClearNewwords_clearNewwords {
-  __typename: "Newwords";
-  words: (string | null)[] | null;
-}
-
-export interface ClearNewwords {
-  clearNewwords: ClearNewwords_clearNewwords | null;
-}
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: RemoveWord
-// ====================================================
-
-export interface RemoveWord_removeWord {
-  __typename: "Newwords";
-  words: (string | null)[] | null;
-}
-
-export interface RemoveWord {
-  removeWord: RemoveWord_removeWord | null;
-}
-
-export interface RemoveWordVariables {
-  word: string;
+export interface UpdateSetIdVariables {
+  id: string;
 }
 
 /* tslint:disable */
@@ -102,10 +66,6 @@ export interface RemoveWordVariables {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
-
-export interface RegistWordInput {
-  words: (string | null)[];
-}
 
 //==============================================================
 // END Enums and Input Objects

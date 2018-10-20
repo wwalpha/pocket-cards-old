@@ -19,16 +19,14 @@ type Mutation {
   updateUser(id: String!, username: String!): User
   # 画面パスを更新する
   updatePath(path: Int!): Screen
+  # 画面パスを更新する
+  updateSetId(id: String!): Status
 }
 
 input UserInput {
   id: ID!
   username: String
 }
-
-# input RegistWordInput {
-#   words: [String]!
-# }
 
 type Newwords {
   words: [String]

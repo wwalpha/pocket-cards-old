@@ -17,17 +17,25 @@ export const UPDATE_PATH = gql`
   }
 `;
 
+export const UPDATE_SET_ID = gql`
+  mutation UpdateSetId($id: String!) {
+    updateSetId(id: $id) @client {
+      setId
+    }
+  }
+`;
+
 // 新規単語をローカルに保存する
 // export const SAVE_NEW_WORDS = gql`
 //   mutation SaveNewwords($words: RegistWordInput!) {
-//     saveNewwords(words: $words) @client {
+//     saveNewwords(words: $words) {
 //       words
 //     }
 //   }
 // `;
 // export const SAVE_NEW_WORDS = gql`
 //   mutation SaveNewwords {
-//     saveNewwords @client {
+//     saveNewwords {
 //       words
 //     }
 //   }
@@ -36,7 +44,7 @@ export const UPDATE_PATH = gql`
 // // ローカルの新規単語リストをクリアする
 // export const CLEAR_NEW_WORDS = gql`
 //   mutation ClearNewwords {
-//     clearNewwords @client {
+//     clearNewwords {
 //       words
 //     }
 //   }
@@ -45,7 +53,7 @@ export const UPDATE_PATH = gql`
 // // ローカルの単語リストから単語を削除する
 // export const REMOVE_WORD = gql`
 //   mutation RemoveWord($word: String!) {
-//     removeWord(word: $word) @client {
+//     removeWord(word: $word) {
 //       words
 //     }
 //   }

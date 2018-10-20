@@ -36,6 +36,9 @@
       "@gql": [
         "./src/queries/index.ts"
       ],
+      "@queries": [
+        "./src/utils/queries.ts"
+      ],
       "@actions/*": [
         "./src/actions/*"
       ],
@@ -50,6 +53,9 @@
       ],
       "@hoc": [
         "./src/components/hoc/index.ts"
+      ],
+      "@utils/*": [
+        "./src/utils/*"
       ]
     }
   },

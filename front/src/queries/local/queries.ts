@@ -15,7 +15,6 @@ export const SCREEN_INFO = gql`
 export const NEW_WORD_INFO = gql`
   {
     newwords @client
-    user @client
   }
 `;
 

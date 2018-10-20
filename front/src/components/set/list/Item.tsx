@@ -9,6 +9,10 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RemoveBtn } from '.';
 import { PATH, PATH_INDEX } from '@const';
 import UpdatePath from '@comp/hoc/UpdatePath';
+// import { updateSetId } from '@utils/mutations';
+import { ChildProps, graphql } from 'react-apollo';
+import { UPDATE_SET_ID } from '@gql';
+import { UpdateSetIdVariables, StatusInfo } from 'typings/local';
 
 class ListItem extends React.Component<Props, any> {
   state = {
@@ -18,7 +22,7 @@ class ListItem extends React.Component<Props, any> {
   handleTouchMove = () => this.setState({ delOpened: !this.state.delOpened });
 
   render() {
-    const { classes, primaryText, secondaryText, setId, userId } = this.props;
+    const { classes, primaryText, secondaryText, setId, userId, updateSetId } = this.props;
 
     return (
       <Grid container>
@@ -32,7 +36,10 @@ class ListItem extends React.Component<Props, any> {
             button
             disableRipple
             classes={{ root: classes.listitem }}
-            component={(props: any) => <UpdatePath to={PATH.WORD.ROOT} path={PATH_INDEX.WORD_ROOT} {...props} />}
+            onClick={() => { updateSetId && updateSetId(setId); }}
+            component={(props: any) => (
+              <UpdatePath path={PATH_INDEX.WORD_ROOT} to={PATH.WORD.ROOT} {...props} />
+            )}
           >
             <Avatar classes={{ root: classes.avatar }}>
               <FolderIcon />
@@ -73,11 +80,31 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
   },
 });
 
-export interface Props extends WithStyles<StyleRules>, RouteComponentProps {
+/** React Input Props */
+export interface IProps {
   userId: string;
   setId: string;
   primaryText: string;
   secondaryText?: string;
 }
+/** GraphQL Props */
+export interface UpdateSetIdProps extends IProps, UpdateSetIdVariables {
+  updateSetId?: (id: string) => void;
+}
+/** ChildProps */
+export type UpdateSetIdChildProps = ChildProps<UpdateSetIdProps, StatusInfo, UpdateSetIdVariables>;
+/** React Props */
+export interface Props extends UpdateSetIdProps, WithStyles, RouteComponentProps { }
 
-export default withStyles(styles)(withRouter(ListItem));
+const updateSetId = graphql<UpdateSetIdProps, StatusInfo, UpdateSetIdVariables, UpdateSetIdChildProps>(UPDATE_SET_ID, {
+  props: ({ mutate, ownProps }) => ({
+    ...ownProps,
+    updateSetId: (id: string) => {
+      mutate && mutate({
+        variables: { id },
+      });
+    },
+  }),
+});
+
+export default updateSetId(withStyles(styles)(withRouter(ListItem)));

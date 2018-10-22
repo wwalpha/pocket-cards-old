@@ -11,6 +11,14 @@ export const cloudwatch = (parent: Construct, roleName: string) => new Policy(pa
   ],
 });
 
+export const translate = (parent: Construct, roleName: string) => new Policy(parent, `${roleName}-Translate`, {
+  statements: [
+    new PolicyStatement(PolicyStatementEffect.Allow)
+      .addAction('translate:TranslateText')
+      .addAllResources(),
+  ],
+});
+
 export const polly = (parent: Construct, roleName: string) => new Policy(parent, `${roleName}-Polly`, {
   statements: [
     new PolicyStatement(PolicyStatementEffect.Allow)

@@ -52,3 +52,15 @@ WordResource:
           keyType: RANGE
       projection:
         projectionType: ALL
+
+PronunciationResource:
+  tableName: Pronunciation
+  keySchema: 
+  - attributeName: word
+    keyType: HASH
+  attributeDefinitions:
+    - attributeName: word
+      attributeType: S
+  provisionedThroughput:
+    readCapacityUnits: 5
+    writeCapacityUnits: 10

@@ -49,7 +49,7 @@ class Header extends React.Component<Props> {
           const { screen: { path } } = data;
           const info = HEADER[path];
 
-          // console.log('info', info);
+          console.log('info', info);
           return (
             <AppBar position="static" classes={{ root: classes.root }}>
               <Toolbar>

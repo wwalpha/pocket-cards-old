@@ -1,6 +1,6 @@
-import { UpdatePathVariables, ScreenInfo, UpdateUserVariables, UserInfo, StatusInfo, UpdateSetIdVariables } from 'typings/local';
+import { UpdatePathVariables, ScreenInfo, UpdateUserVariables, UserInfo, StatusInfo, UpdateSetIdVariables, Newwords } from 'typings/local';
 import { ApolloCache } from 'apollo-cache';
-import { SCREEN_INFO, USER_INFO, STATUS_INFO } from '@gql';
+import { SCREEN_INFO, USER_INFO, STATUS_INFO, CLEAR_NEW_WORDS, NEW_WORD_INFO } from '@gql';
 
 /** パス情報更新 */
 const updatePath = (_: any, args: UpdatePathVariables, context: any) => {
@@ -65,10 +65,28 @@ const updateSetId = (_: any, { id }: UpdateSetIdVariables, context: any) => {
   return result.status;
 };
 
+const clearNewwords = (_: any, vars: any, context: any) => {
+  const cache = context.cache as ApolloCache<any>;
+
+  const data = {
+    __typename: 'Newwords',
+    newwords: [],
+  };
+  // Cache更新
+  cache.writeQuery<Newwords>({
+    query: NEW_WORD_INFO, data,
+  });
+
+  console.log('Newwords', data);
+
+  return data;
+};
+
 export const resolvers = {
   Mutation: {
     updateUser,
     updatePath,
     updateSetId,
+    clearNewwords,
   },
 };

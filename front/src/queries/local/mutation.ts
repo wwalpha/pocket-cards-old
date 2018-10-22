@@ -41,20 +41,20 @@ export const UPDATE_SET_ID = gql`
 //   }
 // `;
 
-// // ローカルの新規単語リストをクリアする
-// export const CLEAR_NEW_WORDS = gql`
-//   mutation ClearNewwords {
-//     clearNewwords {
-//       words
-//     }
-//   }
-// `;
+// ローカルの新規単語リストをクリアする
+export const CLEAR_NEW_WORDS = gql`
+  mutation ClearNewwords {
+    clearNewwords @client {
+      newwords
+    }
+  }
+`;
 
-// // ローカルの単語リストから単語を削除する
-// export const REMOVE_WORD = gql`
-//   mutation RemoveWord($word: String!) {
-//     removeWord(word: $word) {
-//       words
-//     }
-//   }
-// `;
+// ローカルの単語リストから単語を削除する
+export const REMOVE_WORD = gql`
+  mutation RemoveWord($word: String!) {
+    removeWord(word: $word) @client {
+      newwords
+    }
+  }
+`;

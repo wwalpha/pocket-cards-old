@@ -1,18 +1,26 @@
 import { ChildProps } from "react-apollo";
-import { UpdatePathVariables, UpdateSetIdVariables } from "./local.generate";
+import { UpdatePathVariables, UpdateSetIdVariables, ClearNewwords } from "./local.generate";
 
-// export interface UpdatePathProps extends UpdatePathVariables {
-//   updatePath?: (path: number) => void;
-// }
+/** パス更新 */
+export interface UpdatePathProps extends UpdatePathVariables {
+  updatePath: (path: number) => void;
+}
 
-// export type UpdatePathChildProps = ChildProps<UpdatePathProps, Screen, UpdatePathVariables>;
+export type UpdatePathChildProps = ChildProps<UpdatePathProps, Screen, UpdatePathVariables>;
 
+/** セット選択ID */
 export interface UpdateSetIdProps extends UpdateSetIdVariables {
   updateSetId?: (id: string) => void;
 }
 
 export type UpdateSetIdChildProps = ChildProps<UpdateSetIdProps, Status, UpdateSetIdVariables>;
 
+/** 新規登録単語をクリアする */
+export interface ClearNewwordsProps {
+  clearNewwords: () => void;
+}
+
+export type ClearNewwordsChildProps = ChildProps<ClearNewwordsProps, ClearNewwords, any>;
 
 export interface App {
   __typename: 'App',

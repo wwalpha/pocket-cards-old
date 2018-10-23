@@ -1,14 +1,6 @@
 {
   "compilerOptions": {
-    "rootDir": ".",
-    "typeRoots": [
-      "./typings"
-    ],
-    "types": [
-      "node",
-      "moment",
-      "aws-sdk"
-    ],
+    "rootDir": "src",
     "outDir": "dist/tsc",
     "target": "esnext",
     "module": "commonjs",
@@ -17,7 +9,6 @@
       "es5",
       "es6",
       "es2015.promise",
-      "es7",
       "esnext"
     ],
     "removeComments": true,
@@ -49,11 +40,15 @@
     "src/**/*",
     "test/**/*",
   ],
+  "files": [
+    "./typings/types.d.ts",
+    "./typings/external.d.ts",
+    "./typings/tables.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "**/*.spec.ts",
     "dist/**/*",
-    "distzip/**/*",
     "webpack/**/*",
     "deploy.ts",
     "test"

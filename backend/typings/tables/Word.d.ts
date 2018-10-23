@@ -3,11 +3,11 @@ export interface Word {
   //  単語
   word: String;
   //  発音
-  pronounce: String;
+  pronunciation?: String;
   //  語彙
-  vocabulary: String;
+  vocabulary?: String;
   //  学習時間
-  studyDate: String;
+  studyDate?: String;
   //  次回学習時間
   nextDate: String;
   //  学習回数

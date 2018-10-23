@@ -9,5 +9,5 @@ type Mutation {
   image2Word(bucketKey: String!): Newwords
 
   # 単語新規登録
-  registWords(userId: String!, setId: String!, words: [String!]): [Word]
+  registWords(setId: String!, words: [String!]): [Word]
 }

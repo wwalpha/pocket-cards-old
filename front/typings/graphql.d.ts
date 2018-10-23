@@ -99,7 +99,6 @@ export interface RegistWords {
 }
 
 export interface RegistWordsVariables {
-  userId: string;
   setId: string;
   words?: string[] | null;
 }

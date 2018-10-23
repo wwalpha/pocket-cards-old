@@ -8,7 +8,7 @@ import { LambdaRole } from '../utils/roles';
 
 const service = 'appsync';
 const functionName = 'add-new-words';
-const handler = 'app.handler';
+const handler = 'index.handler';
 const runtime = Runtime.NodeJS810;
 const memorySize = 256;
 const timeout = 10;
@@ -33,7 +33,8 @@ export default (parent: Construct, props: LambdaInput): Function => {
     timeout,
     environment: {
       S3_BUCKET: props.s3.bucket.bucketName,
-      TABLE_NAME: `${props.envType}-${PROJECT_NAME}-Word`,
+      TABLE_WORD: `${props.envType}-${PROJECT_NAME}-Word`,
+      TABLE_PRONUNCIATION: `${props.envType}-${PROJECT_NAME}-Pronunciation`,
     },
   });
 };

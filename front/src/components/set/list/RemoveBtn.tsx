@@ -1,21 +1,55 @@
 import * as React from 'react';
-import { graphql, ChildProps } from 'react-apollo';
+import { graphql, compose, MutateProps } from 'react-apollo';
 import { Button, colors } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { SET_DELETE, GET_LIST } from '@gql';
-import { SetRemoveVariables, SetRemove_deleteSet, GetSetList, GetSetListVariables } from 'typings/graphql';
+import { user } from '@queries';
+import { UserInfo } from 'typings/local';
+import { SetRemoveVariables, SetRemove, GetSetList, GetSetListVariables } from 'typings/graphql';
 
 class RemoveBtn extends React.Component<Props> {
 
+  handleRemove = () => {
+    const { mutate, setId, user: { id: userId } } = this.props;
+
+    mutate({
+      refetchQueries: [{
+        query: GET_LIST, variables: { userId },
+      }],
+      variables: {
+        userId, setId,
+      },
+      update: (proxy) => {
+        const query = GET_LIST;
+
+        // セットリスト再リフレッシュ
+        const data = proxy.readQuery<GetSetList, GetSetListVariables>({
+          query,
+          variables: { userId },
+        });
+
+        if (!data || !data.sets) return;
+
+        // 選択したセットIDを画面から削除する
+        data.sets = [
+          ...data.sets.filter(item => item && item.setId !== setId),
+        ];
+
+        proxy.writeQuery({ query, data });
+      },
+    });
+
+  }
+
   render() {
-    const { classes, mutate } = this.props;
+    const { classes } = this.props;
 
     return (
       <Button
         variant="contained"
         classes={{ root: classes.button }}
         disableRipple
-        onClick={mutate as any}
+        onClick={this.handleRemove}
       >
         REMOVE
       </Button>
@@ -35,29 +69,13 @@ const styles = (): StyleRules => ({
   },
 });
 
-export interface Props extends ChildProps<SetRemoveVariables, SetRemove_deleteSet>, WithStyles { }
+// GraphQL Props
+export interface IProps extends MutateProps<SetRemove, SetRemoveVariables>, UserInfo { }
+// React Props
+export interface Props extends IProps, UserInfo, WithStyles {
+  setId: string;
+}
 
-export default graphql<SetRemoveVariables, SetRemove_deleteSet>(SET_DELETE, {
-  options: ({ userId, setId }) => ({
-    variables: { userId, setId },
-    refetchQueries: [{
-      query: GET_LIST, variables: { userId },
-    }],
-    update: (proxy) => {
-      const query = GET_LIST;
-      const data = proxy.readQuery<GetSetList, GetSetListVariables>({
-        query,
-        variables: { userId },
-      });
-
-      if (!data || !data.sets) return;
-
-      data.sets = [
-        ...data.sets.filter(item => item && item.setId !== setId),
-      ];
-
-      proxy.writeQuery({ query, data });
-    },
-  }),
-  props: ({ data, mutate, ownProps }) => ({ ...data, mutate, ownProps }),
-})(withStyles(styles)(RemoveBtn));
+export default compose(user, graphql(SET_DELETE, {
+  props: ({ mutate, ownProps }) => ({ mutate, ownProps }),
+}))(withStyles(styles)(RemoveBtn));

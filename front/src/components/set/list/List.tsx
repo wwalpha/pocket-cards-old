@@ -2,10 +2,10 @@ import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
 import { Query, withApollo, WithApolloClient } from 'react-apollo';
-import Item from './Item';
-import { GetSetList, GetSetListVariables } from 'typings/graphql';
 import { GET_LIST, USER_INFO } from '@gql';
+import { GetSetList, GetSetListVariables } from 'typings/graphql';
 import { UserInfo } from 'typings/local';
+import Item from './Item';
 
 class List extends React.Component<Props, {}> {
 
@@ -30,13 +30,14 @@ class List extends React.Component<Props, {}> {
 
                   console.log('data', data);
                   const { sets = [] } = data;
-
+                  // key={idx}
+                  // primaryText={(item && item.name) as string}
+                  // setId={(item && item.setId) as string}
+                  // userId={userId}
                   return sets && sets.map((item, idx) =>
                     <Item
-                      key={idx}
-                      primaryText={(item && item.name) as string}
                       setId={(item && item.setId) as string}
-                      userId={userId}
+                      primaryText={(item && item.name) as string}
                     />,
                   );
                 }}

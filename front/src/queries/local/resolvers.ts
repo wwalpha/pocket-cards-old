@@ -1,6 +1,6 @@
 import { UpdatePathVariables, ScreenInfo, UpdateUserVariables, UserInfo, StatusInfo, UpdateSetIdVariables, Newwords } from 'typings/local';
 import { ApolloCache } from 'apollo-cache';
-import { SCREEN_INFO, USER_INFO, STATUS_INFO, CLEAR_NEW_WORDS, NEW_WORD_INFO } from '@gql';
+import { SCREEN_INFO, USER_INFO, STATUS_INFO, NEW_WORD_INFO } from '@gql';
 
 /** パス情報更新 */
 const updatePath = (_: any, args: UpdatePathVariables, context: any) => {

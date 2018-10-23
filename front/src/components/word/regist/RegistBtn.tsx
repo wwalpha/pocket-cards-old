@@ -4,21 +4,20 @@ import { Button } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { RegistWords, RegistWordsVariables } from 'typings/graphql';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { UserInfo, StatusInfo, UpdatePathProps, ClearNewwordsProps } from 'typings/local';
+import { StatusInfo, UpdatePathProps, ClearNewwordsProps } from 'typings/local';
 import { WORDS_REGIST } from '@gql';
 import { PATH, PATH_INDEX } from '@const';
-import { user, status } from '@queries';
+import { status } from '@queries';
 import { pathChange, clearNewwords } from '@utils/mutations';
 
 class RegistBtn extends React.Component<Props> {
 
   handleRegist = () => {
-    const { history, user, status, updatePath, clearNewwords, mutate, words } = this.props;
+    const { history, status, updatePath, clearNewwords, mutate, words } = this.props;
 
     // 新規単語登録
     mutate({
       variables: {
-        userId: user.id,
         setId: status.setId,
         words,
       },
@@ -53,12 +52,12 @@ const styles = (): StyleRules => ({
 });
 
 // GraphQL Props
-export interface IProps extends MutateProps<RegistWords, RegistWordsVariables>, UserInfo, StatusInfo { }
+export interface IProps extends MutateProps<RegistWords, RegistWordsVariables>, StatusInfo { }
 // React Props
 export interface Props extends IProps, UpdatePathProps, ClearNewwordsProps, RouteComponentProps, WithStyles {
   words: string[];
 }
 
-export default compose(user, status, pathChange, clearNewwords, graphql(WORDS_REGIST, {
+export default compose(status, pathChange, clearNewwords, graphql(WORDS_REGIST, {
   props: ({ mutate }) => ({ mutate }),
 }))(withStyles(styles)(withRouter(RegistBtn)));

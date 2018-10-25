@@ -14,7 +14,7 @@ class Footer extends React.Component<Props, {}> {
     value: 0,
   };
 
-  handleChange = (e: React.ChangeEvent<{}>, value: number) => this.setState({ value });
+  handleChange = (_: React.ChangeEvent<{}>, value: number) => this.setState({ value });
 
   render() {
     const { classes } = this.props;

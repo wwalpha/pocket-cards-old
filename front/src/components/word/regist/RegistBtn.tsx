@@ -21,7 +21,7 @@ class RegistBtn extends React.Component<Props> {
         setId: status.setId,
         words,
       },
-      update: (proxy, result) => {
+      update: (_, result) => {
         if (!result.data || !result.data.registWords) return;
 
         // パス情報変更

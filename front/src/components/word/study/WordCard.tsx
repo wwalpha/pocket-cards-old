@@ -1,15 +1,7 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
-import {
-  Card, CardHeader, CardContent, CardActions,
-  IconButton, Typography,
-} from '@material-ui/core';
-import {
-  Favorite as FavoriteIcon,
-} from '@material-ui/icons';
+import { Card, CardContent, Typography } from '@material-ui/core';
 import classnames from 'classnames';
-
-// import { AddBtn, Header } from '.';
 
 class WordCard extends React.Component<Props, State> {
   state = {

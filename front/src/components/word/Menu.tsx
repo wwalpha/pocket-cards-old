@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import { PATH, PATH_INDEX } from '@const';
 import UpdatePath from '@comp/hoc/UpdatePath';
 

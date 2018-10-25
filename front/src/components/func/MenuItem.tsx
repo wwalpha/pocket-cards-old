@@ -8,8 +8,6 @@ import Button from '@material-ui/core/Button';
 import FolderIcon from '@material-ui/icons/Folder';
 import red from '@material-ui/core/colors/red';
 import Slide from '@material-ui/core/Slide';
-import SetMenu from '@comp/set/Menu';
-import { Route } from 'react-router-dom';
 
 class MenuItem extends React.Component<Props, any> {
   state = {
@@ -43,8 +41,8 @@ class MenuItem extends React.Component<Props, any> {
             DELETE
           </Button>
         </Slide>
-        <Route path="/menu" components={SetMenu} />
-        <Route path="/word" components={SetMenu} />
+        {/* <Route path="/menu" components={SetMenu} />
+        <Route path="/word" components={SetMenu} /> */}
       </Grid>
     );
   }

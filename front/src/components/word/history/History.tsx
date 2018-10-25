@@ -1,8 +1,6 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import { TextField, Grid } from '@material-ui/core';
-import { Query } from 'react-apollo';
-import { AddBtn } from '.';
 
 class Regist extends React.Component<Props, State> {
   state: State = {
@@ -17,7 +15,6 @@ class Regist extends React.Component<Props, State> {
 
   render() {
     const { classes } = this.props;
-    const { name = '' } = this.state;
 
     return (
       <Grid container>

@@ -5,7 +5,6 @@ import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { SetRegist, SetRegistVariables } from 'typings/graphql';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { ApolloQueryResult } from 'apollo-client';
-import { PATH } from '@const';
 
 class RegistBtn extends React.Component<Props> {
 

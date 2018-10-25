@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev:r": "yarn clean && tsc && yarn cp && yarn dev:deploy",
+    "dev:r": "yarn clean && tsc && yarn dev:deploy",
     "prod:r": "yarn clean && yarn prod:build && yarn prod:deploy",
     "cp": "cpx src/appsync/add-new-words/england.dict dist/tsc/src/appsync/add-new-words/",
     "dev:deploy": "ts-node build.ts dev",

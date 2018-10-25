@@ -6,11 +6,11 @@ const path = require('path');
 module.exports = {
   target: 'node',
   entry: {
-    'appsync/add-new-words/app': './src/appsync/add-new-words/app.ts',
-    'appsync/image-to-word/app': './src/appsync/image-to-word/app.ts',
-    'appsync/word-to-speech/app': './src/appsync/word-to-speech/app.ts',
-    'appsync/study-history/app': './src/appsync/study-history/app.ts',
-    'appsync/study-set/app': './src/appsync/study-set/app.ts',
+    'appsync/add-new-words/index': './src/appsync/add-new-words/index.ts',
+    'appsync/image-to-word/index': './src/appsync/image-to-word/index.ts',
+    'appsync/word-to-speech/index': './src/appsync/word-to-speech/index.ts',
+    'appsync/study-history/index': './src/appsync/study-history/index.ts',
+    'appsync/study-set/index': './src/appsync/study-set/index.ts',
   },
   output: {
     filename: '[name].js',
@@ -22,10 +22,6 @@ module.exports = {
         test: /\.ts$/,
         exclude: /node_modules/,
         use: 'ts-loader',
-      },
-      {
-        test: /\.dict$/,
-        use: 'raw-loader'
       }
     ]
   },
@@ -37,7 +33,7 @@ module.exports = {
   },
   plugins: [
     new HappyPack({
-      loaders: ['ts-loader', 'raw-loader'],
+      loaders: ['ts-loader'],
     }),
     new CleanWebpackPlugin(['dist'], {
       root: path.join(__dirname, '..'),

@@ -1,7 +1,7 @@
 
 import { Callback, Context } from 'aws-lambda';
-import { Word } from '../../utils/types';
 import { DynamoDB } from 'aws-sdk';
+import { Word } from 'typings/tables';
 
 // 環境変数
 const tableName = process.env.TABLE_NAME as string;

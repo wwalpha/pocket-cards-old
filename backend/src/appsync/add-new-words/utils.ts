@@ -1,5 +1,5 @@
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
-import { Word } from 'typings/tables';
+import { Word } from '../../../typings/tables';
 
 // 環境変数
 const tablePronunciation = process.env.TABLE_PRONUNCIATION as string;

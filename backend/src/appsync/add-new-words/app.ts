@@ -1,8 +1,8 @@
 import { Translate, AWSError } from 'aws-sdk';
-import { Pronunciation, Word } from 'typings/tables';
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
 import { getPronunciation, insertWord } from './utils';
 import { Request, Response } from '.';
+import { Pronunciation, Word } from 'typings/tables';
 
 // Translate Client
 const client = new Translate({

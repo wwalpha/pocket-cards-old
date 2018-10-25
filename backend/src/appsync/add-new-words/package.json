@@ -1,0 +1,8 @@
+{
+  "name": "add-new-words",
+  "version": "1.0.0",
+  "scripts": {
+    "pkg": "sam package --s3-bucket deployment-projects --template-file template.yml --output-template-file packaged.yml",
+    "dep": "sam deploy --stack-name dev-AddNewWords --template-file packaged.yml --capabilities CAPABILITY_IAM"
+  }
+}

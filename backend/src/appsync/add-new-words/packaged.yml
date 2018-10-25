@@ -1,0 +1,14 @@
+AWSTemplateFormatVersion: 2010-09-09
+Parameters:
+  Env: dev
+Resources:
+  AddNewWord:
+    Properties:
+      CodeUri: s3://deployment-projects/a294344a37067fd205035f3c58673e4c
+      FunctionName:
+        Fn::Sub: ${Env}-AddNewWord
+      Handler: appsync/add-new-words/index.handler
+      MemorySize: 256
+      Runtime: nodejs8.10
+      Timeout: 5
+    Type: AWS::Serverless::Function

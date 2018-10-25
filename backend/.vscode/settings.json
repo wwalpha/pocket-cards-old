@@ -4,5 +4,15 @@
     "**/distzip": true
   },
   "tslint.autoFixOnSave": true,
-  "tslint.run": "onSave"
+  "tslint.run": "onSave",
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/awslabs/goformation/master/schema/sam.schema.json": [
+      "template.yaml",
+      "template.yml"
+    ]
+  },
+  "yaml.validate": false,
+  "yaml.customTags": [
+    "!Sub"
+  ]
 }

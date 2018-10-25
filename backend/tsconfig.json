@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "rootDir": "src",
-    "outDir": "dist/tsc",
+    "rootDirs": [
+      "src"
+    ],
+    "outDir": "dist/dev",
     "target": "esnext",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -29,11 +31,6 @@
     "strictPropertyInitialization": false,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "paths": {
-      "@src/*": [
-        "./src/*"
-      ]
-    }
   },
   "compileOnSave": true,
   "include": [

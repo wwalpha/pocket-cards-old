@@ -16,7 +16,7 @@ const dbClient = new DocumentClient({
 
 /** ロジック */
 export const app = async (event: Request): Promise<Response> => {
-  const words = event.words.map(word => fixWord(event.setId, word));
+  const words = event.words.map(word => fixWord(dbClient, event.setId, word));
 
   // 一括実行
   const result = await Promise.all(words);
@@ -27,9 +27,17 @@ export const app = async (event: Request): Promise<Response> => {
   } as Response;
 };
 
-const fixWord = async (setId: string, word: string): Promise<Word> => {
+const fixWord = async (db: DocumentClient, setId: string, word: string): Promise<Word> => {
   // 発音記号を取得する
-  const pronunciation = await getPronunciation(dbClient, word);
+  let pronunciation;
+
+  try {
+    const result = await getPronunciation(db, word);
+
+    pronunciation = result.Item && (result.Item as Pronunciation).ENG;
+  } catch (error) {
+    throw error;
+  }
 
   // 翻訳API
   const request: Translate.TranslateTextRequest = {
@@ -43,7 +51,7 @@ const fixWord = async (setId: string, word: string): Promise<Word> => {
   const item: Word = {
     setId,
     word,
-    pronunciation: pronunciation.Item && (pronunciation.Item as Pronunciation).ENG,
+    pronunciation,
     vocabulary: response.TranslatedText,
     times: 0,
     nextDate: '00000000',
@@ -51,7 +59,7 @@ const fixWord = async (setId: string, word: string): Promise<Word> => {
 
   try {
     // 単語情報をDBに登録する
-    await insertWord(dbClient, item);
+    await insertWord(db, item);
   } catch (error) {
     const code = (error as AWSError).code;
 

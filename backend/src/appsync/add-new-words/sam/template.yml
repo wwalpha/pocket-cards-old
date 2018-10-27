@@ -5,6 +5,10 @@ Parameters:
   Env:
     Type: String
     Default: dev
+Parameters:
+  Project:
+    Type: String
+    Default: PocketCards
 
 Resources:
   AddNewWords:
@@ -19,8 +23,8 @@ Resources:
       CodeUri: ../../../../dist/dev
       Environment:
         Variables:
-          TABLE_WORD: Word
-          TABLE_PRONUNCIATION: Pronunciation
+          TABLE_WORD: !Sub ${env}-${Project}-Word
+          TABLE_PRONUNCIATION: !Sub ${env}-${Project}-Pronunciation
       Events:
         AddNewWordsApi:
           Type: Api

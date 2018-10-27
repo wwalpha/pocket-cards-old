@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "rel": "yarn pkg && yarn dep",
-    "test": "sam local invoke AddNewWords -e sam/event.json -t sam/template.yml -n sam/env.json",
+    "test": "sam local invoke AddNewWords -e sam/event.json -t sam/template.yml --env-vars sam/env.json",
     "api": "sam local start-api -t sam/template.yml",
     "lambda": "sam local start-lambda -t sam/template.yml",
     "pkg": "sam package --s3-bucket deployment-projects --template-file sam/template.yml --output-template-file sam/packaged.yml",

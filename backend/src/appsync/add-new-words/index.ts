@@ -24,7 +24,6 @@ export interface Response {
 }
 
 export interface Request {
-  userId: string;
   setId: string;
   words: string[];
 }

@@ -2,7 +2,12 @@
   "name": "add-new-words",
   "version": "1.0.0",
   "scripts": {
-    "pkg": "sam package --s3-bucket deployment-projects --template-file template.yml --output-template-file packaged.yml",
-    "dep": "sam deploy --stack-name dev-AddNewWords --template-file packaged.yml --capabilities CAPABILITY_IAM"
+    "rel": "yarn pkg && yarn dep",
+    "ivk": "sam local invoke AddNewWord -e sam/event.json -t sam/template.yml",
+    "api": "sam local start-api -d 5858 -t sam/template.yml",
+    "lambda": "sam local start-lambda -t sam/template.yml -d 5858",
+    "pkg": "sam package --s3-bucket deployment-projects --template-file sam/template.yml --output-template-file sam/packaged.yml",
+    "dep": "sam deploy --stack-name dev-AddNewWords --template-file sam/packaged.yml --capabilities CAPABILITY_IAM",
+    "ink": "aws lambda invoke --invocation-type RequestResponse --function-name helloworld --region region --payload file://input.txt"
   }
 }

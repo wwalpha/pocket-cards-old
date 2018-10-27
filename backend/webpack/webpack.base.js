@@ -3,15 +3,19 @@ const HappyPack = require('happypack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 
+const root = path.join(__dirname, '../src');
+
+const entry = {
+  'appsync/add-new-words/index': './src/appsync/add-new-words/index.ts',
+  'appsync/image-to-word/index': './src/appsync/image-to-word/index.ts',
+  'appsync/word-to-speech/index': './src/appsync/word-to-speech/index.ts',
+  'appsync/study-history/index': './src/appsync/study-history/index.ts',
+  'appsync/study-set/index': './src/appsync/study-set/index.ts',
+};
+
 module.exports = {
   target: 'node',
-  entry: {
-    'appsync/add-new-words/index': './src/appsync/add-new-words/index.ts',
-    'appsync/image-to-word/index': './src/appsync/image-to-word/index.ts',
-    'appsync/word-to-speech/index': './src/appsync/word-to-speech/index.ts',
-    'appsync/study-history/index': './src/appsync/study-history/index.ts',
-    'appsync/study-set/index': './src/appsync/study-set/index.ts',
-  },
+  entry,
   output: {
     filename: '[name].js',
     libraryTarget: 'commonjs2',
@@ -28,7 +32,7 @@ module.exports = {
   externals: ['aws-sdk'],
   resolve: {
     extensions: [
-      '.ts', '.dict'
+      '.js', '.ts'
     ],
   },
   plugins: [

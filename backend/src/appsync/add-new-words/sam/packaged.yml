@@ -1,14 +1,24 @@
 AWSTemplateFormatVersion: 2010-09-09
 Parameters:
-  Env: dev
+  Env:
+    Default: dev
+    Type: String
 Resources:
   AddNewWord:
+    DeletionPolicy: Retain
     Properties:
       CodeUri: s3://deployment-projects/a294344a37067fd205035f3c58673e4c
+      Events:
+        AddNewWordApi:
+          Properties:
+            Method: get
+            Path: /test/aaa
+          Type: Api
       FunctionName:
-        Fn::Sub: ${Env}-AddNewWord
+        Fn::Sub: ${Env}-AddNewWordTest
       Handler: appsync/add-new-words/index.handler
       MemorySize: 256
       Runtime: nodejs8.10
       Timeout: 5
     Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31

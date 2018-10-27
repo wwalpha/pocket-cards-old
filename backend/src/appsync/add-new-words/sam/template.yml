@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  Env:
+    Type: String
+    Default: dev
+
+Resources:
+  AddNewWord:
+    Type: AWS::Serverless::Function
+    DeletionPolicy: Retain
+    Properties:
+      Handler: appsync/add-new-words/index.handler
+      Runtime: nodejs8.10
+      FunctionName: !Sub ${Env}-AddNewWordTest
+      MemorySize: 256
+      Timeout: 5
+      CodeUri: ../../../../dist/dev
+      Events:
+        AddNewWordApi:
+          Type: Api
+          Properties:
+            Path: /test/aaa
+            Method: get
+

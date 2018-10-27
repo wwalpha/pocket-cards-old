@@ -15,12 +15,12 @@ if (env === 'dev') {
 
   const zip = new AdmZip();
   zip.addLocalFolder('./lib');
-  zip.addLocalFolder('./dist/tsc/src');
+  zip.addLocalFolder('./dist/dev');
 
   zip.writeZip(output);
 
   const folders: string[] = [];
-  fs.readdirSync(path.join(__dirname, './dist/tsc/src/appsync')).forEach((file) => {
+  fs.readdirSync(path.join(__dirname, './dist/dev/appsync')).forEach((file) => {
     if (file !== 'commons') folders.push(file);
   });
 

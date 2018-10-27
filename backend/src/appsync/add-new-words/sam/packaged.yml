@@ -4,18 +4,22 @@ Parameters:
     Default: dev
     Type: String
 Resources:
-  AddNewWord:
+  AddNewWords:
     DeletionPolicy: Retain
     Properties:
-      CodeUri: s3://deployment-projects/a294344a37067fd205035f3c58673e4c
+      CodeUri: s3://deployment-projects/d15ab3d5e672d85caf53bf4ae75f5b6e
+      Environment:
+        Variables:
+          TABLE_PRONUNCIATION: Pronunciation
+          TABLE_WORD: Word
       Events:
-        AddNewWordApi:
+        AddNewWordsApi:
           Properties:
             Method: get
             Path: /test/aaa
+            RestApiId: 9karytns8f
           Type: Api
-      FunctionName:
-        Fn::Sub: ${Env}-AddNewWordTest
+      FunctionName: AddNewWords
       Handler: appsync/add-new-words/index.handler
       MemorySize: 256
       Runtime: nodejs8.10

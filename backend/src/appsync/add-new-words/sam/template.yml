@@ -7,20 +7,24 @@ Parameters:
     Default: dev
 
 Resources:
-  AddNewWord:
+  AddNewWords:
     Type: AWS::Serverless::Function
     DeletionPolicy: Retain
     Properties:
       Handler: appsync/add-new-words/index.handler
       Runtime: nodejs8.10
-      FunctionName: !Sub ${Env}-AddNewWordTest
+      FunctionName: AddNewWords
       MemorySize: 256
       Timeout: 5
       CodeUri: ../../../../dist/dev
+      Environment:
+        Variables:
+          TABLE_WORD: Word
+          TABLE_PRONUNCIATION: Pronunciation
       Events:
-        AddNewWordApi:
+        AddNewWordsApi:
           Type: Api
           Properties:
             Path: /test/aaa
             Method: get
-
+            # RestApiId: !ImportValue 9karytns8f

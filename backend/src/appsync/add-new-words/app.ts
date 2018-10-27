@@ -11,54 +11,55 @@ const client = new Translate({
 
 // Dynamodb Client
 const dbClient = new DocumentClient({
-  region: process.env.AWS_REGION,
+  region: process.env.AWS_DEFAULT_REGION,
 });
 
 /** ロジック */
 export const app = async (event: Request): Promise<Response> => {
-  const ret: object[] = [];
+  const words = event.words.map(word => fixWord(event.setId, word));
 
-  for (const idx in event.words) {
-    const word = event.words[idx];
+  // 一括実行
+  const result = await Promise.all(words);
 
-    // 発音記号を取得する
-    const pronunciation = await getPronunciation(dbClient, word);
+  console.log(result);
+  return {
+    words: result,
+  } as Response;
+};
 
-    // 翻訳API
-    const request: Translate.TranslateTextRequest = {
-      SourceLanguageCode: 'en',
-      TargetLanguageCode: 'zh',
-      Text: word,
-    };
+const fixWord = async (setId: string, word: string): Promise<Word> => {
+  // 発音記号を取得する
+  const pronunciation = await getPronunciation(dbClient, word);
 
-    const response = await client.translateText(request).promise();
-    const item: Word = {
-      setId: event.setId,
-      word,
-      pronunciation: pronunciation.Item && (pronunciation.Item as Pronunciation).ENG,
-      vocabulary: response.TranslatedText,
-      times: 0,
-      nextDate: '00000000',
-    };
+  // 翻訳API
+  const request: Translate.TranslateTextRequest = {
+    SourceLanguageCode: 'en',
+    TargetLanguageCode: 'zh',
+    Text: word,
+  };
 
-    try {
-      // 単語情報をDBに登録する
-      await insertWord(dbClient, item);
+  const response = await client.translateText(request).promise();
 
-      ret.push(item);
-    } catch (error) {
-      const code = (error as AWSError).code;
+  const item: Word = {
+    setId,
+    word,
+    pronunciation: pronunciation.Item && (pronunciation.Item as Pronunciation).ENG,
+    vocabulary: response.TranslatedText,
+    times: 0,
+    nextDate: '00000000',
+  };
 
-      // キー既存チェック以外エラーとする
-      if (code !== 'ConditionalCheckFailedException') {
-        throw error;
-      }
+  try {
+    // 単語情報をDBに登録する
+    await insertWord(dbClient, item);
+  } catch (error) {
+    const code = (error as AWSError).code;
 
-      ret.push(item);
+    // キー既存チェック以外エラーとする
+    if (code !== 'ConditionalCheckFailedException') {
+      throw error;
     }
   }
 
-  return {
-    words: ret,
-  } as Response;
+  return item;
 };

@@ -1,5 +1,6 @@
 import { Context, Callback } from 'aws-lambda';
 import { app } from './app';
+import { Word } from 'typings/tables';
 
 // イベント入口
 export const handler = (event: Request, context: Context, callback: Callback<Response>) => {
@@ -20,11 +21,9 @@ export const handler = (event: Request, context: Context, callback: Callback<Res
 };
 
 export interface Response {
-  words: object[];
+  words: Word[];
 }
 
 export interface Request {
-  userId: string;
   setId: string;
-  words: string[];
 }

@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: 2010-09-09
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  Env:
+    Type: String
+    Default: dev
+  Project:
+    Type: String
+    Default: PocketCards
+
+Resources:
+  StudySet:
+    Type: AWS::Serverless::Function
+    DeletionPolicy: Retain
+    Properties:
+      Handler: appsync/study-set/index.handler
+      Runtime: nodejs8.10
+      FunctionName: !Sub ${env}-${Project}-StudySet
+      MemorySize: 256
+      Timeout: 5
+      CodeUri: ../../../../dist/dev
+      Environment:
+        Variables:
+          TABLE_WORD: Word

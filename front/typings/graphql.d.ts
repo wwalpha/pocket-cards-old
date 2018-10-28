@@ -12,7 +12,7 @@ export interface GetSetList_sets {
 }
 
 export interface GetSetList {
-  sets: (GetSetList_sets | null)[] | null;
+  sets: (GetSetList_sets | null)[];
 }
 
 export interface GetSetListVariables {
@@ -75,7 +75,7 @@ export interface Image2Word_image2Word {
 }
 
 export interface Image2Word {
-  image2Word: Image2Word_image2Word | null;
+  image2Word: Image2Word_image2Word;
 }
 
 export interface Image2WordVariables {
@@ -95,12 +95,12 @@ export interface RegistWords_registWords {
 }
 
 export interface RegistWords {
-  registWords: (RegistWords_registWords | null)[] | null;
+  registWords: RegistWords_registWords[];
 }
 
 export interface RegistWordsVariables {
   setId: string;
-  words?: string[] | null;
+  words: string[];
 }
 
 /* tslint:disable */

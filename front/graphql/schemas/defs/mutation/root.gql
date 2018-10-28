@@ -1,3 +1,9 @@
+input StudySaveInput {
+  word: String
+  correct: Boolean
+  time: Int
+}
+
 type Mutation {
   # セット作成
   createSet(userId: String!, name: String!): Set
@@ -6,8 +12,11 @@ type Mutation {
   deleteSet(userId: String!, setId: String!): Set
 
   # 画像から単語読み取り
-  image2Word(bucketKey: String!): Newwords
+  image2Word(bucketKey: String!): Newwords!
 
   # 単語新規登録
-  registWords(setId: String!, words: [String!]): [Word]
+  registWords(setId: String!, words: [String!]!): [Word!]!
+
+  # 単語検定を保存する
+  studySave(setId: String!, input: [StudySaveInput!]!): Boolean
 }

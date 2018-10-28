@@ -1,7 +1,7 @@
 
 type Query {
   # 学習セット
-  studySet(userId: String!, setId: String!): [Word]
+  studySet(setId: String!): [Word]!
 
   # 学習履歴
   studyHistory(userId: String!, setId: String!): [Word]

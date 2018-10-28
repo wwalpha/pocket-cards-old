@@ -9,7 +9,7 @@ export const IMAGE_TO_WORDS = gql`
 `;
 
 export const WORDS_REGIST = gql`
-  mutation RegistWords($setId: String!, $words: [String!]) {
+  mutation RegistWords($setId: String!, $words: [String!]!) {
     registWords(setId: $setId, words: $words) {
       word
     }

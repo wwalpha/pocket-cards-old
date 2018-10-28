@@ -1,8 +1,8 @@
 
 type Query {
   # セットリスト一覧
-  sets(userId: String!): [Set]
+  sets(userId: String!): [Set]!
 
   # 単語一覧
-  words(setId: String!): [Word]
+  words(setId: String!): [Word]!
 }

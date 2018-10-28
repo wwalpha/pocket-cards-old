@@ -5,11 +5,11 @@ schema {
 
 type Query {
   # セットリスト一覧
-  sets(userId: String!): [Set]
+  sets(userId: String!): [Set]!
   # 単語一覧
-  words(setId: String!): [Word]
+  words(setId: String!): [Word]!
   # 学習セット
-  studySet(userId: String!, setId: String!): [Word]
+  studySet(setId: String!): [Word]!
   # 学習履歴
   studyHistory(userId: String!, setId: String!): [Word]
   # テキストから音声に変更する
@@ -22,9 +22,17 @@ type Mutation {
   # セット削除
   deleteSet(userId: String!, setId: String!): Set
   # 画像から単語読み取り
-  image2Word(bucketKey: String!): Newwords
+  image2Word(bucketKey: String!): Newwords!
   # 単語新規登録
-  registWords(setId: String!, words: [String!]): [Word]
+  registWords(setId: String!, words: [String!]!): [Word!]!
+  # 単語検定を保存する
+  studySave(setId: String!, input: [StudySaveInput!]!): Boolean
+}
+
+input StudySaveInput {
+  word: String
+  correct: Boolean
+  time: Int
 }
 
 type Newwords {

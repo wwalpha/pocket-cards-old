@@ -6,7 +6,7 @@ import { GET_LIST } from '@gql';
 import { GetSetList, GetSetListVariables } from 'typings/graphql';
 import { UserInfo } from 'typings/local';
 import Item from './Item';
-import { user } from '@queries';
+import { USER } from '@queries';
 
 class List extends React.Component<Props, {}> {
 
@@ -49,5 +49,4 @@ export interface Props extends UserInfo, WithStyles<StyleRules> { }
 
 export interface IProps { }
 
-// export default withApollo<TProps, UserInfo>(withStyles(styles)(List));
-export default withStyles(styles)(compose(user)(List) as React.ComponentType<IProps>);
+export default withStyles(styles)(compose(USER)(List) as React.ComponentType<IProps>);

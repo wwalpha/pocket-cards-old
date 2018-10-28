@@ -3,7 +3,7 @@ import { USER_INFO, SCREEN_INFO, STATUS_INFO } from '@gql';
 import { UserInfo, ScreenInfo, StatusInfo } from 'typings/local';
 
 /** ユーザ情報 */
-export const user = graphql<any, UserInfo, any>(USER_INFO, {
+export const USER = graphql<any, UserInfo, any>(USER_INFO, {
   props: ({ data }) => {
     if (!data) return {} as any;
 
@@ -14,7 +14,7 @@ export const user = graphql<any, UserInfo, any>(USER_INFO, {
 });
 
 /** 画面情報 */
-export const screen = graphql<any, ScreenInfo, any>(SCREEN_INFO, {
+export const SCREEN = graphql<any, ScreenInfo, any>(SCREEN_INFO, {
   props: ({ data }) => {
     if (!data) return {} as any;
 
@@ -25,7 +25,7 @@ export const screen = graphql<any, ScreenInfo, any>(SCREEN_INFO, {
 });
 
 /** ステータス情報 */
-export const status = graphql<any, StatusInfo, any>(STATUS_INFO, {
+export const STATUS = graphql<any, StatusInfo, any>(STATUS_INFO, {
   props: ({ data }) => {
     if (!data) return {} as any;
 

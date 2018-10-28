@@ -106,9 +106,54 @@ export interface RegistWordsVariables {
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: StudySave
+// ====================================================
+
+export interface StudySave {
+  studySave: boolean | null;
+}
+
+export interface StudySaveVariables {
+  setId: string;
+  input: StudySaveInput[];
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: StudySet
+// ====================================================
+
+export interface StudySet_studySet {
+  __typename: "Word";
+  word: string | null;
+  pronunciation: string | null;
+  vocabulary: string | null;
+  times: number | null;
+}
+
+export interface StudySet {
+  studySet: (StudySet_studySet | null)[];
+}
+
+export interface StudySetVariables {
+  setId: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+export interface StudySaveInput {
+  word?: string | null;
+  correct?: boolean | null;
+  time?: number | null;
+}
 
 //==============================================================
 // END Enums and Input Objects

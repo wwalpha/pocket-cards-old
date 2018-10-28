@@ -8,13 +8,29 @@ import {
   Favorite as FavoriteIcon,
 } from '@material-ui/icons';
 import classnames from 'classnames';
-
-// import { AddBtn, Header } from '.';
+import { graphql, compose, MutateProps } from 'react-apollo';
+import { STUDY_SET } from '@gql';
+import { StudySetVariables, StudySet } from 'typings/graphql';
+import { STATUS } from '@queries';
+import { StatusInfo } from 'typings/local';
 
 class Study extends React.Component<Props, State> {
   state = {
     transform: false,
   };
+
+  componentWillMount() {
+    console.log(11111);
+    const { mutate, status: { setId } } = this.props;
+
+    // 単語一覧を取得する
+    mutate({
+      variables: { setId },
+      update: (proxy, result) => {
+        console.log(result);
+      },
+    });
+  }
 
   handleClick = () => this.setState({ transform: !this.state.transform });
 
@@ -87,11 +103,20 @@ const styles = (): StyleRules => ({
   },
 });
 
-export interface Props extends WithStyles<StyleRules> { }
+// GraphQL Props
+export interface TProps extends MutateProps<StudySet, StudySetVariables>, StatusInfo { }
+// React Props
+export interface Props extends IProps, TProps, WithStyles { }
+// React extenal Props
+export interface IProps { }
 
 export interface State {
   [key: string]: any;
   transform: boolean;
 }
 
-export default withStyles(styles)(Study);
+const G_STUDY_SET = graphql(STUDY_SET, {
+  props: ({ mutate, ownProps }) => ({ mutate, ownProps }),
+});
+
+export default withStyles(styles)(compose(STATUS, G_STUDY_SET)(Study)) as React.ComponentType<IProps>;

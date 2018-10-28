@@ -305,7 +305,7 @@
             "deprecationReason": null
           },
           {
-            "name": "pronounce",
+            "name": "pronunciation",
             "description": null,
             "args": [],
             "type": {

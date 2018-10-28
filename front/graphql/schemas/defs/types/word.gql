@@ -4,7 +4,7 @@ type Word {
   # 単語
   word: String
   # 発音
-  pronounce: String
+  pronunciation: String
   # 語彙
   vocabulary: String
   # 学習時間

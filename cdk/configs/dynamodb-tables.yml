@@ -62,5 +62,17 @@ PronunciationResource:
     - attributeName: word
       attributeType: S
   provisionedThroughput:
-    readCapacityUnits: 5
-    writeCapacityUnits: 10
+    readCapacityUnits: 1
+    writeCapacityUnits: 1
+
+TimesResource:
+  tableName: Times
+  keySchema: 
+  - attributeName: times
+    keyType: HASH
+  attributeDefinitions:
+    - attributeName: times
+      attributeType: N
+  provisionedThroughput:
+    readCapacityUnits: 1
+    writeCapacityUnits: 1

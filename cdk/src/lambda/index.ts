@@ -6,6 +6,7 @@ export { default as AddNewWords } from './add-new-words';
 export { default as WordToSpeech } from './word-to-speech';
 export { default as StudyHistory } from './study-history';
 export { default as StudySet } from './study-set';
+export { default as StudySave } from './study-save';
 
 export const getHandler = (props: LambdaInput, functionName: string, handler: string): string => {
   if (props.envType === 'dev') {

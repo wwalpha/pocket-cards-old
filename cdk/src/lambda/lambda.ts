@@ -1,4 +1,4 @@
-import { LambdaOutput, ImageToWord, AddNewWords, WordToSpeech, StudyHistory, StudySet } from ".";
+import { LambdaOutput, ImageToWord, AddNewWords, WordToSpeech, StudyHistory, StudySet, StudySave } from ".";
 
 export default (): LambdaOutput => {
   return {
@@ -7,5 +7,6 @@ export default (): LambdaOutput => {
     WordToSpeech,
     StudyHistory,
     StudySet,
+    StudySave,
   }
 }

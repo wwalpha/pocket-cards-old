@@ -6,7 +6,6 @@
   "scripts": {
     "dev:r": "yarn clean && tsc && yarn dev:deploy",
     "prod:r": "yarn clean && yarn prod:build && yarn prod:deploy",
-    "cp": "cpx src/appsync/add-new-words/england.dict dist/tsc/src/appsync/add-new-words/",
     "dev:deploy": "ts-node build.ts dev",
     "prod:build": "webpack --config webpack/webpack.prod.js",
     "prod:deploy": "ts-node deploy.ts prod",

@@ -40,7 +40,8 @@
   "files": [
     "./typings/types.d.ts",
     "./typings/external.d.ts",
-    "./typings/tables.d.ts"
+    "./typings/tables.d.ts",
+    "./typings/appsync.d.ts"
   ],
   "exclude": [
     "node_modules",

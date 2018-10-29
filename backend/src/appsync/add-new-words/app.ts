@@ -14,6 +14,8 @@ const dbClient = new DocumentClient({
   region: process.env.AWS_DEFAULT_REGION,
 });
 
+const MAX_DATE = '88888888';
+
 /** ロジック */
 export const app = async (event: Request): Promise<Response> => {
   const words = event.words.map(word => fixWord(dbClient, event.setId, word));
@@ -54,7 +56,7 @@ const fixWord = async (db: DocumentClient, setId: string, word: string): Promise
     pronunciation,
     vocabulary: response.TranslatedText,
     times: 0,
-    nextDate: '00000000',
+    nextDate: MAX_DATE,
   };
 
   try {

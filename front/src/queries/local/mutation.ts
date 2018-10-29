@@ -25,27 +25,11 @@ export const UPDATE_SET_ID = gql`
   }
 `;
 
-// 新規単語をローカルに保存する
-// export const SAVE_NEW_WORDS = gql`
-//   mutation SaveNewwords($words: RegistWordInput!) {
-//     saveNewwords(words: $words) {
-//       words
-//     }
-//   }
-// `;
-// export const SAVE_NEW_WORDS = gql`
-//   mutation SaveNewwords {
-//     saveNewwords {
-//       words
-//     }
-//   }
-// `;
-
 // ローカルの新規単語リストをクリアする
 export const CLEAR_NEW_WORDS = gql`
   mutation ClearNewwords {
     clearNewwords @client {
-      newwords
+      words
     }
   }
 `;
@@ -54,7 +38,57 @@ export const CLEAR_NEW_WORDS = gql`
 export const REMOVE_WORD = gql`
   mutation RemoveWord($word: String!) {
     removeWord(word: $word) @client {
-      newwords
+      words
+    }
+  }
+`;
+
+// 学習リストをローカルに保存する
+export const SAVE_WORD_LIST = gql`
+  mutation SaveWordList($list: [WordInput!]!) {
+    saveWordList(list: $list) @client
+  }
+`;
+
+// 前の学習単語
+export const PREV_WORD = gql`
+  mutation PrevWord {
+    prevWord @client {
+      word
+    }
+  }
+`;
+
+// 次の学習単語
+export const NEXT_WORD = gql`
+  mutation NextWord {
+    nextWord @client {
+      word
+    }
+  }
+`;
+
+// テストリストをローカルに保存する
+export const SAVE_TEST_LIST = gql`
+  mutation SaveTestList($list: [WordInput!]!) {
+    saveTestList(list: $list) @client
+  }
+`;
+
+// 前のテスト単語
+export const PREV_TEST = gql`
+  mutation PrevTest {
+    prevTest @client {
+      word
+    }
+  }
+`;
+
+// 次のテスト単語
+export const NEXT_TEST = gql`
+  mutation NextTest {
+    nextTest @client {
+      word
     }
   }
 `;

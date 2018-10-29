@@ -23,7 +23,7 @@ class Header extends React.Component<Props, {}> {
           >
             <BackIcon />
           </IconButton>
-          <Typography variant="subheading" color="inherit" className={classes.grow}>
+          <Typography color="inherit" className={classes.grow}>
             セット一覧
           </Typography>
           <IconButton

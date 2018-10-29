@@ -1,7 +1,5 @@
-
-
 type Newwords {
-  words: [String]
+  words: [String!]!
 }
 
 type User {
@@ -15,4 +13,8 @@ type Screen {
 
 type Status {
   setId: String
+}
+
+type Word {
+  word: String
 }

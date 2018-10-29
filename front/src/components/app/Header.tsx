@@ -58,7 +58,7 @@ class Header extends React.Component<Props> {
 
                   return info.left.map((item, idx) => this.renderIcon(item, idx));
                 })()}
-                <Typography variant="title" color="inherit" className={classes.grow}>
+                <Typography color="inherit" className={classes.grow}>
                   {info.title}
                 </Typography>
                 {(() => {

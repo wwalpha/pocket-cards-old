@@ -6,9 +6,11 @@ import { GQL_NEW_WORDS } from '@gql';
 export default (_: any, _vars: any, context: any) => {
   const cache = context.cache as ApolloCache<any>;
 
-  const data = {
-    __typename: 'Newwords',
-    newwords: [],
+  const data: Newwords = {
+    newwords: {
+      __typename: 'Newwords',
+      words: [] as string[],
+    },
   };
   // Cache更新
   cache.writeQuery<Newwords>({

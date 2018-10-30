@@ -4,7 +4,7 @@
       "./src",
     ],
     "outDir": "dist",
-    "target": "es2015",
+    "target": "es5",
     "module": "commonjs",
     "jsx": "react",
     "lib": [

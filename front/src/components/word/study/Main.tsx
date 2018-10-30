@@ -8,10 +8,10 @@ import {
   Favorite as FavoriteIcon,
 } from '@material-ui/icons';
 import classnames from 'classnames';
-import { withApollo, WithApolloClient } from 'react-apollo';
-import { STUDY_SET, GQL_STATUS_INFO, GQL_SAVE_WORD_LIST, GQL_NEXT_WORD, GQL_PREV_WORD } from '@gql';
+import { withApollo, WithApolloClient, Query } from 'react-apollo';
+import { STUDY_SET, GQL_STATUS_INFO, GQL_SAVE_WORD_LIST, GQL_NEXT_WORD, GQL_PREV_WORD, GQL_CARD } from '@gql';
 import { StudySetVariables, StudySet } from 'typings/graphql';
-import { Status, SaveWordList, SaveWordListVariables, WordInput } from 'typings/local';
+import { Status, SaveWordList, SaveWordListVariables, WordInput, Study } from 'typings/local';
 
 class Main extends React.Component<Props, State> {
   state = {
@@ -40,6 +40,9 @@ class Main extends React.Component<Props, State> {
       variables: {
         list: data as WordInput[],
       },
+      refetchQueries: [{
+        query: GQL_CARD,
+      }],
     });
   }
 
@@ -55,60 +58,77 @@ class Main extends React.Component<Props, State> {
   })
 
   render() {
-    const { classes } = this.props;
+    const { classes, client } = this.props;
+
+    const study = client.query<Study>({
+      query: GQL_CARD,
+    });
 
     return (
-      <div className={classes.root} style={{ transform: this.state.transform ? 'rotateY(180deg)' : '' }}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.handlePrev}
-        >
-          前へ
-        </Button>
-        <Card classes={{ root: classes.card }}>
-          <CardHeader
-            title="Shrimp and Chorizo Paella"
-            subheader="September 14, 2016"
-          />
-          <CardContent classes={{ root: classes.body }} onClick={this.handleRotate}>
-            <Typography component="p">
-              This impressive paella is a perfect party dish and a fun meal to cook together with your
-              guests. Add 1 cup of frozen peas along with the mussels, if you like.
-            </Typography>
-          </CardContent>
-          <CardActions disableActionSpacing>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-          </CardActions>
-        </Card>
-        <Card classes={{
-          root: classnames(classes.card, classes.rotate),
-        }}>
-          <CardHeader
-            title="Shrimp and Chorizo Paella"
-            subheader="September 14, 2016"
-          />
-          <CardContent classes={{ root: classes.body }} onClick={this.handleRotate}>
-            <Typography component="p">
-              解釈
-            </Typography>
-          </CardContent>
-          <CardActions disableActionSpacing>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-          </CardActions>
-        </Card>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.handleNext}
-        >
-          次へ
-        </Button>
-      </div>
+      <StudyQuery query={GQL_CARD}>
+        {({ loading, data, error }) => {
+          if (loading) return <div>Loading</div>;
+          if (error) return <h1>ERROR</h1>;
+          if (!data || Object.keys(data).length === 0) return <div></div>;
+
+          console.log(data);
+          const { card } = data.study;
+
+          return (
+            <div className={classes.root} style={{ transform: this.state.transform ? 'rotateY(180deg)' : '' }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.handlePrev}
+              >
+                前へ
+            </Button>
+              <Card classes={{ root: classes.card }}>
+                <CardHeader
+                  title="Shrimp and Chorizo Paella"
+                  subheader="September 14, 2016"
+                />
+                <CardContent classes={{ root: classes.body }} onClick={this.handleRotate}>
+                  <Typography component="p">
+                    {card.word}
+                  </Typography>
+                </CardContent>
+                <CardActions disableActionSpacing>
+                  <IconButton aria-label="Add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+              <Card classes={{
+                root: classnames(classes.card, classes.rotate),
+              }}>
+                <CardHeader
+                  title="Shrimp and Chorizo Paella"
+                  subheader="September 14, 2016"
+                />
+                <CardContent classes={{ root: classes.body }} onClick={this.handleRotate}>
+                  <Typography component="p">
+                    解釈
+                </Typography>
+                </CardContent>
+                <CardActions disableActionSpacing>
+                  <IconButton aria-label="Add to favorites">
+                    <FavoriteIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.handleNext}
+              >
+                次へ
+            </Button>
+            </div>
+          );
+        }}
+      </StudyQuery>
+
     );
   }
 }
@@ -136,6 +156,8 @@ const styles = (): StyleRules => ({
     transform: 'rotateY(180deg)',
   },
 });
+
+class StudyQuery extends Query<Study, any> { }
 
 // GraphQL Props
 // export interface TProps extends MutateProps<StudySet, StudySetVariables>, StatusInfo { }

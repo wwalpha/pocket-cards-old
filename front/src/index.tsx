@@ -13,7 +13,7 @@ import { stateLink, UPDATE_PATH } from './queries/local';
 import config from './aws-exports';
 import App from './containers/App';
 import { UPDATE_USER } from '@gql';
-import { UpdatePathVariables } from 'typings/local';
+import { UpdatePathVariables, UpdateUser, UpdateUserVariables } from 'typings/local';
 import { PATH_INDEX } from '@const';
 
 Amplify.configure(config);
@@ -45,18 +45,18 @@ const appSyncLink = createAppSyncLink({
 
 const link = ApolloLink.from([stateLink, appSyncLink]);
 
-const client = new AppSyncClient({} as any, { link });
+const client = new AppSyncClient({ disableOffline: true } as any, { link });
 
 const start = async () => {
   await Auth.signIn('wwalpha', 'session10');
 
   Storage.configure({ level: 'private' });
 
-  await client.mutate({
+  await client.mutate<UpdateUser, UpdateUserVariables>({
     mutation: UPDATE_USER,
     variables: {
       id: 'wwalpha',
-      username: 'test',
+      username: 'wwalpha',
     },
   });
 

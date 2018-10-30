@@ -14,7 +14,7 @@ class WordList extends React.Component<Props, State> {
   render() {
     const { classes, newwords } = this.props;
 
-    if (!newwords) return null;
+    if (!newwords || !newwords.words) return null;
 
     const items = newwords.words.map((item, idx) => (
       <ListItem key={idx} divider button classes={{ root: classes.listItem }}>

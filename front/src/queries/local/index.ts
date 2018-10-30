@@ -1,5 +1,5 @@
 export * from './gql/mutation';
-export * from './gql/queries';
+export * from './queries';
 
 import { createLinkWithCache } from 'aws-appsync';
 import { withClientState } from 'apollo-link-state';

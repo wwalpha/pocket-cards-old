@@ -3,21 +3,20 @@ import { GQL_SCREEN_INFO } from '@gql';
 import { Screen, UpdatePathVariables } from 'typings/local';
 
 /** パス情報更新 */
-export default (_: any, args: UpdatePathVariables, context: any) => {
+export default (_: any, { path }: UpdatePathVariables, context: any) => {
   const cache = context.cache as ApolloCache<any>;
 
-  const result = cache.readQuery<Screen>({ query: GQL_SCREEN_INFO });
-  if (!result) return;
-
   // パス更新
-  result.screen = {
-    __typename: 'Screen',
-    path: args.path,
+  const data: Screen = {
+    screen: {
+      __typename: 'Screen',
+      path,
+    },
   };
 
-  cache.writeQuery<Screen>({ query: GQL_SCREEN_INFO, data: result });
+  cache.writeQuery<Screen>({ query: GQL_SCREEN_INFO, data });
 
-  console.log('Screen', result);
+  console.log('Screen', data);
 
-  return result.screen;
+  return data.screen;
 };

@@ -3,13 +3,15 @@ import { App } from 'typings/local';
 export default {
   user: {
     __typename: 'User',
-  },
-  screen: {
-    __typename: 'Screen',
+    id: 'dummy',
+    username: 'dummy',
   },
   status: {
     __typename: 'Status',
+    setId: 'dummy',
   },
-  newwords: [] as any,
-  study: [] as any,
+  screen: {
+    __typename: 'Screen',
+    path: -1,
+  },
 } as App;

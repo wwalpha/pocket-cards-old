@@ -11,7 +11,7 @@
     "schema:app:build": "yarn schema:app:init && yarn schema:app:json && yarn schema:app:generate",
     "schema:local:init": "ts-node graphql/local/schema.ts",
     "schema:local:json": "apollo schema:download graphql/local/schema.json --endpoint graphql/local/schema.gql",
-    "schema:local:generate": "apollo codegen:generate --addTypename --target=typescript --schema=graphql/local/schema.json --queries=./src/queries/local/gql/*.ts --outputFlat=./typings/local.generate.d.ts",
+    "schema:local:generate": "apollo codegen:generate --addTypename --target=typescript --schema=graphql/local/schema.json --queries=./src/queries/local/gql/mutation.ts --outputFlat=./typings/local.generate.d.ts",
     "schema:local:build": "yarn schema:local:init && yarn schema:local:json && yarn schema:local:generate",
     "schema:build": "yarn schema:app:build && yarn schema:local:build",
     "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./graphql/schemas/schema.gql",
@@ -26,6 +26,7 @@
     "@material-ui/icons": "^3.0.1",
     "@types/classnames": "^2.2.6",
     "@types/recompose": "^0.27.0",
+    "@types/redux-logger": "^3.0.6",
     "apollo": "^1.9.2",
     "apollo-boost": "^0.1.16",
     "apollo-client": "2.3.7",
@@ -39,8 +40,11 @@
     "react": "^16.5.2",
     "react-apollo": "2.1.9",
     "react-dom": "^16.5.2",
+    "react-redux": "^5.1.0",
     "react-router-dom": "^4.3.1",
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "redux": "^4.0.1",
+    "redux-actions": "^2.6.3"
   },
   "devDependencies": {
     "@babel/core": "^7.0.1",
@@ -70,6 +74,7 @@
     "json-loader": "^0.5.7",
     "merge-graphql-schemas": "^1.5.7",
     "react-hot-loader": "^4.3.6",
+    "redux-logger": "^3.0.6",
     "rimraf": "^2.6.2",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^5.1.0",

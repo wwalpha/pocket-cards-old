@@ -3,23 +3,25 @@ import { ApolloCache } from 'apollo-cache';
 import { GQL_USER_INFO } from '@gql';
 
 /** ユーザ情報更新 */
-export default (_: any, { id }: UpdateUserVariables, context: any) => {
+export default (_: any, { id, username }: UpdateUserVariables, context: any) => {
   const cache = context.cache as ApolloCache<any>;
 
-  const result = cache.readQuery<User>({ query: GQL_USER_INFO });
-  if (!result) return;
-
-  result.user = {
-    __typename: 'User',
-    id,
-    // username,
+  const result = cache.readQuery<User>({
+    query: GQL_USER_INFO,
+  });
+  console.log(result);
+  const data: User = {
+    user: {
+      __typename: 'User',
+      id,
+      username,
+    },
   };
-
   // Cache更新
   cache.writeQuery<User>({
-    query: GQL_USER_INFO, data: result,
+    query: GQL_USER_INFO, data,
   });
 
-  console.log('User', result);
-  return result.user;
+  console.log('User', data);
+  return data.user;
 };

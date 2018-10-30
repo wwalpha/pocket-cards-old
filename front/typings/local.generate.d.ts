@@ -115,12 +115,23 @@ export interface SaveWordListVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: ClearWordList
+// ====================================================
+
+export interface ClearWordList {
+  clearWordList: boolean | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: PrevWord
 // ====================================================
 
 export interface PrevWord_prevWord {
   __typename: "Word";
-  word: string | null;
+  word: string;
 }
 
 export interface PrevWord {
@@ -136,7 +147,7 @@ export interface PrevWord {
 
 export interface NextWord_nextWord {
   __typename: "Word";
-  word: string | null;
+  word: string;
 }
 
 export interface NextWord {
@@ -147,47 +158,108 @@ export interface NextWord {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: SaveTestList
+// GraphQL query operation: User
 // ====================================================
 
-export interface SaveTestList {
-  saveTestList: boolean | null;
+export interface User_user {
+  __typename: "User";
+  id: string;
 }
 
-export interface SaveTestListVariables {
-  list: WordInput[];
-}
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: PrevTest
-// ====================================================
-
-export interface PrevTest_prevTest {
-  __typename: "Word";
-  word: string | null;
-}
-
-export interface PrevTest {
-  prevTest: PrevTest_prevTest | null;
+export interface User {
+  user: User_user;
 }
 
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: NextTest
+// GraphQL query operation: Status
 // ====================================================
 
-export interface NextTest_nextTest {
-  __typename: "Word";
-  word: string | null;
+export interface Status_status {
+  __typename: "Status";
+  setId: string | null;
 }
 
-export interface NextTest {
-  nextTest: NextTest_nextTest | null;
+export interface Status {
+  status: Status_status;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Screen
+// ====================================================
+
+export interface Screen_screen {
+  __typename: "Screen";
+  path: number;
+}
+
+export interface Screen {
+  screen: Screen_screen;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Newwords
+// ====================================================
+
+export interface Newwords_newwords {
+  __typename: "Newwords";
+  words: string[];
+}
+
+export interface Newwords {
+  newwords: Newwords_newwords | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Study
+// ====================================================
+
+export interface Study_study_list {
+  __typename: "Word";
+  word: string;
+  pronunciation: string | null;
+  vocabulary: string | null;
+  times: number;
+}
+
+export interface Study_study {
+  __typename: "Study";
+  list: (Study_study_list | null)[];
+  index: number;
+}
+
+export interface Study {
+  study: Study_study | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Card
+// ====================================================
+
+export interface Card_card {
+  __typename: "Word";
+  word: string;
+  pronunciation: string | null;
+  vocabulary: string | null;
+  times: number;
+}
+
+export interface Card {
+  card: Card_card | null;
 }
 
 /* tslint:disable */
@@ -198,7 +270,10 @@ export interface NextTest {
 //==============================================================
 
 export interface WordInput {
-  word?: string | null;
+  word: string;
+  pronunciation?: string | null;
+  vocabulary?: string | null;
+  times: number;
 }
 
 //==============================================================

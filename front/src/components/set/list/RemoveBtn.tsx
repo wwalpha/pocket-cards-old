@@ -3,7 +3,7 @@ import { graphql, compose, MutateProps } from 'react-apollo';
 import { Button, colors } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { SET_DELETE, GET_LIST } from '@gql';
-import { USER } from '@queries';
+import { F_USER_INFO } from '@queries';
 import { UserInfo } from 'typings/local';
 import { SetRemoveVariables, SetRemove, GetSetList, GetSetListVariables } from 'typings/graphql';
 
@@ -76,6 +76,6 @@ export interface Props extends IProps, UserInfo, WithStyles {
   setId: string;
 }
 
-export default compose(USER, graphql(SET_DELETE, {
+export default compose(F_USER_INFO, graphql(SET_DELETE, {
   props: ({ mutate, ownProps }) => ({ mutate, ownProps }),
 }))(withStyles(styles)(RemoveBtn));

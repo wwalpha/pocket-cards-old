@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Grid, List, ListItem, ListItemText, Theme, WithStyles, withStyles } from '@material-ui/core';
 import { graphql, DataValue } from 'react-apollo';
-import { NEW_WORD_INFO } from '@gql';
+import { GQL_NEW_WORDS } from '@gql';
 import { StyleRules } from '@material-ui/core/styles';
 import { Newwords } from 'typings/local';
 import { RegistBtn } from '.';
@@ -53,6 +53,6 @@ export interface State {
   [key: string]: any;
 }
 
-export default graphql<any, Newwords, any>(NEW_WORD_INFO, {
+export default graphql<any, Newwords, any>(GQL_NEW_WORDS, {
   props: ({ data }) => ({ ...data }),
 })(withStyles(styles)(WordList));

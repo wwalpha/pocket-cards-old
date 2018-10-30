@@ -21,6 +21,24 @@ type Mutation {
   updatePath(path: Int!): Screen
   # 画面パスを更新する
   updateSetId(id: String!): Status
+  # # 新規単語をローカルに保存する
+   # saveNewwords(words: RegistWordInput!): Newwords
+   # # ローカルの新規単語リストをクリアする
+  clearNewwords: Newwords
+  # # ローカルの単語リストから単語を削除する
+  removeWord(word: String!): Newwords
+  # 学習リストをローカルに保存する
+  saveWordList(list: [WordInput!]!): Boolean
+  # 前の学習単語
+  prevWord: Word
+  # 次の学習単語
+  nextWord: Word
+  # テストリストをローカルに保存する
+  saveTestList(list: [WordInput!]!): Boolean
+  # 前のテスト単語
+  prevTest: Word
+  # 次のテスト単語
+  nextTest: Word
 }
 
 input UserInput {
@@ -28,8 +46,12 @@ input UserInput {
   username: String
 }
 
+input WordInput {
+  word: String
+}
+
 type Newwords {
-  words: [String]
+  words: [String!]!
 }
 
 type User {
@@ -43,4 +65,8 @@ type Screen {
 
 type Status {
   setId: String
+}
+
+type Word {
+  word: String
 }

@@ -5,7 +5,9 @@ input UserInput {
 
 input WordInput {
   word: String!
-  time: Int!
+  pronunciation: String
+  vocabulary: String
+  times: Int!
 }
 
 type Mutation {
@@ -25,15 +27,10 @@ type Mutation {
 
   # 学習リストをローカルに保存する
   saveWordList(list: [WordInput!]!): Boolean
+  # 学習リストをローカルに保存する
+  clearWordList: Boolean
   # 前の学習単語
   prevWord: Word
   # 次の学習単語
   nextWord: Word
-
-  # テストリストをローカルに保存する
-  saveTestList(list: [WordInput!]!): Boolean
-  # 前のテスト単語
-  prevTest: Word
-  # 次のテスト単語
-  nextTest: Word
 }

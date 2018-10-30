@@ -7,8 +7,8 @@ import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { StatusInfo, UpdatePathProps, ClearNewwordsProps } from 'typings/local';
 import { WORDS_REGIST } from '@gql';
 import { PATH, PATH_INDEX } from '@const';
-import { STATUS } from '@queries';
-import { pathChange, clearNewwords } from '@utils/mutations';
+import { F_STATUS_INFO } from '@queries';
+import { pathChange, F_CLEAR_NEW_WORDS } from '@utils/mutations';
 
 class RegistBtn extends React.Component<Props> {
 
@@ -58,6 +58,6 @@ export interface Props extends IProps, UpdatePathProps, ClearNewwordsProps, Rout
   words: string[];
 }
 
-export default compose(STATUS, pathChange, clearNewwords, graphql(WORDS_REGIST, {
+export default compose(F_STATUS_INFO, pathChange, F_CLEAR_NEW_WORDS, graphql(WORDS_REGIST, {
   props: ({ mutate }) => ({ mutate }),
 }))(withStyles(styles)(withRouter(RegistBtn)));

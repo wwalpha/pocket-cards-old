@@ -11,7 +11,7 @@
     "schema:app:build": "yarn schema:app:init && yarn schema:app:json && yarn schema:app:generate",
     "schema:local:init": "ts-node graphql/local/schema.ts",
     "schema:local:json": "apollo schema:download graphql/local/schema.json --endpoint graphql/local/schema.gql",
-    "schema:local:generate": "apollo codegen:generate --addTypename --target=typescript --schema=graphql/local/schema.json --queries=./src/queries/local/mutation.ts --outputFlat=./typings/local.generate.d.ts",
+    "schema:local:generate": "apollo codegen:generate --addTypename --target=typescript --schema=graphql/local/schema.json --queries=./src/queries/local/gql/*.ts --outputFlat=./typings/local.generate.d.ts",
     "schema:local:build": "yarn schema:local:init && yarn schema:local:json && yarn schema:local:generate",
     "schema:build": "yarn schema:app:build && yarn schema:local:build",
     "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./graphql/schemas/schema.gql",

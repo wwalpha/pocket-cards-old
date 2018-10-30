@@ -10,5 +10,6 @@ export default {
   status: {
     __typename: 'Status',
   },
-  newwords: null as any,
+  newwords: [] as any,
+  study: [] as any,
 } as App;

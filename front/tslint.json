@@ -7,6 +7,7 @@
       true,
       200
     ],
+    "no-boolean-literal-compare": true,
     "import-name": false,
     "no-unused-variable": true,
     "semicolon": true,

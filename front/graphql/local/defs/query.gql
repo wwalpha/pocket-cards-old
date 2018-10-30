@@ -1,10 +1,14 @@
 type Query {
   # ユーザ情報
-  user: User
+  user: User!
   # 操作ステータス
-  status: Status
+  status: Status!
   # 画面情報
-  screen: Screen
+  screen: Screen!
   # 新規登録単語
   newwords: Newwords
+  # 学習情報
+  study: Study
+  # カード情報
+  card: Word
 }

@@ -4,7 +4,7 @@ import { IconButton, Theme } from '@material-ui/core';
 import { CameraAlt } from '@material-ui/icons';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Storage } from 'aws-amplify';
-import { IMAGE_TO_WORDS, NEW_WORD_INFO } from '@gql';
+import { IMAGE_TO_WORDS, GQL_NEW_WORDS } from '@gql';
 import { Image2Word, Image2WordVariables, Image2Word_image2Word } from 'typings/graphql';
 import { Newwords } from 'typings/local';
 
@@ -72,12 +72,12 @@ export default graphql<TProps, Image2Word, Image2WordVariables, TChildProps>(IMA
 
       const words = result.data.image2Word.words;
 
-      const cache = proxy.readQuery<Newwords>({ query: NEW_WORD_INFO });
+      const cache = proxy.readQuery<Newwords>({ query: GQL_NEW_WORDS });
       if (!cache) return;
 
       // ローカルに保存する
       proxy.writeQuery<Newwords>({
-        query: NEW_WORD_INFO,
+        query: GQL_NEW_WORDS,
         data: {
           ...cache,
           newwords: words,

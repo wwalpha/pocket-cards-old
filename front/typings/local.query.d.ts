@@ -1,5 +1,5 @@
 import { ChildProps } from "react-apollo";
-import { UpdatePathVariables, UpdateSetIdVariables, ClearNewwords } from "./local.generate";
+import { UpdatePathVariables, UpdateSetIdVariables, ClearNewwords, WordInput } from "./local.generate";
 
 /** パス更新 */
 export interface UpdatePathProps extends UpdatePathVariables {
@@ -28,6 +28,14 @@ export interface App {
   screen: Screen;
   user: User;
   newwords: Newwords;
+  study: Study;
+}
+
+/** 学習コントロール */
+export interface Study {
+  list: WordInput[];
+  index: number;
+  text?: WordInput;
 }
 
 export interface Newwords {

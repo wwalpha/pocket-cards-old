@@ -1,9 +1,9 @@
 import { graphql } from 'react-apollo';
-import { USER_INFO, SCREEN_INFO, STATUS_INFO } from '@gql';
-import { UserInfo, ScreenInfo, StatusInfo } from 'typings/local';
+import { GQL_USER_INFO, GQL_SCREEN_INFO, GQL_STATUS_INFO, GQL_STUDY } from '@gql';
+import { UserInfo, ScreenInfo, StatusInfo, Study } from 'typings/local';
 
 /** ユーザ情報 */
-export const USER = graphql<any, UserInfo, any>(USER_INFO, {
+export const F_USER_INFO = graphql<any, UserInfo, any>(GQL_USER_INFO, {
   props: ({ data }) => {
     if (!data) return {} as any;
 
@@ -14,7 +14,7 @@ export const USER = graphql<any, UserInfo, any>(USER_INFO, {
 });
 
 /** 画面情報 */
-export const SCREEN = graphql<any, ScreenInfo, any>(SCREEN_INFO, {
+export const F_SCREEN_INFO = graphql<any, ScreenInfo, any>(GQL_SCREEN_INFO, {
   props: ({ data }) => {
     if (!data) return {} as any;
 
@@ -25,12 +25,23 @@ export const SCREEN = graphql<any, ScreenInfo, any>(SCREEN_INFO, {
 });
 
 /** ステータス情報 */
-export const STATUS = graphql<any, StatusInfo, any>(STATUS_INFO, {
+export const F_STATUS_INFO = graphql<any, StatusInfo, any>(GQL_STATUS_INFO, {
   props: ({ data }) => {
     if (!data) return {} as any;
 
     return {
       status: data.status,
+    };
+  },
+});
+
+/** ステータス情報 */
+export const F_STUDY_INFO = graphql<any, Study, any>(GQL_STUDY, {
+  props: ({ data }) => {
+    if (!data) return {} as any;
+
+    return {
+      text: data.text,
     };
   },
 });

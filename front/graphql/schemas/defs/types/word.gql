@@ -2,7 +2,7 @@ type Word {
   # セットID
   setId: ID!
   # 単語
-  word: String
+  word: String!
   # 発音
   pronunciation: String
   # 語彙
@@ -10,7 +10,7 @@ type Word {
   # 学習時間
   studyDate: String
   # 次回学習時間
-  nextDate: String
+  nextDate: String!
   # 学習回数
-  times: Int
+  times: Int!
 }

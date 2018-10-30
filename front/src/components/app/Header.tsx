@@ -4,7 +4,7 @@ import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import { Query } from 'react-apollo';
 import { HEADER, IconInfo } from '@const';
 import UpdatePath from '@comp/hoc/UpdatePath';
-import { SCREEN_INFO } from '@gql';
+import { GQL_SCREEN_INFO } from '@gql';
 import { ScreenInfo } from 'typings/local';
 
 class Header extends React.Component<Props> {
@@ -40,7 +40,7 @@ class Header extends React.Component<Props> {
     const { classes } = this.props;
 
     return (
-      <ScreenQuery query={SCREEN_INFO}>
+      <ScreenQuery query={GQL_SCREEN_INFO}>
         {({ loading, error, data }) => {
           if (loading) return null;
           if (error) return `Error!: ${error}`;

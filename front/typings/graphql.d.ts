@@ -91,7 +91,7 @@ export interface Image2WordVariables {
 
 export interface RegistWords_registWords {
   __typename: "Word";
-  word: string | null;
+  word: string;
 }
 
 export interface RegistWords {
@@ -128,10 +128,10 @@ export interface StudySaveVariables {
 
 export interface StudySet_studySet {
   __typename: "Word";
-  word: string | null;
+  word: string;
   pronunciation: string | null;
   vocabulary: string | null;
-  times: number | null;
+  times: number;
 }
 
 export interface StudySet {

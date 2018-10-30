@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 export const GQL_USER_INFO = gql`
-  query User {
+  query User @client {
     user {
       id
     }
@@ -9,7 +9,7 @@ export const GQL_USER_INFO = gql`
 `;
 
 export const GQL_STATUS_INFO = gql`
-  query Status {
+  query Status @client {
     status {
       setId
     }
@@ -17,7 +17,7 @@ export const GQL_STATUS_INFO = gql`
 `;
 
 export const GQL_SCREEN_INFO = gql`
-  query Screen {
+  query Screen @client {
     screen {
       path
     }
@@ -25,23 +25,34 @@ export const GQL_SCREEN_INFO = gql`
 `;
 
 export const GQL_NEW_WORDS = gql`
-  query Newwords {
+  query Newwords @client {
     newwords {
       words
     }
   }
 `;
 
-// export const GQL_STUDY_INFO = gql`
-//   {
-//     study
-//   }
-// `;
+export const GQL_STUDY = gql`
+  query Study @client {
+    study {
+      list {
+        word
+        pronunciation
+        vocabulary
+        times
+      }
+      index
+    }
+  }
+`;
 
-// export const GQL_CARD = gql`
-//   {
-//     study  {
-//       text
-//     }
-//   }
-// `;
+export const GQL_CARD = gql`
+  query Card @client {
+    card {
+      word
+      pronunciation
+      vocabulary
+      times
+    }
+  }
+`;

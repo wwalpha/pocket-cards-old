@@ -1,6 +1,6 @@
-import { UpdatePathVariables, ScreenInfo } from 'typings/local';
 import { ApolloCache } from 'apollo-cache';
 import { GQL_SCREEN_INFO } from '@gql';
+import { ScreenInfo, UpdatePathVariables } from 'typings/local';
 
 /** パス情報更新 */
 export default (_: any, args: UpdatePathVariables, context: any) => {

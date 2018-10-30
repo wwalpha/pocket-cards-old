@@ -1,12 +1,12 @@
 import { ApolloCache } from 'apollo-cache';
 import { GQL_SCREEN_INFO } from '@gql';
-import { ScreenInfo, UpdatePathVariables } from 'typings/local';
+import { Screen, UpdatePathVariables } from 'typings/local';
 
 /** パス情報更新 */
 export default (_: any, args: UpdatePathVariables, context: any) => {
   const cache = context.cache as ApolloCache<any>;
 
-  const result = cache.readQuery<ScreenInfo>({ query: GQL_SCREEN_INFO });
+  const result = cache.readQuery<Screen>({ query: GQL_SCREEN_INFO });
   if (!result) return;
 
   // パス更新
@@ -15,9 +15,9 @@ export default (_: any, args: UpdatePathVariables, context: any) => {
     path: args.path,
   };
 
-  cache.writeQuery<ScreenInfo>({ query: GQL_SCREEN_INFO, data: result });
+  cache.writeQuery<Screen>({ query: GQL_SCREEN_INFO, data: result });
 
-  console.log('ScreenInfo', result);
+  console.log('Screen', result);
 
   return result.screen;
 };

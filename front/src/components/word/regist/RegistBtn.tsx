@@ -4,7 +4,7 @@ import { Button } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { RegistWords, RegistWordsVariables } from 'typings/graphql';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { StatusInfo, UpdatePathProps, ClearNewwordsProps } from 'typings/local';
+import { Status, UpdatePathProps, ClearNewwordsProps } from 'typings/local';
 import { WORDS_REGIST } from '@gql';
 import { PATH, PATH_INDEX } from '@const';
 import { F_STATUS_INFO } from '@queries';
@@ -15,7 +15,8 @@ class RegistBtn extends React.Component<Props> {
   handleRegist = () => {
     const { history, status, updatePath, clearNewwords, mutate, words } = this.props;
 
-    // 新規単語登録
+    if (!status.setId) throw new Error('Set id is null.');
+
     mutate({
       variables: {
         setId: status.setId,
@@ -52,7 +53,7 @@ const styles = (): StyleRules => ({
 });
 
 // GraphQL Props
-export interface IProps extends MutateProps<RegistWords, RegistWordsVariables>, StatusInfo { }
+export interface IProps extends MutateProps<RegistWords, RegistWordsVariables>, Status { }
 // React Props
 export interface Props extends IProps, UpdatePathProps, ClearNewwordsProps, RouteComponentProps, WithStyles {
   words: string[];

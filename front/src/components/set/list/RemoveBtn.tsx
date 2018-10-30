@@ -4,7 +4,7 @@ import { Button, colors } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { SET_DELETE, GET_LIST } from '@gql';
 import { F_USER_INFO } from '@queries';
-import { UserInfo } from 'typings/local';
+import { User } from 'typings/local';
 import { SetRemoveVariables, SetRemove, GetSetList, GetSetListVariables } from 'typings/graphql';
 
 class RemoveBtn extends React.Component<Props> {
@@ -70,9 +70,9 @@ const styles = (): StyleRules => ({
 });
 
 // GraphQL Props
-export interface IProps extends MutateProps<SetRemove, SetRemoveVariables>, UserInfo { }
+export interface IProps extends MutateProps<SetRemove, SetRemoveVariables>, User { }
 // React Props
-export interface Props extends IProps, UserInfo, WithStyles {
+export interface Props extends IProps, User, WithStyles {
   setId: string;
 }
 

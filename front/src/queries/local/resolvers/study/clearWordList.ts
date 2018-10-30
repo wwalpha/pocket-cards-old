@@ -11,6 +11,7 @@ export default (_: any, _vars: any, context: any): Boolean => {
       __typename: 'Study',
       index: -1,
       list: [],
+      card: null,
     },
   };
 

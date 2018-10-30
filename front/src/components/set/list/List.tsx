@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 import { Query, compose } from 'react-apollo';
 import { GET_LIST } from '@gql';
 import { GetSetList, GetSetListVariables } from 'typings/graphql';
-import { UserInfo } from 'typings/local';
+import { User } from 'typings/local';
 import Item from './Item';
 import { F_USER_INFO } from '@queries';
 
@@ -45,7 +45,7 @@ const styles = (): StyleRules => ({
 
 class SetsQuery extends Query<GetSetList, GetSetListVariables> { }
 
-export interface Props extends UserInfo, WithStyles<StyleRules> { }
+export interface Props extends User, WithStyles<StyleRules> { }
 
 export interface IProps { }
 

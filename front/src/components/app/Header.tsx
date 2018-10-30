@@ -5,7 +5,7 @@ import { Query } from 'react-apollo';
 import { HEADER, IconInfo } from '@const';
 import UpdatePath from '@comp/hoc/UpdatePath';
 import { GQL_SCREEN_INFO } from '@gql';
-import { ScreenInfo } from 'typings/local';
+import { Screen } from 'typings/local';
 
 class Header extends React.Component<Props> {
 
@@ -86,7 +86,7 @@ const styles = (): StyleRules => ({
   },
 });
 
-class ScreenQuery extends Query<ScreenInfo, any> { }
+class ScreenQuery extends Query<Screen, any> { }
 
 export interface Props extends WithStyles<StyleRules> { }
 

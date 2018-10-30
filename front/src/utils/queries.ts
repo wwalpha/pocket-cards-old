@@ -1,37 +1,31 @@
 import { graphql } from 'react-apollo';
 import { GQL_USER_INFO, GQL_SCREEN_INFO, GQL_STATUS_INFO, GQL_STUDY } from '@gql';
-import { UserInfo, ScreenInfo, StatusInfo, Study } from 'typings/local';
+import { Study, User, Status, Screen } from 'typings/local';
 
 /** ユーザ情報 */
-export const F_USER_INFO = graphql<any, UserInfo, any>(GQL_USER_INFO, {
+export const F_USER_INFO = graphql<any, User, any>(GQL_USER_INFO, {
   props: ({ data }) => {
     if (!data) return {} as any;
 
-    return {
-      user: data.user,
-    };
+    return data;
   },
 });
 
 /** 画面情報 */
-export const F_SCREEN_INFO = graphql<any, ScreenInfo, any>(GQL_SCREEN_INFO, {
+export const F_SCREEN_INFO = graphql<any, Screen, any>(GQL_SCREEN_INFO, {
   props: ({ data }) => {
     if (!data) return {} as any;
 
-    return {
-      screen: data.screen,
-    };
+    return data;
   },
 });
 
 /** ステータス情報 */
-export const F_STATUS_INFO = graphql<any, StatusInfo, any>(GQL_STATUS_INFO, {
+export const F_STATUS_INFO = graphql<any, Status, any>(GQL_STATUS_INFO, {
   props: ({ data }) => {
     if (!data) return {} as any;
 
-    return {
-      status: data.status,
-    };
+    return data;
   },
 });
 
@@ -41,7 +35,7 @@ export const F_STUDY_INFO = graphql<any, Study, any>(GQL_STUDY, {
     if (!data) return {} as any;
 
     return {
-      text: data.text,
+      card: data.study && data.study.card,
     };
   },
 });

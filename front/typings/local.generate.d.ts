@@ -233,10 +233,19 @@ export interface Study_study_list {
   times: number;
 }
 
+export interface Study_study_card {
+  __typename: "Card";
+  word: string;
+  pronunciation: string | null;
+  vocabulary: string | null;
+  times: number;
+}
+
 export interface Study_study {
   __typename: "Study";
   list: (Study_study_list | null)[];
   index: number;
+  card: Study_study_card | null;
 }
 
 export interface Study {

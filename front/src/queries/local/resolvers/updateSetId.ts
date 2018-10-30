@@ -1,4 +1,4 @@
-import { UpdateSetIdVariables, StatusInfo } from 'typings/local';
+import { UpdateSetIdVariables, Status } from 'typings/local';
 import { ApolloCache } from 'apollo-cache';
 import { GQL_STATUS_INFO } from '@gql';
 
@@ -6,7 +6,7 @@ import { GQL_STATUS_INFO } from '@gql';
 export default (_: any, { id }: UpdateSetIdVariables, context: any) => {
   const cache = context.cache as ApolloCache<any>;
 
-  const result = cache.readQuery<StatusInfo>({ query: GQL_STATUS_INFO });
+  const result = cache.readQuery<Status>({ query: GQL_STATUS_INFO });
   if (!result) return;
 
   result.status = {
@@ -15,11 +15,11 @@ export default (_: any, { id }: UpdateSetIdVariables, context: any) => {
   };
 
   // Cache更新
-  cache.writeQuery<StatusInfo>({
+  cache.writeQuery<Status>({
     query: GQL_STATUS_INFO, data: result,
   });
 
-  console.log('StatusInfo', result);
+  console.log('Status', result);
 
   return result.status;
 };

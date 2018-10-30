@@ -11,7 +11,7 @@ import classnames from 'classnames';
 import { withApollo, WithApolloClient } from 'react-apollo';
 import { STUDY_SET, GQL_STATUS_INFO, GQL_SAVE_WORD_LIST, GQL_NEXT_WORD, GQL_PREV_WORD } from '@gql';
 import { StudySetVariables, StudySet } from 'typings/graphql';
-import { StatusInfo, SaveWordList, SaveWordListVariables, WordInput, NextWord } from 'typings/local';
+import { Status, SaveWordList, SaveWordListVariables, WordInput } from 'typings/local';
 
 class Main extends React.Component<Props, State> {
   state = {
@@ -21,7 +21,10 @@ class Main extends React.Component<Props, State> {
   async componentWillMount() {
     const { client } = this.props;
     // get setid
-    const statusQuery = await client.query<StatusInfo, any>({ query: GQL_STATUS_INFO });
+    const statusQuery = await client.query<Status, any>({ query: GQL_STATUS_INFO });
+
+    if (statusQuery.data.status.setId === null) return;
+
     // get word list
     const studyQuery = await client.query<StudySet, StudySetVariables>({
       query: STUDY_SET,

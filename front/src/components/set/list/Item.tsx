@@ -10,7 +10,7 @@ import { PATH, PATH_INDEX } from '@const';
 import UpdatePath from '@comp/hoc/UpdatePath';
 import { ChildProps, graphql, compose } from 'react-apollo';
 import { UPDATE_SET_ID } from '@gql';
-import { UpdateSetIdVariables, StatusInfo, UpdateSetId } from 'typings/local';
+import { UpdateSetIdVariables, Status, UpdateSetId } from 'typings/local';
 
 class ListItem extends React.Component<Props, any> {
   state = {
@@ -83,7 +83,7 @@ export interface UpdateSetIdProps {
   updateSetId: (id: string) => void;
 }
 /** ChildProps */
-export type UpdateSetIdChildProps = ChildProps<UpdateSetIdProps, StatusInfo, UpdateSetIdVariables>;
+export type UpdateSetIdChildProps = ChildProps<UpdateSetIdProps, Status, UpdateSetIdVariables>;
 // React 外部インターフェース
 export interface IProps {
   setId: string;

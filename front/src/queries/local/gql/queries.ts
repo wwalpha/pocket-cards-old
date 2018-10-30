@@ -42,7 +42,12 @@ export const GQL_STUDY = gql`
         times
       }
       index
-      card
+      card {
+        word
+        pronunciation
+        vocabulary
+        times
+      }
     }
   }
 `;

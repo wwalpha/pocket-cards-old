@@ -11,6 +11,7 @@ export default (_: any, { list }: SaveWordListVariables, context: any) => {
       __typename: 'Study',
       index: -1,
       list: list as Study_study_list[],
+      card: null,
     },
   };
 

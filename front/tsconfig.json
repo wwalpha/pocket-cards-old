@@ -4,14 +4,14 @@
       "./src",
     ],
     "outDir": "dist",
-    "target": "es5",
+    "target": "es2015",
     "module": "commonjs",
     "jsx": "react",
     "lib": [
-      "es5",
-      "es6",
       "es2015.promise",
-      "dom"
+      "dom",
+      "es2015",
+      "esnext.asynciterable"
     ],
     "removeComments": true,
     "allowJs": true,
@@ -23,6 +23,7 @@
     "strictNullChecks": true,
     "noImplicitThis": true,
     "alwaysStrict": true,
+    "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,

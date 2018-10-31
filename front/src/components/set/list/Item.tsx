@@ -4,10 +4,10 @@ import {
   Grid, Avatar, ListItem as MListItem, ListItemText, Paper,
 } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
-import { RemoveBtn } from '.';
+// import { RemoveBtn } from '.';
 import { PATH, PATH_INDEX } from '@const';
-import UpdatePath from '@comp/hoc/UpdatePath';
-import { ActionFunction1, Action } from 'redux-actions';
+import { App } from '@actions';
+import { Link } from 'react-router-dom';
 
 class ListItem extends React.Component<Props, any> {
   state = {
@@ -16,8 +16,17 @@ class ListItem extends React.Component<Props, any> {
 
   handleTouchMove = () => this.setState({ delOpened: !this.state.delOpened });
 
+  handleClick = () => {
+    const { setId, updateSetId, updatePath } = this.props;
+
+    // パス更新
+    updatePath(PATH_INDEX.WORD_ROOT);
+    // セットID更新
+    updateSetId(setId);
+  }
+
   render() {
-    const { classes, primaryText, secondaryText, setId, saveIdChange } = this.props;
+    const { classes, primaryText, secondaryText } = this.props;
 
     return (
       <Grid container>
@@ -26,14 +35,14 @@ class ListItem extends React.Component<Props, any> {
           classes={{
             elevation1: classes.paper,
           }}>
-          <RemoveBtn setId={setId} />
+          {/* <RemoveBtn setId={setId} /> */}
           <MListItem
             button
             disableRipple
             classes={{ root: classes.listitem }}
-            onClick={() => saveIdChange(setId)}
+            onClick={this.handleClick}
             component={(props: any) => (
-              <UpdatePath path={PATH_INDEX.WORD_ROOT} to={PATH.WORD.ROOT} {...props} />
+              <Link to={PATH.WORD.ROOT} {...props} />
             )}
           >
             <Avatar classes={{ root: classes.avatar }}>
@@ -80,7 +89,8 @@ export interface OwnProps {
   setId: string;
   primaryText: string;
   secondaryText?: string;
-  saveIdChange: ActionFunction1<string | undefined, Action<string | undefined>>;
+  updateSetId: App.UpdateSetIdAction;
+  updatePath: App.UpdatePathAction;
 }
 
 // React Props

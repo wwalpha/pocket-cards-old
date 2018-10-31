@@ -1,5 +1,5 @@
-export const PATH_CHANGE = 'PATH_CHANGE';
-export const SET_ID_CHANGE = 'SET_ID_CHANGE';
+export const UPDATE_PATH = 'UPDATE_PATH';
+export const UPDATE_SET_ID = 'UPDATE_SET_ID';
 
 // Study
 export const SAVE_NEW_WORDS = 'SAVE_NEW_WORDS';

@@ -28,7 +28,7 @@ type Mutation {
 }
 
 input RegistWordsInput {
-  setID: String!
+  setId: String!
   words: [String]!
 }
 
@@ -39,7 +39,7 @@ input StudyRecord {
 }
 
 input StudySaveInput {
-  setID: String!
+  setId: String!
   words: [StudyRecord]!
 }
 

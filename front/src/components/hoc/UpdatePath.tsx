@@ -1,19 +1,21 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { ActionFunction1, Action } from 'redux-actions';
 
 class UpdatePath extends React.Component<Props> {
 
   handleClick = () => {
-    const { pathChange, path } = this.props;
+    console.log(2222);
+    const { updatePath, path } = this.props;
 
+    console.log('handleClick', updatePath);
     // パス情報更新
-    pathChange(path);
+    updatePath(path);
   }
 
   render() {
-    const { to, path, pathChange, ...props } = this.props;
+    const { to, path, updatePath, ...props } = this.props;
 
+    console.log(1111);
     return (
       <Link
         to={to}
@@ -27,8 +29,9 @@ class UpdatePath extends React.Component<Props> {
 export interface OwnProps {
   to: string;
   path: number;
-  pathChange: ActionFunction1<number, Action<number>>;
+  updatePath: (path: number) => void;
 }
+
 export interface Props extends OwnProps { }
 
 export default UpdatePath;

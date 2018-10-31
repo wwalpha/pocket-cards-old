@@ -5,16 +5,15 @@ import reducer from '../reducers';
 
 const store = (): Store<any> => createStore(
   reducer,
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__({
-    serialize: {
-      immutable: Immutable,
-    },
-  }),
   compose(
+    (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__({
+      serialize: {
+        immutable: Immutable,
+      },
+    }),
     applyMiddleware(
       logger,
-    ),
-  ),
+    )),
 );
 
 export default store;

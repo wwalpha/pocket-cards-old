@@ -30,7 +30,7 @@ class Header extends React.Component<Props> {
             <UpdatePath
               to={item.path}
               path={item.index}
-              pathChange={actions.updatePath}
+              updatePath={actions.updatePath}
               {...props}
             />
           )}

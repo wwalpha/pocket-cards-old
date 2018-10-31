@@ -26,10 +26,12 @@ class List extends React.Component<Props, {}> {
             if (!data) return <div></div>;
 
             const { setList } = data;
+            console.log(setList);
             return setList && setList.map((item, idx) =>
               <Item
                 key={idx}
-                saveIdChange={actions.updateSetId}
+                updateSetId={actions.updateSetId}
+                updatePath={actions.updatePath}
                 setId={(item && item.setId) as string}
                 primaryText={(item && item.name) as string}
               />,

@@ -4,13 +4,10 @@ import {
   Grid, Avatar, ListItem as MListItem, ListItemText, Paper,
 } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { RemoveBtn } from '.';
 import { PATH, PATH_INDEX } from '@const';
 import UpdatePath from '@comp/hoc/UpdatePath';
-import { ChildProps, graphql, compose } from 'react-apollo';
-import { UPDATE_SET_ID } from '@gql';
-import { UpdateSetIdVariables, Status, UpdateSetId } from 'typings/local';
+import { ActionFunction1, Action } from 'redux-actions';
 
 class ListItem extends React.Component<Props, any> {
   state = {
@@ -20,7 +17,7 @@ class ListItem extends React.Component<Props, any> {
   handleTouchMove = () => this.setState({ delOpened: !this.state.delOpened });
 
   render() {
-    const { classes, primaryText, secondaryText, setId, updateSetId } = this.props;
+    const { classes, primaryText, secondaryText, setId, saveIdChange } = this.props;
 
     return (
       <Grid container>
@@ -34,7 +31,7 @@ class ListItem extends React.Component<Props, any> {
             button
             disableRipple
             classes={{ root: classes.listitem }}
-            onClick={() => { updateSetId && updateSetId(setId); }}
+            onClick={() => saveIdChange(setId)}
             component={(props: any) => (
               <UpdatePath path={PATH_INDEX.WORD_ROOT} to={PATH.WORD.ROOT} {...props} />
             )}
@@ -78,31 +75,15 @@ const styles: StyleRulesCallback = (theme: Theme) => ({
   },
 });
 
-// GraphQL Props
-export interface UpdateSetIdProps {
-  updateSetId: (id: string) => void;
-}
-/** ChildProps */
-export type UpdateSetIdChildProps = ChildProps<UpdateSetIdProps, Status, UpdateSetIdVariables>;
-// React 外部インターフェース
-export interface IProps {
+/** OwnProps */
+export interface OwnProps {
   setId: string;
   primaryText: string;
   secondaryText?: string;
+  saveIdChange: ActionFunction1<string | undefined, Action<string | undefined>>;
 }
+
 // React Props
-export interface Props extends IProps, UpdateSetIdProps, RouteComponentProps, WithStyles { }
+export interface Props extends OwnProps, WithStyles { }
 
-const updateSetId = graphql<UpdateSetIdProps, UpdateSetId, UpdateSetIdVariables, UpdateSetIdChildProps>(UPDATE_SET_ID, {
-  props: ({ mutate }) => ({
-    updateSetId: (id: string) => {
-      mutate && mutate({
-        variables: {
-          id,
-        },
-      });
-    },
-  }),
-});
-
-export default compose(updateSetId)(withStyles(styles)(withRouter(ListItem))) as React.ComponentType<IProps>;
+export default withStyles(styles)(ListItem);

@@ -8,3 +8,4 @@ awsmobilejs/\#current-backend-info
 ~awsmobilejs-*/
 /public
 /dist
+/package-lock.json

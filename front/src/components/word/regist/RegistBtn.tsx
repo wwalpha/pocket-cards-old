@@ -1,64 +1,60 @@
-import * as React from 'react';
-import { compose, graphql, MutateProps } from 'react-apollo';
-import { Button } from '@material-ui/core';
-import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
-import { RegistWords, RegistWordsVariables } from 'typings/graphql';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { Status, UpdatePathProps, ClearNewwordsProps } from 'typings/local';
-import { WORDS_REGIST } from '@gql';
-import { PATH, PATH_INDEX } from '@const';
-import { F_STATUS_INFO } from '@queries';
-import { pathChange, F_CLEAR_NEW_WORDS } from '@utils/mutations';
+// import * as React from 'react';
+// import { Button } from '@material-ui/core';
+// import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
+// import { RouteComponentProps, withRouter } from 'react-router-dom';
+// import { API } from 'aws-amplify';
+// import { PATH, PATH_INDEX } from '@const';
+// import { RegistWordsMutationVariables } from 'typings/graphql';
+// import { registWords } from '@mutations';
 
-class RegistBtn extends React.Component<Props> {
+// class RegistBtn extends React.Component<Props> {
 
-  handleRegist = () => {
-    const { history, status, updatePath, clearNewwords, mutate, words } = this.props;
+//   handleRegist = async () => {
+//     const { history, setId, words, updatePath, clearNewwords } = this.props;
 
-    if (!status.setId) throw new Error('Set id is null.');
+//     // 単語登録
+//     await API.graphql({
+//       query: registWords,
+//       variables: {
+//         input: {
+//           setId, words,
+//         },
+//       } as RegistWordsMutationVariables,
+//     });
 
-    mutate({
-      variables: {
-        setId: status.setId,
-        words,
-      },
-      update: (_, result) => {
-        if (!result.data || !result.data.registWords) return;
+//     // パス更新
+//     updatePath(PATH_INDEX.WORD_ROOT);
+//     // 新単語クリア
+//     clearNewwords();
 
-        // パス情報変更
-        updatePath(PATH_INDEX.WORD_ROOT);
-        // 新規担当一覧をクリアする
-        clearNewwords();
+//     // 単語ホーム画面に遷移する
+//     history.push(PATH.WORD.ROOT);
+//   }
 
-        // 単語ホーム画面に遷移する
-        history.push(PATH.WORD.ROOT);
-      },
-    });
-  }
+//   render() {
+//     return (
+//       <Button
+//         variant="contained"
+//         color="primary"
+//         onClick={this.handleRegist}
+//       >
+//         登録
+//      </Button>
+//     );
+//   }
+// }
 
-  render() {
-    return (
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={this.handleRegist}
-      >
-        登録
-     </Button>
-    );
-  }
-}
+// const styles = (): StyleRules => ({
+// });
 
-const styles = (): StyleRules => ({
-});
+// /** OwnProps */
+// export interface OwnProps {
+//   setId: string;
+//   updatePath: (path: number) => void;
+//   clearNewwords: () => void;
+//   words: string[];
+// }
+// // React Props
+// export interface Props extends OwnProps, RouteComponentProps, WithStyles { }
 
-// GraphQL Props
-export interface IProps extends MutateProps<RegistWords, RegistWordsVariables>, Status { }
-// React Props
-export interface Props extends IProps, UpdatePathProps, ClearNewwordsProps, RouteComponentProps, WithStyles {
-  words: string[];
-}
-
-export default compose(F_STATUS_INFO, pathChange, F_CLEAR_NEW_WORDS, graphql(WORDS_REGIST, {
-  props: ({ mutate }) => ({ mutate }),
-}))(withStyles(styles)(withRouter(RegistBtn)));
+// export default withRouter(withStyles(styles)(RegistBtn));

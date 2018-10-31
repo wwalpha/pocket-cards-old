@@ -1,25 +1,25 @@
-import { ApolloCache } from 'apollo-cache';
-import { Study } from 'typings/local';
-import { GQL_STUDY } from '@gql';
+// import { ApolloCache } from 'apollo-cache';
+// import { Study } from 'typings/local';
+// import { GQL_STUDY } from '@gql';
 
-// tslint:disable-next-line:variable-name
-export default (_: any, _vars: any, context: any): Boolean => {
-  const cache = context.cache as ApolloCache<any>;
+// // tslint:disable-next-line:variable-name
+// export default (_: any, _vars: any, context: any): Boolean => {
+//   const cache = context.cache as ApolloCache<any>;
 
-  const data: Study = {
-    study: {
-      __typename: 'Study',
-      index: -1,
-      list: [],
-    },
-  };
+//   const data: Study = {
+//     study: {
+//       __typename: 'Study',
+//       index: -1,
+//       list: [],
+//     },
+//   };
 
-  // Cache更新
-  cache.writeQuery<Study>({
-    query: GQL_STUDY, data,
-  });
+//   // Cache更新
+//   cache.writeQuery<Study>({
+//     query: GQL_STUDY, data,
+//   });
 
-  console.log('saveWordList', data);
+//   console.log('saveWordList', data);
 
-  return true;
-};
+//   return true;
+// };

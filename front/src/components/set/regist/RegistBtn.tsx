@@ -1,65 +1,65 @@
-import * as React from 'react';
-import { ChildProps, withApollo, WithApolloClient } from 'react-apollo';
-import { Button } from '@material-ui/core';
-import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
-import { SetRegist, SetRegistVariables } from 'typings/graphql';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { ApolloQueryResult } from 'apollo-client';
+// import * as React from 'react';
+// import { ChildProps, withApollo, WithApolloClient } from 'react-apollo';
+// import { Button } from '@material-ui/core';
+// import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
+// import { SetRegist, SetRegistVariables } from 'typings/graphql';
+// import { RouteComponentProps, withRouter } from 'react-router-dom';
+// import { ApolloQueryResult } from 'apollo-client';
 
-class RegistBtn extends React.Component<Props> {
+// class RegistBtn extends React.Component<Props> {
 
-  handleRegist = async () => {
-    // const { client, history, regist, name } = this.props;
+//   handleRegist = async () => {
+//     // const { client, history, regist, name } = this.props;
 
-    // // Cache検索
-    // const data = client.readQuery<AppInfo>(APP_INFO);
-    // if (!data) return;
+//     // // Cache検索
+//     // const data = client.readQuery<AppInfo>(APP_INFO);
+//     // if (!data) return;
 
-    // const { user } = data.app;
+//     // const { user } = data.app;
 
-    // // 新規セット登録
-    // regist && await regist(user.id, name);
+//     // // 新規セット登録
+//     // regist && await regist(user.id, name);
 
-    // // メニュー画面に戻る
-    // history.push(PATH.SET.ROOT);
-  }
+//     // // メニュー画面に戻る
+//     // history.push(PATH.SET.ROOT);
+//   }
 
-  render() {
-    return (
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={this.handleRegist}
-      >
-        登録
-     </Button>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <Button
+//         variant="contained"
+//         color="primary"
+//         onClick={this.handleRegist}
+//       >
+//         登録
+//      </Button>
+//     );
+//   }
+// }
 
-const styles = (): StyleRules => ({
-});
+// const styles = (): StyleRules => ({
+// });
 
-export interface IProps {
-  name: string;
-}
+// export interface IProps {
+//   name: string;
+// }
 
-export interface TProps extends IProps {
-  regist?: (userId: string, name: string) => Promise<ApolloQueryResult<SetRegist>> | undefined;
-}
+// export interface TProps extends IProps {
+//   regist?: (userId: string, name: string) => Promise<ApolloQueryResult<SetRegist>> | undefined;
+// }
 
-export type TChildProps = ChildProps<TProps, SetRegist, SetRegistVariables>;
+// export type TChildProps = ChildProps<TProps, SetRegist, SetRegistVariables>;
 
-export interface Props extends WithApolloClient<TProps>, WithStyles, RouteComponentProps { }
+// export interface Props extends WithApolloClient<TProps>, WithStyles, RouteComponentProps { }
 
-export default withApollo<TProps, SetRegist>(withStyles(styles)(withRouter(RegistBtn)), {
-  props: ({ mutate, data, ownProps }) => ({
-    ...data,
-    ...ownProps,
-    regist: (userId: string, name: string) => mutate && mutate({
-      variables: {
-        userId, name,
-      },
-    }),
-  }),
-});
+// export default withApollo<TProps, SetRegist>(withStyles(styles)(withRouter(RegistBtn)), {
+//   props: ({ mutate, data, ownProps }) => ({
+//     ...data,
+//     ...ownProps,
+//     regist: (userId: string, name: string) => mutate && mutate({
+//       variables: {
+//         userId, name,
+//       },
+//     }),
+//   }),
+// });

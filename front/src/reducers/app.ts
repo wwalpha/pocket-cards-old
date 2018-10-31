@@ -1,11 +1,10 @@
-import { handleActions, Action } from 'redux-actions';
+import { handleActions } from 'redux-actions';
+import { App } from '@models';
 
-const auth = handleActions(
+const app = handleActions(
   {
 
-    [SIGN_IN_SUCCESS]: (store: Auth, action: Action<{}>) => action.payload && store.signIn(action.payload),
-
   },
-  new Auth());
+  new App());
 
-export default auth;
+export default app;

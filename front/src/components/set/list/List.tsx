@@ -1,37 +1,41 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { Query } from 'react-apollo';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import { Query, compose } from 'react-apollo';
-import { GET_LIST } from '@gql';
-import { GetSetList, GetSetListVariables } from 'typings/graphql';
-import { User } from 'typings/local';
-import Item from './Item';
-import { F_USER_INFO } from '@queries';
+import gql from 'graphql-tag';
+import { SetListQueryVariables, SetListQuery } from 'typings/graphql';
+import { IState } from '@models';
+import { setList } from '@queries';
+import { Item } from './index';
+import { bindActionCreators, Dispatch } from 'redux';
+import { App } from '@actions';
 
 class List extends React.Component<Props, {}> {
 
   render() {
-    const { classes, user: { id: userId } } = this.props;
+    const { classes, userId, actions } = this.props;
 
     return (
       <Grid container classes={{ container: classes.root }}>
-        <SetsQuery query={GET_LIST} variables={{ userId }} >
+
+        <SetList query={gql(setList)} variables={{ userId }} >
           {({ loading, data, error }) => {
             if (loading) return <div>Loading</div>;
             if (error) return <h1>ERROR</h1>;
             if (!data) return <div></div>;
 
-            const { sets = [] } = data;
-
-            return sets && sets.map((item, idx) =>
+            const { setList } = data;
+            return setList && setList.map((item, idx) =>
               <Item
                 key={idx}
+                saveIdChange={actions.updateSetId}
                 setId={(item && item.setId) as string}
                 primaryText={(item && item.name) as string}
               />,
             );
           }}
-        </SetsQuery>
+        </SetList>
       </Grid>
     );
   }
@@ -43,10 +47,27 @@ const styles = (): StyleRules => ({
   },
 });
 
-class SetsQuery extends Query<GetSetList, GetSetListVariables> { }
+class SetList extends Query<SetListQuery, SetListQueryVariables> { }
 
-export interface Props extends User, WithStyles<StyleRules> { }
+/** StateProps */
+export interface StateProps {
+  userId: string;
+}
+/** OwnProps */
+export interface OwnProps {
+  actions: App.Actions;
+}
 
-export interface IProps { }
+export interface Props extends OwnProps, StateProps, WithStyles<StyleRules> { }
 
-export default withStyles(styles)(compose(F_USER_INFO)(List) as React.ComponentType<IProps>);
+const mapStateToProps = (state: IState) => ({
+  userId: state.get('app').userId,
+});
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  actions: bindActionCreators(App, dispatch),
+});
+
+export default connect<StateProps, void, Props, IState>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(List));

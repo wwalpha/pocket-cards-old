@@ -2,13 +2,13 @@
 //  This file was automatically generated and should not be edited.
 
 export type RegistWordsInput = {
-  setID: string,
-  words: Array< string | null >,
+  setId: string,
+  words: Array<string | null>,
 };
 
 export type StudySaveInput = {
-  setID: string,
-  words: Array< StudyRecord | null >,
+  setId: string,
+  words: Array<StudyRecord | null>,
 };
 
 export type StudyRecord = {
@@ -24,7 +24,7 @@ export type SetCreateMutationVariables = {
 
 export type SetCreateMutation = {
   // セット作成
-  setCreate:  {
+  setCreate: {
     __typename: "Set",
     // userId
     userId: string,
@@ -42,7 +42,7 @@ export type SetDeleteMutationVariables = {
 
 export type SetDeleteMutation = {
   // セット削除
-  setDelete:  {
+  setDelete: {
     __typename: "Set",
     // userId
     userId: string,
@@ -59,10 +59,10 @@ export type Image2WordMutationVariables = {
 
 export type Image2WordMutation = {
   // 画像から単語読み取り
-  image2Word:  {
+  image2Word: {
     __typename: "Newwords",
     // 新規単語
-    words: Array< string | null > | null,
+    words: Array<string | null> | null,
   },
 };
 
@@ -72,7 +72,7 @@ export type RegistWordsMutationVariables = {
 
 export type RegistWordsMutation = {
   // 単語新規登録
-  registWords:  Array< {
+  registWords: Array<{
     __typename: "Word",
     // セットID
     setId: string,
@@ -88,7 +88,7 @@ export type RegistWordsMutation = {
     nextDate: string,
     // 学習回数
     times: number,
-  } | null > | null,
+  } | null> | null,
 };
 
 export type StudySaveMutationVariables = {
@@ -106,7 +106,7 @@ export type SetListQueryVariables = {
 
 export type SetListQuery = {
   // セットリスト一覧
-  setList:  Array< {
+  setList: Array<{
     __typename: "Set",
     // userId
     userId: string,
@@ -114,7 +114,7 @@ export type SetListQuery = {
     setId: string,
     // セット名
     name: string | null,
-  } | null >,
+  } | null>,
 };
 
 export type StudySetQueryVariables = {
@@ -123,7 +123,7 @@ export type StudySetQueryVariables = {
 
 export type StudySetQuery = {
   // 学習セット
-  studySet:  Array< {
+  studySet: Array<{
     __typename: "Word",
     // セットID
     setId: string,
@@ -139,7 +139,7 @@ export type StudySetQuery = {
     nextDate: string,
     // 学習回数
     times: number,
-  } | null >,
+  } | null>,
 };
 
 export type StudyHistoryQueryVariables = {
@@ -149,7 +149,7 @@ export type StudyHistoryQueryVariables = {
 
 export type StudyHistoryQuery = {
   // 学習履歴
-  studyHistory:  Array< {
+  studyHistory: Array<{
     __typename: "Word",
     // セットID
     setId: string,
@@ -165,7 +165,7 @@ export type StudyHistoryQuery = {
     nextDate: string,
     // 学習回数
     times: number,
-  } | null >,
+  } | null>,
 };
 
 export type StudyPollyQueryVariables = {
@@ -174,7 +174,7 @@ export type StudyPollyQueryVariables = {
 
 export type StudyPollyQuery = {
   // テキストから音声に変更する
-  studyPolly:  {
+  studyPolly: {
     __typename: "Speech",
     // Content-Type
     contentType: string,

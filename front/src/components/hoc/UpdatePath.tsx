@@ -1,22 +1,18 @@
 import * as React from 'react';
-import { compose } from 'react-apollo';
 import { Link } from 'react-router-dom';
-import { pathChange } from '@utils/mutations';
-import { UpdatePathProps } from 'typings/local';
+import { ActionFunction1, Action } from 'redux-actions';
 
 class UpdatePath extends React.Component<Props> {
 
   handleClick = () => {
-    const { updatePath, path } = this.props;
-
-    if (!updatePath) return;
+    const { pathChange, path } = this.props;
 
     // パス情報更新
-    updatePath(path);
+    pathChange(path);
   }
 
   render() {
-    const { to, path, updatePath, ...props } = this.props;
+    const { to, path, pathChange, ...props } = this.props;
 
     return (
       <Link
@@ -28,8 +24,11 @@ class UpdatePath extends React.Component<Props> {
   }
 }
 
-export interface Props extends UpdatePathProps {
+export interface OwnProps {
   to: string;
+  path: number;
+  pathChange: ActionFunction1<number, Action<number>>;
 }
+export interface Props extends OwnProps { }
 
-export default compose(pathChange)(UpdatePath) as React.ComponentType<Props>;
+export default UpdatePath;

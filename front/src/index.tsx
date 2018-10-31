@@ -2,25 +2,17 @@ import * as React from 'react';
 import { render } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import Amplify, { Auth, Storage } from 'aws-amplify';
-
-import AppSyncClient, { AUTH_TYPE, createAppSyncLink } from 'aws-appsync';
-import { Rehydrated } from 'aws-appsync-react';
+import AppSyncClient, { AUTH_TYPE } from 'aws-appsync';
+// import { Rehydrated } from 'aws-appsync-react';
 import { BrowserRouter } from 'react-router-dom';
 import { createMuiTheme, MuiThemeProvider, Theme } from '@material-ui/core/styles';
 import { blue, deepOrange } from '@material-ui/core/colors';
-import { ApolloLink } from 'apollo-link';
-import { stateLink, UPDATE_PATH } from './queries/local';
 import config from './aws-exports';
 import App from './containers/App';
-import { UPDATE_USER } from '@gql';
-import { UpdatePathVariables, UpdateUser, UpdateUserVariables } from 'typings/local';
-import { PATH_INDEX } from '@const';
+import createstore from './store';
+import { Provider } from 'react-redux';
 
 Amplify.configure(config);
-// Storage.configure({
-//   bucket: 'dev-pocketcards',
-//   identityPoolId: 'ap-northeast-1:a1e28e02-d12a-4c5e-9d80-893d7c23b286',
-// });
 
 const theme: Theme = createMuiTheme({
   palette: {
@@ -33,49 +25,62 @@ const theme: Theme = createMuiTheme({
   },
 });
 
-const appSyncLink = createAppSyncLink({
+const store = createstore();
+
+// const appSyncLink = createAppSyncLink({
+//   url: config.aws_appsync_graphqlEndpoint,
+//   region: config.aws_appsync_region,
+//   auth: {
+//     type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
+//     jwtToken: async () => (await Auth.currentSession()).getAccessToken().getJwtToken(),
+//   },
+//   complexObjectsCredentials: () => Auth.currentCredentials(),
+// });
+
+// const link = ApolloLink.from([stateLink, appSyncLink]);
+
+// const client = new AppSyncClient({ disableOffline: true } as any, { link });
+
+const client = new AppSyncClient({
+  disableOffline: true,
   url: config.aws_appsync_graphqlEndpoint,
   region: config.aws_appsync_region,
   auth: {
     type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
     jwtToken: async () => (await Auth.currentSession()).getAccessToken().getJwtToken(),
   },
-  complexObjectsCredentials: () => Auth.currentCredentials(),
+  complexObjectsCredentials: () => Auth.currentCredentials() as any,
 });
-
-const link = ApolloLink.from([stateLink, appSyncLink]);
-
-const client = new AppSyncClient({ disableOffline: true } as any, { link });
 
 const start = async () => {
   await Auth.signIn('wwalpha', 'session10');
 
   Storage.configure({ level: 'private' });
 
-  await client.mutate<UpdateUser, UpdateUserVariables>({
-    mutation: UPDATE_USER,
-    variables: {
-      id: 'wwalpha',
-      username: 'wwalpha',
-    },
-  });
+  // await client.mutate<UpdateUser, UpdateUserVariables>({
+  //   mutation: UPDATE_USER,
+  //   variables: {
+  //     id: 'wwalpha',
+  //     username: 'wwalpha',
+  //   },
+  // });
 
-  await client.mutate<any, UpdatePathVariables>({
-    mutation: UPDATE_PATH,
-    variables: {
-      path: PATH_INDEX.HOME_ROOT,
-    },
-  });
+  // await client.mutate<any, UpdatePathVariables>({
+  //   mutation: UPDATE_PATH,
+  //   variables: {
+  //     path: PATH_INDEX.HOME_ROOT,
+  //   },
+  // });
 
   render(
     <ApolloProvider client={client}>
-      <Rehydrated>
+      <Provider store={store}>
         <BrowserRouter>
           <MuiThemeProvider theme={theme}>
             <App />
           </MuiThemeProvider>
         </BrowserRouter>
-      </Rehydrated>
+      </Provider>
     </ApolloProvider>,
     document.getElementById('root'),
   );

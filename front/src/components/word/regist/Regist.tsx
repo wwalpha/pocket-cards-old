@@ -1,22 +1,46 @@
 import * as React from 'react';
-import { Grid, List, ListItem, ListItemText, Theme, WithStyles, withStyles } from '@material-ui/core';
-import { graphql, DataValue } from 'react-apollo';
-import { GQL_NEW_WORDS } from '@gql';
+import { Dispatch, bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { Grid, List, ListItem, ListItemText, Theme, WithStyles, withStyles, Button } from '@material-ui/core';
 import { StyleRules } from '@material-ui/core/styles';
-import { Newwords } from 'typings/local';
-import { RegistBtn } from '.';
+import { API } from 'aws-amplify';
+import { registWords } from '@mutations';
+import { RegistWordsMutationVariables } from 'typings/graphql';
+import { PATH_INDEX, PATH } from '@const';
+import { IState } from '@models';
+import { App, Study } from '@actions';
 
-class WordList extends React.Component<Props, State> {
+class Regist extends React.Component<Props, State> {
   state = {
     words: [],
   };
 
+  handleRegist = async () => {
+    const { history, setId, newwords: words, appActions, studyActions } = this.props;
+
+    // 単語登録
+    await API.graphql({
+      query: registWords,
+      variables: {
+        input: {
+          setId, words,
+        },
+      } as RegistWordsMutationVariables,
+    });
+
+    // パス更新
+    appActions.updatePath(PATH_INDEX.WORD_ROOT);
+    // 新単語クリア
+    studyActions.clearNewwords();
+    // 単語ホーム画面に遷移する
+    history.push(PATH.WORD.ROOT);
+  }
+
   render() {
     const { classes, newwords } = this.props;
 
-    if (!newwords || !newwords.words) return null;
-
-    const items = newwords.words.map((item, idx) => (
+    const items = newwords.map((item, idx) => (
       <ListItem key={idx} divider button classes={{ root: classes.listItem }}>
         <ListItemText primary={item} />
       </ListItem>
@@ -30,7 +54,13 @@ class WordList extends React.Component<Props, State> {
           </List>
         </Grid>
         <Grid container justify="flex-end" classes={{ container: classes.command }}>
-          <RegistBtn words={newwords} />
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={this.handleRegist}
+          >
+            登録
+          </Button>
         </Grid>
       </Grid>
     );
@@ -47,12 +77,34 @@ const styles = (theme: Theme): StyleRules => ({
   },
 });
 
-export interface Props extends DataValue<Newwords, any>, WithStyles<StyleRules> { }
-
 export interface State {
   [key: string]: any;
 }
 
-export default graphql<any, Newwords, any>(GQL_NEW_WORDS, {
-  props: ({ data }) => ({ ...data }),
-})(withStyles(styles)(WordList));
+/** StateProps */
+export interface StateProps {
+  setId?: string;
+  newwords: string[];
+}
+/** OwnProps */
+export interface OwnProps {
+  appActions: App.Actions;
+  studyActions: Study.Actions;
+}
+
+export interface Props extends OwnProps, StateProps, RouteComponentProps, WithStyles<StyleRules> { }
+
+const mapStateToProps = (state: IState) => ({
+  setId: state.get('app').setId,
+  newwords: state.get('study').newwords,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  appActions: bindActionCreators(App, dispatch),
+  studyActions: bindActionCreators(Study, dispatch),
+});
+
+export default connect<StateProps, void, Props, IState>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(withRouter(Regist)));

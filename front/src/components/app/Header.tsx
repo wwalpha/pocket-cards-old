@@ -1,19 +1,23 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { Dispatch, bindActionCreators } from 'redux';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
-import { Query } from 'react-apollo';
 import { HEADER, IconInfo } from '@const';
-import UpdatePath from '@comp/hoc/UpdatePath';
-import { GQL_SCREEN_INFO } from '@gql';
-import { Screen } from 'typings/local';
+import { IState } from '@models';
+import { App } from '@actions';
+import { UpdatePath } from '@comp/hoc';
 
 class Header extends React.Component<Props> {
 
   renderIcon = (item: IconInfo, key: number) => {
+    const { actions } = this.props;
+
     // カスタマイズあり
     if (item.customize) {
       return <item.customize key={key} />;
     }
+
     // Icon未設定、表示しない
     if (!item.icon) return null;
 
@@ -22,7 +26,14 @@ class Header extends React.Component<Props> {
         <IconButton
           key={key}
           color="inherit"
-          component={(props: any) => <UpdatePath to={item.path} path={item.index} {...props} />}
+          component={(props: any) => (
+            <UpdatePath
+              to={item.path}
+              path={item.index}
+              pathChange={actions.updatePath}
+              {...props}
+            />
+          )}
         >
           <item.icon />
         </IconButton>
@@ -37,40 +48,31 @@ class Header extends React.Component<Props> {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, path } = this.props;
+
+    // 未初期化
+    if (path === -1) return <div />;
+
+    const info = HEADER[path];
 
     return (
-      <ScreenQuery query={GQL_SCREEN_INFO}>
-        {({ loading, error, data }) => {
-          if (loading) return null;
-          if (error) return `Error!: ${error}`;
-          if (!data) return null;
+      <AppBar position="static" classes={{ root: classes.root }}>
+        <Toolbar>
+          {(() => {
+            if (!info.left || info.left.length === 0) return null;
 
-          const { screen: { path } } = data;
-          const info = HEADER[path];
+            return info.left.map((item, idx) => this.renderIcon(item, idx));
+          })()}
+          <Typography color="inherit" className={classes.grow}>
+            {info.title}
+          </Typography>
+          {(() => {
+            if (!info.right || info.right.length === 0) return null;
 
-          console.log('info', info);
-          return (
-            <AppBar position="static" classes={{ root: classes.root }}>
-              <Toolbar>
-                {(() => {
-                  if (!info.left || info.left.length === 0) return null;
-
-                  return info.left.map((item, idx) => this.renderIcon(item, idx));
-                })()}
-                <Typography color="inherit" className={classes.grow}>
-                  {info.title}
-                </Typography>
-                {(() => {
-                  if (!info.right || info.right.length === 0) return null;
-
-                  return info.right.map((item, idx) => this.renderIcon(item, idx));
-                })()}
-              </Toolbar>
-            </AppBar>
-          );
-        }}
-      </ScreenQuery>
+            return info.right.map((item, idx) => this.renderIcon(item, idx));
+          })()}
+        </Toolbar>
+      </AppBar>
     );
   }
 }
@@ -86,8 +88,28 @@ const styles = (): StyleRules => ({
   },
 });
 
-class ScreenQuery extends Query<Screen, any> { }
+/** StateProps */
+export interface StateProps {
+  path: number;
+}
+/** DispatchProps */
+export interface DispatchProps {
+  actions: App.Actions;
+}
+/** OwnProps */
+export interface OwnProps { }
 
-export interface Props extends WithStyles<StyleRules> { }
+export interface Props extends OwnProps, DispatchProps, StateProps, WithStyles<StyleRules> { }
 
-export default withStyles(styles)(Header);
+const mapStateToProps = (state: IState) => ({
+  path: state.get('app').path,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  actions: bindActionCreators(App, dispatch),
+});
+
+export default connect<StateProps, void, Props, IState>(
+  mapStateToProps,
+  mapDispatchToProps,
+)(withStyles(styles)(Header));

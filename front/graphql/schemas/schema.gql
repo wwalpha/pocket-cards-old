@@ -5,34 +5,42 @@ schema {
 
 type Query {
   # セットリスト一覧
-  sets(userId: String!): [Set]!
-  # 単語一覧
-  words(setId: String!): [Word]!
+  setList(userId: String!): [Set]!
   # 学習セット
   studySet(setId: String!): [Word]!
   # 学習履歴
-  studyHistory(userId: String!, setId: String!): [Word]
+  studyHistory(userId: String!, setId: String!): [Word]!
   # テキストから音声に変更する
-  polly(text: String!): Speech
+  studyPolly(text: String!): Speech
 }
 
 type Mutation {
   # セット作成
-  createSet(userId: String!, name: String!): Set
+  setCreate(userId: String!, name: String!): Set
   # セット削除
-  deleteSet(userId: String!, setId: String!): Set
+  setDelete(userId: String!, setId: String!): Set
   # 画像から単語読み取り
   image2Word(bucketKey: String!): Newwords!
   # 単語新規登録
-  registWords(setId: String!, words: [String!]!): [Word!]!
+  registWords(input: RegistWordsInput!): [Word]
   # 単語検定を保存する
-  studySave(setId: String!, input: [StudySaveInput!]!): Boolean
+  studySave(input: StudySaveInput!): Boolean
+}
+
+input RegistWordsInput {
+  setID: String!
+  words: [String]!
+}
+
+input StudyRecord {
+  word: String!
+  correct: Boolean
+  times: Int!
 }
 
 input StudySaveInput {
-  word: String
-  correct: Boolean
-  time: Int
+  setID: String!
+  words: [StudyRecord]!
 }
 
 type Newwords {

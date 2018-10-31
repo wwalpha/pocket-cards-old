@@ -1,0 +1,38 @@
+input RegistWordsInput {
+  setID: String!
+  words: [String]!
+}
+
+input StudyRecord {
+  word: String!
+  correct: Boolean
+  times: Int!
+}
+
+input StudySaveInput {
+  setID: String!
+  words: [StudyRecord]!
+}
+
+type Mutation {
+  # 画像から単語読み取り
+  image2Word(bucketKey: String!): Newwords!
+
+  # 単語新規登録
+  registWords(input: RegistWordsInput!): [Word]
+
+  # 単語検定を保存する
+  studySave(input: StudySaveInput!): Boolean
+}
+
+type Query {
+  # 学習セット
+  studySet(setId: String!): [Word]!
+
+  # 学習履歴
+  studyHistory(userId: String!, setId: String!): [Word]!
+
+  # テキストから音声に変更する
+  studyPolly(text: String!): Speech
+}
+

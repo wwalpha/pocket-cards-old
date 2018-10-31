@@ -1,0 +1,25 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "front-20181031110457-authRole",
+      "UnauthRoleArn": "arn:aws:iam::562849865336:role/front-20181031110457-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::562849865336:role/front-20181031110457-authRole",
+      "Region": "ap-northeast-1",
+      "DeploymentBucketName": "front-20181031110457-deployment",
+      "UnauthRoleName": "front-20181031110457-unauthRole",
+      "StackName": "front-20181031110457",
+      "StackId": "arn:aws:cloudformation:ap-northeast-1:562849865336:stack/front-20181031110457/5e23d990-dcb1-11e8-8838-50d5ca9ff462"
+    }
+  },
+  "api": {
+    "dev-PocketCards": {
+      "service": "AppSync",
+      "output": {
+        "securityType": "AMAZON_COGNITO_USER_POOLS",
+        "GraphQLAPIIdOutput": "jw4s4q3gqbgkpbhr2pnk5uziji",
+        "GraphQLAPIEndpointOutput": "https://wimdgmn6p5fq7kw7bp5w24xeu4.appsync-api.ap-northeast-1.amazonaws.com/graphql"
+      },
+      "lastPushTimeStamp": "2018-10-31T02:25:12.161Z"
+    }
+  }
+}

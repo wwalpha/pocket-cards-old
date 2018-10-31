@@ -17,11 +17,12 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
       src: path.resolve(__dirname, '../../src/'),
+      '@models': path.resolve(__dirname, '../../src/models/index.ts'),
       '@test': path.resolve(__dirname, '../../test'),
       '@gql': path.resolve(__dirname, '../../src/queries'),
       '@queries': path.resolve(__dirname, '../../src/utils/queries.ts'),
       '@comp': path.resolve(__dirname, '../../src/components'),
-      '@actions': path.resolve(__dirname, '../../src/actions'),
+      '@actions': path.resolve(__dirname, '../../src/actions/index.ts'),
       '@utils': path.resolve(__dirname, '../../src/utils'),
       'typings': path.resolve(__dirname, '../../src/typings'),
       '@const': path.resolve(__dirname, '../../src/consts/index.ts'),

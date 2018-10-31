@@ -1,6 +1,10 @@
 {
   "files.exclude": {
     // "**/node_modules": true,
+    "amplify": true,
+    ".amplifyrc": true,
+    ".graphqlconfig.yml": true,
+    "**/.vscode": true,
     "dist": true,
     "public": true,
   },

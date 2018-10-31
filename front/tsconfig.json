@@ -37,12 +37,6 @@
       "@gql": [
         "./src/queries/index.ts"
       ],
-      "@queries": [
-        "./src/utils/queries.ts"
-      ],
-      "@actions/*": [
-        "./src/actions/*"
-      ],
       "@const": [
         "./src/consts/index.ts"
       ],
@@ -57,6 +51,18 @@
       ],
       "@utils/*": [
         "./src/utils/*"
+      ],
+      "@models": [
+        "./src/models/index.ts"
+      ],
+      "@actions": [
+        "./src/actions/index.ts"
+      ],
+      "@queries": [
+        "./src/graphql/queries.ts"
+      ],
+      "@mutations": [
+        "./src/graphql/mutations.ts"
       ]
     }
   },

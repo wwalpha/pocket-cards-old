@@ -1,8 +1,3 @@
-// declare module '*.gql' {
-//   const value: string;
-
-//   export default value;
-// }
 import { DocumentNode } from 'graphql';
 
 declare module "*.gql" {

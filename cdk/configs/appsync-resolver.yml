@@ -1,32 +1,32 @@
-CreateSetResolver:
-  FieldName: createSet
+SetCreateResolver:
+  FieldName: setCreate
   TypeName: Mutation
   DataSourceName: dynamodb_Set
 
-DeleteSetResolver:
-  FieldName: deleteSet
+SetDeleteResolver:
+  FieldName: setDelete
   TypeName: Mutation
   DataSourceName: dynamodb_Set
 
-WordWithImageResolver:
+Image2WordResolver:
   FieldName: image2Word
   TypeName: Mutation
   DataSourceName: lambda_ImageToWord
 
-AddNewWordsResolver:
+RegistWordsResolver:
   FieldName: registWords
   TypeName: Mutation
   DataSourceName: lambda_AddNewWords
 
-SetsResolver:
-  FieldName: sets
+StudySaveResolver:
+  FieldName: studySave
+  TypeName: Mutation
+  DataSourceName: lambda_StudySave
+
+SetListResolver:
+  FieldName: setList
   TypeName: Query
   DataSourceName: dynamodb_Set
-
-WordsResolver:
-  FieldName: words
-  TypeName: Query
-  DataSourceName: dynamodb_Word
 
 StudySetResolver:
   FieldName: studySet
@@ -38,7 +38,7 @@ StudyHistoryResolver:
   TypeName: Query
   DataSourceName: lambda_StudyHistory
 
-PollyResolver:
-  FieldName: polly
+StudyPollyResolver:
+  FieldName: studyPolly
   TypeName: Query
   DataSourceName: lambda_WordToSpeech

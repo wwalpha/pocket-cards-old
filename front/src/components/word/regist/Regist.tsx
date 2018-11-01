@@ -6,10 +6,10 @@ import { Grid, List, ListItem, ListItemText, Theme, WithStyles, withStyles, Butt
 import { StyleRules } from '@material-ui/core/styles';
 import { API } from 'aws-amplify';
 import { registWords } from '@mutations';
-import { RegistWordsMutationVariables } from 'typings/graphql';
 import { PATH_INDEX, PATH } from '@const';
 import { IState } from '@models';
 import { App, Study } from '@actions';
+import { RegistWordsVariables } from 'typings/graphql';
 
 class Regist extends React.Component<Props, State> {
   state = {
@@ -26,7 +26,7 @@ class Regist extends React.Component<Props, State> {
         input: {
           setId, words,
         },
-      } as RegistWordsMutationVariables,
+      } as RegistWordsVariables,
     });
 
     // パス更新

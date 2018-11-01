@@ -15,7 +15,7 @@ class Regist extends React.Component<Props, State> {
     })
 
   render() {
-    const { classes } = this.props;
+    const { classes, userId } = this.props;
     const { name = '' } = this.state;
 
     return (
@@ -29,7 +29,7 @@ class Regist extends React.Component<Props, State> {
           margin="normal"
           variant="outlined"
         />
-        <RegistBtn name={name} />
+        <RegistBtn userId={userId} name={name} />
       </Grid>
     );
   }
@@ -42,7 +42,11 @@ const styles = (theme: Theme): StyleRules => ({
   },
 });
 
-export interface Props extends WithStyles<StyleRules> { }
+export interface OwnProps {
+  userId: string;
+}
+
+export interface Props extends OwnProps, WithStyles<StyleRules> { }
 
 export interface State {
   [key: string]: any;

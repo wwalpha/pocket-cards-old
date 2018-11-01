@@ -620,7 +620,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "setID",
+            "name": "setId",
             "description": null,
             "type": {
               "kind": "NON_NULL",
@@ -663,7 +663,7 @@
         "fields": null,
         "inputFields": [
           {
-            "name": "setID",
+            "name": "setId",
             "description": null,
             "type": {
               "kind": "NON_NULL",

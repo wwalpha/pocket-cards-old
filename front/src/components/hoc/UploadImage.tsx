@@ -1,66 +1,60 @@
-// import * as React from 'react';
-// import { graphql, ChildProps } from 'react-apollo';
-// import { IconButton, Theme } from '@material-ui/core';
-// import { CameraAlt } from '@material-ui/icons';
-// import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
-// import { Storage } from 'aws-amplify';
-// import { IMAGE_TO_WORDS, GQL_NEW_WORDS } from '@gql';
-// import { Image2Word, Image2WordVariables, Image2Word_image2Word } from 'typings/graphql';
-// import { Newwords } from 'typings/local';
+import * as React from 'react';
+import { graphql, ChildProps } from 'react-apollo';
+import { IconButton, Theme } from '@material-ui/core';
+import { CameraAlt } from '@material-ui/icons';
+import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
+import { Storage } from 'aws-amplify';
+import { Image2Word, Image2WordVariables, Image2Word_image2Word } from 'typings/graphql';
+import { bindActionCreators, Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { IState } from '@models';
+import { Study } from '@actions';
 
-// class UploadImage extends React.Component<Props> {
+class UploadImage extends React.Component<Props> {
 
-//   onFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
-//     if (!e.target || !e.target.files) return;
+  onFileSelected = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target || !e.target.files) return;
 
-//     const file = e.target.files[0];
+    const file = e.target.files[0];
 
-//     await Storage.put(file.name, file, {
-//       contentType: file.type,
-//     });
+    await Storage.put(file.name, file, {
+      contentType: file.type,
+    });
 
-//     await this.props.onWordRegist(`private/ap-northeast-1:ca61500a-e732-4cb6-a0f4-cddf75336eb9/${file.name}`);
-//   }
+    await this.props.onWordRegist(`private/ap-northeast-1:ca61500a-e732-4cb6-a0f4-cddf75336eb9/${file.name}`);
+  }
 
-//   render() {
-//     const { classes } = this.props;
+  render() {
+    const { classes } = this.props;
 
-//     return (
-//       <React.Fragment>
-//         <input
-//           accept="image/*"
-//           className={classes.input}
-//           id="upload-image-file"
-//           multiple
-//           type="file"
-//           onChange={this.onFileSelected}
-//         />
-//         <label htmlFor="upload-image-file">
-//           <IconButton component="span" >
-//             <CameraAlt />
-//           </IconButton>
-//         </label>
-//       </React.Fragment>
-//     );
-//   }
-// }
+    return (
+      <React.Fragment>
+        <input
+          accept="image/*"
+          className={classes.input}
+          id="upload-image-file"
+          multiple
+          type="file"
+          onChange={this.onFileSelected}
+        />
+        <label htmlFor="upload-image-file">
+          <IconButton component="span" >
+            <CameraAlt />
+          </IconButton>
+        </label>
+      </React.Fragment>
+    );
+  }
+}
 
-// const styles = (theme: Theme): StyleRules => ({
-//   button: {
-//     margin: theme.spacing.unit,
-//   },
-//   input: {
-//     display: 'none',
-//   },
-// });
-
-// export interface TProps {
-//   onWordRegist: (key: string) => void;
-// }
-
-// export type TChildProps = ChildProps<TProps, Image2Word_image2Word, Image2WordVariables>;
-
-// export interface Props extends TProps, WithStyles { }
+const styles = (theme: Theme): StyleRules => ({
+  button: {
+    margin: theme.spacing.unit,
+  },
+  input: {
+    display: 'none',
+  },
+});
 
 // export default graphql<TProps, Image2Word, Image2WordVariables, TChildProps>(IMAGE_TO_WORDS, {
 //   options: {
@@ -96,3 +90,19 @@
 //     },
 //   }),
 // })(withStyles(styles)(UploadImage));
+
+/** DispatchProps */
+export interface DispatchProps {
+  actions: Study.Actions;
+}
+
+export interface Props extends DispatchProps, WithStyles<StyleRules> { }
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  actions: bindActionCreators(Study, dispatch),
+});
+
+export default connect<void, DispatchProps, void, IState>(
+  null,
+  mapDispatchToProps,
+)(withStyles(styles)(UploadImage));

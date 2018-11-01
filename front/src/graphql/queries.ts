@@ -1,7 +1,9 @@
-// tslint:disable
+import gql from 'graphql-tag';
+
 // this is an auto generated file. This will be overwritten
 
-export const setList = `query SetList($userId: String!) {
+export const SET_LIST = gql`
+query SetList($userId: String!) {
   setList(userId: $userId) {
     userId
     setId
@@ -9,7 +11,9 @@ export const setList = `query SetList($userId: String!) {
   }
 }
 `;
-export const studySet = `query StudySet($setId: String!) {
+
+export const STUDY_SET = gql`
+query StudySet($setId: String!) {
   studySet(setId: $setId) {
     setId
     word
@@ -21,7 +25,9 @@ export const studySet = `query StudySet($setId: String!) {
   }
 }
 `;
-export const studyHistory = `query StudyHistory($userId: String!, $setId: String!) {
+
+export const STUDY_HISTORY = gql`
+query StudyHistory($userId: String!, $setId: String!) {
   studyHistory(userId: $userId, setId: $setId) {
     setId
     word
@@ -33,7 +39,9 @@ export const studyHistory = `query StudyHistory($userId: String!, $setId: String
   }
 }
 `;
-export const studyPolly = `query StudyPolly($text: String!) {
+
+export const STUDY_POLLY = gql`
+query StudyPolly($text: String!) {
   studyPolly(text: $text) {
     contentType
     url

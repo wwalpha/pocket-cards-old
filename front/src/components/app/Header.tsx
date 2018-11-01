@@ -96,10 +96,8 @@ export interface StateProps {
 export interface DispatchProps {
   actions: App.Actions;
 }
-/** OwnProps */
-export interface OwnProps { }
 
-export interface Props extends OwnProps, DispatchProps, StateProps, WithStyles<StyleRules> { }
+export interface Props extends DispatchProps, StateProps, WithStyles<StyleRules> { }
 
 const mapStateToProps = (state: IState) => ({
   path: state.get('app').path,
@@ -109,7 +107,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: bindActionCreators(App, dispatch),
 });
 
-export default connect<StateProps, void, Props, IState>(
+export default connect<StateProps, DispatchProps, void, IState>(
   mapStateToProps,
   mapDispatchToProps,
 )(withStyles(styles)(Header));

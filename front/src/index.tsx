@@ -73,7 +73,7 @@ const start = async () => {
   // });
 
   render(
-    <ApolloProvider client={client}>
+    <ApolloProvider client={client} >
       <Provider store={store}>
         <BrowserRouter>
           <MuiThemeProvider theme={theme}>

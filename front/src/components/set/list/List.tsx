@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { Query } from 'react-apollo';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import gql from 'graphql-tag';
-import { SetListQueryVariables, SetListQuery } from 'typings/graphql';
 import { IState } from '@models';
-import { setList } from '@queries';
+import { SET_LIST } from '@queries';
 import { Item } from './index';
 import { bindActionCreators, Dispatch } from 'redux';
 import { App } from '@actions';
+import { SetListVariables, SetList } from 'typings/graphql';
 
 class List extends React.Component<Props, {}> {
 
@@ -19,7 +18,7 @@ class List extends React.Component<Props, {}> {
     return (
       <Grid container classes={{ container: classes.root }}>
 
-        <SetList query={gql(setList)} variables={{ userId }} >
+        <SetListQuery query={SET_LIST} variables={{ userId }} >
           {({ loading, data, error }) => {
             if (loading) return <div>Loading</div>;
             if (error) return <h1>ERROR</h1>;
@@ -37,7 +36,7 @@ class List extends React.Component<Props, {}> {
               />,
             );
           }}
-        </SetList>
+        </SetListQuery>
       </Grid>
     );
   }
@@ -49,18 +48,18 @@ const styles = (): StyleRules => ({
   },
 });
 
-class SetList extends Query<SetListQuery, SetListQueryVariables> { }
+class SetListQuery extends Query<SetList, SetListVariables> { }
 
 /** StateProps */
 export interface StateProps {
   userId: string;
 }
 /** OwnProps */
-export interface OwnProps {
+export interface DispatchProps {
   actions: App.Actions;
 }
 
-export interface Props extends OwnProps, StateProps, WithStyles<StyleRules> { }
+export interface Props extends DispatchProps, StateProps, WithStyles<StyleRules> { }
 
 const mapStateToProps = (state: IState) => ({
   userId: state.get('app').userId,
@@ -69,7 +68,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: bindActionCreators(App, dispatch),
 });
 
-export default connect<StateProps, void, Props, IState>(
+export default connect<StateProps, DispatchProps, void, IState>(
   mapStateToProps,
   mapDispatchToProps,
 )(withStyles(styles)(List));

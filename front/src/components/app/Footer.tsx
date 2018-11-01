@@ -9,7 +9,6 @@ import {
 } from '@material-ui/icons';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { PATH, PATH_INDEX } from '@const';
-import UpdatePath from '@comp/hoc/UpdatePath';
 import { IState } from '@models';
 import { App } from '@actions';
 
@@ -36,7 +35,7 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          onClick={() => actions.updatePath(PATH_INDEX.HOME_ROOT)}
+          onClick={() => actions && actions.updatePath(PATH_INDEX.HOME_ROOT)}
           component={(props: any) => (
             <Link to={PATH.HOME.ROOT} {...props} />
           )}
@@ -46,7 +45,7 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          onClick={() => actions.updatePath(PATH_INDEX.SET_ROOT)}
+          onClick={() => actions && actions.updatePath(PATH_INDEX.SET_ROOT)}
           component={(props: any) => (
             <Link to={PATH.SET.ROOT} {...props} />
           )}
@@ -56,7 +55,7 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          onClick={() => actions.updatePath(PATH_INDEX.USER_ROOT)}
+          onClick={() => actions && actions.updatePath(PATH_INDEX.USER_ROOT)}
           component={(props: any) => (
             <Link to={PATH.USER.ROOT} {...props} />
           )}
@@ -83,16 +82,14 @@ const styles = (theme: Theme): StyleRules => ({
 export interface DispatchProps {
   actions: App.Actions;
 }
-/** OwnProps */
-export interface OwnProps { }
 
-export interface Props extends OwnProps, DispatchProps, WithStyles<StyleRules> { }
+export interface Props extends DispatchProps, WithStyles<StyleRules> { }
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   actions: bindActionCreators(App, dispatch),
 });
 
-export default connect<void, void, Props, IState>(
+export default connect<void, DispatchProps, void, IState>(
   null,
   mapDispatchToProps,
 )(withStyles(styles)(Footer));

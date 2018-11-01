@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { graphql, ChildProps } from 'react-apollo';
 import { IconButton, Theme } from '@material-ui/core';
 import { CameraAlt } from '@material-ui/icons';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Storage } from 'aws-amplify';
-import { Image2Word, Image2WordVariables, Image2Word_image2Word } from 'typings/graphql';
 import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { IState } from '@models';
@@ -21,7 +19,7 @@ class UploadImage extends React.Component<Props> {
       contentType: file.type,
     });
 
-    await this.props.onWordRegist(`private/ap-northeast-1:ca61500a-e732-4cb6-a0f4-cddf75336eb9/${file.name}`);
+    // await this.props.onWordRegist(`private/ap-northeast-1:ca61500a-e732-4cb6-a0f4-cddf75336eb9/${file.name}`);
   }
 
   render() {

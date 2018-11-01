@@ -5,7 +5,7 @@ import { RouteComponentProps, withRouter } from 'react-router';
 import { Grid, List, ListItem, ListItemText, Theme, WithStyles, withStyles, Button } from '@material-ui/core';
 import { StyleRules } from '@material-ui/core/styles';
 import { API } from 'aws-amplify';
-import { registWords } from '@mutations';
+import { REGIST_WORDS } from '@mutations';
 import { PATH_INDEX, PATH } from '@const';
 import { IState } from '@models';
 import { App, Study } from '@actions';
@@ -21,7 +21,7 @@ class Regist extends React.Component<Props, State> {
 
     // 単語登録
     await API.graphql({
-      query: registWords,
+      query: REGIST_WORDS,
       variables: {
         input: {
           setId, words,

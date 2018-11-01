@@ -53,38 +53,45 @@ input WordInput {
   times: Int!
 }
 
-type Newwords {
+# 新規単語管理
+ type Newwords {
   words: [String!]!
 }
 
-type User {
+# ユーザ情報
+ type User {
   id: ID!
   username: String
 }
 
-type Screen {
+# 画面パス
+ type Screen {
   path: Int!
 }
 
-type Status {
+# アプリステータス
+ type Status {
   setId: String
 }
 
-type Word {
+# 単語情報
+ type Word {
   word: String!
   pronunciation: String
   vocabulary: String
   times: Int!
 }
 
-type Card {
+# カード情報
+ type Card {
   word: String!
   pronunciation: String
   vocabulary: String
   times: Int!
 }
 
-type Study {
+# 学習情報
+ type Study {
   list: [Word]!
   index: Int!
   card: Card

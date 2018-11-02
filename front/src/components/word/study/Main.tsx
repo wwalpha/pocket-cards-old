@@ -8,8 +8,8 @@ import {
   Favorite as FavoriteIcon,
 } from '@material-ui/icons';
 import classnames from 'classnames';
-import { compose } from 'react-apollo';
-import { F_PREV_CARD, F_NEXT_CARD, PrevCardProps, NextCardProps, GQL_CARD } from '@gql';
+import { compose, withApollo, WithApolloClient } from 'react-apollo';
+import { F_PREV_CARD, F_NEXT_CARD, PrevCardProps, NextCardProps, GQL_CARD, F_STUDY_SET, StudySetProps } from '@gql';
 import { CardQuery } from '@hoc';
 
 class Main extends React.Component<Props, State> {
@@ -18,6 +18,9 @@ class Main extends React.Component<Props, State> {
   };
 
   async componentWillMount() {
+    const { studySet } = this.props;
+
+    console.log(studySet);
     // const { setId, actions } = this.props;
 
     // const result = await Api.studySet(setId);
@@ -135,6 +138,7 @@ export interface State {
 export interface OwnProps {
 }
 
-export interface Props extends OwnProps, PrevCardProps, NextCardProps, WithStyles<StyleRules> { }
+export interface Props extends WithApolloClient<any> { }
 
-export default withStyles(styles)(compose(F_PREV_CARD, F_NEXT_CARD)(Main)) as React.ComponentType<OwnProps>;
+export default withApollo(Main);
+// compose(F_PREV_CARD, F_NEXT_CARD)

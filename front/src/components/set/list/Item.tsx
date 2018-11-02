@@ -6,8 +6,9 @@ import {
 import FolderIcon from '@material-ui/icons/Folder';
 // import { RemoveBtn } from '.';
 import { PATH, PATH_INDEX } from '@const';
-import { App } from '@actions';
-import { Link } from 'react-router-dom';
+import { UpdatePath } from '@comp/hoc';
+import { F_UPDATE_SET_ID, UpdateSetIdProps } from '@gql';
+import { compose } from 'react-apollo';
 
 class ListItem extends React.Component<Props, any> {
   state = {
@@ -16,11 +17,10 @@ class ListItem extends React.Component<Props, any> {
 
   handleTouchMove = () => this.setState({ delOpened: !this.state.delOpened });
 
+  /** セットクリック */
   handleClick = () => {
-    const { setId, updateSetId, updatePath } = this.props;
+    const { setId, updateSetId } = this.props;
 
-    // パス更新
-    updatePath(PATH_INDEX.WORD_ROOT);
     // セットID更新
     updateSetId(setId);
   }
@@ -42,7 +42,7 @@ class ListItem extends React.Component<Props, any> {
             classes={{ root: classes.listitem }}
             onClick={this.handleClick}
             component={(props: any) => (
-              <Link to={PATH.WORD.ROOT} {...props} />
+              <UpdatePath to={PATH.WORD.ROOT} path={PATH_INDEX.WORD_ROOT} {...props} />
             )}
           >
             <Avatar classes={{ root: classes.avatar }}>
@@ -89,11 +89,9 @@ export interface OwnProps {
   setId: string;
   primaryText: string;
   secondaryText?: string;
-  updateSetId: App.UpdateSetIdAction;
-  updatePath: App.UpdatePathAction;
 }
 
 // React Props
-export interface Props extends OwnProps, WithStyles { }
+export interface Props extends OwnProps, UpdateSetIdProps, WithStyles { }
 
-export default withStyles(styles)(ListItem);
+export default compose(F_UPDATE_SET_ID)(withStyles(styles)(ListItem)) as React.ComponentType<OwnProps>;

@@ -1,110 +1,79 @@
-import * as React from 'react';
-import { Dispatch, bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { RouteComponentProps, withRouter } from 'react-router';
-import { Grid, List, ListItem, ListItemText, Theme, WithStyles, withStyles, Button } from '@material-ui/core';
-import { StyleRules } from '@material-ui/core/styles';
-import { API } from 'aws-amplify';
-import { REGIST_WORDS } from '@mutations';
-import { PATH_INDEX, PATH } from '@const';
-import { IState } from '@models';
-import { App, Study } from '@actions';
-import { RegistWordsVariables } from 'typings/graphql';
+// import * as React from 'react';
+// import { RouteComponentProps, withRouter } from 'react-router';
+// import { Grid, List, ListItem, ListItemText, Theme, WithStyles, withStyles, Button } from '@material-ui/core';
+// import { StyleRules } from '@material-ui/core/styles';
+// import { PATH_INDEX, PATH } from '@const';
 
-class Regist extends React.Component<Props, State> {
-  state = {
-    words: [],
-  };
+// class Regist extends React.Component<Props, State> {
+//   state = {
+//     words: [],
+//   };
 
-  handleRegist = async () => {
-    const { history, setId, newwords: words, appActions, studyActions } = this.props;
+//   handleRegist = async () => {
+//     const { history, setId, newwords: words, appActions, studyActions } = this.props;
 
-    // 単語登録
-    await API.graphql({
-      query: REGIST_WORDS,
-      variables: {
-        input: {
-          setId, words,
-        },
-      } as RegistWordsVariables,
-    });
+//     // 単語登録
+//     // await API.graphql({
+//     //   query: REGIST_WORDS,
+//     //   variables: {
+//     //     input: {
+//     //       setId, words,
+//     //     },
+//     //   } as RegistWordsVariables,
+//     // });
 
-    // パス更新
-    appActions.updatePath(PATH_INDEX.WORD_ROOT);
-    // 新単語クリア
-    studyActions.clearNewwords();
-    // 単語ホーム画面に遷移する
-    history.push(PATH.WORD.ROOT);
-  }
+//     // パス更新
+//     appActions.updatePath(PATH_INDEX.WORD_ROOT);
+//     // 新単語クリア
+//     studyActions.clearNewwords();
+//     // 単語ホーム画面に遷移する
+//     history.push(PATH.WORD.ROOT);
+//   }
 
-  render() {
-    const { classes, newwords } = this.props;
+//   render() {
+//     const { classes, newwords } = this.props;
 
-    const items = newwords.map((item, idx) => (
-      <ListItem key={idx} divider button classes={{ root: classes.listItem }}>
-        <ListItemText primary={item} />
-      </ListItem>
-    ));
+//     const items = newwords.map((item, idx) => (
+//       <ListItem key={idx} divider button classes={{ root: classes.listItem }}>
+//         <ListItemText primary={item} />
+//       </ListItem>
+//     ));
 
-    return (
-      <Grid container direction="column">
-        <Grid item>
-          <List component="nav" >
-            {items}
-          </List>
-        </Grid>
-        <Grid container justify="flex-end" classes={{ container: classes.command }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleRegist}
-          >
-            登録
-          </Button>
-        </Grid>
-      </Grid>
-    );
-  }
-}
+//     return (
+//       <Grid container direction="column">
+//         <Grid item>
+//           <List component="nav" >
+//             {items}
+//           </List>
+//         </Grid>
+//         <Grid container justify="flex-end" classes={{ container: classes.command }}>
+//           <Button
+//             variant="contained"
+//             color="primary"
+//             onClick={this.handleRegist}
+//           >
+//             登録
+//           </Button>
+//         </Grid>
+//       </Grid>
+//     );
+//   }
+// }
 
-const styles = (theme: Theme): StyleRules => ({
-  listItem: {
-    backgroundColor: theme.palette.grey['200'],
-    width: 'inherit',
-  },
-  command: {
-    padding: `0px ${theme.spacing.unit * 2}px`,
-  },
-});
+// const styles = (theme: Theme): StyleRules => ({
+//   listItem: {
+//     backgroundColor: theme.palette.grey['200'],
+//     width: 'inherit',
+//   },
+//   command: {
+//     padding: `0px ${theme.spacing.unit * 2}px`,
+//   },
+// });
 
-export interface State {
-  [key: string]: any;
-}
+// export interface State {
+//   [key: string]: any;
+// }
 
-/** StateProps */
-export interface StateProps {
-  setId?: string;
-  newwords: string[];
-}
-/** OwnProps */
-export interface OwnProps {
-  appActions: App.Actions;
-  studyActions: Study.Actions;
-}
+// export interface Props extends RouteComponentProps, WithStyles<StyleRules> { }
 
-export interface Props extends OwnProps, StateProps, RouteComponentProps, WithStyles<StyleRules> { }
-
-const mapStateToProps = (state: IState) => ({
-  setId: state.get('app').setId,
-  newwords: state.get('study').newwords,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  appActions: bindActionCreators(App, dispatch),
-  studyActions: bindActionCreators(Study, dispatch),
-});
-
-export default connect<StateProps, void, Props, IState>(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withStyles(styles)(withRouter(Regist)));
+// export default withStyles(styles)(withRouter(Regist));

@@ -3,7 +3,6 @@ import { IconButton, Theme } from '@material-ui/core';
 import { CameraAlt } from '@material-ui/icons';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { Storage } from 'aws-amplify';
-import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { IState } from '@models';
 import { Study } from '@actions';

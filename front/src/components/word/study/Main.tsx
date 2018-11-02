@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Dispatch, bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import {
   Card, CardHeader, CardContent, CardActions,
@@ -136,29 +134,8 @@ export interface State {
   transform: boolean;
 }
 
-/** StateProps */
-export interface StateProps {
-  setId: string;
-}
-/** DispatchProps */
-export interface DispatchProps {
-  actions: Study.Actions;
-}
 /** OwnProps */
 export interface OwnProps {
 }
 
 export interface Props extends OwnProps, DispatchProps, StateProps, WithStyles<StyleRules> { }
-
-const mapStateToProps = (state: IState): StateProps => ({
-  setId: state.get('app').setId as string,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  actions: bindActionCreators(Study, dispatch),
-});
-
-export default connect<StateProps, DispatchProps, OwnProps, IState>(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withStyles(styles)(Main));

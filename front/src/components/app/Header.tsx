@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { Dispatch, bindActionCreators } from 'redux';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import { HEADER, IconInfo } from '@const';
-import { IState } from '@models';
-import { App } from '@actions';
 import { UpdatePath } from '@comp/hoc';
+import { Query } from 'react-apollo';
+import { PathInfo } from 'typings/graphql';
+import { GQL_PATH_INFO } from '@gql';
 
 class Header extends React.Component<Props> {
 
   renderIcon = (item: IconInfo, key: number) => {
-    const { actions } = this.props;
 
     // カスタマイズあり
     if (item.customize) {
@@ -27,12 +25,7 @@ class Header extends React.Component<Props> {
           key={key}
           color="inherit"
           component={(props: any) => (
-            <UpdatePath
-              to={item.path}
-              path={item.index}
-              updatePath={actions.updatePath}
-              {...props}
-            />
+            <UpdatePath to={item.path} path={item.index} {...props} />
           )}
         >
           <item.icon />
@@ -48,31 +41,39 @@ class Header extends React.Component<Props> {
   }
 
   render() {
-    const { classes, path } = this.props;
-
-    // 未初期化
-    if (path === -1) return <div />;
-
-    const info = HEADER[path];
+    const { classes } = this.props;
 
     return (
-      <AppBar position="static" classes={{ root: classes.root }}>
-        <Toolbar>
-          {(() => {
-            if (!info.left || info.left.length === 0) return null;
+      <PathInfoQuery query={GQL_PATH_INFO}>
+        {({ loading, error, data }) => {
+          if (loading) return null;
+          if (error) return `Error!: ${error}`;
+          if (!data) return null;
 
-            return info.left.map((item, idx) => this.renderIcon(item, idx));
-          })()}
-          <Typography color="inherit" className={classes.grow}>
-            {info.title}
-          </Typography>
-          {(() => {
-            if (!info.right || info.right.length === 0) return null;
+          const { path } = data.status;
+          const info = HEADER[path];
 
-            return info.right.map((item, idx) => this.renderIcon(item, idx));
-          })()}
-        </Toolbar>
-      </AppBar>
+          return (
+            <AppBar position="static" classes={{ root: classes.root }}>
+              <Toolbar>
+                {(() => {
+                  if (!info.left || info.left.length === 0) return null;
+
+                  return info.left.map((item, idx) => this.renderIcon(item, idx));
+                })()}
+                <Typography color="inherit" className={classes.grow}>
+                  {info.title}
+                </Typography>
+                {(() => {
+                  if (!info.right || info.right.length === 0) return null;
+
+                  return info.right.map((item, idx) => this.renderIcon(item, idx));
+                })()}
+              </Toolbar>
+            </AppBar>
+          );
+        }}
+      </PathInfoQuery>
     );
   }
 }
@@ -88,26 +89,8 @@ const styles = (): StyleRules => ({
   },
 });
 
-/** StateProps */
-export interface StateProps {
-  path: number;
-}
-/** DispatchProps */
-export interface DispatchProps {
-  actions: App.Actions;
-}
+class PathInfoQuery extends Query<PathInfo, any> { }
 
-export interface Props extends DispatchProps, StateProps, WithStyles<StyleRules> { }
+export interface Props extends WithStyles<StyleRules> { }
 
-const mapStateToProps = (state: IState) => ({
-  path: state.get('app').path,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  actions: bindActionCreators(App, dispatch),
-});
-
-export default connect<StateProps, DispatchProps, void, IState>(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withStyles(styles)(Header));
+export default withStyles(styles)(Header);

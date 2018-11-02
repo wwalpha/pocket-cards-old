@@ -1,6 +1,4 @@
 import * as React from 'react';
-import { Dispatch, bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid, Button } from '@material-ui/core';

@@ -1,10 +1,10 @@
-import { handleActions } from 'redux-actions';
-import { Study } from '@models';
+// import { handleActions } from 'redux-actions';
+// import { Study } from '@models';
 
-const study = handleActions(
-  {
+// const study = handleActions(
+//   {
 
-  },
-  new Study());
+//   },
+//   new Study());
 
-export default study;
+// export default study;

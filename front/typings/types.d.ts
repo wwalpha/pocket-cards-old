@@ -1,5 +1,5 @@
 import { DocumentNode } from 'graphql';
-import { StudySet, StudySetVariables, Card } from './graphql';
+import { StudySet, StudySetVariables, Card, Newwords } from './graphql';
 import { Query } from 'react-apollo';
 
 declare module "*.gql" {
@@ -11,8 +11,3 @@ declare module "*.yml" {
   const value: string;
   export default value;
 }
-
-
-export class StudySetQuery extends Query<StudySet, StudySetVariables> { }
-
-export class CardQuery extends Query<Card, void> { }

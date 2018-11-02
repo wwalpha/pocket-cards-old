@@ -18,15 +18,13 @@ extend type Mutation {
     # 画面パスを更新する
   updateSetId(id: String!): Status!
 
-  # # ローカルの新規単語リストをクリアする
-  # clearNewwords: Newwords
-  # # ローカルの単語リストから単語を削除する
-  # removeWord(word: String!): Newwords
+  # ローカルの新規単語リストをクリアする
+  clearNewwords: Boolean
+  # ローカルの単語リストから単語を削除する
+  removeNewword(word: String!): Boolean
 
   # 学習リストをローカルに保存する
-  # saveWordList(list: [WordInput!]!): Boolean
-  # 学習リストをローカルに保存する
-  clearWordList: Boolean
+  clearCardList: Boolean
   # 前のカード情報
   prevCard: Card
   # 次のカード情報

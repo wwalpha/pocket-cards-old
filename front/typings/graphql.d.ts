@@ -76,7 +76,7 @@ export interface SetDeleteVariables {
 // ====================================================
 
 export interface Image2Word_image2Word {
-  __typename: "Newwords";
+  __typename: "ImageWord";
   /**
    *   新規単語
    */
@@ -393,6 +393,28 @@ export interface UpdateUserVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: ClearCardList
+// ====================================================
+
+export interface ClearCardList {
+  clearCardList: boolean | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: ClearNewwords
+// ====================================================
+
+export interface ClearNewwords {
+  clearNewwords: boolean | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: NextCard
 // ====================================================
 
@@ -419,6 +441,21 @@ export interface PrevCard_prevCard {
 
 export interface PrevCard {
   prevCard: PrevCard_prevCard | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: RemoveNewword
+// ====================================================
+
+export interface RemoveNewword {
+  removeNewword: boolean | null;
+}
+
+export interface RemoveNewwordVariables {
+  word: string;
 }
 
 /* tslint:disable */
@@ -473,6 +510,22 @@ export interface Card_card {
 
 export interface Card {
   card: Card_card | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Newwords
+// ====================================================
+
+export interface Newwords_newwords {
+  __typename: "Newwords";
+  words: (string | null)[];
+}
+
+export interface Newwords {
+  newwords: Newwords_newwords;
 }
 
 /* tslint:disable */

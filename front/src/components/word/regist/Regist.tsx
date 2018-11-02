@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Grid, List, ListItem, ListItemText, Theme, WithStyles, withStyles, Button } from '@material-ui/core';
-import { StyleRules } from '@material-ui/core/styles';
+import { Grid, List, WithStyles, withStyles, Button, ListItemText, ListItem } from '@material-ui/core';
+import { StyleRules, Theme } from '@material-ui/core/styles';
 import { PATH_INDEX, PATH } from '@const';
 import { compose } from 'react-apollo';
-import { F_UPDATE_PATH, UpdatePathProps } from '@gql';
+import { F_UPDATE_PATH, UpdatePathProps, ClearNewwordsProps, F_CLEAR_NEW_WORDS, GQL_NEW_WORDS } from '@gql';
+import { NewwordsQuery } from '@hoc';
 
 class Regist extends React.Component<Props, State> {
   state = {
@@ -12,7 +13,7 @@ class Regist extends React.Component<Props, State> {
   };
 
   handleRegist = async () => {
-    const { history, updatePath } = this.props;
+    const { history, updatePath, clearNewwords } = this.props;
 
     // 単語登録
     // await API.graphql({
@@ -35,30 +36,37 @@ class Regist extends React.Component<Props, State> {
   render() {
     const { classes } = this.props;
 
-    const items = [] as any[];
-    // newwords.map((item, idx) => (
-    //   <ListItem key={idx} divider button classes={{ root: classes.listItem }}>
-    //     <ListItemText primary={item} />
-    //   </ListItem>
-    // ));
-
     return (
-      <Grid container direction="column">
-        <Grid item>
-          <List component="nav" >
-            {items}
-          </List>
-        </Grid>
-        <Grid container justify="flex-end" classes={{ container: classes.command }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={this.handleRegist}
-          >
-            登録
-          </Button>
-        </Grid>
-      </Grid>
+      <NewwordsQuery query={GQL_NEW_WORDS}>
+        {({ data }) => {
+          if (!data) return null;
+
+          const items = data.newwords.words.map((item, idx) => (
+            <ListItem key={idx} divider button classes={{ root: classes.listItem }}>
+              <ListItemText primary={item} />
+            </ListItem>
+          ));
+
+          return (
+            <Grid container direction="column">
+              <Grid item>
+                <List component="nav" >
+                  {items}
+                </List>
+              </Grid>
+              <Grid container justify="flex-end" classes={{ container: classes.command }}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={this.handleRegist}
+                >
+                  登録
+              </Button>
+              </Grid>
+            </Grid>
+          );
+        }}
+      </NewwordsQuery>
     );
   }
 }
@@ -77,6 +85,6 @@ export interface State {
   [key: string]: any;
 }
 
-export interface Props extends UpdatePathProps, RouteComponentProps, WithStyles<StyleRules> { }
+export interface Props extends ClearNewwordsProps, UpdatePathProps, RouteComponentProps, WithStyles<StyleRules> { }
 
-export default compose(F_UPDATE_PATH)(withStyles(styles)(withRouter(Regist)));
+export default compose(F_UPDATE_PATH, F_CLEAR_NEW_WORDS)(withStyles(styles)(withRouter(Regist)));

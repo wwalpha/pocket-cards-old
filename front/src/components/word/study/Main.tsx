@@ -10,7 +10,7 @@ import {
 import classnames from 'classnames';
 import { compose } from 'react-apollo';
 import { F_PREV_CARD, F_NEXT_CARD, PrevCardProps, NextCardProps, GQL_CARD } from '@gql';
-import { CardQuery } from 'typings/types';
+import { CardQuery } from '@hoc';
 
 class Main extends React.Component<Props, State> {
   state = {

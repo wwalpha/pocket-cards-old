@@ -2,7 +2,7 @@ import gql from 'graphql-tag';
 
 // this is an auto generated file. This will be overwritten
 
-export const SET_CREATE = gql`
+export const GQL_SET_CREATE = gql`
 mutation SetCreate($userId: String!, $name: String!) {
   setCreate(userId: $userId, name: $name) {
     userId

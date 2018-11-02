@@ -26,7 +26,7 @@ query StudySet($setId: String!) {
 }
 `;
 
-export const STUDY_HISTORY = gql`
+export const GQL_STUDY_HISTORY = gql`
 query StudyHistory($userId: String!, $setId: String!) {
   studyHistory(userId: $userId, setId: $setId) {
     setId
@@ -40,7 +40,7 @@ query StudyHistory($userId: String!, $setId: String!) {
 }
 `;
 
-export const STUDY_POLLY = gql`
+export const GQL_STUDY_POLLY = gql`
 query StudyPolly($text: String!) {
   studyPolly(text: $text) {
     contentType

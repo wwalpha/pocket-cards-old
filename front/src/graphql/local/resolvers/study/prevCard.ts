@@ -1,8 +1,7 @@
 import { ApolloCache } from 'apollo-cache';
 import { queryStudySet, queryStatus } from '../utils';
 import { Card, StatusInfo } from 'typings/graphql';
-import { GQL_CARD } from '../../queries/card';
-import { GQL_STATUS_INFO } from '@gql';
+import { GQL_STATUS_INFO, GQL_CARD } from '@gql';
 
 // tslint:disable-next-line:variable-name
 export default (_: any, _var: any, context: any) => {

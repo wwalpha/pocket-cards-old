@@ -28,7 +28,9 @@ extend type Mutation {
   updateUser(id: String!, username: String!): User!
   updatePath(path: Int!): Status!
   updateSetId(id: String!): Status!
-  clearWordList: Boolean
+  clearNewwords: Boolean
+  removeNewword(word: String!): Boolean
+  clearCardList: Boolean
   prevCard: Card
   nextCard: Card
 }

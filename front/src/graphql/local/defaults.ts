@@ -1,4 +1,3 @@
-import { PATH_INDEX } from '@const';
 
 export default {
   user: {
@@ -9,6 +8,8 @@ export default {
   status: {
     __typename: 'Status',
     setId: 'dummy',
-    path: PATH_INDEX.HOME_ROOT,
+    path: 0,
+    cardIndex: 0,
   },
+  card: null,
 };

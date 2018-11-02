@@ -40,11 +40,11 @@
       "@const": [
         "./src/consts/index.ts"
       ],
-      "@comp/*": [
-        "./src/components/*"
-      ],
       "@hoc": [
         "./src/components/hoc/index.ts"
+      ],
+      "@comp/*": [
+        "./src/components/*"
       ],
       "@utils/*": [
         "./src/utils/*"

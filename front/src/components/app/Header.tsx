@@ -4,8 +4,8 @@ import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import { HEADER, IconInfo } from '@const';
 import { UpdatePath } from '@comp/hoc';
 import { Query } from 'react-apollo';
-import { PathInfo } from 'typings/graphql';
-import { GQL_PATH_INFO } from '@gql';
+import { StatusInfo } from 'typings/graphql';
+import { GQL_STATUS_INFO } from '@gql';
 
 class Header extends React.Component<Props> {
 
@@ -44,7 +44,7 @@ class Header extends React.Component<Props> {
     const { classes } = this.props;
 
     return (
-      <PathInfoQuery query={GQL_PATH_INFO}>
+      <StatusInfoQuery query={GQL_STATUS_INFO}>
         {({ loading, error, data }) => {
           if (loading) return null;
           if (error) return `Error!: ${error}`;
@@ -73,7 +73,7 @@ class Header extends React.Component<Props> {
             </AppBar>
           );
         }}
-      </PathInfoQuery>
+      </StatusInfoQuery>
     );
   }
 }
@@ -89,7 +89,7 @@ const styles = (): StyleRules => ({
   },
 });
 
-class PathInfoQuery extends Query<PathInfo, any> { }
+class StatusInfoQuery extends Query<StatusInfo, any> { }
 
 export interface Props extends WithStyles<StyleRules> { }
 

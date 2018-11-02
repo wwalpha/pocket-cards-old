@@ -8,11 +8,9 @@ import {
   Favorite as FavoriteIcon,
 } from '@material-ui/icons';
 import classnames from 'classnames';
-import { Query } from 'react-apollo';
-import { STUDY_SET } from '@queries';
-import { Study, Api } from '@actions';
-import { IState } from '@models';
-import { StudySetVariables } from 'typings/graphql';
+import { compose } from 'react-apollo';
+import { F_PREV_CARD, F_NEXT_CARD, PrevCardProps, NextCardProps, GQL_CARD } from '@gql';
+import { CardQuery } from 'typings/types';
 
 class Main extends React.Component<Props, State> {
   state = {
@@ -20,36 +18,38 @@ class Main extends React.Component<Props, State> {
   };
 
   async componentWillMount() {
-    const { setId, actions } = this.props;
+    // const { setId, actions } = this.props;
 
-    const result = await Api.studySet(setId);
+    // const result = await Api.studySet(setId);
 
-    actions.saveStudySet(result);
+    // actions.saveStudySet(result);
   }
 
   /** カード回し */
   handleRotate = () => this.setState({ transform: !this.state.transform });
-  /** 前へ */
-  handleNext = () => this.props.actions.nextCard();
-  /** 次へ */
-  handlePrev = () => this.props.actions.prevCard();
+  // /** 前へ */
+  // handleNext = () => this.props.actions.nextCard();
+  // /** 次へ */
+  // handlePrev = () => this.props.actions.prevCard();
 
   render() {
-    const { classes, setId } = this.props;
+    const { classes, nextCard, prevCard } = this.props;
 
     return (
-      <StudySet query={STUDY_SET} variables={{ setId }}>
+      <CardQuery query={GQL_CARD}>
         {({ loading, data, error }) => {
           if (loading) return <div>Loading</div>;
           if (error) return <h1>ERROR</h1>;
-          if (!data || Object.keys(data).length === 0) return <div></div>;
+          if (!data || !data.card) return null;
+
+          const { card } = data;
 
           return (
             <div className={classes.root} style={{ transform: this.state.transform ? 'rotateY(180deg)' : '' }}>
               <Button
                 variant="contained"
                 color="primary"
-                onClick={this.handlePrev}
+                onClick={prevCard}
               >
                 前へ
             </Button>
@@ -90,15 +90,14 @@ class Main extends React.Component<Props, State> {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={this.handleNext}
+                onClick={nextCard}
               >
                 次へ
             </Button>
             </div>
           );
         }}
-      </StudySet>
-
+      </CardQuery>
     );
   }
 }
@@ -127,8 +126,6 @@ const styles = (): StyleRules => ({
   },
 });
 
-class StudySet extends Query<StudySet, StudySetVariables> { }
-
 export interface State {
   [key: string]: any;
   transform: boolean;
@@ -138,4 +135,6 @@ export interface State {
 export interface OwnProps {
 }
 
-export interface Props extends OwnProps, DispatchProps, StateProps, WithStyles<StyleRules> { }
+export interface Props extends OwnProps, PrevCardProps, NextCardProps, WithStyles<StyleRules> { }
+
+export default withStyles(styles)(compose(F_PREV_CARD, F_NEXT_CARD)(Main)) as React.ComponentType<OwnProps>;

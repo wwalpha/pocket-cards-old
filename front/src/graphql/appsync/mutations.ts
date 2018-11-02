@@ -12,7 +12,7 @@ mutation SetCreate($userId: String!, $name: String!) {
 }
 `;
 
-export const SET_DELETE = gql`
+export const GQL_SET_DELETE = gql`
 mutation SetDelete($userId: String!, $setId: String!) {
   setDelete(userId: $userId, setId: $setId) {
     userId
@@ -22,7 +22,7 @@ mutation SetDelete($userId: String!, $setId: String!) {
 }
 `;
 
-export const IMAGE_2_WORD = gql`
+export const GQL_IMAGE_2_WORD = gql`
 mutation Image2Word($bucketKey: String!) {
   image2Word(bucketKey: $bucketKey) {
     words
@@ -30,7 +30,7 @@ mutation Image2Word($bucketKey: String!) {
 }
 `;
 
-export const REGIST_WORDS = gql`
+export const GQL_REGIST_WORDS = gql`
 mutation RegistWords($input: RegistWordsInput!) {
   registWords(input: $input) {
     setId
@@ -44,7 +44,7 @@ mutation RegistWords($input: RegistWordsInput!) {
 }
 `;
 
-export const STUDY_SAVE = gql`
+export const GQL_STUDY_SAVE = gql`
 mutation StudySave($input: StudySaveInput!) {
   studySave(input: $input)
 }

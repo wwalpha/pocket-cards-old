@@ -4,6 +4,9 @@ export const GQL_CARD = gql`
   query Card {
     card @client {
       word
+      pronunciation
+      vocabulary
+      times
     }
   }
 `;

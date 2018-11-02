@@ -1,15 +1,13 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid, Button } from '@material-ui/core';
 import { PATH, PATH_INDEX } from '@const';
-import { App } from '@actions';
-import { IState } from '@models';
+import { UpdatePath } from '@comp/hoc';
 
 class Menu extends React.Component<Props, {}> {
 
   render() {
-    const { classes, actions } = this.props;
+    const { classes } = this.props;
 
     return (
       <Grid
@@ -22,9 +20,8 @@ class Menu extends React.Component<Props, {}> {
           <Button
             variant="contained"
             fullWidth
-            onClick={() => actions.updatePath(PATH_INDEX.WORD_REGIST)}
             component={(props: any) => (
-              <Link to={PATH.WORD.REGIST} {...props} />
+              <UpdatePath to={PATH.WORD.REGIST} path={PATH_INDEX.WORD_REGIST} {...props} />
             )}
           >
             新規単語
@@ -34,9 +31,8 @@ class Menu extends React.Component<Props, {}> {
           <Button
             variant="contained"
             fullWidth
-            onClick={() => actions.updatePath(PATH_INDEX.WORD_STUDY)}
             component={(props: any) => (
-              <Link to={PATH.WORD.STUDY} {...props} />
+              <UpdatePath to={PATH.WORD.STUDY} path={PATH_INDEX.WORD_STUDY} {...props} />
             )}
           >
             単語学習
@@ -46,9 +42,8 @@ class Menu extends React.Component<Props, {}> {
           <Button
             variant="contained"
             fullWidth
-            onClick={() => actions.updatePath(PATH_INDEX.WORD_TEST)}
             component={(props: any) => (
-              <Link to={PATH.WORD.TEST} {...props} />
+              <UpdatePath to={PATH.WORD.TEST} path={PATH_INDEX.WORD_TEST} {...props} />
             )}
           >
             単語テスト
@@ -58,9 +53,8 @@ class Menu extends React.Component<Props, {}> {
           <Button
             variant="contained"
             fullWidth
-            onClick={() => actions.updatePath(PATH_INDEX.WORD_HISTORY)}
             component={(props: any) => (
-              <Link to={PATH.WORD.HISTORY} {...props} />
+              <UpdatePath to={PATH.WORD.HISTORY} path={PATH_INDEX.WORD_HISTORY} {...props} />
             )}
           >
             今日の単語
@@ -81,29 +75,10 @@ const styles = (): StyleRules => ({
   },
 });
 
-/** StateProps */
-export interface StateProps {
-  setId: string;
-}
-/** DispatchProps */
-export interface DispatchProps {
-  actions: App.Actions;
-}
 /** OwnProps */
 export interface OwnProps {
 }
 
-export interface Props extends OwnProps, DispatchProps, StateProps, WithStyles<StyleRules> { }
+export interface Props extends OwnProps, WithStyles<StyleRules> { }
 
-const mapStateToProps = (state: IState): StateProps => ({
-  setId: state.get('app').setId as string,
-});
-
-const mapDispatchToProps = (dispatch: Dispatch): DispatchProps => ({
-  actions: bindActionCreators(App, dispatch),
-});
-
-export default connect<StateProps, DispatchProps, OwnProps, IState>(
-  mapStateToProps,
-  mapDispatchToProps,
-)(withStyles(styles)(Menu));
+export default withStyles(styles)(Menu);

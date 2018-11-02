@@ -12,7 +12,7 @@ query SetList($userId: String!) {
 }
 `;
 
-export const STUDY_SET = gql`
+export const GQL_STUDY_SET = gql`
 query StudySet($setId: String!) {
   studySet(setId: $setId) {
     setId

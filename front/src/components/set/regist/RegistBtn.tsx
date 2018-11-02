@@ -2,15 +2,17 @@ import * as React from 'react';
 import { Button } from '@material-ui/core';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import { Api } from '@actions';
 import { PATH } from '@const';
+import { compose } from 'react-apollo';
+import { F_SET_CREATE, SetCreateProps } from '@gql';
 
 class RegistBtn extends React.Component<Props> {
 
   handleRegist = async () => {
-    const { history, userId, name } = this.props;
+    const { history, userId, name, setCreate } = this.props;
 
-    await Api.setCreate(userId, name);
+    // Graph API
+    await setCreate(userId, name);
     // メニュー画面に戻る
     history.push(PATH.SET.ROOT);
   }
@@ -36,6 +38,6 @@ export interface OwnProps {
   name: string;
 }
 
-export interface Props extends OwnProps, WithStyles, RouteComponentProps { }
+export interface Props extends SetCreateProps, OwnProps, WithStyles, RouteComponentProps { }
 
-export default withStyles(styles)(withRouter(RegistBtn));
+export default compose(F_SET_CREATE)(withStyles(styles)(withRouter(RegistBtn))) as React.ComponentType<OwnProps>;

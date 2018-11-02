@@ -2,10 +2,8 @@ import * as React from 'react';
 import { IconButton, Theme } from '@material-ui/core';
 import { CameraAlt } from '@material-ui/icons';
 import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
-import { Storage } from 'aws-amplify';
-import { connect } from 'react-redux';
-import { IState } from '@models';
-import { Study } from '@actions';
+import { F_IMAGE_2_WORD } from 'src/graphql/appsync/hoc/image2Word';
+import { compose } from 'react-apollo';
 
 class UploadImage extends React.Component<Props> {
 
@@ -14,9 +12,9 @@ class UploadImage extends React.Component<Props> {
 
     const file = e.target.files[0];
 
-    await Storage.put(file.name, file, {
-      contentType: file.type,
-    });
+    // await Storage.put(file.name, file, {
+    //   contentType: file.type,
+    // });
 
     // await this.props.onWordRegist(`private/ap-northeast-1:ca61500a-e732-4cb6-a0f4-cddf75336eb9/${file.name}`);
   }
@@ -53,53 +51,6 @@ const styles = (theme: Theme): StyleRules => ({
   },
 });
 
-// export default graphql<TProps, Image2Word, Image2WordVariables, TChildProps>(IMAGE_TO_WORDS, {
-//   options: {
-//     // refetchQueries: [{
-//     //   query: NEW_WORD_INFO,
-//     // }],
-//     update: (proxy, result) => {
-//       if (!result.data || !result.data.image2Word) return;
+export interface Props extends WithStyles<StyleRules> { }
 
-//       const words = result.data.image2Word.words;
-
-//       const cache = proxy.readQuery<Newwords>({ query: GQL_NEW_WORDS });
-//       if (!cache) return;
-
-//       // ローカルに保存する
-//       proxy.writeQuery<Newwords>({
-//         query: GQL_NEW_WORDS,
-//         data: {
-//           ...cache,
-//           newwords: words,
-//         },
-//       });
-//     },
-//   },
-//   props: ({ mutate, ownProps }) => ({
-//     ...ownProps,
-//     onWordRegist: (key: string) => {
-//       mutate && mutate({
-//         variables: {
-//           bucketKey: key,
-//         },
-//       });
-//     },
-//   }),
-// })(withStyles(styles)(UploadImage));
-
-/** DispatchProps */
-export interface DispatchProps {
-  actions: Study.Actions;
-}
-
-export interface Props extends DispatchProps, WithStyles<StyleRules> { }
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  actions: bindActionCreators(Study, dispatch),
-});
-
-export default connect<void, DispatchProps, void, IState>(
-  null,
-  mapDispatchToProps,
-)(withStyles(styles)(UploadImage));
+export default compose(F_IMAGE_2_WORD)(withStyles(styles)(UploadImage));

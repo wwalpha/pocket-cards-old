@@ -1,41 +1,52 @@
 import { ApolloCache } from 'apollo-cache';
-import { Study } from 'typings/local';
-import { GQL_STUDY } from 'src/graphql';
+import { queryStudySet, queryStatus } from '../utils';
+import { Card, StatusInfo } from 'typings/graphql';
+import { GQL_CARD } from '../../queries/card';
+import { GQL_STATUS_INFO } from '@gql';
 
 // tslint:disable-next-line:variable-name
 export default (_: any, _var: any, context: any) => {
   const cache = context.cache as ApolloCache<any>;
 
   // Cache検索
-  const result = cache.readQuery<Study>({
-    query: GQL_STUDY,
-  });
+  const queryResult = queryStudySet(cache);
 
-  console.log('prev word', result);
-  if (!result || !result.study) {
-    return undefined;
+  if (!queryResult || !queryResult.studySet) {
+    return null;
   }
 
-  const { study: { index, list } } = result;
-  const prevIdx = index - 1;
-  const text = prevIdx > 0 ? list[prevIdx] : undefined;
+  // Cache検索
+  const statusInfo = queryStatus(cache);
+  const setList = queryResult.studySet;
+
+  const prevIdx = statusInfo.status.cardIndex - 1;
+  const text = prevIdx > 0 ? setList[prevIdx] : setList[0];
+
+  // 情報なし
+  if (!text) return null;
+
   // Index
-  result.study.index = prevIdx;
+  statusInfo.status.cardIndex = prevIdx;
 
   // Cardあり
-  if (text) {
-    result.study.card = {
+  const card: Card = {
+    card: {
       __typename: 'Card',
       word: text.word,
       pronunciation: text.pronunciation,
-      times: text.times,
       vocabulary: text.vocabulary,
-    };
-  }
+      times: text.times,
+    },
+  };
 
-  // Cache更新
-  cache.writeQuery<Study>({
-    query: GQL_STUDY, data: result,
+  // Card更新
+  cache.writeQuery<Card>({
+    query: GQL_CARD, data: card,
+  });
+
+  // Card更新
+  cache.writeQuery<StatusInfo>({
+    query: GQL_STATUS_INFO, data: statusInfo,
   });
 
   return text;

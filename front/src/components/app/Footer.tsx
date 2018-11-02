@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import {
@@ -7,8 +6,7 @@ import {
 } from '@material-ui/icons';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { PATH, PATH_INDEX } from '@const';
-import { IState } from '@models';
-import { App } from '@actions';
+import { UpdatePath } from '@comp/hoc';
 
 class Footer extends React.Component<Props, {}> {
   state = {
@@ -18,7 +16,7 @@ class Footer extends React.Component<Props, {}> {
   handleChange = (_: React.ChangeEvent<{}>, value: number) => this.setState({ value });
 
   render() {
-    const { classes, actions } = this.props;
+    const { classes } = this.props;
 
     return (
       <BottomNavigation
@@ -33,9 +31,8 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          onClick={() => actions && actions.updatePath(PATH_INDEX.HOME_ROOT)}
           component={(props: any) => (
-            <Link to={PATH.HOME.ROOT} {...props} />
+            <UpdatePath to={PATH.HOME.ROOT} path={PATH_INDEX.HOME_ROOT} {...props} />
           )}
         />
         <BottomNavigationAction
@@ -43,9 +40,8 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          onClick={() => actions && actions.updatePath(PATH_INDEX.SET_ROOT)}
           component={(props: any) => (
-            <Link to={PATH.SET.ROOT} {...props} />
+            <UpdatePath to={PATH.SET.ROOT} path={PATH_INDEX.SET_ROOT} {...props} />
           )}
         />
         <BottomNavigationAction
@@ -53,9 +49,8 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          onClick={() => actions && actions.updatePath(PATH_INDEX.USER_ROOT)}
           component={(props: any) => (
-            <Link to={PATH.USER.ROOT} {...props} />
+            <UpdatePath to={PATH.USER.ROOT} path={PATH_INDEX.USER_ROOT} {...props} />
           )}
         />
       </BottomNavigation>
@@ -76,18 +71,6 @@ const styles = (theme: Theme): StyleRules => ({
   },
 });
 
-/** DispatchProps */
-export interface DispatchProps {
-  actions: App.Actions;
-}
+export interface Props extends WithStyles<StyleRules> { }
 
-export interface Props extends DispatchProps, WithStyles<StyleRules> { }
-
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  actions: bindActionCreators(App, dispatch),
-});
-
-export default connect<void, DispatchProps, void, IState>(
-  null,
-  mapDispatchToProps,
-)(withStyles(styles)(Footer));
+export default withStyles(styles)(Footer);

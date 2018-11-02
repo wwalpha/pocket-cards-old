@@ -1,7 +1,7 @@
 # 新規単語管理
-# type Newwords {
-#   words: [String]
-# }
+type Newwords {
+  words: [String]!
+}
 
 # ユーザ情報
 type User {

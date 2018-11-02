@@ -2,6 +2,10 @@ schema {
   query: Query
 }
 
+type Newwords {
+  words: [String]!
+}
+
 type User {
   id: ID!
   username: String
@@ -33,4 +37,5 @@ extend type Query {
   user: User!
   status: Status!
   card: Card
+  newwords: Newwords!
 }

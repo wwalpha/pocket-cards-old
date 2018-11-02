@@ -16,7 +16,7 @@ input StudySaveInput {
 
 type Mutation {
   # 画像から単語読み取り
-  image2Word(bucketKey: String!): Newwords!
+  image2Word(bucketKey: String!): ImageWord!
 
   # 単語新規登録
   registWords(input: RegistWordsInput!): [Word]

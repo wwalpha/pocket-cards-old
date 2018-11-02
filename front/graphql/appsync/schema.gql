@@ -20,7 +20,7 @@ type Mutation {
   # セット削除
   setDelete(userId: String!, setId: String!): Set
   # 画像から単語読み取り
-  image2Word(bucketKey: String!): Newwords!
+  image2Word(bucketKey: String!): ImageWord!
   # 単語新規登録
   registWords(input: RegistWordsInput!): [Word]
   # 単語検定を保存する
@@ -43,7 +43,7 @@ input StudySaveInput {
   words: [StudyRecord]!
 }
 
-type Newwords {
+type ImageWord {
   # 新規単語
   words: [String]
 }

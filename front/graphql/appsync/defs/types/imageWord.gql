@@ -1,4 +1,4 @@
-type Newwords {
+type ImageWord {
   # 新規単語
   words: [String]
 }

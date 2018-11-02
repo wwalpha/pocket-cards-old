@@ -1,17 +1,16 @@
 projects:
   dev-PocketCards:
-    schemaPath: src\graphql\schema.json
+    schemaPath: graphql\appsync\schema.json
     includes:
-      - src\graphql\**\mutations.ts
-      - src\graphql\**\queries.ts
+      - src\graphql\appsync\mutations.ts
+      - src\graphql\appsync\queries.ts
     excludes:
       - ./amplify/**
     extensions:
       amplify:
         graphQLApiId: jw4s4q3gqbgkpbhr2pnk5uziji
         codeGenTarget: typescript
-        # generatedFileName: src\graphql\types.ts
-        docsFilePath: src\graphql
+        docsFilePath: src\graphql\appsync
         region: ap-northeast-1
       endpoints:
         prod: >-

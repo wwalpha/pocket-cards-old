@@ -330,6 +330,149 @@ export interface StudyPollyVariables {
 /* tslint:disable */
 // This file was automatically generated and should not be edited.
 
+// ====================================================
+// GraphQL mutation operation: UpdatePath
+// ====================================================
+
+export interface UpdatePath_updatePath {
+  __typename: "Status";
+  path: number;
+}
+
+export interface UpdatePath {
+  updatePath: UpdatePath_updatePath;
+}
+
+export interface UpdatePathVariables {
+  path: number;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: UpdateSetId
+// ====================================================
+
+export interface UpdateSetId_updateSetId {
+  __typename: "Status";
+  setId: string | null;
+}
+
+export interface UpdateSetId {
+  updateSetId: UpdateSetId_updateSetId;
+}
+
+export interface UpdateSetIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: UpdateUser
+// ====================================================
+
+export interface UpdateUser_updateUser {
+  __typename: "User";
+  id: string;
+  username: string | null;
+}
+
+export interface UpdateUser {
+  updateUser: UpdateUser_updateUser;
+}
+
+export interface UpdateUserVariables {
+  id: string;
+  username: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: NextCard
+// ====================================================
+
+export interface NextCard_nextCard {
+  __typename: "Card";
+  word: string;
+}
+
+export interface NextCard {
+  nextCard: NextCard_nextCard | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: PrevCard
+// ====================================================
+
+export interface PrevCard_prevCard {
+  __typename: "Card";
+  word: string;
+}
+
+export interface PrevCard {
+  prevCard: PrevCard_prevCard | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: PathInfo
+// ====================================================
+
+export interface PathInfo_status {
+  __typename: "Status";
+  path: number;
+}
+
+export interface PathInfo {
+  status: PathInfo_status;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: User
+// ====================================================
+
+export interface User_user {
+  __typename: "User";
+  id: string;
+  username: string | null;
+}
+
+export interface User {
+  user: User_user;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: Card
+// ====================================================
+
+export interface Card_card {
+  __typename: "Card";
+  word: string;
+}
+
+export interface Card {
+  card: Card_card | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
 //==============================================================
 // START Enums and Input Objects
 //==============================================================

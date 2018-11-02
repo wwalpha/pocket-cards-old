@@ -35,7 +35,7 @@
     "baseUrl": ".",
     "paths": {
       "@gql": [
-        "./src/queries/index.ts"
+        "./src/graphql/index.ts"
       ],
       "@const": [
         "./src/consts/index.ts"
@@ -43,27 +43,12 @@
       "@comp/*": [
         "./src/components/*"
       ],
-      "@test/*": [
-        "./test/*"
-      ],
       "@hoc": [
         "./src/components/hoc/index.ts"
       ],
       "@utils/*": [
         "./src/utils/*"
       ],
-      "@models": [
-        "./src/models/index.ts"
-      ],
-      "@actions": [
-        "./src/actions/index.ts"
-      ],
-      "@queries": [
-        "./src/graphql/queries.ts"
-      ],
-      "@mutations": [
-        "./src/graphql/mutations.ts"
-      ]
     }
   },
   "compileOnSave": true,

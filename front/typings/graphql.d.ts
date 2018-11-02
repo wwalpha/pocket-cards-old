@@ -425,16 +425,18 @@ export interface PrevCard {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: PathInfo
+// GraphQL query operation: StatusInfo
 // ====================================================
 
-export interface PathInfo_status {
+export interface StatusInfo_status {
   __typename: "Status";
   path: number;
+  cardIndex: number;
+  setId: string | null;
 }
 
-export interface PathInfo {
-  status: PathInfo_status;
+export interface StatusInfo {
+  status: StatusInfo_status;
 }
 
 /* tslint:disable */
@@ -464,6 +466,9 @@ export interface User {
 export interface Card_card {
   __typename: "Card";
   word: string;
+  pronunciation: string | null;
+  vocabulary: string | null;
+  times: number;
 }
 
 export interface Card {

@@ -1,36 +1,34 @@
-input UserInput {
-  id: ID!
-  username: String
-}
+# input UserInput {
+#   id: ID!
+#   username: String
+# }
 
-input WordInput {
-  word: String!
-  pronunciation: String
-  vocabulary: String
-  times: Int!
-}
+# input WordInput {
+#   word: String!
+#   pronunciation: String
+#   vocabulary: String
+#   times: Int!
+# }
 
-type Mutation {
+extend type Mutation {
   # ユーザ情報を更新する
-  updateUser(id: String!, username: String!): User
+  updateUser(id: String!, username: String!): User!
   # 画面パスを更新する
-  updatePath(path: Int!): Screen
+  updatePath(path: Int!): Status!
     # 画面パスを更新する
-  updateSetId(id: String!): Status
+  updateSetId(id: String!): Status!
 
-  # # 新規単語をローカルに保存する
-  # saveNewwords(words: RegistWordInput!): Newwords
   # # ローカルの新規単語リストをクリアする
-  clearNewwords: Newwords
+  # clearNewwords: Newwords
   # # ローカルの単語リストから単語を削除する
-  removeWord(word: String!): Newwords
+  # removeWord(word: String!): Newwords
 
   # 学習リストをローカルに保存する
-  saveWordList(list: [WordInput!]!): Boolean
+  # saveWordList(list: [WordInput!]!): Boolean
   # 学習リストをローカルに保存する
   clearWordList: Boolean
-  # 前の学習単語
-  prevWord: Word
-  # 次の学習単語
-  nextWord: Word
+  # 前のカード情報
+  prevCard: Card
+  # 次のカード情報
+  nextCard: Card
 }

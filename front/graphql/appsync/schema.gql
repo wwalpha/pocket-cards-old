@@ -64,13 +64,6 @@ type Speech {
   url: String!
 }
 
-type User {
-  # userId
-  userId: ID!
-  # user名
-  username: String
-}
-
 type Word {
   # セットID
   setId: ID!

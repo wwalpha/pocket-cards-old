@@ -1,7 +1,7 @@
 # 新規単語管理
-type Newwords {
-  words: [String!]!
-}
+# type Newwords {
+#   words: [String]
+# }
 
 # ユーザ情報
 type User {
@@ -9,23 +9,20 @@ type User {
   username: String
 }
 
-# 画面パス
-type Screen {
-  path: Int!
-}
-
 # アプリステータス
 type Status {
   setId: String
+  path: Int!
+  cardIndex: Int!
 }
 
 # 単語情報
-type Word {
-  word: String!
-  pronunciation: String
-  vocabulary: String
-  times: Int!
-}
+# type Word {
+#   word: String!
+#   pronunciation: String
+#   vocabulary: String
+#   times: Int!
+# }
 
 # カード情報
 type Card {
@@ -33,11 +30,4 @@ type Card {
   pronunciation: String
   vocabulary: String
   times: Int!
-}
-
-# 学習情報
-type Study {
-  list: [Word]!
-  index: Int!
-  card: Card
 }

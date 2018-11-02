@@ -1,60 +1,5 @@
 schema {
   query: Query
-  mutation: Mutation
-}
-
-type Query {
-  # ユーザ情報
-  user: User!
-  # 操作ステータス
-  status: Status!
-  # 画面情報
-  screen: Screen!
-  # 新規登録単語
-  newwords: Newwords
-  # 学習情報
-  study: Study
-  # カード情報
-  card: Word
-}
-
-type Mutation {
-  # ユーザ情報を更新する
-  updateUser(id: String!, username: String!): User
-  # 画面パスを更新する
-  updatePath(path: Int!): Screen
-  # 画面パスを更新する
-  updateSetId(id: String!): Status
-  # # 新規単語をローカルに保存する
-   # saveNewwords(words: RegistWordInput!): Newwords
-   # # ローカルの新規単語リストをクリアする
-  clearNewwords: Newwords
-  # # ローカルの単語リストから単語を削除する
-  removeWord(word: String!): Newwords
-  # 学習リストをローカルに保存する
-  saveWordList(list: [WordInput!]!): Boolean
-  # 学習リストをローカルに保存する
-  clearWordList: Boolean
-  # 前の学習単語
-  prevWord: Word
-  # 次の学習単語
-  nextWord: Word
-}
-
-input UserInput {
-  id: ID!
-  username: String
-}
-
-input WordInput {
-  word: String!
-  pronunciation: String
-  vocabulary: String
-  times: Int!
-}
-
-type Newwords {
-  words: [String!]!
 }
 
 type User {
@@ -62,19 +7,10 @@ type User {
   username: String
 }
 
-type Screen {
-  path: Int!
-}
-
 type Status {
   setId: String
-}
-
-type Word {
-  word: String!
-  pronunciation: String
-  vocabulary: String
-  times: Int!
+  path: Int!
+  cardIndex: Int!
 }
 
 type Card {
@@ -84,8 +20,17 @@ type Card {
   times: Int!
 }
 
-type Study {
-  list: [Word]!
-  index: Int!
+extend type Mutation {
+  updateUser(id: String!, username: String!): User!
+  updatePath(path: Int!): Status!
+  updateSetId(id: String!): Status!
+  clearWordList: Boolean
+  prevCard: Card
+  nextCard: Card
+}
+
+extend type Query {
+  user: User!
+  status: Status!
   card: Card
 }

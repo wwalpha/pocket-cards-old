@@ -22,11 +22,4 @@ extend type Mutation {
   clearNewwords: Boolean
   # ローカルの単語リストから単語を削除する
   removeNewword(word: String!): Boolean
-
-  # 学習リストをローカルに保存する
-  clearCardList: Boolean
-  # 前のカード情報
-  prevCard: Card
-  # 次のカード情報
-  nextCard: Card
 }

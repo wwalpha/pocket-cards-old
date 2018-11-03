@@ -7,4 +7,4 @@ aws-exports.*
 /public
 /dist
 package-lock.json
-amplify/.config/project-config.json
+/amplify/.config/project-config.json

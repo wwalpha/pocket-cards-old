@@ -1,24 +1,22 @@
 import { ApolloCache } from 'apollo-cache';
-import { UpdateSetIdVariables, UpdateSetId } from 'typings/graphql';
-import { GQL_UPDATE_SET_ID } from '../mutations/index';
+import { UpdateSetIdVariables, StatusInfo } from 'typings/graphql';
+import { GQL_STATUS_INFO, readStatus } from '@gql';
 
 /** セットIDを保存する */
 export default (_: any, { id }: UpdateSetIdVariables, context: any) => {
+  console.log(context);
   const cache = context.cache as ApolloCache<any>;
 
-  const data: UpdateSetId = {
-    updateSetId: {
-      __typename: 'Status',
-      setId: id,
-    },
-  };
+  const statusInfo = readStatus(cache);
+
+  statusInfo.status.setId = id;
 
   // Cache更新
-  cache.writeQuery<UpdateSetId>({
-    query: GQL_UPDATE_SET_ID, data,
+  cache.writeQuery<StatusInfo>({
+    query: GQL_STATUS_INFO, data: statusInfo,
   });
 
-  console.log('Status', data);
+  console.log('Status', statusInfo);
 
-  return data.updateSetId;
+  return statusInfo.status;
 };

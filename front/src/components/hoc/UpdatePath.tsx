@@ -18,7 +18,6 @@ class UpdatePath extends React.Component<Props> {
     return (
       <Link
         to={to}
-        onClick={this.handleClick}
         {...props}
       />
     );

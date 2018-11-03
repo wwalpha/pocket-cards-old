@@ -17,27 +17,16 @@ type Status {
   cardIndex: Int!
 }
 
-type Card {
-  word: String!
-  pronunciation: String
-  vocabulary: String
-  times: Int!
-}
-
 extend type Mutation {
   updateUser(id: String!, username: String!): User!
   updatePath(path: Int!): Status!
   updateSetId(id: String!): Status!
   clearNewwords: Boolean
   removeNewword(word: String!): Boolean
-  clearCardList: Boolean
-  prevCard: Card
-  nextCard: Card
 }
 
 extend type Query {
   user: User!
   status: Status!
-  card: Card
   newwords: Newwords!
 }

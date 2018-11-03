@@ -2,10 +2,8 @@ import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import { HEADER, IconInfo } from '@const';
-import { UpdatePath } from '@comp/hoc';
-import { Query } from 'react-apollo';
-import { StatusInfo } from 'typings/graphql';
 import { GQL_STATUS_INFO } from '@gql';
+import { UpdatePath, StatusInfoQuery } from '@hoc';
 
 class Header extends React.Component<Props> {
 
@@ -53,6 +51,7 @@ class Header extends React.Component<Props> {
           const { path } = data.status;
           const info = HEADER[path];
 
+          console.log(path, info, HEADER);
           return (
             <AppBar position="static" classes={{ root: classes.root }}>
               <Toolbar>
@@ -88,8 +87,6 @@ const styles = (): StyleRules => ({
     textAlign: 'center',
   },
 });
-
-class StatusInfoQuery extends Query<StatusInfo, any> { }
 
 export interface Props extends WithStyles<StyleRules> { }
 

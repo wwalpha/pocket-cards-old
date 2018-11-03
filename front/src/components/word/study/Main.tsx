@@ -1,121 +1,155 @@
 import * as React from 'react';
-import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
+import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import {
-  Card, CardHeader, CardContent, CardActions,
-  IconButton, Typography, Button,
+  Card, CardContent, CardActions,
+  IconButton, Typography, Button, Grid,
 } from '@material-ui/core';
 import {
   Favorite as FavoriteIcon,
 } from '@material-ui/icons';
 import classnames from 'classnames';
-import { compose, withApollo, WithApolloClient } from 'react-apollo';
-import { F_PREV_CARD, F_NEXT_CARD, PrevCardProps, NextCardProps, GQL_CARD, F_STUDY_SET, StudySetProps } from '@gql';
-import { CardQuery } from '@hoc';
+import { withApollo, WithApolloClient } from 'react-apollo';
+import { GQL_STUDY_SET } from '@gql';
+import { StudySet, StudySetVariables, StudySet_studySet } from 'typings/graphql';
+import { readStatus } from 'src/graphql/local/utils';
 
 class Main extends React.Component<Props, State> {
-  state = {
+  state: State = {
     transform: false,
+    index: -1,
   };
 
+  /** 初期処理 */
   async componentWillMount() {
-    const { studySet } = this.props;
+    const { client } = this.props;
 
-    console.log(studySet);
-    // const { setId, actions } = this.props;
+    const statusInfo = readStatus(client.cache);
 
-    // const result = await Api.studySet(setId);
+    // エラーチェック
+    if (!statusInfo.status.setId) return;
 
-    // actions.saveStudySet(result);
+    // Graph Query
+    const result = await client.query<StudySet, StudySetVariables>({
+      query: GQL_STUDY_SET,
+      variables: {
+        setId: statusInfo.status.setId,
+      },
+    });
+
+    // ローカルに保存する
+    this.setState({
+      studySet: (result.data.studySet as StudySet_studySet[]),
+      index: 0,
+    });
   }
 
   /** カード回し */
   handleRotate = () => this.setState({ transform: !this.state.transform });
   // /** 前へ */
-  // handleNext = () => this.props.actions.nextCard();
+  handleNext = () => this.setState({ index: this.state.index + 1 });
   // /** 次へ */
-  // handlePrev = () => this.props.actions.prevCard();
+  handlePrev = () => this.setState({ index: this.state.index - 1 });
 
   render() {
-    const { classes, nextCard, prevCard } = this.props;
+    const { classes } = this.props;
+    console.log('state', this.state);
+
+    if (this.state.index < 0 || !this.state.studySet) {
+      return <div>Loading...</div>;
+    }
+
+    const { studySet, index } = this.state;
+    const card = studySet[this.state.index];
 
     return (
-      <CardQuery query={GQL_CARD}>
-        {({ loading, data, error }) => {
-          if (loading) return <div>Loading</div>;
-          if (error) return <h1>ERROR</h1>;
-          if (!data || !data.card) return null;
-
-          const { card } = data;
-
-          return (
-            <div className={classes.root} style={{ transform: this.state.transform ? 'rotateY(180deg)' : '' }}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={prevCard}
+      <React.Fragment>
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={index === 0}
+          onClick={this.handlePrev}
+        >
+          前へ
+        </Button>
+        <div className={classes.root} style={{ transform: this.state.transform ? 'rotateY(180deg)' : '' }}>
+          <Card classes={{ root: classes.card }}>
+            <CardContent classes={{ root: classes.body }} onClick={this.handleRotate}>
+              <Grid container
+                direction="column"
+                alignItems="center"
+                justify="center"
+                classes={{
+                  container: classes.container,
+                  item: classes.item,
+                }}
               >
-                前へ
-            </Button>
-              <Card classes={{ root: classes.card }}>
-                <CardHeader
-                  title="Shrimp and Chorizo Paella"
-                  subheader="September 14, 2016"
-                />
-                <CardContent classes={{ root: classes.body }} onClick={this.handleRotate}>
-                  <Typography component="p">
+                <Grid item classes={{ item: classes.item }}>
+                  <Typography component="h2" variant="display2">
                     {card.word}
                   </Typography>
-                </CardContent>
-                <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-              <Card classes={{
-                root: classnames(classes.card, classes.rotate),
-              }}>
-                <CardHeader
-                  title="Shrimp and Chorizo Paella"
-                  subheader="September 14, 2016"
-                />
-                <CardContent classes={{ root: classes.body }} onClick={this.handleRotate}>
-                  <Typography component="p">
-                    解釈
-                </Typography>
-                </CardContent>
-                <CardActions disableActionSpacing>
-                  <IconButton aria-label="Add to favorites">
-                    <FavoriteIcon />
-                  </IconButton>
-                </CardActions>
-              </Card>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={nextCard}
+                </Grid>
+              </Grid>
+            </CardContent>
+            <CardActions disableActionSpacing>
+              <IconButton aria-label="Add to favorites">
+                <FavoriteIcon />
+              </IconButton>
+            </CardActions>
+          </Card>
+          <Card classes={{
+            root: classnames(classes.card, classes.rotate),
+          }}>
+            <CardContent classes={{ root: classes.body }} onClick={this.handleRotate}>
+              <Grid container
+                direction="column"
+                alignItems="center"
+                justify="center"
+                classes={{ container: classes.container }}
               >
-                次へ
-            </Button>
-            </div>
-          );
-        }}
-      </CardQuery>
+                <Grid item classes={{ item: classes.item }}>
+                  <Typography component="h2" variant="display2">
+                    /{card.pronunciation}/
+                  </Typography>
+                </Grid>
+                <Grid item classes={{ item: classes.item }}>
+                  <Typography component="h2" variant="display2">
+                    {card.vocabulary}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </CardContent>
+            <CardActions disableActionSpacing>
+              <IconButton aria-label="Add to favorites">
+                <FavoriteIcon />
+              </IconButton>
+            </CardActions>
+          </Card>
+        </div>
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={(studySet.length - 1) === index}
+          onClick={this.handleNext}
+        >
+          次へ
+        </Button>
+      </React.Fragment>
     );
   }
 }
 
-const styles = (): StyleRules => ({
+const styles = ({ spacing: { unit } }: Theme): StyleRules => ({
   root: {
     position: 'relative',
     transformStyle: 'preserve-3d',
-    transition: 'all 1s ease',
+    transition: 'all 0.5s ease',
     cursor: 'pointer',
-    height: 'inherit',
+    height: '85%',
+    padding: `${unit * 2}px 0px`,
   },
   card: {
     width: '100%',
-    height: 'inherit',
+    height: 'calc(100% - 32px)',
     position: 'absolute',
     display: 'flex',
     flexDirection: 'column',
@@ -123,22 +157,28 @@ const styles = (): StyleRules => ({
   },
   body: {
     flexGrow: 1,
+    height: 'calc(100% - 92px)',
   },
   rotate: {
     transform: 'rotateY(180deg)',
   },
+  container: {
+    height: '100%',
+  },
+  item: {
+    padding: `${unit}px`,
+  },
 });
 
 export interface State {
-  [key: string]: any;
+  studySet?: StudySet_studySet[];
   transform: boolean;
+  index: number;
 }
 
 /** OwnProps */
-export interface OwnProps {
-}
+export interface TProps { }
 
-export interface Props extends WithApolloClient<any> { }
+export interface Props extends WithApolloClient<TProps>, WithStyles<StyleRules> { }
 
-export default withApollo(Main);
-// compose(F_PREV_CARD, F_NEXT_CARD)
+export default withStyles(styles)(withApollo(Main));

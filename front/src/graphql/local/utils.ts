@@ -2,7 +2,7 @@ import { GQL_STATUS_INFO, GQL_STUDY_SET } from '@gql';
 import { ApolloCache } from 'apollo-cache';
 import { StudySet, StatusInfo } from 'typings/graphql';
 
-export const queryStudySet = (cache: ApolloCache<any>) => {
+export const readStudySet = (cache: ApolloCache<any>) => {
   const result = cache.readQuery<StudySet>({
     query: GQL_STUDY_SET,
   });
@@ -12,7 +12,8 @@ export const queryStudySet = (cache: ApolloCache<any>) => {
   return result;
 };
 
-export const queryStatus = (cache: ApolloCache<any>) => {
+/** ステータスを取得する */
+export const readStatus = (cache: ApolloCache<any>) => {
   const result = cache.readQuery<StatusInfo>({
     query: GQL_STATUS_INFO,
   });

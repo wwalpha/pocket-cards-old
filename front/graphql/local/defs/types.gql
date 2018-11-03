@@ -15,19 +15,3 @@ type Status {
   path: Int!
   cardIndex: Int!
 }
-
-# 単語情報
-# type Word {
-#   word: String!
-#   pronunciation: String
-#   vocabulary: String
-#   times: Int!
-# }
-
-# カード情報
-type Card {
-  word: String!
-  pronunciation: String
-  vocabulary: String
-  times: Int!
-}

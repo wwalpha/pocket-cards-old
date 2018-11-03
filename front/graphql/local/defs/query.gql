@@ -3,8 +3,6 @@ extend type Query {
   user: User!
   # ステータス
   status: Status!
-  # カード情報
-  card: Card
   # 新規単語
   newwords: Newwords!
 }

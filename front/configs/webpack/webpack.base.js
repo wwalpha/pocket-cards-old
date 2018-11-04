@@ -17,8 +17,7 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js'],
     alias: {
       src: path.resolve(__dirname, '../../src/'),
-      '@gql': path.resolve(__dirname, '../../src/graphql/index.ts'),
-      '@gql/functions': path.resolve(__dirname, '../../src/graphql/functions.ts'),
+      '@gql': path.resolve(__dirname, '../../src/graphql'),
       '@comp': path.resolve(__dirname, '../../src/components'),
       '@utils': path.resolve(__dirname, '../../src/utils'),
       'typings': path.resolve(__dirname, '../../typings'),

@@ -1,6 +1,6 @@
 import { StudySet, StudySetVariables, StudySet_studySet } from 'typings/graphql';
 import { ChildProps, graphql } from 'react-apollo';
-import { GQL_STUDY_SET } from '../queries';
+import { GQL_STUDY_SET } from '@gql/appsync';
 
 export interface Props {
   studySet?: (StudySet_studySet | null)[];

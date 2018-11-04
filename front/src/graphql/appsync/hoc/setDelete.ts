@@ -1,6 +1,6 @@
 import { SetDelete, SetDeleteVariables } from 'typings/graphql';
 import { ChildProps, graphql } from 'react-apollo';
-import { GQL_SET_DELETE } from '../mutations';
+import { GQL_SET_DELETE } from '@gql/appsync';
 
 export interface Props {
   setDelete: (userId: string, setId: string) => void;

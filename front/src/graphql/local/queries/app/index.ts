@@ -1,11 +1,11 @@
 export * from './user';
 
-import * as Status from './status';
-import * as User from './user';
+import * as StatusInfo from './status';
+import * as UserInfo from './user';
 
 export {
-  Status,
-  User,
+  StatusInfo,
+  UserInfo,
 };
 
 export { GQL_STATUS_INFO } from './status';

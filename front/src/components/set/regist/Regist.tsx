@@ -3,7 +3,7 @@ import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/sty
 import { TextField, Grid } from '@material-ui/core';
 import { RegistBtn } from '.';
 import { compose } from 'react-apollo';
-import { User } from '@gql/local';
+import { UserInfo } from '@gql/local';
 
 class Regist extends React.Component<Props, State> {
   state: State = {
@@ -47,13 +47,13 @@ const styles = (theme: Theme): StyleRules => ({
 export interface OwnProps {
 }
 
-export interface Props extends OwnProps, User.Props, WithStyles<StyleRules> { }
+export interface Props extends OwnProps, UserInfo.Props, WithStyles<StyleRules> { }
 
 export interface State {
   [key: string]: any;
 }
 
 export default compose(
-  User,
+  UserInfo.default,
   withStyles(styles),
 )(Regist);

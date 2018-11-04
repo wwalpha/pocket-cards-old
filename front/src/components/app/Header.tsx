@@ -4,7 +4,7 @@ import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import { HEADER, IconInfo } from '@const';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { compose } from 'react-apollo';
-import { UpdatePath, Status } from '@gql/local';
+import { UpdatePath, StatusInfo } from '@gql/local';
 
 class Header extends React.Component<Props> {
 
@@ -86,11 +86,11 @@ const styles = (): StyleRules => ({
   },
 });
 
-export interface Props extends UpdatePath.Props, Status.Props, RouteComponentProps, WithStyles<StyleRules> { }
+export interface Props extends UpdatePath.Props, StatusInfo.Props, RouteComponentProps, WithStyles<StyleRules> { }
 
 export default compose(
-  UpdatePath,
-  Status,
+  UpdatePath.default,
+  StatusInfo.default,
   withRouter,
   withStyles(styles),
 )(Header);

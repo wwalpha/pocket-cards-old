@@ -60,6 +60,6 @@ const styles = ({ spacing: { unit } }: Theme): StyleRules => ({
 export interface Props extends Image2Word.Props, WithStyles<StyleRules> { }
 
 export default compose(
-  Image2Word,
+  Image2Word.default,
   withStyles(styles),
 )(UploadImage);

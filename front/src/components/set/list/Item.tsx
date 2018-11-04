@@ -96,8 +96,8 @@ export interface OwnProps {
 export interface Props extends OwnProps, UpdatePath.Props, UpdateSetId.Props, RouteComponentProps, WithStyles { }
 
 export default compose(
-  UpdateSetId,
-  UpdatePath,
+  UpdateSetId.default,
+  UpdatePath.default,
   withStyles(styles),
   withRouter,
 )(ListItem) as React.ComponentType<OwnProps>;

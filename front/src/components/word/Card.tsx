@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
-import { Card, CardContent, Typography, CardActions, Grid, IconButton } from '@material-ui/core';
+import { Card as MCard, CardContent, Typography, CardActions, Grid, IconButton } from '@material-ui/core';
 import { Favorite as FavoriteIcon } from '@material-ui/icons';
 import classnames from 'classnames';
 import { StudySet_studySet } from 'typings/graphql';
 
-class WordCard extends React.Component<Props, State> {
+class Card extends React.Component<Props, State> {
   state: State = {
     transform: false,
   };
@@ -18,7 +18,7 @@ class WordCard extends React.Component<Props, State> {
 
     return (
       <div className={classes.root} style={{ transform: this.state.transform ? 'rotateY(180deg)' : '' }}>
-        <Card classes={{ root: classes.card }}>
+        <MCard classes={{ root: classes.card }}>
           <CardContent classes={{ root: classes.body }} onClick={this.handleRotate}>
             <Grid container
               direction="column"
@@ -41,8 +41,8 @@ class WordCard extends React.Component<Props, State> {
               <FavoriteIcon />
             </IconButton>
           </CardActions>
-        </Card>
-        <Card classes={{
+        </MCard>
+        <MCard classes={{
           root: classnames(classes.card, classes.rotate),
         }}>
           <CardContent classes={{ root: classes.body }} onClick={this.handleRotate}>
@@ -72,7 +72,7 @@ class WordCard extends React.Component<Props, State> {
               <FavoriteIcon />
             </IconButton>
           </CardActions>
-        </Card>
+        </MCard>
       </div>
     );
   }
@@ -120,4 +120,4 @@ export interface State {
   card?: StudySet_studySet;
 }
 
-export default withStyles(styles)(WordCard);
+export default withStyles(styles)(Card);

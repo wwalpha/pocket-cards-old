@@ -84,7 +84,7 @@ export interface OwnProps {
 export interface Props extends OwnProps, UpdatePath.Props, RouteComponentProps, WithStyles<StyleRules> { }
 
 export default compose(
-  UpdatePath,
+  UpdatePath.default,
   withRouter,
   withStyles(styles),
 )(Menu);

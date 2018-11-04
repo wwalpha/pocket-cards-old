@@ -77,7 +77,7 @@ const styles = (theme: Theme): StyleRules => ({
 export interface Props extends UpdatePath.Props, RouteComponentProps, WithStyles<StyleRules> { }
 
 export default compose(
-  UpdatePath,
+  UpdatePath.default,
   withStyles(styles),
   withRouter,
 )(Footer);

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { compose } from 'react-apollo';
 import { RouteComponentProps, withRouter } from 'react-router';
 import ListItem from './ListItem';
-import { Newwords, UpdatePath, Status } from '@gql/local';
+import { Newwords, UpdatePath, StatusInfo } from '@gql/local';
 import { RegistWords } from '@gql/appsync';
 
 class Regist extends React.Component<Props, State> {
@@ -117,13 +117,13 @@ export interface State {
   words: string[];
 }
 
-export interface Props extends Status.Props, Newwords.Props, RegistWords.Props, UpdatePath.Props, RouteComponentProps, WithStyles<StyleRules> { }
+export interface Props extends StatusInfo.Props, Newwords.Props, RegistWords.Props, UpdatePath.Props, RouteComponentProps, WithStyles<StyleRules> { }
 
 export default compose(
-  Status,
-  UpdatePath,
-  RegistWords,
-  Newwords,
+  StatusInfo.default,
+  UpdatePath.default,
+  RegistWords.default,
+  Newwords.default,
   withStyles(styles),
   withRouter,
 )(Regist);

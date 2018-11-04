@@ -41,7 +41,7 @@ export interface OwnProps {
 export interface Props extends SetCreate.Props, OwnProps, WithStyles, RouteComponentProps { }
 
 export default compose(
-  SetCreate,
+  SetCreate.default,
   withStyles(styles),
   withRouter,
 )(RegistBtn) as React.ComponentType<OwnProps>;

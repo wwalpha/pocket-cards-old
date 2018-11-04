@@ -5,7 +5,7 @@ import { Grid } from '@material-ui/core';
 import { SetListVariables, SetList } from 'typings/graphql';
 import Item from './Item';
 import { GQL_SET_LIST } from '@gql/appsync';
-import { User } from '@gql/local';
+import { UserInfo } from '@gql/local';
 
 class List extends React.Component<Props, {}> {
 
@@ -44,9 +44,9 @@ const styles = (): StyleRules => ({
 
 class SetListQuery extends Query<SetList, SetListVariables> { }
 
-export interface Props extends User.Props, WithStyles { }
+export interface Props extends UserInfo.Props, WithStyles { }
 
 export default compose(
-  User,
+  UserInfo.default,
   withStyles(styles),
 )(List);

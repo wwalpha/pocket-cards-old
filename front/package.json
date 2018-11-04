@@ -8,10 +8,10 @@
     "schema": "yarn schema:init && yarn schema:update && yarn schema:codegen && yarn schema:generate",
     "resolver": "ts-node graphql/deploy jw4s4q3gqbgkpbhr2pnk5uziji",
     "prod:build": "webpack --config configs/webpack/webpack.prod.js",
-    "schema:init": "ts-node graphql/local/schema.ts && ts-node graphql/appsync/schema.ts",
-    "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./graphql/appsync/schema.gql",
+    "schema:init": "ts-node ../graphql/local/schema.ts && ts-node ../graphql/appsync/schema.ts",
+    "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://../graphql/appsync/schema.gql",
     "schema:codegen": "amplify codegen && ts-node src/graphql/appsync/convert",
-    "schema:generate": "apollo codegen:generate --addTypename --target=typescript --schema=graphql/appsync/schema.json --clientSchema=graphql/local/schema.gql  --queries=src/graphql/**/*.ts --outputFlat=./typings/graphql.d.ts"
+    "schema:generate": "apollo codegen:generate --addTypename --target=typescript --schema=../graphql/appsync/schema.json --clientSchema=../graphql/local/schema.gql  --queries=src/graphql/**/*.ts --outputFlat=./typings/graphql.d.ts"
   },
   "author": "",
   "license": "ISC",
@@ -57,7 +57,6 @@
     "html-webpack-plugin": "^3.2.0",
     "js-yaml": "^3.12.0",
     "json-loader": "^0.5.7",
-    "merge-graphql-schemas": "^1.5.7",
     "react-hot-loader": "^4.3.12",
     "rimraf": "^2.6.2",
     "source-map-loader": "^0.2.4",

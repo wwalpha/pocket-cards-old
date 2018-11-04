@@ -1,6 +1,6 @@
 projects:
   dev-PocketCards:
-    schemaPath: graphql\appsync\schema.json
+    schemaPath: ..\graphql\appsync\schema.json
     includes:
       - src\graphql\appsync\mutations.ts
       - src\graphql\appsync\queries.ts

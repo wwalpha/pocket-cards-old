@@ -2,8 +2,8 @@ import * as React from 'react';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import { TextField, Grid } from '@material-ui/core';
 import { RegistBtn } from '.';
-import { GQL_USER_INFO } from '@gql/local';
-import { UserInfoQuery } from '@hoc';
+import { compose } from 'react-apollo';
+import { User } from '@gql/local';
 
 class Regist extends React.Component<Props, State> {
   state: State = {
@@ -17,33 +17,22 @@ class Regist extends React.Component<Props, State> {
     })
 
   render() {
-    const { classes } = this.props;
+    const { classes, user } = this.props;
     const { name = '' } = this.state;
 
     return (
-      <UserInfoQuery query={GQL_USER_INFO}>
-        {({ data }) => {
-          console.log(data);
-
-          if (!data || !data.user) return null;
-
-          const { user: { id } } = data;
-          return (
-            <Grid container>
-              <TextField
-                id="outlined-name"
-                label="セット名称"
-                className={classes.textField}
-                value={this.state['name']}
-                onChange={this.handleChange('name')}
-                margin="normal"
-                variant="outlined"
-              />
-              <RegistBtn userId={id} name={name} />
-            </Grid>
-          );
-        }}
-      </UserInfoQuery>
+      <Grid container>
+        <TextField
+          id="outlined-name"
+          label="セット名称"
+          className={classes.textField}
+          value={this.state['name']}
+          onChange={this.handleChange('name')}
+          margin="normal"
+          variant="outlined"
+        />
+        <RegistBtn userId={user.id} name={name} />
+      </Grid>
     );
   }
 }
@@ -58,10 +47,13 @@ const styles = (theme: Theme): StyleRules => ({
 export interface OwnProps {
 }
 
-export interface Props extends OwnProps, WithStyles<StyleRules> { }
+export interface Props extends OwnProps, User.Props, WithStyles<StyleRules> { }
 
 export interface State {
   [key: string]: any;
 }
 
-export default withStyles(styles)(Regist);
+export default compose(
+  User,
+  withStyles(styles),
+)(Regist);

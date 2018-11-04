@@ -9,7 +9,7 @@ import { ServicePrincipal } from '@aws-cdk/aws-iam';
 
 const service = 'appsync';
 const functionName = 'image-to-word';
-const handler = 'app.handler';
+const handler = 'index.handler';
 const runtime = Runtime.NodeJS810;
 const memorySize = 256;
 const timeout = 10;

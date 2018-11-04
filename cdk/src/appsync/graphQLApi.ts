@@ -16,7 +16,7 @@ export default (parent: Construct, props: AppSyncInput) => {
   const resource = new cloudformation.GraphQLApiResource(parent, 'GraphQLApi',
     {
       authenticationType: 'AMAZON_COGNITO_USER_POOLS',
-      graphQlApiName: `${props.envType}-${PROJECT_NAME}`,
+      name: `${props.envType}-${PROJECT_NAME}`,
       userPoolConfig: {
         awsRegion: new AwsRegion(),
         userPoolId: props.cognito.userPoolId,

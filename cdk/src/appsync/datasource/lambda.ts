@@ -18,7 +18,7 @@ export default (parent: Construct, props: AppSyncInput, lambdaDef: LambdaProps, 
     parent,
     toUpper(lambdaDef.FunctionName),
     {
-      dataSourceName: `lambda_${toUpper(lambdaDef.FunctionName)}`,
+      name: `lambda_${toUpper(lambdaDef.FunctionName)}`,
       apiId,
       type: 'AWS_LAMBDA',
       lambdaConfig: {

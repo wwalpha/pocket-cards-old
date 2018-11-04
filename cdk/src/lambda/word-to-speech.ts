@@ -8,7 +8,7 @@ import { polly, s3 } from '../utils/policy';
 
 const service = 'appsync';
 const functionName = 'word-to-speech';
-const handler = 'app.handler';
+const handler = 'index.handler';
 const runtime = Runtime.NodeJS810;
 const memorySize = 256;
 const timeout = 10;

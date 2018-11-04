@@ -15,7 +15,7 @@ export default (parent: Construct, props: AppSyncInput, dynamodb: DynamodbProps,
   const resource = new cloudformation.DataSourceResource(parent,
     toUpper(dynamodb.TableName),
     {
-      dataSourceName: `dynamodb_${toUpper(dynamodb.TableName)}`,
+      name: `dynamodb_${toUpper(dynamodb.TableName)}`,
       apiId,
       type: 'AMAZON_DYNAMODB',
       dynamoDbConfig: {

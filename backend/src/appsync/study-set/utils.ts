@@ -56,7 +56,7 @@ export const getForgot = async (db: DocumentClient, setId: string, nextDate: str
 
 /**
  * 新規単語一覧を取得する
- * 
+ *
  * @param db DBクライアント
  * @param setId セットID
  * @param limit 取得上限
@@ -81,7 +81,11 @@ export const getNew = async (db: DocumentClient, setId: string, limit: number) =
 }).promise();
 
 export const getNow = () => {
-  const date = new Date();
+  const dates = new Date();
 
-  return `${date.getFullYear}${date.getMonth() + 1}${date.getDate()}`;
+  const year = dates.getFullYear();
+  const month = dates.getMonth() + 1;
+  const date = dates.getDate();
+
+  return `${year}${('00'.concat(month.toString())).slice(-2)}${('00'.concat(date.toString())).slice(-2)}`;
 };

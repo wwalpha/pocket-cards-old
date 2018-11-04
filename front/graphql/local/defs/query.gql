@@ -1,8 +1,0 @@
-extend type Query {
-  # ユーザ情報
-  user: User!
-  # ステータス
-  status: Status!
-  # 新規単語
-  newwords: Newwords!
-}

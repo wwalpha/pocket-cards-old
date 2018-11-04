@@ -7,7 +7,7 @@
     "dev": "node configs/server.js",
     "schema": "yarn schema:init && yarn schema:update && yarn schema:codegen && yarn schema:generate",
     "resolver": "ts-node graphql/deploy jw4s4q3gqbgkpbhr2pnk5uziji",
-    "prod:build": "webpack --config webpack/webpack.prod.js",
+    "prod:build": "webpack --config configs/webpack/webpack.prod.js",
     "schema:init": "ts-node graphql/local/schema.ts && ts-node graphql/appsync/schema.ts",
     "schema:update": "aws appsync start-schema-creation --api-id jw4s4q3gqbgkpbhr2pnk5uziji --definition fileb://./graphql/appsync/schema.gql",
     "schema:codegen": "amplify codegen && ts-node src/graphql/appsync/convert",

@@ -11,13 +11,15 @@ export default (parent: Construct, apiId: string) => {
   Object.keys(config).forEach((key) => {
     const resolver: ResolverProps = config[key];
 
-    createResolver(parent, resolver, apiId);
-  });
+    const t = createResolver(parent, resolver, apiId);
 
+  });
 };
 
-const createResolver = (parent: Construct, props: ResolverProps, apiId: string) => {
-  new cloudformation.ResolverResource(parent, `${props.FieldName}`, {
+const createResolver = (parent: Construct, props: ResolverProps, apiId: string) => new cloudformation.ResolverResource(
+  parent,
+  `${props.FieldName}`,
+  {
     apiId,
     typeName: props.TypeName,
     dataSourceName: props.DataSourceName,
@@ -25,4 +27,4 @@ const createResolver = (parent: Construct, props: ResolverProps, apiId: string) 
     requestMappingTemplate: 'dummy',
     responseMappingTemplate: 'dummy',
   });
-};
+

@@ -43,14 +43,14 @@ class Main extends React.Component<Props, State> {
   handlePrev = () => this.setState({ index: this.state.index - 1 });
 
   render() {
-    console.log('state', this.state);
-
-    if (this.state.index < 0 || !this.state.studySet) {
-      return <div>Loading...</div>;
-    }
-
     const { studySet, index } = this.state;
-    const card = studySet[this.state.index];
+
+    // Loading...
+    if (index < 0 || !studySet) return <div>Loading...</div>;
+    // No Data
+    if (studySet.length === 0) return <div>Nothing...</div>;
+
+    const card = studySet[index];
 
     return (
       <React.Fragment>

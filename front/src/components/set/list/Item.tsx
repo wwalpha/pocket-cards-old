@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {
   StyleRulesCallback, Theme, WithStyles, withStyles,
-  Grid, Avatar, ListItem as MListItem, ListItemText, Paper,
+  Grid, Avatar, ListItem as MListItem, ListItemText,
 } from '@material-ui/core';
 import FolderIcon from '@material-ui/icons/Folder';
 // import { RemoveBtn } from '.';
@@ -34,54 +34,44 @@ class ListItem extends React.Component<Props, any> {
 
     return (
       <Grid container>
-        <Paper
-          elevation={1}
-          classes={{
-            elevation1: classes.paper,
-          }}>
-          {/* <RemoveBtn setId={setId} /> */}
-          <MListItem
-            button
-            disableRipple
-            classes={{ root: classes.listitem }}
-            onClick={this.handleClick}
-          >
-            <Avatar classes={{ root: classes.avatar }}>
-              <FolderIcon />
-            </Avatar>
-            <ListItemText
-              primary={primaryText}
-              secondary={secondaryText}
-            />
-          </MListItem>
-          {/* <Slide direction="left" in={this.state.delOpened} mountOnEnter unmountOnExit>
+        {/* <RemoveBtn setId={setId} /> */}
+        <MListItem
+          button
+          divider
+          disableRipple
+          classes={{ root: classes.listitem }}
+          onClick={this.handleClick}
+        >
+          <Avatar classes={{ root: classes.avatar }}>
+            <FolderIcon />
+          </Avatar>
+          <ListItemText
+            primary={primaryText}
+            secondary={secondaryText}
+          />
+        </MListItem>
+        {/* <Slide direction="left" in={this.state.delOpened} mountOnEnter unmountOnExit>
 
           </Slide> */}
-        </Paper>
       </Grid>
     );
   }
 }
 
-const styles: StyleRulesCallback = (theme: Theme) => ({
+const styles: StyleRulesCallback = ({ palette, spacing: { unit } }: Theme) => ({
   root: {
     width: '100%',
   },
-  paper: {
-    margin: '4px 16px',
-    width: '100%',
-    borderRadius: '2px',
-    display: 'flex',
-    backgroundColor: theme.palette.grey['200'],
-  },
   avatar: {
-    backgroundColor: theme.palette.secondary.light,
+    backgroundColor: palette.secondary.light,
+    width: `${4.5 * unit}px`,
+    height: `${4.5 * unit}px`,
   },
   list: { padding: '0px' },
   listitem: {
     flex: 1,
-    paddingTop: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
+    paddingTop: unit,
+    paddingBottom: unit,
   },
 });
 

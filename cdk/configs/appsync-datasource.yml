@@ -7,5 +7,5 @@ Lambda:
   - FunctionName: AddNewWords
   - FunctionName: StudyHistory
   - FunctionName: StudySet
-  - FunctionName: StudySave
+  - FunctionName: StudyAnswer
   - FunctionName: WordToSpeech

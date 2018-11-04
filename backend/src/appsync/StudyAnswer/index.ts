@@ -22,13 +22,9 @@ export const handler = (event: Request, context: Context, callback: Callback<Res
 export interface Response {
 }
 
-export interface StudySave {
-  word: string;
-  correct: boolean;
-  time: number;
-}
-
 export interface Request {
   setId: string;
-  words: StudySave[];
+  word: string;
+  correct: boolean;
+  times: number;
 }

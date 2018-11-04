@@ -18,10 +18,10 @@ RegistWordsResolver:
   TypeName: Mutation
   DataSourceName: lambda_AddNewWords
 
-StudySaveResolver:
-  FieldName: studySave
+StudyAnswerResolver:
+  FieldName: studyAnswer
   TypeName: Mutation
-  DataSourceName: lambda_StudySave
+  DataSourceName: lambda_StudyAnswer
 
 SetListResolver:
   FieldName: setList

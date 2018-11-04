@@ -3,15 +3,11 @@ input RegistWordsInput {
   words: [String]!
 }
 
-input StudyRecord {
+input StudyAnswerInput {
+  setId: ID!
   word: String!
-  correct: Boolean
+  correct: Boolean!
   times: Int!
-}
-
-input StudySaveInput {
-  setId: String!
-  words: [StudyRecord]!
 }
 
 type Mutation {
@@ -22,7 +18,7 @@ type Mutation {
   registWords(input: RegistWordsInput!): [Word]
 
   # 単語検定を保存する
-  studySave(input: StudySaveInput!): Boolean
+  studyAnswer(input: StudyAnswerInput!): Boolean
 }
 
 type Query {

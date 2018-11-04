@@ -1,4 +1,4 @@
-import { GraphQLApi, AppSyncInput, AppSyncOutput, GraphQLSchema, DataSource, Resolver } from '.';
+import { GraphQLApi, AppSyncInput, AppSyncOutput, GraphQLSchema, DataSource, Resolver, } from '.';
 import { Construct } from '@aws-cdk/cdk';
 
 export default (parent: Construct, props: AppSyncInput): AppSyncOutput => {

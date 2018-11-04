@@ -24,7 +24,7 @@ type Mutation {
   # 単語新規登録
   registWords(input: RegistWordsInput!): [Word]
   # 単語検定を保存する
-  studySave(input: StudySaveInput!): Boolean
+  studyAnswer(input: StudyAnswerInput!): Boolean
 }
 
 input RegistWordsInput {
@@ -32,15 +32,11 @@ input RegistWordsInput {
   words: [String]!
 }
 
-input StudyRecord {
+input StudyAnswerInput {
+  setId: ID!
   word: String!
-  correct: Boolean
+  correct: Boolean!
   times: Int!
-}
-
-input StudySaveInput {
-  setId: String!
-  words: [StudyRecord]!
 }
 
 type ImageWord {

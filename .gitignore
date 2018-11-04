@@ -7,3 +7,4 @@
 /lambda/distzip
 /lambda/src/**/*.js
 /graphql/generated
+/front/amplify/.config/project-config.json

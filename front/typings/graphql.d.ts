@@ -148,18 +148,18 @@ export interface RegistWordsVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: StudySave
+// GraphQL mutation operation: StudyAnswer
 // ====================================================
 
-export interface StudySave {
+export interface StudyAnswer {
   /**
    *   単語検定を保存する
    */
-  studySave: boolean | null;
+  studyAnswer: boolean | null;
 }
 
-export interface StudySaveVariables {
-  input: StudySaveInput;
+export interface StudyAnswerVariables {
+  input: StudyAnswerInput;
 }
 
 /* tslint:disable */
@@ -393,32 +393,6 @@ export interface UpdateUserVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: ClearNewwords
-// ====================================================
-
-export interface ClearNewwords {
-  clearNewwords: boolean | null;
-}
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
-// GraphQL mutation operation: RemoveNewword
-// ====================================================
-
-export interface RemoveNewword {
-  removeNewword: boolean | null;
-}
-
-export interface RemoveNewwordVariables {
-  word: string;
-}
-
-/* tslint:disable */
-// This file was automatically generated and should not be edited.
-
-// ====================================================
 // GraphQL query operation: StatusInfo
 // ====================================================
 
@@ -478,15 +452,11 @@ export interface RegistWordsInput {
   words: (string | null)[];
 }
 
-export interface StudyRecord {
-  word: string;
-  correct?: boolean | null;
-  times: number;
-}
-
-export interface StudySaveInput {
+export interface StudyAnswerInput {
   setId: string;
-  words: (StudyRecord | null)[];
+  word: string;
+  correct: boolean;
+  times: number;
 }
 
 //==============================================================

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import { Button, Grid } from '@material-ui/core';
-import { withApollo, WithApolloClient } from 'react-apollo';
+import { withApollo, WithApolloClient, compose } from 'react-apollo';
 import { StudySet, StudySetVariables, StudySet_studySet } from 'typings/graphql';
 import Card from '../Card';
-import { GQL_STUDY_SET } from '@gql/appsync';
-import { readStatus } from '@gql/local';
+import { GQL_STUDY_SET, StudyAnswer } from '@gql/appsync';
+import { readStatus, StatusInfo } from '@gql/local';
 
 class Main extends React.Component<Props, State> {
   state: State = {
@@ -38,18 +38,35 @@ class Main extends React.Component<Props, State> {
   }
 
   /** 次へ */
-  handleNext = () => this.setState({ index: this.state.index + 1 });
+  handleAnswer = async (correct: boolean) => {
+    const { status, studyAnswer } = this.props;
+    const { studySet, index } = this.state;
+
+    if (!studySet || !status.setId) return;
+
+    // 回答
+    await studyAnswer({
+      setId: status.setId,
+      word: studySet[index].word,
+      correct,
+      times: studySet[index].times,
+    });
+
+    this.setState({ index: this.state.index + 1 });
+  }
 
   render() {
-    console.log('state', this.state);
+    const { studySet, index } = this.state;
 
-    if (this.state.index < 0 || !this.state.studySet) {
-      return <div>Loading...</div>;
-    }
+    // Loading...
+    if (index < 0 || !studySet) return <div>Loading...</div>;
+    // No Data
+    if (studySet.length === 0) return <div>Nothing...</div>;
+    // No Data
+    if (studySet.length === index) return <div>Finish...</div>;
 
     const { classes } = this.props;
-    const { studySet } = this.state;
-    const card = studySet[this.state.index];
+    const card = studySet[index];
 
     return (
       <React.Fragment>
@@ -59,7 +76,7 @@ class Main extends React.Component<Props, State> {
             variant="contained"
             color="secondary"
             classes={{ root: classes.button }}
-            onClick={this.handleNext}
+            onClick={() => this.handleAnswer(false)}
           >
             知らない
           </Button>
@@ -67,7 +84,7 @@ class Main extends React.Component<Props, State> {
             variant="contained"
             color="primary"
             classes={{ root: classes.button }}
-            onClick={this.handleNext}
+            onClick={() => this.handleAnswer(true)}
           >
             知ってる
           </Button>
@@ -95,6 +112,11 @@ export interface State {
 /** OwnProps */
 export interface TProps { }
 
-export interface Props extends WithApolloClient<TProps>, WithStyles<StyleRules> { }
+export interface Props extends StudyAnswer.Props, StatusInfo.Props, WithApolloClient<TProps>, WithStyles<StyleRules> { }
 
-export default withStyles(styles)(withApollo(Main));
+export default compose(
+  StudyAnswer.default,
+  StatusInfo.default,
+  withApollo,
+  withStyles(styles),
+)(Main);

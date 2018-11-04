@@ -7,7 +7,7 @@ import { dummyCode } from '../utils/refs';
 import { LambdaRole } from '../utils/roles';
 
 const service = 'appsync';
-const functionName = 'study-save';
+const functionName = 'StudyAnswer';
 const handler = 'index.handler';
 const runtime = Runtime.NodeJS810;
 const memorySize = 256;
@@ -21,7 +21,7 @@ export default (parent: Construct, props: LambdaInput): Function => {
 
   role.attachInlinePolicy(dynamodb(parent, `${functionName}Role`));
 
-  const lambda = new Function(parent, functionName, {
+  const lambda = new Function(parent, functionName + '1', {
     functionName: `${props.envType}-${PROJECT_NAME}-${functionName}`,
     runtime,
     handler: getHandler(props, `${service}/${functionName}`, handler),

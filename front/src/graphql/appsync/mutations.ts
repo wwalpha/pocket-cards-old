@@ -44,8 +44,8 @@ mutation RegistWords($input: RegistWordsInput!) {
 }
 `;
 
-export const GQL_STUDY_SAVE = gql`
-mutation StudySave($input: StudySaveInput!) {
-  studySave(input: $input)
+export const GQL_STUDY_ANSWER = gql`
+mutation StudyAnswer($input: StudyAnswerInput!) {
+  studyAnswer(input: $input)
 }
 `;

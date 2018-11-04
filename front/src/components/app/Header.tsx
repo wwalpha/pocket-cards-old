@@ -32,6 +32,7 @@ class Header extends React.Component<Props> {
         <IconButton
           key={key}
           color="inherit"
+          style={{ position: 'absolute' }}
           onClick={() => this.handleClick(item)}
         >
           <item.icon />
@@ -40,7 +41,11 @@ class Header extends React.Component<Props> {
     }
 
     return (
-      <IconButton key={key} color="inherit" >
+      <IconButton
+        key={key}
+        color="inherit"
+        style={{ position: 'absolute' }}
+      >
         <item.icon />
       </IconButton>
     );

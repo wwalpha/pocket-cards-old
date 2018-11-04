@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
-import { Grid, Button } from '@material-ui/core';
+import { Grid, Button, Divider } from '@material-ui/core';
 import { PATH, PATH_INDEX } from '@const';
 import { compose } from 'react-apollo';
 import { withRouter, RouteComponentProps } from 'react-router';
@@ -27,33 +27,40 @@ class Menu extends React.Component<Props, {}> {
       >
         <Grid item xs={12} classes={{ item: classes.item }}>
           <Button
+            classes={{ root: classes.button }}
             variant="contained"
             fullWidth
             onClick={() => this.handleClick(PATH.WORD.REGIST, PATH_INDEX.WORD_REGIST)}
           >
             新規単語
           </Button>
+          <Divider />
         </Grid>
         <Grid item xs={12} classes={{ item: classes.item }}>
           <Button
+            classes={{ root: classes.button }}
             variant="contained"
             fullWidth
             onClick={() => this.handleClick(PATH.WORD.STUDY, PATH_INDEX.WORD_STUDY)}
           >
             単語学習
           </Button>
+          <Divider />
         </Grid>
         <Grid item xs={12} classes={{ item: classes.item }}>
           <Button
+            classes={{ root: classes.button }}
             variant="contained"
             fullWidth
             onClick={() => this.handleClick(PATH.WORD.TEST, PATH_INDEX.WORD_TEST)}
           >
             単語テスト
           </Button>
+          <Divider />
         </Grid>
         <Grid item xs={12} classes={{ item: classes.item }}>
           <Button
+            classes={{ root: classes.button }}
             variant="contained"
             fullWidth
             onClick={() => this.handleClick(PATH.WORD.HISTORY, PATH_INDEX.WORD_HISTORY)}
@@ -73,7 +80,13 @@ const styles = (): StyleRules => ({
   },
   item: {
     width: '100%',
-    margin: '0px 16px',
+    paddingBottom: '2px',
+  },
+  button: {
+    backgroundColor: 'transparent',
+    boxShadow: 'none',
+    borderRadius: 0,
+    letterSpacing: '0.5em',
   },
 });
 

@@ -1,5 +1,5 @@
-import * as mutations from './hoc/mutations';
-import * as queries from './hoc/queries';
+import * as mutations from './mutations';
+import * as queries from './queries';
 import * as fs from 'fs';
 import * as path from 'path';
 

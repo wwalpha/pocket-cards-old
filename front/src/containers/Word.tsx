@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Switch, Route } from 'react-router-dom';
-import { Regist, History, Menu, Study } from '@comp/word';
+import { Regist, History, Menu, Study, Test } from '@comp/word';
 import { PATH } from '@const';
 
 class Main extends React.Component<Props, {}> {
@@ -15,6 +15,7 @@ class Main extends React.Component<Props, {}> {
           <Route exact path={PATH.WORD.ROOT} component={Menu} />
           <Route path={PATH.WORD.REGIST} component={Regist} />
           <Route path={PATH.WORD.STUDY} component={Study} />
+          <Route path={PATH.WORD.TEST} component={Test} />
           <Route path={PATH.WORD.HISTORY} component={History} />
         </Switch>
         <Route children={children} />

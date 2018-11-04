@@ -2,10 +2,20 @@ import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { AppBar, Toolbar, IconButton, Typography } from '@material-ui/core';
 import { HEADER, IconInfo } from '@const';
-import { GQL_STATUS_INFO } from '@gql';
-import { UpdatePath, StatusInfoQuery } from '@hoc';
+import { RouteComponentProps, withRouter } from 'react-router';
+import { compose } from 'react-apollo';
+import { UpdatePath, Status } from '@gql/local';
 
 class Header extends React.Component<Props> {
+
+  handleClick = async ({ path, index }: IconInfo) => {
+    if (!path || !index) return;
+
+    // パス更新
+    await this.props.updatePath(index);
+    // 画面遷移
+    this.props.history.push(path);
+  }
 
   renderIcon = (item: IconInfo, key: number) => {
 
@@ -22,9 +32,7 @@ class Header extends React.Component<Props> {
         <IconButton
           key={key}
           color="inherit"
-          component={(props: any) => (
-            <UpdatePath to={item.path} path={item.index} {...props} />
-          )}
+          onClick={() => this.handleClick(item)}
         >
           <item.icon />
         </IconButton>
@@ -39,40 +47,30 @@ class Header extends React.Component<Props> {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, status } = this.props;
 
+    const { path } = status;
+    const info = HEADER[path];
+
+    console.log(status, path, info, HEADER);
     return (
-      <StatusInfoQuery query={GQL_STATUS_INFO}>
-        {({ loading, error, data }) => {
-          if (loading) return null;
-          if (error) return `Error!: ${error}`;
-          if (!data) return null;
+      <AppBar position="static" classes={{ root: classes.root }}>
+        <Toolbar>
+          {(() => {
+            if (!info.left || info.left.length === 0) return null;
 
-          const { path } = data.status;
-          const info = HEADER[path];
+            return info.left.map((item, idx) => this.renderIcon(item, idx));
+          })()}
+          <Typography color="inherit" className={classes.grow}>
+            {info.title}
+          </Typography>
+          {(() => {
+            if (!info.right || info.right.length === 0) return null;
 
-          console.log(path, info, HEADER);
-          return (
-            <AppBar position="static" classes={{ root: classes.root }}>
-              <Toolbar>
-                {(() => {
-                  if (!info.left || info.left.length === 0) return null;
-
-                  return info.left.map((item, idx) => this.renderIcon(item, idx));
-                })()}
-                <Typography color="inherit" className={classes.grow}>
-                  {info.title}
-                </Typography>
-                {(() => {
-                  if (!info.right || info.right.length === 0) return null;
-
-                  return info.right.map((item, idx) => this.renderIcon(item, idx));
-                })()}
-              </Toolbar>
-            </AppBar>
-          );
-        }}
-      </StatusInfoQuery>
+            return info.right.map((item, idx) => this.renderIcon(item, idx));
+          })()}
+        </Toolbar>
+      </AppBar>
     );
   }
 }
@@ -88,6 +86,11 @@ const styles = (): StyleRules => ({
   },
 });
 
-export interface Props extends WithStyles<StyleRules> { }
+export interface Props extends UpdatePath.Props, Status.Props, RouteComponentProps, WithStyles<StyleRules> { }
 
-export default withStyles(styles)(Header);
+export default compose(
+  UpdatePath,
+  Status,
+  withRouter,
+  withStyles(styles),
+)(Header);

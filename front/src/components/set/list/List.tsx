@@ -2,9 +2,10 @@ import * as React from 'react';
 import { Query, compose } from 'react-apollo';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
 import { Grid } from '@material-ui/core';
-import { SetListVariables, SetList, User } from 'typings/graphql';
-import { F_USER_INFO, GQL_SET_LIST } from '@gql';
+import { SetListVariables, SetList } from 'typings/graphql';
 import Item from './Item';
+import { GQL_SET_LIST } from '@gql/appsync';
+import { User } from '@gql/local';
 
 class List extends React.Component<Props, {}> {
 
@@ -43,6 +44,9 @@ const styles = (): StyleRules => ({
 
 class SetListQuery extends Query<SetList, SetListVariables> { }
 
-export interface Props extends User, WithStyles { }
+export interface Props extends User.Props, WithStyles { }
 
-export default withStyles(styles)(compose(F_USER_INFO)(List));
+export default compose(
+  User,
+  withStyles(styles),
+)(List);

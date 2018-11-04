@@ -6,7 +6,9 @@ import {
 } from '@material-ui/icons';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { PATH, PATH_INDEX } from '@const';
-import { UpdatePath } from '@comp/hoc';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { compose } from 'react-apollo';
+import { UpdatePath } from '@gql/local';
 
 class Footer extends React.Component<Props, {}> {
   state = {
@@ -14,6 +16,13 @@ class Footer extends React.Component<Props, {}> {
   };
 
   handleChange = (_: React.ChangeEvent<{}>, value: number) => this.setState({ value });
+
+  handleLink = async (to: string, path: number) => {
+    // パス更新
+    await this.props.updatePath(path);
+
+    this.props.history.push(to);
+  }
 
   render() {
     const { classes } = this.props;
@@ -31,27 +40,21 @@ class Footer extends React.Component<Props, {}> {
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          component={(props: any) => (
-            <UpdatePath to={PATH.HOME.ROOT} path={PATH_INDEX.HOME_ROOT} {...props} />
-          )}
+          onClick={() => this.handleLink(PATH.HOME.ROOT, PATH_INDEX.HOME_ROOT)}
         />
         <BottomNavigationAction
           icon={<WebAssetIcon />}
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          component={(props: any) => (
-            <UpdatePath to={PATH.SET.ROOT} path={PATH_INDEX.SET_ROOT} {...props} />
-          )}
+          onClick={() => this.handleLink(PATH.SET.ROOT, PATH_INDEX.SET_ROOT)}
         />
         <BottomNavigationAction
           icon={<PersonIcon />}
           classes={{ root: classes.actionSelected }}
           disableRipple
           disableTouchRipple
-          component={(props: any) => (
-            <UpdatePath to={PATH.USER.ROOT} path={PATH_INDEX.USER_ROOT} {...props} />
-          )}
+          onClick={() => this.handleLink(PATH.USER.ROOT, PATH_INDEX.USER_ROOT)}
         />
       </BottomNavigation>
     );
@@ -71,6 +74,10 @@ const styles = (theme: Theme): StyleRules => ({
   },
 });
 
-export interface Props extends WithStyles<StyleRules> { }
+export interface Props extends UpdatePath.Props, RouteComponentProps, WithStyles<StyleRules> { }
 
-export default withStyles(styles)(Footer);
+export default compose(
+  UpdatePath,
+  withStyles(styles),
+  withRouter,
+)(Footer);

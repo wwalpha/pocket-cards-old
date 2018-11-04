@@ -4,7 +4,7 @@ import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { PATH } from '@const';
 import { compose } from 'react-apollo';
-import { F_SET_CREATE, SetCreateProps } from '@gql';
+import { SetCreate } from '@gql/appsync';
 
 class RegistBtn extends React.Component<Props> {
 
@@ -38,6 +38,10 @@ export interface OwnProps {
   name: string;
 }
 
-export interface Props extends SetCreateProps, OwnProps, WithStyles, RouteComponentProps { }
+export interface Props extends SetCreate.Props, OwnProps, WithStyles, RouteComponentProps { }
 
-export default compose(F_SET_CREATE)(withStyles(styles)(withRouter(RegistBtn))) as React.ComponentType<OwnProps>;
+export default compose(
+  SetCreate,
+  withStyles(styles),
+  withRouter,
+)(RegistBtn) as React.ComponentType<OwnProps>;

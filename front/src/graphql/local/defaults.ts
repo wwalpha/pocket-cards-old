@@ -12,4 +12,8 @@ export default {
     cardIndex: 0,
   },
   card: null,
+  newwords: {
+    __typename: 'Newwords',
+    words: [],
+  },
 };

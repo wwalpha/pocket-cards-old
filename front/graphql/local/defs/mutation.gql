@@ -19,7 +19,7 @@ extend type Mutation {
   updateSetId(id: String!): Status!
 
   # ローカルの新規単語リストをクリアする
-  clearNewwords: Boolean
+  # clearNewwords: Boolean
   # ローカルの単語リストから単語を削除する
-  removeNewword(word: String!): Boolean
+  # removeNewword(word: String!): Boolean
 }

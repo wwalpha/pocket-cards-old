@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
+import { Button, Grid } from '@material-ui/core';
 import { withApollo, WithApolloClient } from 'react-apollo';
 import { StudySet, StudySetVariables, StudySet_studySet } from 'typings/graphql';
 import Card from '../Card';
@@ -37,10 +37,8 @@ class Main extends React.Component<Props, State> {
     });
   }
 
-  // /** 前へ */
+  /** 次へ */
   handleNext = () => this.setState({ index: this.state.index + 1 });
-  // /** 次へ */
-  handlePrev = () => this.setState({ index: this.state.index - 1 });
 
   render() {
     console.log('state', this.state);
@@ -49,34 +47,43 @@ class Main extends React.Component<Props, State> {
       return <div>Loading...</div>;
     }
 
-    const { studySet, index } = this.state;
+    const { classes } = this.props;
+    const { studySet } = this.state;
     const card = studySet[this.state.index];
 
     return (
       <React.Fragment>
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={index === 0}
-          onClick={this.handlePrev}
-        >
-          前へ
-        </Button>
         <Card card={card} />
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={(studySet.length - 1) === index}
-          onClick={this.handleNext}
-        >
-          次へ
-        </Button>
+        <Grid container justify="center" classes={{ container: classes.bottom }}>
+          <Button
+            variant="contained"
+            color="secondary"
+            classes={{ root: classes.button }}
+            onClick={this.handleNext}
+          >
+            知らない
+          </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            classes={{ root: classes.button }}
+            onClick={this.handleNext}
+          >
+            知ってる
+          </Button>
+        </Grid>
       </React.Fragment>
     );
   }
 }
 
-const styles = (): StyleRules => ({
+const styles = ({ spacing: { unit } }: Theme): StyleRules => ({
+  button: {
+    margin: `0px ${unit * 2}px`,
+  },
+  bottom: {
+    height: `${unit * 6}px`,
+  },
 });
 
 export interface State {

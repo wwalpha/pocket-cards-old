@@ -6,9 +6,9 @@ import {
 import FolderIcon from '@material-ui/icons/Folder';
 // import { RemoveBtn } from '.';
 import { PATH, PATH_INDEX } from '@const';
-import { UpdatePath } from '@comp/hoc';
-import { F_UPDATE_SET_ID, UpdateSetIdProps } from '@gql';
 import { compose } from 'react-apollo';
+import { withRouter, RouteComponentProps } from 'react-router';
+import { UpdateSetId, UpdatePath } from '@gql/local';
 
 class ListItem extends React.Component<Props, any> {
   state = {
@@ -18,11 +18,15 @@ class ListItem extends React.Component<Props, any> {
   handleTouchMove = () => this.setState({ delOpened: !this.state.delOpened });
 
   /** セットクリック */
-  handleClick = () => {
-    const { setId, updateSetId } = this.props;
+  handleClick = async () => {
+    const { setId, updateSetId, updatePath, history } = this.props;
 
     // セットID更新
-    updateSetId(setId);
+    await updateSetId(setId);
+    // パス更新
+    await updatePath(PATH_INDEX.WORD_ROOT);
+    // 画面遷移
+    history.push(PATH.WORD.ROOT);
   }
 
   render() {
@@ -41,9 +45,6 @@ class ListItem extends React.Component<Props, any> {
             disableRipple
             classes={{ root: classes.listitem }}
             onClick={this.handleClick}
-            component={(props: any) => (
-              <UpdatePath to={PATH.WORD.ROOT} path={PATH_INDEX.WORD_ROOT} {...props} />
-            )}
           >
             <Avatar classes={{ root: classes.avatar }}>
               <FolderIcon />
@@ -92,6 +93,11 @@ export interface OwnProps {
 }
 
 // React Props
-export interface Props extends OwnProps, UpdateSetIdProps, WithStyles { }
+export interface Props extends OwnProps, UpdatePath.Props, UpdateSetId.Props, RouteComponentProps, WithStyles { }
 
-export default compose(F_UPDATE_SET_ID)(withStyles(styles)(ListItem)) as React.ComponentType<OwnProps>;
+export default compose(
+  UpdateSetId,
+  UpdatePath,
+  withStyles(styles),
+  withRouter,
+)(ListItem) as React.ComponentType<OwnProps>;

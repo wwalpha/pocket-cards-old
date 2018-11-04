@@ -1,6 +1,6 @@
 import { ApolloCache } from 'apollo-cache';
 import { UpdateSetIdVariables, StatusInfo } from 'typings/graphql';
-import { GQL_STATUS_INFO, readStatus } from '@gql';
+import { GQL_STATUS_INFO, readStatus } from '@gql/local';
 
 /** セットIDを保存する */
 export default (_: any, { id }: UpdateSetIdVariables, context: any) => {
@@ -16,7 +16,6 @@ export default (_: any, { id }: UpdateSetIdVariables, context: any) => {
     query: GQL_STATUS_INFO, data: statusInfo,
   });
 
-  console.log('Status', statusInfo);
-
+  console.log('UpdateSetId Resolver', statusInfo.status);
   return statusInfo.status;
 };

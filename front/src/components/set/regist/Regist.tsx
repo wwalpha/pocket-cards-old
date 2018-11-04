@@ -2,6 +2,8 @@ import * as React from 'react';
 import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
 import { TextField, Grid } from '@material-ui/core';
 import { RegistBtn } from '.';
+import { GQL_USER_INFO } from '@gql/local';
+import { UserInfoQuery } from '@hoc';
 
 class Regist extends React.Component<Props, State> {
   state: State = {
@@ -15,22 +17,33 @@ class Regist extends React.Component<Props, State> {
     })
 
   render() {
-    const { classes, userId } = this.props;
+    const { classes } = this.props;
     const { name = '' } = this.state;
 
     return (
-      <Grid container>
-        <TextField
-          id="outlined-name"
-          label="セット名称"
-          className={classes.textField}
-          value={this.state['name']}
-          onChange={this.handleChange('name')}
-          margin="normal"
-          variant="outlined"
-        />
-        <RegistBtn userId={userId} name={name} />
-      </Grid>
+      <UserInfoQuery query={GQL_USER_INFO}>
+        {({ data }) => {
+          console.log(data);
+
+          if (!data || !data.user) return null;
+
+          const { user: { id } } = data;
+          return (
+            <Grid container>
+              <TextField
+                id="outlined-name"
+                label="セット名称"
+                className={classes.textField}
+                value={this.state['name']}
+                onChange={this.handleChange('name')}
+                margin="normal"
+                variant="outlined"
+              />
+              <RegistBtn userId={id} name={name} />
+            </Grid>
+          );
+        }}
+      </UserInfoQuery>
     );
   }
 }
@@ -43,7 +56,6 @@ const styles = (theme: Theme): StyleRules => ({
 });
 
 export interface OwnProps {
-  userId: string;
 }
 
 export interface Props extends OwnProps, WithStyles<StyleRules> { }

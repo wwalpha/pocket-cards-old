@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import { User } from 'typings/graphql';
-import { graphql } from 'react-apollo';
+import { User, User_user } from 'typings/graphql';
+import { graphql, ChildProps } from 'react-apollo';
 
 export const GQL_USER_INFO = gql`
   query User {
@@ -11,8 +11,13 @@ export const GQL_USER_INFO = gql`
   }
 `;
 
+export interface Props {
+  user: User_user;
+}
+type TChildProps = ChildProps<Props, User, void>;
+
 /** ユーザ情報 */
-export const F_USER_INFO = graphql<any, User, any>(GQL_USER_INFO, {
+export default graphql<Props, User, TChildProps>(GQL_USER_INFO, {
   props: ({ data }) => {
     if (!data) return {} as any;
 

@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { ChildProps, graphql } from 'react-apollo';
+import { ChildProps, graphql, MutationFn, FetchResult } from 'react-apollo';
 import { UpdatePath, UpdatePathVariables } from 'typings/graphql';
 
 /** パス変更 */
@@ -11,17 +11,17 @@ export const GQL_UPDATE_PATH = gql`
   }
 `;
 
-export interface UpdatePathProps {
-  updatePath: (path: number) => void;
+export interface Props {
+  updatePath: (path: number) => Promise<void | FetchResult<UpdatePath>>;
 }
-type TChildProps = ChildProps<UpdatePathProps, UpdatePath, UpdatePathVariables>;
+type TChildProps = ChildProps<Props, UpdatePath, UpdatePathVariables>;
 
-export const F_UPDATE_PATH = graphql<UpdatePathProps, UpdatePath, UpdatePathVariables, TChildProps>(GQL_UPDATE_PATH, {
+export default graphql<Props, UpdatePath, UpdatePathVariables, TChildProps>(GQL_UPDATE_PATH, {
   props: ({ mutate }) => ({
-    updatePath: (path: number) => {
-      mutate && mutate({
-        variables: { path },
-      });
-    },
+    updatePath: (path: number) => (mutate as MutationFn<UpdatePath, UpdatePathVariables>)({
+      variables: {
+        path,
+      },
+    }),
   }),
 });

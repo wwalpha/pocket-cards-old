@@ -34,8 +34,8 @@
     "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
-      "@gql": [
-        "./src/graphql/index.ts"
+      "@gql/*": [
+        "./src/graphql/*"
       ],
       "@const": [
         "./src/consts/index.ts"

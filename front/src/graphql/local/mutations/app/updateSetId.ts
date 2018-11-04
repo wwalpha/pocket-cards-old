@@ -10,13 +10,13 @@ export const GQL_UPDATE_SET_ID = gql`
   }
 `;
 
-export interface UpdateSetIdProps {
+export interface Props {
   updateSetId: (id: string) => void;
 }
 
-type TChildProps = ChildProps<UpdateSetIdProps, UpdateSetId, UpdateSetIdVariables>;
+type TChildProps = ChildProps<Props, UpdateSetId, UpdateSetIdVariables>;
 
-export const F_UPDATE_SET_ID = graphql<UpdateSetIdProps, UpdateSetId, UpdateSetIdVariables, TChildProps>(GQL_UPDATE_SET_ID, {
+export default graphql<Props, UpdateSetId, UpdateSetIdVariables, TChildProps>(GQL_UPDATE_SET_ID, {
   props: ({ mutate }) => ({
     updateSetId: (id: string) => {
       mutate && mutate({

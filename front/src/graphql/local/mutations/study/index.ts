@@ -1,2 +1,2 @@
-export * from './clearNewwords';
-export * from './removeNewword';
+// export * from './clearNewwords';
+// export * from './removeNewword';

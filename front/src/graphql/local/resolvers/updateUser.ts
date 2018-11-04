@@ -1,6 +1,6 @@
 import { ApolloCache } from 'apollo-cache';
-import { GQL_USER_INFO } from 'src/graphql';
 import { UpdateUserVariables, User } from 'typings/graphql';
+import { GQL_USER_INFO } from '@gql/local';
 
 /** ユーザ情報更新 */
 export default (_: any, { id, username }: UpdateUserVariables, context: any) => {

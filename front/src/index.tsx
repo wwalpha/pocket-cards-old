@@ -4,24 +4,22 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter } from 'react-router-dom';
 import AppSyncClient, { AUTH_TYPE, createAppSyncLink } from 'aws-appsync';
 import Auth from '@aws-amplify/auth';
+import Storage from '@aws-amplify/storage';
 import { ApolloLink } from 'apollo-link';
 import { createMuiTheme, MuiThemeProvider, Theme } from '@material-ui/core/styles';
-import { blue, deepOrange } from '@material-ui/core/colors';
+import { deepOrange, indigo } from '@material-ui/core/colors';
 import config from './aws-exports';
 import App from './containers/App';
-import { stateLink, GQL_UPDATE_USER } from '@gql';
 import { UpdateUser, UpdateUserVariables } from 'typings/graphql';
+import { GQL_UPDATE_USER, stateLink } from '@gql/local';
 
 Auth.configure(config);
+Storage.configure(config);
 
 const theme: Theme = createMuiTheme({
   palette: {
-    primary: {
-      main: blue['600'],
-    },
-    secondary: {
-      main: deepOrange['600'],
-    },
+    primary: indigo,
+    secondary: deepOrange,
   },
 });
 

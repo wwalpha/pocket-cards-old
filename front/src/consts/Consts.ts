@@ -75,6 +75,15 @@ const word: Header = {
       index: PATH_INDEX.WORD_ROOT,
     }],
   },
+  [PATH_INDEX.WORD_TEST]: {
+    title: 'テスト',
+    path: PATH.WORD.TEST,
+    left: [{
+      icon: ArrowBack,
+      path: PATH.WORD.ROOT,
+      index: PATH_INDEX.WORD_ROOT,
+    }],
+  },
 };
 
 export const HEADER: Header = {

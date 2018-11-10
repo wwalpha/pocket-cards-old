@@ -8,3 +8,4 @@
 /lambda/src/**/*.js
 /graphql/generated
 /front/amplify/.config/project-config.json
+/mobile/www/bundle.min.js

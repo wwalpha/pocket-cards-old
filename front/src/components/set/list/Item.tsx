@@ -9,6 +9,7 @@ import { PATH, PATH_INDEX } from '@const';
 import { compose } from 'react-apollo';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { UpdateSetId, UpdatePath } from '@gql/local';
+import  Swipeable from 'react-swipeable';
 
 class ListItem extends React.Component<Props, any> {
   state = {

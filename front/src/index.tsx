@@ -29,8 +29,9 @@ const appSyncLink = createAppSyncLink({
   url: config.aws_appsync_graphqlEndpoint,
   region: config.aws_appsync_region,
   auth: {
-    type: AUTH_TYPE.AMAZON_COGNITO_USER_POOLS,
-    jwtToken: async () => (await Auth.currentSession()).getAccessToken().getJwtToken(),
+    type: AUTH_TYPE.AWS_IAM,
+    credentials: () => Auth.currentCredentials(),
+    // jwtToken: async () => (await Auth.currentSession()).getAccessToken().getJwtToken(),
   },
   complexObjectsCredentials: () => Auth.currentCredentials() as any,
 });
@@ -38,7 +39,7 @@ const appSyncLink = createAppSyncLink({
 const link = ApolloLink.from([stateLink, appSyncLink]);
 
 const client = new AppSyncClient({ disableOffline: true } as any, { link });
-
+client.clearStore();
 // const client = new AppSyncClient({
 //   disableOffline: true,
 //   url: config.aws_appsync_graphqlEndpoint,
@@ -88,11 +89,7 @@ const app: any = {
   // Bind any cordova events here. Common events are:
   // 'pause', 'resume', etc.
   onDeviceReady() {
-    this.receivedEvent('deviceready');
-  },
-
-  // Update DOM on a Received Event
-  receivedEvent(id: any) {
+    console.log(device);
     start();
   },
 };

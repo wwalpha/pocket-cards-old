@@ -1,79 +1,65 @@
-// import * as React from 'react';
-// import { graphql, compose, MutateProps } from 'react-apollo';
-// import { Button, colors } from '@material-ui/core';
-// import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
-// import { SET_DELETE, GET_LIST } from '@gql';
-// import { User } from 'typings/local';
+import * as React from 'react';
+import { Button, colors } from '@material-ui/core';
+import { StyleRules, withStyles, WithStyles } from '@material-ui/core/styles';
+import { SetDelete } from '@gql/appsync';
+import { compose } from 'react-apollo';
 
-// class RemoveBtn extends React.Component<Props> {
+class RemoveBtn extends React.Component<Props> {
 
-//   handleRemove = () => {
-//     const { mutate, setId, user: { id: userId } } = this.props;
+  handleRemove = async () => {
+    const { onRemove, setDelete, setId, userId } = this.props;
 
-//     mutate({
-//       refetchQueries: [{
-//         query: GET_LIST, variables: { userId },
-//       }],
-//       variables: {
-//         userId, setId,
-//       },
-//       update: (proxy) => {
-//         const query = GET_LIST;
+    // parent event
+    onRemove();
+    // delete set
+    await setDelete(userId, setId);
+  }
 
-//         // セットリスト再リフレッシュ
-//         const data = proxy.readQuery<GetSetList, GetSetListVariables>({
-//           query,
-//           variables: { userId },
-//         });
+  render() {
+    const { classes, show } = this.props;
 
-//         if (!data || !data.sets) return;
+    return (
+      <Button
+        variant="contained"
+        classes={{ root: classes.button }}
+        disableRipple
+        onClick={this.handleRemove}
+        style={{ display: show ? '' : 'none' }}
+      >
+        REMOVE
+      </Button>
+    );
+  }
+}
 
-//         // 選択したセットIDを画面から削除する
-//         data.sets = [
-//           ...data.sets.filter(item => item && item.setId !== setId),
-//         ];
+const styles = (): StyleRules => ({
+  button: {
+    borderRadius: '0px',
+    color: '#fff',
+    backgroundColor: colors.red[700],
+    width: '80px',
+    boxShadow: 'none',
+    // transform: 'translateX(130)',
+    transition: 'all 300ms 0s ease',
+    // marginRight: '24px',
+    '&:hover': {
+      backgroundColor: colors.red[700],
+    },
+  },
+});
 
-//         proxy.writeQuery({ query, data });
-//       },
-//     });
+export interface OwnProps {
+  setId: string;
+  userId: string;
+  show: boolean;
+  onRemove: () => void;
+}
 
-//   }
+// React Props
+export interface Props extends OwnProps, SetDelete.Props, WithStyles {
+}
 
-//   render() {
-//     const { classes } = this.props;
-
-//     return (
-//       <Button
-//         variant="contained"
-//         classes={{ root: classes.button }}
-//         disableRipple
-//         onClick={this.handleRemove}
-//       >
-//         REMOVE
-//       </Button>
-//     );
-//   }
-// }
-
-// const styles = (): StyleRules => ({
-//   button: {
-//     borderRadius: '0px',
-//     color: '#fff',
-//     backgroundColor: colors.red[700],
-//     width: '80px',
-//     transform: 'translateX(130)',
-//     transition: 'all 300ms 0s ease',
-//     marginRight: '24px',
-//   },
-// });
-
-// // GraphQL Props
-// export interface IProps extends MutateProps<SetRemove, SetRemoveVariables>, User { }
-// // React Props
-// export interface Props extends IProps, User, WithStyles {
-//   setId: string;
-// }
-
-// export default compose(F_USER_INFO, graphql(SET_DELETE, {
-//   props: ({ mutate, ownProps }) => ({ mutate, ownProps }),
-// }))(withStyles(styles)(RemoveBtn));
+export default compose(
+  SetDelete.default,
+  withStyles(styles),
+)(RemoveBtn) as React.ComponentType<OwnProps>;

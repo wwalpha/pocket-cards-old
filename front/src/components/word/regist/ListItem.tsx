@@ -36,6 +36,7 @@ const styles = ({ palette, spacing: { unit } }: Theme): StyleRules => ({
     color: 'white',
     width: `${unit * 4.5}px`,
     height: `${unit * 4.5}px`,
+    boxShadow: 'none',
     '&:hover': {
       backgroundColor: '#950000',
     },

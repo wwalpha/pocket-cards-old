@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import { withApollo, WithApolloClient } from 'react-apollo';
 import { StudySet, StudySetVariables, StudySet_studySet } from 'typings/graphql';
 import Card from '../Card';
@@ -28,6 +28,7 @@ class Main extends React.Component<Props, State> {
       variables: {
         setId: statusInfo.status.setId,
       },
+      fetchPolicy: 'network-only',
     });
 
     // ローカルに保存する
@@ -54,24 +55,28 @@ class Main extends React.Component<Props, State> {
 
     return (
       <React.Fragment>
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={index === 0}
-          onClick={this.handlePrev}
-        >
-          前へ
-        </Button>
         <Card card={card} />
-        <Button
-          variant="contained"
-          color="primary"
-          disabled={(studySet.length - 1) === index}
-          onClick={this.handleNext}
-        >
-          次へ
-        </Button>
-      </React.Fragment>
+        <Grid container justify="space-around">
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            disabled={index === 0}
+            onClick={this.handlePrev}
+          >
+            前へ
+          </Button>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="large"
+            disabled={(studySet.length - 1) === index}
+            onClick={this.handleNext}
+          >
+            次へ
+          </Button>
+        </Grid>
+      </React.Fragment >
     );
   }
 }

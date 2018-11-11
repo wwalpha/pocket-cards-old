@@ -9,14 +9,14 @@ import { PATH, PATH_INDEX } from '@const';
 import { compose } from 'react-apollo';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { UpdateSetId, UpdatePath } from '@gql/local';
-import  Swipeable from 'react-swipeable';
+import RemoveBtn from './RemoveBtn';
 
-class ListItem extends React.Component<Props, any> {
-  state = {
-    delOpened: false,
+class ListItem extends React.Component<Props, State> {
+  state: State = {
+    screenX: 0,
+    moveLeft: false,
+    moveRight: false,
   };
-
-  handleTouchMove = () => this.setState({ delOpened: !this.state.delOpened });
 
   /** セットクリック */
   handleClick = async () => {
@@ -30,17 +30,50 @@ class ListItem extends React.Component<Props, any> {
     history.push(PATH.WORD.ROOT);
   }
 
+  /** 移動開始 */
+  handleTouchStart = (e: React.TouchEvent) => this.setState({
+    screenX: e.touches[0].screenX,
+    moveRight: false,
+    moveLeft: false,
+  })
+
+  /** 移動中 */
+  handleTouchMove = (e: React.TouchEvent) => {
+    const oldPoint = this.state.screenX;
+    const newPoint = e.touches[0].screenX;
+
+    if (newPoint > oldPoint) {
+      this.setState({ moveLeft: false, moveRight: true });
+    } else {
+      this.setState({ moveLeft: true, moveRight: false });
+    }
+  }
+  /** 移動終了 */
+  // handleTouchEnd = (e: React.TouchEvent) => this.setState({ moveRight: false, moveLeft: false });
+
+  /** 削除ボタン */
+  handleRemove = () => this.setState({ moveLeft: false, moveRight: false });
+
   render() {
-    const { classes, primaryText, secondaryText } = this.props;
+    const { classes, primaryText, secondaryText, userId, setId } = this.props;
+    const { moveRight } = this.state;
 
     return (
       <Grid container>
-        {/* <RemoveBtn setId={setId} /> */}
+        <RemoveBtn
+          userId={userId}
+          setId={setId}
+          show={moveRight}
+          onRemove={this.handleRemove}
+        />
         <MListItem
           button
           divider
           disableRipple
           classes={{ root: classes.listitem }}
+          onTouchStart={this.handleTouchStart}
+          onTouchMove={this.handleTouchMove}
+          // onTouchEnd={this.handleTouchEnd}
           onClick={this.handleClick}
         >
           <Avatar classes={{ root: classes.avatar }}>
@@ -51,9 +84,6 @@ class ListItem extends React.Component<Props, any> {
             secondary={secondaryText}
           />
         </MListItem>
-        {/* <Slide direction="left" in={this.state.delOpened} mountOnEnter unmountOnExit>
-
-          </Slide> */}
       </Grid>
     );
   }
@@ -78,9 +108,16 @@ const styles: StyleRulesCallback = ({ palette, spacing: { unit } }: Theme) => ({
 
 /** OwnProps */
 export interface OwnProps {
+  userId: string;
   setId: string;
   primaryText: string;
   secondaryText?: string;
+}
+
+export interface State {
+  screenX: number;
+  moveLeft: boolean;
+  moveRight: boolean;
 }
 
 // React Props

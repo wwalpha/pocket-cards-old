@@ -92,6 +92,7 @@ class Regist extends React.Component<Props, State> {
           <Button
             variant="contained"
             color="primary"
+            size="large"
             onClick={this.handleRegist}
           >
             登録

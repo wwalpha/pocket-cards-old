@@ -1,16 +1,19 @@
-export * from './mutations';
-export * from './queries';
+export * from './gql/mutations';
+export * from './gql/queries';
 
-import * as Image2Word from './hoc/image2Word';
-import * as RegistWords from './hoc/registWords';
-import * as SetCreate from './hoc/setCreate';
-import * as SetDelete from './hoc/setDelete';
-import * as StudySet from './hoc/studySet';
-import * as StudyAnswer from './hoc/studyAnswer';
+import * as Image2Word from './mutations/image2Word';
+import * as RegistWords from './mutations/registWords';
+import * as SetCreate from './mutations/setCreate';
+import * as SetDelete from './mutations/setDelete';
+import * as StudyAnswer from './mutations/studyAnswer';
+
+import * as StudySet from './queries/studySet';
+// import * as SetList from './queries/setList';
 
 export {
   Image2Word,
   RegistWords,
+  // SetList,
   SetCreate,
   SetDelete,
   StudySet,

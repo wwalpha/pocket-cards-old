@@ -1,5 +1,5 @@
-import * as mutations from './mutations';
-import * as queries from './queries';
+import * as mutations from './gql/mutations';
+import * as queries from './gql/queries';
 import * as fs from 'fs';
 import * as path from 'path';
 

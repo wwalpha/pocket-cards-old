@@ -17,7 +17,7 @@ const dev = {
     new HtmlWebpackPlugin({
       title: 'PocketCards',
       filename: 'index.html',
-      template: path.join(__dirname, '../../mobile.ejs'),
+      template: path.join(__dirname, '../mobile.ejs'),
       minify: false,
       hash: true,
       inject: 'body',

@@ -33,13 +33,15 @@ export default graphql<Props, SetCreate, SetCreateVariables, TChildProps>(GQL_SE
 
       if (!setListInfo) return;
 
-      setListInfo.setList.push(result.data.setCreate);
+      const newList = [...setListInfo.setList, result.data.setCreate];
 
       console.log('setList', setListInfo);
 
       proxy.writeQuery<SetList, SetListVariables>({
         query: GQL_SET_LIST,
-        data: setListInfo,
+        data: {
+          setList: newList,
+        },
         variables: {
           userId: id,
         },

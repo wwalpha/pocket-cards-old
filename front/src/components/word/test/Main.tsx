@@ -28,6 +28,7 @@ class Main extends React.Component<Props, State> {
       variables: {
         setId: statusInfo.status.setId,
       },
+      fetchPolicy: 'network-only',
     });
 
     // ローカルに保存する
@@ -65,17 +66,16 @@ class Main extends React.Component<Props, State> {
     // No Data
     if (studySet.length === index) return <div>Finish...</div>;
 
-    const { classes } = this.props;
     const card = studySet[index];
 
     return (
       <React.Fragment>
         <Card card={card} />
-        <Grid container justify="center" classes={{ container: classes.bottom }}>
+        <Grid container justify="space-around">
           <Button
             variant="contained"
             color="secondary"
-            classes={{ root: classes.button }}
+            size="large"
             onClick={() => this.handleAnswer(false)}
           >
             知らない
@@ -83,7 +83,7 @@ class Main extends React.Component<Props, State> {
           <Button
             variant="contained"
             color="primary"
-            classes={{ root: classes.button }}
+            size="large"
             onClick={() => this.handleAnswer(true)}
           >
             知ってる
@@ -95,12 +95,6 @@ class Main extends React.Component<Props, State> {
 }
 
 const styles = ({ spacing: { unit } }: Theme): StyleRules => ({
-  button: {
-    margin: `0px ${unit * 2}px`,
-  },
-  bottom: {
-    height: `${unit * 6}px`,
-  },
 });
 
 export interface State {

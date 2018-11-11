@@ -2,12 +2,12 @@
 export default {
   user: {
     __typename: 'User',
-    id: 'dummy',
-    username: 'dummy',
+    id: null,
+    username: null,
   },
   status: {
     __typename: 'Status',
-    setId: 'dummy',
+    setId: null,
     path: 0,
     cardIndex: 0,
   },

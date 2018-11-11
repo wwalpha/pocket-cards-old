@@ -14,17 +14,17 @@ class List extends React.Component<Props, {}> {
 
     return (
       <Grid container classes={{ container: classes.root }}>
-        <SetListQuery query={GQL_SET_LIST} variables={{ userId: id }} >
+        <SetListQuery query={GQL_SET_LIST} variables={{ userId: id }} fetchPolicy="cache-and-network">
           {({ loading, data, error }) => {
             if (loading) return <div>Loading</div>;
             if (error) return <h1>ERROR</h1>;
             if (!data) return <div></div>;
 
             const { setList } = data;
-
             return setList && setList.map((item, idx) =>
               <Item
                 key={idx}
+                userId={id}
                 setId={(item && item.setId) as string}
                 primaryText={(item && item.name) as string}
               />,

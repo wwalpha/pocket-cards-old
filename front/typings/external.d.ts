@@ -3,6 +3,8 @@
 /// <reference path="../node_modules/apollo-link-state/lib/index.d.ts" />
 /// <reference path="../node_modules/react-apollo/index.d.ts" />
 /// <reference path="../node_modules/graphql-tag/index.d.ts" />
-//// <reference path="../node_modules/@aws-amplify/auth/lib/index.d.ts" />
-//// <reference path="../node_modules/@aws-amplify/core/lib/index.d.ts" />
+/// <reference path="../../mobile/node_modules/cordova-plugin-device/types/index.d.ts" />
+/// <reference path="../../mobile/node_modules/cordova-plugin-media/types/index.d.ts" />
+/// <reference path="../../mobile/node_modules/cordova-plugin-file/types/index.d.ts" />
+
 /// <reference path="./types.d.ts" />

@@ -1,10 +1,11 @@
 import * as React from 'react';
-import { withStyles, StyleRules, WithStyles } from '@material-ui/core/styles';
-import { Grid, Button, Divider } from '@material-ui/core';
+import { withStyles, StyleRules, WithStyles, Theme } from '@material-ui/core/styles';
+import { Grid, Button, Divider, Typography } from '@material-ui/core';
 import { PATH, PATH_INDEX } from '@const';
 import { compose } from 'react-apollo';
 import { withRouter, RouteComponentProps } from 'react-router';
 import { UpdatePath } from '@gql/local';
+import { Book } from '@material-ui/icons';
 
 class Menu extends React.Component<Props, {}> {
 
@@ -32,7 +33,10 @@ class Menu extends React.Component<Props, {}> {
             fullWidth
             onClick={() => this.handleClick(PATH.WORD.REGIST, PATH_INDEX.WORD_REGIST)}
           >
-            新規単語
+            <Book color="secondary" />
+            <Typography variant="button" classes={{ button: classes.text }} >
+              新規単語
+            </Typography>
           </Button>
           <Divider />
         </Grid>
@@ -43,7 +47,10 @@ class Menu extends React.Component<Props, {}> {
             fullWidth
             onClick={() => this.handleClick(PATH.WORD.STUDY, PATH_INDEX.WORD_STUDY)}
           >
-            単語学習
+            <Book color="secondary" />
+            <Typography variant="button" classes={{ button: classes.text }} >
+              単語学習
+            </Typography>
           </Button>
           <Divider />
         </Grid>
@@ -54,7 +61,10 @@ class Menu extends React.Component<Props, {}> {
             fullWidth
             onClick={() => this.handleClick(PATH.WORD.TEST, PATH_INDEX.WORD_TEST)}
           >
-            単語テスト
+            <Book color="secondary" />
+            <Typography variant="button" classes={{ button: classes.text }} >
+              単語テスト
+            </Typography>
           </Button>
           <Divider />
         </Grid>
@@ -65,7 +75,10 @@ class Menu extends React.Component<Props, {}> {
             fullWidth
             onClick={() => this.handleClick(PATH.WORD.HISTORY, PATH_INDEX.WORD_HISTORY)}
           >
-            今日の単語
+            <Book color="secondary" />
+            <Typography variant="button" classes={{ button: classes.text }} >
+              今日の単語
+            </Typography>
           </Button>
         </Grid>
       </Grid>
@@ -74,7 +87,7 @@ class Menu extends React.Component<Props, {}> {
   }
 }
 
-const styles = (): StyleRules => ({
+const styles = ({ spacing: { unit } }: Theme): StyleRules => ({
   container: {
     // height: 'inherit',
   },
@@ -86,7 +99,11 @@ const styles = (): StyleRules => ({
     backgroundColor: 'transparent',
     boxShadow: 'none',
     borderRadius: 0,
-    letterSpacing: '0.5em',
+    letterSpacing: '0.25em',
+    justifyContent: 'left',
+  },
+  text: {
+    padding: `0px ${unit}px`,
   },
 });
 

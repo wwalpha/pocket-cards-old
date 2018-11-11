@@ -95,7 +95,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Chat',
       filename: 'index.html',
-      template: path.join(__dirname, '../../app.ejs'),
+      template: path.join(__dirname, '../app.ejs'),
       minify: false,
       hash: true,
       inject: 'body',
